@@ -7,7 +7,7 @@ Vy-Kha Huynh <br />
 Niilo Vuokila <br />
 John Park <br />
 <br />
-This goal of this project is to design a multi-tier software solution to implement a library management system and develop a release pipeline to automate the software delivery process. <br />
+The goal of this project is to design a multi-tier software solution to implement a library management system and develop a release pipeline to automate the software delivery process. <br />
 <br />
 Deliverable No | Name | Team Role | Individual Effort
 --- | --- | --- | ---
