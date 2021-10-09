@@ -4,7 +4,7 @@ Sami Ait Ouahmane is a third year (U2) student in Software Engineering <br />
 Julie Chen is a fourth year (U3) student in Bioengineering, with a minor in Software Engineering <br />
 Hyunbum Cho is a U3 student in Software Engineering <br />
 Vy-Kha Huynh is a second year (U2) student in Software Engineering <br />
-Niilo Vuokila <br />
+Niilo Vuokila is a third year (U3) student in Computer Engineering <br />
 John Park <br />
 <br />
 The goal of this project is to design a multi-tier software solution to implement a library management system and develop a release pipeline to automate the software delivery process. <br />
