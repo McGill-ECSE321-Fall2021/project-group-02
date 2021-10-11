@@ -1,3 +1,9 @@
+## Project Overview
+The goal of this project is to design a multi-tier software solution to implement a library management system and develop a release pipeline to automate the software delivery process. <br />
+<br />
+
+## About us
+
 There are six team members in Group 02: <br />
 <br />
 Sami Ait Ouahmane is a third year (U2) student in Software Engineering <br />
@@ -6,35 +12,20 @@ Hyunbum Cho is a U3 student in Software Engineering <br />
 Vy-Kha Huynh is a second year (U2) student in Software Engineering <br />
 Niilo Vuokila is a third year (U3) student in Computer Engineering <br />
 John Park <br />
-<br />
-The goal of this project is to design a multi-tier software solution to implement a library management system and develop a release pipeline to automate the software delivery process. <br />
-<br />
-Deliverable No | Name | Team Role | Individual Effort
---- | --- | --- | ---
-| 1 | Sami Ait Ouahmane |  | 0
-| | Julie Chen |  | 0
-| | Hyunbum Cho |  | 0
-| | Vy-Kha Huynh |  | 0
-| | Niilo Vuokila |  | 0
-| | John Park |  | 0
-| 2 | Sami Ait Ouahmane |  | 0
-| | Julie Chen |  | 0
-| | Hyunbum Cho |  | 0
-| | Vy-Kha Huynh |  | 0
-| | Niilo Vuokila |  | 0
-| | John Park |  | 0
-| 3 | Sami Ait Ouahmane |  | 0
-| | Julie Chen |  | 0
-| | Hyunbum Cho |  | 0
-| | Vy-Kha Huynh |  | 0
-| | Niilo Vuokila |  | 0
-| | John Park |  | 0
-| 4 | Sami Ait Ouahmane |  | 0
-| | Julie Chen |  | 0
-| | Hyunbum Cho |  | 0
-| | Vy-Kha Huynh |  | 0
-| | Niilo Vuokila |  | 0
-| | John Park |  | 0
+
+## Contributions
+| Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
+| --- | --- | --- | --- | --- | --- |
+| Sami Ait Ouahmane | Software Developer |  |  |  |  |
+| Julie Chen |  |  |  |  |  |
+| Hyunbum Cho |  |  |  |  |  |
+| Vy-Kha Huynh |  |  |  |  |  |
+| Niilo Vuokila |  |  |  |  |  |
+| John Park |  |  |  |  |  |
+
  
+ ## Project Reports
  
+ ### Deliverable 1
+ The project report for deliverable 1 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report---Deliverable-1)
  
