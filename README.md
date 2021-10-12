@@ -11,7 +11,7 @@ Julie Chen is a fourth year (U3) student in Bioengineering, with a minor in Soft
 Hyunbum Cho is a U3 student in Software Engineering <br />
 Vy-Kha Huynh is a second year (U2) student in Software Engineering <br />
 Niilo Vuokila is a third year (U3) student in Computer Engineering <br />
-John Park <br />
+John Park is a third year (U3) student in Software Engineering <br />
 
 ## Contributions
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
