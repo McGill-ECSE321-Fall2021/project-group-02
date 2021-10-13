@@ -5,9 +5,14 @@ package ca.mcgill.ecse321.librarysystem.model;
 import java.util.*;
 import java.sql.Time;
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 9 "model.ump"
 // line 128 "model.ump"
+@Entity
 public class LibrarySoftwareSystem
 {
 
@@ -58,6 +63,7 @@ public class LibrarySoftwareSystem
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
+  @OneToMany
   public Person getPerson(int index)
   {
     Person aPerson = persons.get(index);
@@ -69,7 +75,7 @@ public class LibrarySoftwareSystem
     List<Person> newPersons = Collections.unmodifiableList(persons);
     return newPersons;
   }
-
+  
   public int numberOfPersons()
   {
     int number = persons.size();
@@ -88,6 +94,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public Item getItem(int index)
   {
     Item aItem = items.get(index);
@@ -123,6 +130,7 @@ public class LibrarySoftwareSystem
     return openingHours;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public OnlineAccount getAccount(int index)
   {
     OnlineAccount aAccount = accounts.get(index);
@@ -153,6 +161,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public User getUser(int index)
   {
     User aUser = users.get(index);
@@ -183,6 +192,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public WeeklySchedule getWeeklySchedule(int index)
   {
     WeeklySchedule aWeeklySchedule = weeklySchedules.get(index);
@@ -213,6 +223,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public DailySchedule getDailySchedule(int index)
   {
     DailySchedule aDailySchedule = dailySchedules.get(index);

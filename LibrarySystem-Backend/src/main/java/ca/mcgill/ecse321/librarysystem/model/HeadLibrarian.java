@@ -4,9 +4,14 @@ package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 26 "model.ump"
 // line 145 "model.ump"
+@Entity
 public class HeadLibrarian extends User
 {
 

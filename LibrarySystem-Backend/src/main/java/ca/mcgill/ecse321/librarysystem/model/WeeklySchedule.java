@@ -5,9 +5,14 @@ package ca.mcgill.ecse321.librarysystem.model;
 import java.sql.Date;
 import java.util.*;
 import java.sql.Time;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 112 "model.ump"
 // line 214 "model.ump"
+@Entity
 public class WeeklySchedule
 {
 
@@ -69,6 +74,7 @@ public class WeeklySchedule
     return endDate;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public DailySchedule getDay(int index)
   {
     DailySchedule aDay = days.get(index);
@@ -99,6 +105,7 @@ public class WeeklySchedule
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;

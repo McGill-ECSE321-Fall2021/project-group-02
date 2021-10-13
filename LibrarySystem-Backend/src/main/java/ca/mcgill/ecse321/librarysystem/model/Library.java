@@ -3,9 +3,14 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.sql.Time;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 106 "model.ump"
 // line 209 "model.ump"
+@Entity
 public class Library
 {
 
@@ -72,6 +77,7 @@ public class Library
     return closingHour;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;

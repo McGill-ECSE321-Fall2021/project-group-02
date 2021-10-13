@@ -3,9 +3,14 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 56 "model.ump"
 // line 173 "model.ump"
+@Entity
 public class Book extends Item
 {
 
@@ -66,6 +71,7 @@ public class Book extends Item
     return author;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = true)
   public Patron getPatron()
   {
     return patron;

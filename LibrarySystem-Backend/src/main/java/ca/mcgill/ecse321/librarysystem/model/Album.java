@@ -4,9 +4,14 @@ package ca.mcgill.ecse321.librarysystem.model;
 
 
 import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 70 "model.ump"
 // line 183 "model.ump"
+@Entity
 public class Album extends Item
 {
 
@@ -67,6 +72,7 @@ public class Album extends Item
     return artist;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = true)
   public Patron getPatron()
   {
     return patron;

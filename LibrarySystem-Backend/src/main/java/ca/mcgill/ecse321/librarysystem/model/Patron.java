@@ -3,9 +3,14 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 32 "model.ump"
 // line 151 "model.ump"
+@Entity
 public class Patron extends User
 {
 
@@ -34,6 +39,7 @@ public class Patron extends User
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
+  @OneToMany
   public Album getBorrowedAlbum(int index)
   {
     Album aBorrowedAlbum = borrowedAlbums.get(index);
@@ -45,7 +51,7 @@ public class Patron extends User
     List<Album> newBorrowedAlbums = Collections.unmodifiableList(borrowedAlbums);
     return newBorrowedAlbums;
   }
-
+  
   public int numberOfBorrowedAlbums()
   {
     int number = borrowedAlbums.size();
@@ -64,6 +70,7 @@ public class Patron extends User
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public Book getBorrowedBook(int index)
   {
     Book aBorrowedBook = borrowedBooks.get(index);
@@ -94,6 +101,7 @@ public class Patron extends User
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany
   public Movie getBorrowedMovy(int index)
   {
     Movie aBorrowedMovy = borrowedMovies.get(index);

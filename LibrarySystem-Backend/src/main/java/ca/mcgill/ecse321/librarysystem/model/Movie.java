@@ -3,9 +3,13 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 // line 63 "model.ump"
 // line 178 "model.ump"
+@Entity
 public class Movie extends Item
 {
 
@@ -55,7 +59,7 @@ public class Movie extends Item
     wasSet = true;
     return wasSet;
   }
-
+  
   public String getTitle()
   {
     return title;
@@ -66,6 +70,7 @@ public class Movie extends Item
     return director;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = true)
   public Patron getPatron()
   {
     return patron;

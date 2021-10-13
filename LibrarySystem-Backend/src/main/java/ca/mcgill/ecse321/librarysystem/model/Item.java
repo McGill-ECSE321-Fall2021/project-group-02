@@ -3,9 +3,14 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 48 "model.ump"
 // line 168 "model.ump"
+@Entity
 public class Item
 {
 
@@ -109,7 +114,8 @@ public class Item
   {
     return isDamaged;
   }
-
+  
+  @Id
   public int getId()
   {
     return id;
@@ -125,6 +131,7 @@ public class Item
     return getWithId(aId) != null;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;

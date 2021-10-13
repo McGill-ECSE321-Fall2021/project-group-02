@@ -3,9 +3,14 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.sql.Time;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 // line 98 "model.ump"
 // line 204 "model.ump"
+@Entity
 public class DailySchedule
 {
 
@@ -92,11 +97,13 @@ public class DailySchedule
     return endTime;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(optional = true)
   public WeeklySchedule getWeeklySchedule()
   {
     return weeklySchedule;
