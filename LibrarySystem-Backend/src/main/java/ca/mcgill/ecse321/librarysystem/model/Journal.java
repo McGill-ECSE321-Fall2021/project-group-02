@@ -15,13 +15,13 @@ public class Journal extends Item
 
   //Journal Attributes
   private String name;
-  private String date;
+  private Date date;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Journal(boolean aIsArchived, boolean aIsBorrowed, boolean aIsDamaged, int aId, LibrarySoftwareSystem aLibrarySoftwareSystem, String aName, String aDate)
+  public Journal(boolean aIsArchived, boolean aIsBorrowed, boolean aIsDamaged, int aId, LibrarySoftwareSystem aLibrarySoftwareSystem, String aName, Date aDate)
   {
     super(aIsArchived, aIsBorrowed, aIsDamaged, aId, aLibrarySoftwareSystem);
     name = aName;
@@ -40,7 +40,7 @@ public class Journal extends Item
     return wasSet;
   }
 
-  public boolean setDate(String aDate)
+  public boolean setDate(Date aDate)
   {
     boolean wasSet = false;
     date = aDate;
@@ -53,7 +53,7 @@ public class Journal extends Item
     return name;
   }
 
-  public String getDate()
+  public Date getDate()
   {
     return date;
   }

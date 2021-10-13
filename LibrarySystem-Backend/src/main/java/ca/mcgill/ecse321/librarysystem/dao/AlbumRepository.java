@@ -6,6 +6,5 @@ import ca.mcgill.ecse321.librarysystem.model.Album;
 
 public interface AlbumRepository extends CrudRepository<Album, String>{
 	Album findAlbumByTitle(String title);
-	Album findAlbumByAuthor(String author);
-	
+	Album findAlbumByArtist(String artist);
 }
