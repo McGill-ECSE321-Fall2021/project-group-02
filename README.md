@@ -8,7 +8,7 @@ There are six team members in Group 02: <br />
 <br />
 Sami Ait Ouahmane is a third year (U2) student in Software Engineering <br />
 Julie Chen is a fourth year (U3) student in Bioengineering, with a minor in Software Engineering <br />
-Hyunbum Cho is a U3 student in Software Engineering <br />
+Hyunbum Cho is a fourth year (U3) student in Software Engineering <br />
 Vy-Kha Huynh is a second year (U2) student in Software Engineering <br />
 Niilo Vuokila is a third year (U3) student in Computer Engineering <br />
 John Park is a third year (U3) student in Software Engineering <br />
@@ -18,7 +18,7 @@ John Park is a third year (U3) student in Software Engineering <br />
 | --- | --- | --- | --- | --- | --- |
 | Sami Ait Ouahmane | Software Developer |  |  |  |  |
 | Julie Chen | Documentation Lead |  |  |  |  |
-| Hyunbum Cho |  |  |  |  |  |
+| Hyunbum Cho | Software Developer |  |  |  |  |
 | Vy-Kha Huynh | Software Developer  |  |  |  |  |
 | Niilo Vuokila |  |  |  |  |  |
 | John Park |  |  |  |  |  |
