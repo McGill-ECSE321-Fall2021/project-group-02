@@ -16,7 +16,7 @@ John Park is a third year (U3) student in Software Engineering <br />
 ## Contributions
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
 | --- | --- | --- | --- | --- | --- |
-| Sami Ait Ouahmane | Software Developer |  |  |  |  |
+| Sami Ait Ouahmane | Project Manager, Software Developer |  |  |  |  |
 | Julie Chen | Documentation Lead |  |  |  |  |
 | Hyunbum Cho | Software Developer |  |  |  |  |
 | Vy-Kha Huynh | Testing Lead  |  |  |  |  |
