@@ -8,7 +8,6 @@ import ca.mcgill.ecse321.librarysystem.model.Item;
 
 public interface ItemRepository extends CrudRepository<Item, String>{
 	Item findByID(Integer iD);
-	List<Item> findItemByType(boolean isAlbum, boolean isBook, boolean isJournal, boolean isMovie, boolean isNewspaper);
 	List<Item> findItemByTitle(String title);
 
 	List<Item> findItemByIsArchived(boolean isArchived);
