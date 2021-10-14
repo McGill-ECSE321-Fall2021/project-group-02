@@ -9,7 +9,6 @@ public interface MovieRepository extends CrudRepository<Movie, Integer>{
 	List<Movie> findMovieByName(String name);
 	List<Movie> findMovieByDirector(String directorName);
 
-	List<Movie> findMovieByIsBorrowable(boolean isNotArchived, boolean isNotBorrowed, boolean isNotDamaged);
 	List<Movie> findMovieByIsArchived(boolean isArchived);
 	List<Movie> findMovieByIsBorrowed(boolean isBorrowed);
 	List<Movie> findMovieByIsDamaged(boolean isDamaged);

@@ -11,7 +11,6 @@ public interface ItemRepository extends CrudRepository<Item, String>{
 	List<Item> findItemByType(boolean isAlbum, boolean isBook, boolean isJournal, boolean isMovie, boolean isNewspaper);
 	List<Item> findItemByTitle(String title);
 
-	List<Item> findItemByIsBorrowable(boolean isNotArchived, boolean isNotBorrowed, boolean isNotDamaged);
 	List<Item> findItemByIsArchived(boolean isArchived);
 	List<Item> findItemByIsBorrowed(boolean isBorrowed);
 	List<Item> findItemByIsDamaged(boolean isDamaged);

@@ -11,7 +11,6 @@ public interface BookRepository extends CrudRepository<Book, String>{
 	List<Book> findBookByAuthor(String author);
 	Book findBookByTitleAndAuthor(String title, String author);
 
-	List<Book> findBookByIsBorrowable(boolean isNotArchived, boolean isNotBorrowed, boolean isNotDamaged);
 	List<Book> findBookByIsArchived(boolean isArchived);
 	List<Book> findBookByIsBorrowed(boolean isBorrowed);
 	List<Book> findBookByIsDamaged(boolean isDamaged);

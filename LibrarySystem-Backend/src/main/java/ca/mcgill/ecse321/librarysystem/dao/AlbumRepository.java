@@ -11,7 +11,6 @@ public interface AlbumRepository extends CrudRepository<Album, String>{
 	List<Album> findAlbumByTitle(String title);
 	List<Album> findAlbumByArtist(String artist);
 
-	List<Album> findAlbumByIsBorrowable(boolean isNotArchived, boolean isNotBorrowed, boolean isNotDamaged);
 	List<Album> findAlbumByIsArchived(boolean isArchived);
 	List<Album> findAlbumByIsBorrowed(boolean isBorrowed);
 	List<Album> findAlbumByIsDamaged(boolean isDamaged);

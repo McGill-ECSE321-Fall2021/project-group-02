@@ -12,7 +12,6 @@ public interface JournalRepository extends CrudRepository<Journal, String>{
 	List<Journal> findJournalByName(String name);
 	List<Journal> findJournalByDate(Date date);
 
-	List<Journal> findJournalByIsBorrowable(boolean isNotArchived, boolean isNotBorrowed, boolean isNotDamaged);
 	List<Journal> findJournalByIsArchived(boolean isArchived);
 	List<Journal> findJournalByIsBorrowed(boolean isBorrowed);
 	List<Journal> findJournalByIsDamaged(boolean isDamaged);
