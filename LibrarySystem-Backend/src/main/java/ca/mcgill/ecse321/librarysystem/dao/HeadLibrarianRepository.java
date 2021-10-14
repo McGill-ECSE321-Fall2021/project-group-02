@@ -1,17 +1,17 @@
 package ca.mcgill.ecse321.librarysystem.dao;
 
+import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
+import ca.mcgill.ecse321.librarysystem.model.Person;
 import org.springframework.data.repository.CrudRepository;
 
-import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
+import java.util.List;
 
 public interface HeadLibrarianRepository extends CrudRepository<HeadLibrarian, String>{
-	List<HeadLibrarian> findHeadLibrarianByFirstName(String firstName);
-    List<HeadLibrarian> findHeadLibrarianByLastName(String lastName);
-    HeadLibrarian findHeadLibrarianByFirstAndLastName(String firstName, String lastName);
-    HeadLibrarian findHeadLibrarianByID(Integer iD);
-
-    boolean existsHeadLibrarianByFirstName(String firstName);
-    boolean existsHeadLibrarianByLastName(String lastName);
-    boolean existsHeadLibrarianByFirstAndLastName(String firstName, String lastName);
-    boolean existsHeadLibrarianByID(Integer iD);
+    HeadLibrarian findHeadLibrarianById(Integer id);
+    List<HeadLibrarian> findHeadLibrarianByAddress(String address);
+    HeadLibrarian findHeadLibrarianByPerson(Person person);
+    
+    boolean existsHeadLibrarianById(Integer id);
+    boolean existsHeadLibrarianByAddress(String address);
+    boolean existsHeadLibrarianByPerson(Person person);
 }

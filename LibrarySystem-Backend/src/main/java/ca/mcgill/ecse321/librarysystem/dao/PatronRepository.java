@@ -1,18 +1,18 @@
 package ca.mcgill.ecse321.librarysystem.dao;
 
+import ca.mcgill.ecse321.librarysystem.model.Person;
 import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.librarysystem.model.Patron;
-public interface PatronRepository extends CrudRepository<Patron, Integer>{
-	Patron findPatronByID(Integer iD);
-	List<Patron> findPatronByAddress(String address);
-	List<Patron> findPatronByFirstAndLastName(String firstName, String lastName);
-	List<Patron> findPatronByFirstName(String firstName);
-	List<Patron> findPatronByLastName(String lastName);
 
-	boolean existsPatronByID(Integer iD);
+import java.util.List;
+
+public interface PatronRepository extends CrudRepository<Patron, Integer>{
+	Patron findPatronById(Integer id);
+	List<Patron> findPatronByAddress(String address);
+	Patron findPatronByPerson(Person person);
+
+	boolean existsPatronById(Integer id);
 	boolean existsPatronByAddress(String address);
-	boolean existsPatronByFirstAndLastName(String firstName, String lastName);
-	boolean existsPatronByFirstName(String firstName);
-	boolean existsPatronByLastName(String lastName);
+	boolean existsPatronByPerson(Person person);
 } 

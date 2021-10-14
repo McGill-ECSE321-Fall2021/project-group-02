@@ -9,6 +9,7 @@ import ca.mcgill.ecse321.librarysystem.model.Journal;
 
 public interface JournalRepository extends CrudRepository<Journal, String>{
 	Journal findJournalByNameAndDate(String name, Date date);
+	Journal findJournalById(int id);
 	List<Journal> findJournalByName(String name);
 	List<Journal> findJournalByDate(Date date);
 
