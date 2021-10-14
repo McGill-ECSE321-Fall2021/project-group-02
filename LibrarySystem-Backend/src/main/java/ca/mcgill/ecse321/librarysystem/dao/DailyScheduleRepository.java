@@ -9,7 +9,11 @@ import ca.mcgill.ecse321.librarysystem.model.DailySchedule.WeekDay;
 import ca.mcgill.ecse321.librarysystem.model.WeeklySchedule;
 
 public interface DailyScheduleRepository extends CrudRepository<DailySchedule, String>{
-	DailySchedule findDailySchedulekByDayAndWeeklySchedule(WeekDay day, WeeklySchedule weeklySchedule);
-	DailySchedule findDailySchedulekByStartTimeAndWeeklySchedule(Time time, WeeklySchedule weeklySchedule);
-	DailySchedule findDailySchedulekByEndTimeAndWeeklySchedule (Time time, WeeklySchedule weeklySchedule);
+	DailySchedule findDailyScheduleByDayAndWeeklySchedule(WeekDay day, WeeklySchedule weeklySchedule);
+	List<DailySchedule> findDailyScheduleByStartTimeAndWeeklySchedule(Time startTime, WeeklySchedule weeklySchedule);
+	List<DailySchedule> findDailyScheduleByEndTimeAndWeeklySchedule (Time endTime, WeeklySchedule weeklySchedule);
+
+	boolean existsDailyScheduleByDayAndWeeklySchedule(WeekDay day, WeeklySchedule weeklySchedule);
+	boolean existsDailyScheduleByStartTimeAndWeeklySchedule(Time startTime, WeeklySchedule weeklySchedule);
+	boolean existsDailyScheduleByEndTimeAndWeeklySchedule (Time endTime, WeeklySchedule weeklySchedule);
 }
