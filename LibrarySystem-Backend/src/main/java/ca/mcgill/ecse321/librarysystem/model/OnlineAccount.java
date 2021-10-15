@@ -27,6 +27,7 @@ public class OnlineAccount
   //OnlineAccount Attributes
   private String username;
   private String password;
+  private String email;
 
   //OnlineAccount Associations
   private User user;
@@ -36,9 +37,10 @@ public class OnlineAccount
   // CONSTRUCTOR
   //------------------------
 
-  public OnlineAccount(String aUsername, String aPassword, User aUser, LibrarySoftwareSystem aLibrarySoftwareSystem)
+  public OnlineAccount(String aUsername, String aEmail, String aPassword, User aUser, LibrarySoftwareSystem aLibrarySoftwareSystem)
   {
     password = aPassword;
+    email = aEmail;
     if (!setUsername(aUsername))
     {
       throw new RuntimeException("Cannot create due to duplicate username. See http://manual.umple.org?RE003ViolationofUniqueness.html");
@@ -78,6 +80,13 @@ public class OnlineAccount
     return wasSet;
   }
 
+  public boolean setEmail(String aEmail)
+  {
+    boolean wasSet = false;
+    password = aEmail;
+    wasSet = true;
+    return wasSet;
+  }
   public boolean setPassword(String aPassword)
   {
     boolean wasSet = false;
@@ -101,6 +110,9 @@ public class OnlineAccount
     return getWithUsername(aUsername) != null;
   }
 
+  public String getEmail(){
+    return email;
+  }
   public String getPassword()
   {
     return password;
@@ -186,6 +198,7 @@ public class OnlineAccount
   {
     return super.toString() + "["+
             "username" + ":" + getUsername()+ "," +
+            "email" + ":" + getEmail()+ "," +
             "password" + ":" + getPassword()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "user = "+(getUser()!=null?Integer.toHexString(System.identityHashCode(getUser())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "librarySoftwareSystem = "+(getLibrarySoftwareSystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySoftwareSystem())):"null");

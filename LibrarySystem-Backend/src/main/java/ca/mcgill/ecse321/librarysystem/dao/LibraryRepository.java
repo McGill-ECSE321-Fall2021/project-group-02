@@ -9,4 +9,7 @@ import ca.mcgill.ecse321.librarysystem.model.Library;
 public interface LibraryRepository extends CrudRepository<Library, String>{
 	Library findLibraryByOpeningHour(Time time);
 	Library findLibraryByClosingHour(Time time);
+
+	boolean existsLibraryByOpeningHour(Time time);
+	boolean existsLibraryByClosingHour(Time time);
 }

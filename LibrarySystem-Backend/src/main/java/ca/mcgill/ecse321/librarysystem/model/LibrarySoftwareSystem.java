@@ -403,9 +403,9 @@ public class LibrarySoftwareSystem
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public OnlineAccount addAccount(String aUsername, String aPassword, User aUser)
+  public OnlineAccount addAccount(String aUsername, String aEmail, String aPassword, User aUser)
   {
-    return new OnlineAccount(aUsername, aPassword, aUser, this);
+    return new OnlineAccount(aUsername, aEmail, aPassword, aUser, this);
   }
 
   public boolean addAccount(OnlineAccount aAccount)
