@@ -7,10 +7,9 @@ import ca.mcgill.ecse321.librarysystem.model.User;
 public interface OnlineAccountRepository extends CrudRepository<OnlineAccount, Integer>{
 	OnlineAccount findOnlineAccountByUsername(String username);
     OnlineAccount findOnlineAccountByUser(User user);
-    //OnlineAccount findOnlineAccountByEmail(String email);
+    OnlineAccount findOnlineAccountByEmail(String email);
 
     boolean existsOnlineAccountByUsername(String username);
     boolean existsOnlineAccountByUser(User user);
-    // Need to add an email field to model class of OnlineAccount:
-    //boolean existsOnlineAccountByEmail(String email);
+    boolean existsOnlineAccountByEmail(String email);
 } 

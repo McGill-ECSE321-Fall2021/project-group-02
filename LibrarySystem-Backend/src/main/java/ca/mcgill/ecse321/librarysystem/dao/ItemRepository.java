@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import ca.mcgill.ecse321.librarysystem.model.Item;
 
 public interface ItemRepository extends CrudRepository<Item, String>{
-	Item findById(Integer id);
+	Item findItemById(Integer id);
 
 	List<Item> findItemByIsArchived(boolean isArchived);
 	List<Item> findItemByIsBorrowed(boolean isBorrowed);
