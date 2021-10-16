@@ -65,4 +65,21 @@ public void clearDatabase() {
 	userRepository.deleteAll();
 	weeklyScheduleRepository.deleteAll();
 }
+@Test
+public void testPersistAndLoadLibary() {
+	Library l = new Library(null, null);
+	Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
+	Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
+	l.setOpeningHour(startTime);
+	l.setClosingHour(endTime);
+	libraryRepository.save(l);
+	Library r = libraryRepository.findLibraryByClosingHour(endTime);
+	assertNotNull(r);
+	assertEquals(startTime,r.getOpeningHour());
+	
+	Library y = libraryRepository.findLibraryByOpeningHour(startTime);
+	assertNotNull(y);
+	assertEquals(endTime,y.getClosingHour());
+}
+
 }
