@@ -3,17 +3,15 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 // line 2 "model.ump"
 // line 123 "model.ump"
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+@DiscriminatorColumn(name = "USER_TYPE")
 public class User
 {
-
   //------------------------
   // STATIC VARIABLES
   //------------------------

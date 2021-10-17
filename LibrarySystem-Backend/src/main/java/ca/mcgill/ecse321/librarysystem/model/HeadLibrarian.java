@@ -4,25 +4,15 @@ package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
 import java.sql.Date;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 // line 26 "model.ump"
 // line 145 "model.ump"
 @Entity
+@DiscriminatorValue("H")
+@Table(name = "HEAD_LIBRARIAN")
 public class HeadLibrarian extends User
 {
-  private int headLibrarianId;
-  
-  public void setHeadLibrarianId(int aId) {
-    this.headLibrarianId = aId;
-  }
-  @Id
-  public int getHeadLibrarianId() {
-    return this.headLibrarianId;
-  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

@@ -1,27 +1,13 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-// line 32 "model.ump"
-// line 151 "model.ump"
 @Entity
+@DiscriminatorValue("P")
+@Table(name = "PATRON")
 public class Patron extends User
 {
-  private int patronId;
-  
-  public void setPatronId(int aId) {
-    this.patronId = aId;
-  }
-  @Id
-  public int getPatronId() {
-    return this.patronId;
-  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------
