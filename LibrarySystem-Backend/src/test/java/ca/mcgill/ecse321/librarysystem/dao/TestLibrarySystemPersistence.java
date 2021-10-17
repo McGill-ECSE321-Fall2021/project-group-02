@@ -65,4 +65,6 @@ public void clearDatabase() {
 	userRepository.deleteAll();
 	weeklyScheduleRepository.deleteAll();
 }
+
+
 }
