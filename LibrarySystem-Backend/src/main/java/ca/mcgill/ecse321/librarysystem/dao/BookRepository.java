@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.librarysystem.model.Book;
 
-public interface BookRepository extends CrudRepository<Book, String>{
+public interface BookRepository extends CrudRepository<Book, Integer>{
 	Book findBookById(int id);
 	List<Book> findBookByTitle(String title);
 	List<Book> findBookByAuthor(String author);

@@ -3,26 +3,22 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
+
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 
 // line 77 "model.ump"
 // line 188 "model.ump"
 @Entity
+@DiscriminatorValue("N")
+@Table(name = "NEWSPAPER")
 public class Newspaper extends Item
 {
-  
-  private int newspaperId;
-  
-  public void setNewspaperId(int aId) {
-    this.newspaperId = aId;
-  }
-  @Id
-  public int getNewspaperId() {
-    return this.newspaperId;
-  }
+
   //------------------------
   // MEMBER VARIABLES
   //------------------------
