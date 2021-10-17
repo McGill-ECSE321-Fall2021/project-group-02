@@ -19,7 +19,15 @@ public class DailySchedule
   //------------------------
 
   public enum WeekDay { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
-
+  private int id;
+  
+  public void setId(int aId) {
+    this.id = aId;
+  }
+  @Id
+  public int getId() {
+    return this.id;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

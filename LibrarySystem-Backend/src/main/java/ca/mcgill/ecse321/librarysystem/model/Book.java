@@ -13,7 +13,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Book extends Item
 {
-
+  private int bookId;
+  
+  public void setBookId(int aId) {
+    this.bookId = aId;
+  }
+  @Id
+  public int getBookId() {
+    return this.bookId;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

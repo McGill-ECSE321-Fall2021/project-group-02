@@ -15,7 +15,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class WeeklySchedule
 {
-
+  private int id;
+  
+  public void setId(int aId) {
+    this.id = aId;
+  }
+  @Id
+  public int getId() {
+    return this.id;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

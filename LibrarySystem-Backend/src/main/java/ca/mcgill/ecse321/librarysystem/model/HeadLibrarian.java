@@ -14,7 +14,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class HeadLibrarian extends User
 {
-
+  private int headLibrarianId;
+  
+  public void setHeadLibrarianId(int aId) {
+    this.headLibrarianId = aId;
+  }
+  @Id
+  public int getHeadLibrarianId() {
+    return this.headLibrarianId;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

@@ -13,7 +13,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Patron extends User
 {
-
+  private int patronId;
+  
+  public void setPatronId(int aId) {
+    this.patronId = aId;
+  }
+  @Id
+  public int getPatronId() {
+    return this.patronId;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

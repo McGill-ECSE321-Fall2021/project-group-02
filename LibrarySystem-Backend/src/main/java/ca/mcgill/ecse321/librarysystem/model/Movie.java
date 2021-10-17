@@ -12,7 +12,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Movie extends Item
 {
-
+  private int movieId;
+  
+  public void setMovieId(int aId) {
+    this.movieId = aId;
+  }
+  @Id
+  public int getMovieId() {
+    return this.movieId;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

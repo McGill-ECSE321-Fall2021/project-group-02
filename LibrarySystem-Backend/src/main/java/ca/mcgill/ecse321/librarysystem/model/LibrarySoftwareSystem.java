@@ -8,6 +8,7 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 
 // line 9 "model.ump"
@@ -15,7 +16,16 @@ import javax.persistence.ManyToOne;
 @Entity
 public class LibrarySoftwareSystem
 {
-
+  
+  private int id;
+  
+  public void setId(int aId) {
+    this.id = aId;
+  }
+  @Id
+  public int getId() {
+    return this.id;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------
@@ -63,7 +73,7 @@ public class LibrarySoftwareSystem
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
-  @OneToMany
+  @OneToMany(cascade={CascadeType.ALL})
   public Person getPerson(int index)
   {
     Person aPerson = persons.get(index);
@@ -94,7 +104,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany
+  @OneToMany(cascade={CascadeType.ALL})
   public Item getItem(int index)
   {
     Item aItem = items.get(index);
@@ -130,7 +140,7 @@ public class LibrarySoftwareSystem
     return openingHours;
   }
   /* Code from template association_GetMany */
-  @OneToMany
+  @OneToMany(cascade={CascadeType.ALL})
   public OnlineAccount getAccount(int index)
   {
     OnlineAccount aAccount = accounts.get(index);
@@ -161,7 +171,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany
+  @OneToMany(cascade={CascadeType.ALL})
   public User getUser(int index)
   {
     User aUser = users.get(index);
@@ -192,7 +202,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany
+  @OneToMany(cascade={CascadeType.ALL})
   public WeeklySchedule getWeeklySchedule(int index)
   {
     WeeklySchedule aWeeklySchedule = weeklySchedules.get(index);
@@ -223,7 +233,7 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany
+  @OneToMany(cascade={CascadeType.ALL})
   public DailySchedule getDailySchedule(int index)
   {
     DailySchedule aDailySchedule = dailySchedules.get(index);

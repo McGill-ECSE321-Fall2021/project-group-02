@@ -13,7 +13,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Person
 {
-
+  private int id;
+  
+  public void setId(int aId) {
+    this.id = aId;
+  }
+  @Id
+  public int getId() {
+    return this.id;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

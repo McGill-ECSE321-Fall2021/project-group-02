@@ -13,7 +13,16 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Newspaper extends Item
 {
-
+  
+  private int newspaperId;
+  
+  public void setNewspaperId(int aId) {
+    this.newspaperId = aId;
+  }
+  @Id
+  public int getNewspaperId() {
+    return this.newspaperId;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------

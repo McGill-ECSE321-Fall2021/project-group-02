@@ -14,11 +14,19 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Album extends Item
 {
-
+  private int albumId;
+  
+  public void setAlbumId(int aId) {
+    this.albumId = aId;
+  }
+  @Id
+  public int getAlbumId() {
+    return this.albumId;
+  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------
-
+  
   //Album Attributes
   private String title;
   private String artist;
