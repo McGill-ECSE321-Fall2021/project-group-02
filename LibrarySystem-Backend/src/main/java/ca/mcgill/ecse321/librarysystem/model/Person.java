@@ -6,6 +6,7 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.persistence.ManyToOne;
 
 // line 40 "model.ump"
@@ -85,7 +86,8 @@ public class Person
     User aUser = users.get(index);
     return aUser;
   }
-
+  @Transient
+  @OneToMany
   public List<User> getUsers()
   {
     List<User> newUsers = Collections.unmodifiableList(users);
@@ -116,50 +118,15 @@ public class Person
     return librarySoftwareSystem;
   }
   /* Code from template association_IsNumberOfValidMethod */
-  public boolean isNumberOfUsersValid()
-  {
-    boolean isValid = numberOfUsers() >= minimumNumberOfUsers() && numberOfUsers() <= maximumNumberOfUsers();
-    return isValid;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfUsers()
-  {
-    return 1;
-  }
-  /* Code from template association_MaximumNumberOfMethod */
-  public static int maximumNumberOfUsers()
-  {
-    return 2;
-  }
-  /* Code from template association_AddMNToOnlyOne */
-  public User addUser(int aId, String aAddress, String aCity, LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    if (numberOfUsers() >= maximumNumberOfUsers())
-    {
-      return null;
-    }
-    else
-    {
-      return new User(aId, aAddress, aCity, aLibrarySoftwareSystem, this);
-    }
-  }
+
 
   public boolean addUser(User aUser)
   {
     boolean wasAdded = false;
     if (users.contains(aUser)) { return false; }
-    if (numberOfUsers() >= maximumNumberOfUsers())
-    {
-      return wasAdded;
-    }
 
     Person existingPerson = aUser.getPerson();
     boolean isNewPerson = existingPerson != null && !this.equals(existingPerson);
-
-    if (isNewPerson && existingPerson.numberOfUsers() <= minimumNumberOfUsers())
-    {
-      return wasAdded;
-    }
 
     if (isNewPerson)
     {
@@ -178,12 +145,6 @@ public class Person
     boolean wasRemoved = false;
     //Unable to remove aUser, as it must always have a person
     if (this.equals(aUser.getPerson()))
-    {
-      return wasRemoved;
-    }
-
-    //person already at minimum (1)
-    if (numberOfUsers() <= minimumNumberOfUsers())
     {
       return wasRemoved;
     }

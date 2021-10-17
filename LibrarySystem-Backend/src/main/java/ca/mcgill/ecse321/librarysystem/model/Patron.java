@@ -33,13 +33,14 @@ public class Patron extends User
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
-  @OneToMany
+  
   public Album getBorrowedAlbum(int index)
   {
     Album aBorrowedAlbum = borrowedAlbums.get(index);
     return aBorrowedAlbum;
   }
-
+  @Transient
+  @OneToMany
   public List<Album> getBorrowedAlbums()
   {
     List<Album> newBorrowedAlbums = Collections.unmodifiableList(borrowedAlbums);
@@ -64,13 +65,14 @@ public class Patron extends User
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany
+
   public Book getBorrowedBook(int index)
   {
     Book aBorrowedBook = borrowedBooks.get(index);
     return aBorrowedBook;
   }
-
+  @Transient
+  @OneToMany
   public List<Book> getBorrowedBooks()
   {
     List<Book> newBorrowedBooks = Collections.unmodifiableList(borrowedBooks);
@@ -95,13 +97,14 @@ public class Patron extends User
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany
+
   public Movie getBorrowedMovy(int index)
   {
     Movie aBorrowedMovy = borrowedMovies.get(index);
     return aBorrowedMovy;
   }
-
+  @Transient
+  @OneToMany
   public List<Movie> getBorrowedMovies()
   {
     List<Movie> newBorrowedMovies = Collections.unmodifiableList(borrowedMovies);

@@ -8,6 +8,8 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 
@@ -73,13 +75,14 @@ public class LibrarySoftwareSystem
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
-  @OneToMany(cascade={CascadeType.ALL})
+
   public Person getPerson(int index)
   {
     Person aPerson = persons.get(index);
     return aPerson;
   }
-
+  @Transient
+  @OneToMany(cascade={CascadeType.ALL})
   public List<Person> getPersons()
   {
     List<Person> newPersons = Collections.unmodifiableList(persons);
@@ -104,13 +107,14 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany(cascade={CascadeType.ALL})
+
   public Item getItem(int index)
   {
     Item aItem = items.get(index);
     return aItem;
   }
-
+  @Transient
+  @OneToMany(cascade={CascadeType.ALL})
   public List<Item> getItems()
   {
     List<Item> newItems = Collections.unmodifiableList(items);
@@ -135,18 +139,21 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetOne */
+  @Transient
+  @OneToOne
   public Library getOpeningHours()
   {
     return openingHours;
   }
   /* Code from template association_GetMany */
-  @OneToMany(cascade={CascadeType.ALL})
+
   public OnlineAccount getAccount(int index)
   {
     OnlineAccount aAccount = accounts.get(index);
     return aAccount;
   }
-
+  @Transient
+  @OneToMany(cascade={CascadeType.ALL})
   public List<OnlineAccount> getAccounts()
   {
     List<OnlineAccount> newAccounts = Collections.unmodifiableList(accounts);
@@ -171,13 +178,14 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany(cascade={CascadeType.ALL})
+
   public User getUser(int index)
   {
     User aUser = users.get(index);
     return aUser;
   }
-
+  @Transient
+  @OneToMany(cascade={CascadeType.ALL})
   public List<User> getUsers()
   {
     List<User> newUsers = Collections.unmodifiableList(users);
@@ -202,13 +210,14 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany(cascade={CascadeType.ALL})
+
   public WeeklySchedule getWeeklySchedule(int index)
   {
     WeeklySchedule aWeeklySchedule = weeklySchedules.get(index);
     return aWeeklySchedule;
   }
-
+  @Transient
+  @OneToMany(cascade={CascadeType.ALL})
   public List<WeeklySchedule> getWeeklySchedules()
   {
     List<WeeklySchedule> newWeeklySchedules = Collections.unmodifiableList(weeklySchedules);
@@ -233,13 +242,14 @@ public class LibrarySoftwareSystem
     return index;
   }
   /* Code from template association_GetMany */
-  @OneToMany(cascade={CascadeType.ALL})
+
   public DailySchedule getDailySchedule(int index)
   {
     DailySchedule aDailySchedule = dailySchedules.get(index);
     return aDailySchedule;
   }
-
+  @Transient
+  @OneToMany(cascade={CascadeType.ALL})
   public List<DailySchedule> getDailySchedules()
   {
     List<DailySchedule> newDailySchedules = Collections.unmodifiableList(dailySchedules);
@@ -694,58 +704,6 @@ public class LibrarySoftwareSystem
       wasAdded = addDailyScheduleAt(aDailySchedule, index);
     }
     return wasAdded;
-  }
-
-  public void delete()
-  {
-    while (persons.size() > 0)
-    {
-      Person aPerson = persons.get(persons.size() - 1);
-      aPerson.delete();
-      persons.remove(aPerson);
-    }
-    
-    while (items.size() > 0)
-    {
-      Item aItem = items.get(items.size() - 1);
-      aItem.delete();
-      items.remove(aItem);
-    }
-    
-    Library existingOpeningHours = openingHours;
-    openingHours = null;
-    if (existingOpeningHours != null)
-    {
-      existingOpeningHours.delete();
-    }
-    while (accounts.size() > 0)
-    {
-      OnlineAccount aAccount = accounts.get(accounts.size() - 1);
-      aAccount.delete();
-      accounts.remove(aAccount);
-    }
-    
-    while (users.size() > 0)
-    {
-      User aUser = users.get(users.size() - 1);
-      aUser.delete();
-      users.remove(aUser);
-    }
-    
-    while (weeklySchedules.size() > 0)
-    {
-      WeeklySchedule aWeeklySchedule = weeklySchedules.get(weeklySchedules.size() - 1);
-      aWeeklySchedule.delete();
-      weeklySchedules.remove(aWeeklySchedule);
-    }
-    
-    while (dailySchedules.size() > 0)
-    {
-      DailySchedule aDailySchedule = dailySchedules.get(dailySchedules.size() - 1);
-      aDailySchedule.delete();
-      dailySchedules.remove(aDailySchedule);
-    }
-    
   }
 
 }

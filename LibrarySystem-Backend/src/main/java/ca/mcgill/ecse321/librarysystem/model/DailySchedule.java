@@ -144,53 +144,12 @@ public class DailySchedule
     {
       return wasSet;
     }
-
-    //weeklySchedule already at maximum (7)
-    if (aWeeklySchedule.numberOfDays() >= WeeklySchedule.maximumNumberOfDays())
-    {
-      return wasSet;
-    }
     
     WeeklySchedule existingWeeklySchedule = weeklySchedule;
     weeklySchedule = aWeeklySchedule;
-    if (existingWeeklySchedule != null && !existingWeeklySchedule.equals(aWeeklySchedule))
-    {
-      boolean didRemove = existingWeeklySchedule.removeDay(this);
-      if (!didRemove)
-      {
-        weeklySchedule = existingWeeklySchedule;
-        return wasSet;
-      }
-    }
     weeklySchedule.addDay(this);
     wasSet = true;
     return wasSet;
   }
 
-  public void delete()
-  {
-    LibrarySoftwareSystem placeholderLibrarySoftwareSystem = librarySoftwareSystem;
-    this.librarySoftwareSystem = null;
-    if(placeholderLibrarySoftwareSystem != null)
-    {
-      placeholderLibrarySoftwareSystem.removeDailySchedule(this);
-    }
-    WeeklySchedule placeholderWeeklySchedule = weeklySchedule;
-    this.weeklySchedule = null;
-    if(placeholderWeeklySchedule != null)
-    {
-      placeholderWeeklySchedule.removeDay(this);
-    }
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "day" + "=" + (getDay() != null ? !getDay().equals(this)  ? getDay().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "librarySoftwareSystem = "+(getLibrarySoftwareSystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySoftwareSystem())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "weeklySchedule = "+(getWeeklySchedule()!=null?Integer.toHexString(System.identityHashCode(getWeeklySchedule())):"null");
-  }
 }

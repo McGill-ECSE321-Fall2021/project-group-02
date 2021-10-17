@@ -6,6 +6,7 @@ import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.persistence.ManyToOne;
 
 // line 106 "model.ump"
@@ -85,28 +86,11 @@ public class Library
     return closingHour;
   }
   /* Code from template association_GetOne */
+  @Transient
   @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;
   }
 
-  public void delete()
-  {
-    LibrarySoftwareSystem existingLibrarySoftwareSystem = librarySoftwareSystem;
-    librarySoftwareSystem = null;
-    if (existingLibrarySoftwareSystem != null)
-    {
-      existingLibrarySoftwareSystem.delete();
-    }
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "openingHour" + "=" + (getOpeningHour() != null ? !getOpeningHour().equals(this)  ? getOpeningHour().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "closingHour" + "=" + (getClosingHour() != null ? !getClosingHour().equals(this)  ? getClosingHour().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "librarySoftwareSystem = "+(getLibrarySoftwareSystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySoftwareSystem())):"null");
-  }
 }

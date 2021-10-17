@@ -14,5 +14,4 @@ public interface ItemRepository extends CrudRepository<Item, Integer>{
 	List<Item> findItemByIsDamaged(boolean isDamaged);
 
 	boolean existsItemById(Integer id);
-	boolean existsItemByTitle(String title);
 }

@@ -126,11 +126,13 @@ public class User
     return librarySoftwareSystem;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public Person getPerson()
   {
     return person;
   }
   /* Code from template association_GetOne */
+  @OneToOne(optional = true)
   public OnlineAccount getOnlineAccount()
   {
     return onlineAccount;
@@ -170,12 +172,6 @@ public class User
       return wasSet;
     }
 
-    //person already at maximum (2)
-    if (aPerson.numberOfUsers() >= Person.maximumNumberOfUsers())
-    {
-      return wasSet;
-    }
-    
     Person existingPerson = person;
     person = aPerson;
     if (existingPerson != null && !existingPerson.equals(aPerson))

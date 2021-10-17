@@ -6,6 +6,7 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 
 // line 91 "model.ump"
@@ -118,6 +119,7 @@ public class OnlineAccount
     return password;
   }
   /* Code from template association_GetOne */
+  @OneToOne
   public User getUser()
   {
     return user;

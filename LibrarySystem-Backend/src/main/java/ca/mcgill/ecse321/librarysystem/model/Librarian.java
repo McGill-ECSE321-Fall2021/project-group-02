@@ -34,6 +34,7 @@ public class Librarian extends User
   // INTERFACE
   //------------------------
   /* Code from template association_GetOne */
+  @OneToOne
   public WeeklySchedule getWeeklySchedule()
   {
     return weeklySchedule;
