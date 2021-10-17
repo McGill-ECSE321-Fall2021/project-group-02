@@ -4,6 +4,9 @@ plugins {
 	id 'java'
 }
 
+task stage () {
+    dependsOn ':LibrarySystem-Backend:assemble'
+}
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15.0.2'
