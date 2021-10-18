@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.librarysystem.model.Journal;
 
-public interface JournalRepository extends CrudRepository<Journal, String>{
+public interface JournalRepository extends CrudRepository<Journal, Integer>{
 	Journal findJournalByNameAndDate(String name, Date date);
 	Journal findJournalById(int id);
 	List<Journal> findJournalByName(String name);

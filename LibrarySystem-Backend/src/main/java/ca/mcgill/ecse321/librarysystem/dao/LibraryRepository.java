@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.librarysystem.model.Library;
 
-public interface LibraryRepository extends CrudRepository<Library, String>{
+public interface LibraryRepository extends CrudRepository<Library, Integer>{
 	Library findLibraryByOpeningHour(Time time);
 	Library findLibraryByClosingHour(Time time);
 
