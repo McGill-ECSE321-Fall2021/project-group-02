@@ -20,7 +20,7 @@ John Park is a third year (U3) student in Software Engineering <br />
 | Julie Chen | Documentation Lead |  |  |  |  |
 | Hyunbum Cho | Software Developer |  |  |  |  |
 | Vy-Kha Huynh | Testing Lead  |  |  |  |  |
-| Niilo Vuokila | Software Developer |  |  |  |  |
+| Niilo Vuokila | Software Developer | 20h |  |  |  |
 | John Park | Software Developer |  |  |  |  |
 
  
