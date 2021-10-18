@@ -38,39 +38,17 @@ public class WeeklySchedule
   private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
-  // CONSTRUCTOR
-  //------------------------
-
-  public WeeklySchedule(Date aStartDate, Date aEndDate, LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    startDate = aStartDate;
-    endDate = aEndDate;
-    days = new ArrayList<DailySchedule>();
-    boolean didAddLibrarySoftwareSystem = setLibrarySoftwareSystem(aLibrarySoftwareSystem);
-    if (!didAddLibrarySoftwareSystem)
-    {
-      throw new RuntimeException("Unable to create weeklySchedule due to librarySoftwareSystem. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-  }
-
-  //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setStartDate(Date aStartDate)
+  public void setStartDate(Date aStartDate)
   {
-    boolean wasSet = false;
     startDate = aStartDate;
-    wasSet = true;
-    return wasSet;
   }
 
-  public boolean setEndDate(Date aEndDate)
+  public void setEndDate(Date aEndDate)
   {
-    boolean wasSet = false;
     endDate = aEndDate;
-    wasSet = true;
-    return wasSet;
   }
 
   public Date getStartDate()
@@ -82,42 +60,26 @@ public class WeeklySchedule
   {
     return endDate;
   }
-  
-  public void addDay(DailySchedule a)
-  {
-	  days.add(a);
-  }
 
   @OneToMany
-  @Transient
-  public List<DailySchedule> getDays()
+  public List<DailySchedule> getDay()
   {
-    List<DailySchedule> newDays = Collections.unmodifiableList(days);
-    return newDays;
+    return this.days;
   }
 
+  public void setDay(List<DailySchedule> d) 
+  {
+	  this.days = d;
+  }
+  
   @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;
   }
 
-  public boolean setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
+  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
   {
-    boolean wasSet = false;
-    if (aLibrarySoftwareSystem == null)
-    {
-      return wasSet;
-    }
-
-    LibrarySoftwareSystem existingLibrarySoftwareSystem = librarySoftwareSystem;
     librarySoftwareSystem = aLibrarySoftwareSystem;
-    if (existingLibrarySoftwareSystem != null && !existingLibrarySoftwareSystem.equals(aLibrarySoftwareSystem))
-    {
-      existingLibrarySoftwareSystem.removeWeeklySchedule(this);
-    }
-    librarySoftwareSystem.addWeeklySchedule(this);
-    wasSet = true;
-    return wasSet;
   }
 }

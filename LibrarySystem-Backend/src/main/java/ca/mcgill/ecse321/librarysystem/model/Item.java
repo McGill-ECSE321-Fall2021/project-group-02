@@ -29,70 +29,27 @@ public class Item
   private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
-  // CONSTRUCTOR
-  //------------------------
-
-  public Item(boolean aIsArchived, boolean aIsBorrowed, boolean aIsDamaged, int aId, LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    isArchived = aIsArchived;
-    isBorrowed = aIsBorrowed;
-    isDamaged = aIsDamaged;
-    if (!setId(aId))
-    {
-      throw new RuntimeException("Cannot create due to duplicate id. See http://manual.umple.org?RE003ViolationofUniqueness.html");
-    }
-    boolean didAddLibrarySoftwareSystem = setLibrarySoftwareSystem(aLibrarySoftwareSystem);
-    if (!didAddLibrarySoftwareSystem)
-    {
-      throw new RuntimeException("Unable to create item due to librarySoftwareSystem. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-  }
-
-  //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setIsArchived(boolean aIsArchived)
+  public void setIsArchived(boolean aIsArchived)
   {
-    boolean wasSet = false;
     isArchived = aIsArchived;
-    wasSet = true;
-    return wasSet;
   }
 
-  public boolean setIsBorrowed(boolean aIsBorrowed)
+  public void setIsBorrowed(boolean aIsBorrowed)
   {
-    boolean wasSet = false;
     isBorrowed = aIsBorrowed;
-    wasSet = true;
-    return wasSet;
   }
 
-  public boolean setIsDamaged(boolean aIsDamaged)
+  public void setIsDamaged(boolean aIsDamaged)
   {
-    boolean wasSet = false;
     isDamaged = aIsDamaged;
-    wasSet = true;
-    return wasSet;
   }
 
-  public boolean setId(int aId)
+  public void setId(int aId)
   {
-    boolean wasSet = false;
-    Integer anOldId = getId();
-    if (anOldId != null && anOldId.equals(aId)) {
-      return true;
-    }
-    if (hasWithId(aId)) {
-      return wasSet;
-    }
-    id = aId;
-    wasSet = true;
-    if (anOldId != null) {
-      itemsById.remove(anOldId);
-    }
-    itemsById.put(aId, this);
-    return wasSet;
+	 this.id = aId;
   }
 
   public boolean getIsArchived()
@@ -116,61 +73,16 @@ public class Item
   {
     return id;
   }
-  /* Code from template attribute_GetUnique */
-  public static Item getWithId(int aId)
-  {
-    return itemsById.get(aId);
-  }
-  /* Code from template attribute_HasUnique */
-  public static boolean hasWithId(int aId)
-  {
-    return getWithId(aId) != null;
-  }
-  /* Code from template association_GetOne */
+
   @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;
   }
-  /* Code from template association_SetOneToMany */
-  public boolean setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    boolean wasSet = false;
-    if (aLibrarySoftwareSystem == null)
-    {
-      return wasSet;
-    }
 
-    LibrarySoftwareSystem existingLibrarySoftwareSystem = librarySoftwareSystem;
-    librarySoftwareSystem = aLibrarySoftwareSystem;
-    if (existingLibrarySoftwareSystem != null && !existingLibrarySoftwareSystem.equals(aLibrarySoftwareSystem))
-    {
-      existingLibrarySoftwareSystem.removeItem(this);
-    }
-    librarySoftwareSystem.addItem(this);
-    wasSet = true;
-    return wasSet;
+  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
+  {
+	this.librarySoftwareSystem = aLibrarySoftwareSystem;
   }
 
-  public void delete()
-  {
-    itemsById.remove(getId());
-    LibrarySoftwareSystem placeholderLibrarySoftwareSystem = librarySoftwareSystem;
-    this.librarySoftwareSystem = null;
-    if(placeholderLibrarySoftwareSystem != null)
-    {
-      placeholderLibrarySoftwareSystem.removeItem(this);
-    }
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+
-            "isArchived" + ":" + getIsArchived()+ "," +
-            "isBorrowed" + ":" + getIsBorrowed()+ "," +
-            "isDamaged" + ":" + getIsDamaged()+ "," +
-            "id" + ":" + getId()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "librarySoftwareSystem = "+(getLibrarySoftwareSystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySoftwareSystem())):"null");
-  }
 }

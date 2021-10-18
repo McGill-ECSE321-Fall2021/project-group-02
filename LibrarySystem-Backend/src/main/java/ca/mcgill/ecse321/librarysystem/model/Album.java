@@ -20,40 +20,14 @@ public class Album extends Item
   //Album Associations
   private Patron patron;
 
-  //------------------------
-  // CONSTRUCTOR
-  //------------------------
-
-  public Album(boolean aIsArchived, boolean aIsBorrowed, boolean aIsDamaged, int aId, LibrarySoftwareSystem aLibrarySoftwareSystem, String aTitle, String aArtist, Patron aPatron)
+  public void setTitle(String aTitle)
   {
-    super(aIsArchived, aIsBorrowed, aIsDamaged, aId, aLibrarySoftwareSystem);
     title = aTitle;
-    artist = aArtist;
-    boolean didAddPatron = setPatron(aPatron);
-    if (!didAddPatron)
-    {
-      throw new RuntimeException("Unable to create borrowedAlbum due to patron. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
   }
 
-  //------------------------
-  // INTERFACE
-  //------------------------
-
-  public boolean setTitle(String aTitle)
+  public void setArtist(String aArtist)
   {
-    boolean wasSet = false;
-    title = aTitle;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setArtist(String aArtist)
-  {
-    boolean wasSet = false;
     artist = aArtist;
-    wasSet = true;
-    return wasSet;
   }
 
   public String getTitle()
@@ -65,61 +39,16 @@ public class Album extends Item
   {
     return artist;
   }
-  /* Code from template association_GetOne */
+
   @ManyToOne(optional = true)
   public Patron getPatron()
   {
     return patron;
   }
-  /* Code from template association_SetOneToAtMostN */
-  public boolean setPatron(Patron aPatron)
-  {
-    boolean wasSet = false;
-    //Must provide patron to borrowedAlbum
-    if (aPatron == null)
-    {
-      return wasSet;
-    }
 
-    //patron already at maximum (5)
-    if (aPatron.numberOfBorrowedAlbums() >= Patron.maximumNumberOfBorrowedAlbums())
-    {
-      return wasSet;
-    }
-    
-    Patron existingPatron = patron;
+  public void setPatron(Patron aPatron)
+  { 
     patron = aPatron;
-    if (existingPatron != null && !existingPatron.equals(aPatron))
-    {
-      boolean didRemove = existingPatron.removeBorrowedAlbum(this);
-      if (!didRemove)
-      {
-        patron = existingPatron;
-        return wasSet;
-      }
-    }
-    patron.addBorrowedAlbum(this);
-    wasSet = true;
-    return wasSet;
   }
 
-  public void delete()
-  {
-    Patron placeholderPatron = patron;
-    this.patron = null;
-    if(placeholderPatron != null)
-    {
-      placeholderPatron.removeBorrowedAlbum(this);
-    }
-    super.delete();
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+
-            "title" + ":" + getTitle()+ "," +
-            "artist" + ":" + getArtist()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "patron = "+(getPatron()!=null?Integer.toHexString(System.identityHashCode(getPatron())):"null");
-  }
 }

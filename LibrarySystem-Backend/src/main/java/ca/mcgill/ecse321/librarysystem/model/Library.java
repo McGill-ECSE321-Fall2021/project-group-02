@@ -35,45 +35,17 @@ public class Library
   private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
-  // CONSTRUCTOR
-  //------------------------
-
-  public Library(Time aOpeningHour, Time aClosingHour, LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    openingHour = aOpeningHour;
-    closingHour = aClosingHour;
-    if (aLibrarySoftwareSystem == null || aLibrarySoftwareSystem.getOpeningHours() != null)
-    {
-      throw new RuntimeException("Unable to create Library due to aLibrarySoftwareSystem. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-    librarySoftwareSystem = aLibrarySoftwareSystem;
-  }
-
-  public Library(Time aOpeningHour, Time aClosingHour)
-  {
-    openingHour = aOpeningHour;
-    closingHour = aClosingHour;
-    librarySoftwareSystem = new LibrarySoftwareSystem(this);
-  }
-
-  //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setOpeningHour(Time aOpeningHour)
+  public void setOpeningHour(Time aOpeningHour)
   {
-    boolean wasSet = false;
     openingHour = aOpeningHour;
-    wasSet = true;
-    return wasSet;
   }
 
-  public boolean setClosingHour(Time aClosingHour)
+  public void setClosingHour(Time aClosingHour)
   {
-    boolean wasSet = false;
     closingHour = aClosingHour;
-    wasSet = true;
-    return wasSet;
   }
 
   public Time getOpeningHour()
@@ -85,12 +57,15 @@ public class Library
   {
     return closingHour;
   }
-  /* Code from template association_GetOne */
-  @Transient
+
   @ManyToOne(optional = false)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;
+  }
+  public void setLibrarySoftwareSystem(LibrarySoftwareSystem a)
+  {
+	this.librarySoftwareSystem = a;
   }
 
 }
