@@ -23,7 +23,12 @@ import ca.mcgill.ecse321.librarysystem.model.DailySchedule.WeekDay;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class TestDailySchedulePersistence {
+	
+	@Autowired
+	EntityManager entityManager;
 	
 	@Autowired
 	private WeeklyScheduleRepository weeklyScheduleRepository;
@@ -51,7 +56,6 @@ public class TestDailySchedulePersistence {
 		weeklyScheduleRepository.save(schedule);
 		
 		DailySchedule dSchedule = new DailySchedule();
-		int id = 1;
 		dSchedule.setDay(WeekDay.Monday);
 		dSchedule.setStartTime(startTime);
 		dSchedule.setEndTime(endTime);
@@ -64,8 +68,6 @@ public class TestDailySchedulePersistence {
 		assertEquals(startTime, dSchedule.getStartTime());
 		assertEquals(endTime, dSchedule.getEndTime());
 		assertEquals(WeekDay.Monday, dSchedule.getDay());
-		
-		dSchedule = null;
 	}
 
 }

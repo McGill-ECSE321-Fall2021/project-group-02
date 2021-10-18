@@ -20,8 +20,12 @@ import ca.mcgill.ecse321.librarysystem.model.Item;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class TestMoviePersistence {
 	
+	@Autowired
+	EntityManager entityManager;
 	
 	@Autowired
 	private MovieRepository movieRepository;

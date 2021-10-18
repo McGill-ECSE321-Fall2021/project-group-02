@@ -21,9 +21,13 @@ import ca.mcgill.ecse321.librarysystem.model.WeeklySchedule;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class TestWeeklySchedulePersistence {
-
 	
+	@Autowired
+	EntityManager entitiyManager;
+
 	@Autowired
 	private WeeklyScheduleRepository weeklyScheduleRepository;
 	

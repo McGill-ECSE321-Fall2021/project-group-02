@@ -21,7 +21,12 @@ import ca.mcgill.ecse321.librarysystem.model.User;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class TestOnlineAccountPersistence {
+	
+	@Autowired
+	EntityManager entityManager;
 	
 	@Autowired
 	private OnlineAccountRepository onlineAccountRepository;
