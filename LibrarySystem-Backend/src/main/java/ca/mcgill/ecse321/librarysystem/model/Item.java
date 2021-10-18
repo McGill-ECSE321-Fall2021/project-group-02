@@ -68,7 +68,7 @@ public class Item
   }
   
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId()
   {
     return id;

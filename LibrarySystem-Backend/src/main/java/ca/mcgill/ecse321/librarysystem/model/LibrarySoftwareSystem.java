@@ -6,6 +6,8 @@ import java.util.*;
 import java.sql.Time;
 import java.sql.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,6 +25,7 @@ public class LibrarySoftwareSystem
     this.id = aId;
   }
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId() {
     return this.id;
   }

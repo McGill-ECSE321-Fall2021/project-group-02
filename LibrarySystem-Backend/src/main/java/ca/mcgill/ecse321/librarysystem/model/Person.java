@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.librarysystem.model;
 import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -16,7 +17,7 @@ public class Person
   public void setId(int aId) {
     this.id = aId;
   }
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
   public int getId() {
     return this.id;

@@ -4,6 +4,8 @@ package ca.mcgill.ecse321.librarysystem.model;
 
 import java.sql.Time;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -20,6 +22,7 @@ public class Library
     this.id = aId;
   }
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId() {
     return this.id;
   }

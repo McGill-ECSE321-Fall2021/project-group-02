@@ -42,6 +42,7 @@ public class User
     city = aCity;
   }
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId()
   {
     return id;
