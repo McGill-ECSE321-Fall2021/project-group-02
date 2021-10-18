@@ -44,13 +44,13 @@ public class LibrarySoftwareSystem
 
 //----------------------------------------------GETTERS
   
-  @OneToMany(cascade={CascadeType.ALL})
+  @OneToMany(cascade=CascadeType.ALL)
   public List<Person> getPerson()
   {
     return this.persons;
   }
   
-  @OneToMany(cascade={CascadeType.ALL})
+  @OneToMany(cascade=CascadeType.ALL)
   public List<Item> getItem()
   {
     return this.items;
@@ -62,25 +62,25 @@ public class LibrarySoftwareSystem
     return this.openingHours;
   }
 
-  @OneToMany(cascade={CascadeType.ALL})
+  @OneToMany(cascade=CascadeType.ALL)
   public List<OnlineAccount> getAccount()
   {
     return this.accounts;
   }
 
-  @OneToMany(cascade={CascadeType.ALL})
+  @OneToMany(cascade=CascadeType.ALL)
   public List<User> getUser()
   {
     return this.users;
   }
 
-  @OneToMany(cascade={CascadeType.ALL})
+  @OneToMany(cascade=CascadeType.ALL)
   public List<WeeklySchedule> getWeeklySchedule()
   {
     return this.weeklySchedules;
   }
 
-  @OneToMany(cascade={CascadeType.ALL})
+  @OneToMany(cascade=CascadeType.ALL)
   public List<DailySchedule> getDailySchedule()
   {
     return this.dailySchedules;
