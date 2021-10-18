@@ -21,6 +21,7 @@ private ItemRepository itemRepository;
 @AfterEach
 public void clearDatabase() {
 	itemRepository.deleteAll();
+	
 }
 @Test
 public void testPersistAndLoadItem() {
