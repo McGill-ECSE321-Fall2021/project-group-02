@@ -28,11 +28,9 @@ public void testPersistAndLoadPatron() {
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
-	User u = new User();
 	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
 	Patron pat = new Patron();
-	WeeklySchedule ws=new WeeklySchedule();
 	p.setFirstName("patfn");
 	p.setLastName("patln");
 	p.setLibrarySoftwareSystem(ls);
