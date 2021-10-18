@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface HeadLibrarianRepository extends CrudRepository<HeadLibrarian, String>{
+public interface HeadLibrarianRepository extends CrudRepository<HeadLibrarian, Integer>{
     HeadLibrarian findHeadLibrarianById(Integer id);
     List<HeadLibrarian> findHeadLibrarianByAddress(String address);
     HeadLibrarian findHeadLibrarianByPerson(Person person);
