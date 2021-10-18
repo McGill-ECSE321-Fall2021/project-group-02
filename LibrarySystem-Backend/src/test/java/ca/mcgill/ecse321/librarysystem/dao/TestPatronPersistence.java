@@ -17,9 +17,18 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestPatronPersistence {
 @Autowired
 private PatronRepository patronRepository;
+@Autowired 
+private LibraryRepository libraryRepository;
+@Autowired
+private PersonRepository personRepository;
+@Autowired
+private OnlineAccountRepository onlineAccountRepository;
 @AfterEach
 public void clearDatabse() {
 	patronRepository.deleteAll();
+	libraryRepository.deleteAll();
+	personRepository.deleteAll();
+	onlineAccountRepository.deleteAll();
 }
 @Test
 public void testPersistAndLoadPatron() {
@@ -28,6 +37,7 @@ public void testPersistAndLoadPatron() {
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
+	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
 	Patron pat = new Patron();
@@ -44,6 +54,9 @@ public void testPersistAndLoadPatron() {
 	pat.setId(13);
 	pat.setOnlineAccount(oa);
 	pat.setPerson(p);
+	onlineAccountRepository.save(oa);
+	personRepository.save(p);
+	libraryRepository.save(l);
 	patronRepository.save(pat);
 	
 	pat = patronRepository.findPatronById(13);

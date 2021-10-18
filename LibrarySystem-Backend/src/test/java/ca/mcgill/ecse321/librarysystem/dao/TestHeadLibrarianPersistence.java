@@ -19,17 +19,31 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestHeadLibrarianPersistence {
 	@Autowired
 	private HeadLibrarianRepository headLibrarianRepository;
+	@Autowired 
+	private LibraryRepository libraryRepository;
+	@Autowired
+	private PersonRepository personRepository;
+	@Autowired
+	private OnlineAccountRepository onlineAccountRepository;
+	@Autowired
+	private WeeklyScheduleRepository weeklyScheduleRepository;
 @AfterEach
 public void clearDatabase() {
 	headLibrarianRepository.deleteAll();
+	libraryRepository.deleteAll();
+	personRepository.deleteAll();
+	onlineAccountRepository.deleteAll();
+	weeklyScheduleRepository.deleteAll();
 }
 @Test
 public void testPersistAndLoadHeadLibrarian() {
 	Library l = new Library ();
 	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
+	libraryRepository.save(l);
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
+	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
 	HeadLibrarian hl = new HeadLibrarian();
@@ -52,6 +66,9 @@ public void testPersistAndLoadHeadLibrarian() {
 	hl.setPerson(p);
 	hl.setWeeklySchedule(ws);
 	hl.setLibrarySoftwareSystem(ls);
+	weeklyScheduleRepository.save(ws);
+	onlineAccountRepository.save(oa);
+	personRepository.save(p);
 	headLibrarianRepository.save(hl);
 	
 	hl = null;

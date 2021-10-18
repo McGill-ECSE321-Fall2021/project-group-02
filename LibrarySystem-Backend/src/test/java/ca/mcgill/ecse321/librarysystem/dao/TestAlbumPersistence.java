@@ -18,9 +18,12 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestAlbumPersistence {
 @Autowired
 private AlbumRepository albumRepository;
+@Autowired
+private LibraryRepository libraryRepository;
 @AfterEach
 public void clearDatabase() {
 	albumRepository.deleteAll();
+	libraryRepository.deleteAll();
 }
 	@Test
 	public void testPersistAndLoadAlbum() {
@@ -32,6 +35,7 @@ public void clearDatabase() {
 		l.setOpeningHour(startTime);
 		l.setClosingHour(endTime);
 		l.setLibrarySoftwareSystem(ls);
+		libraryRepository.save(l);
 		Album a = new Album();
 		String title = "testTitle";
 		String artist = "testArtist";

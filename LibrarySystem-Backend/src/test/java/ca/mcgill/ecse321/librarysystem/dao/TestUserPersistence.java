@@ -17,10 +17,19 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestUserPersistence {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired 
+	private PersonRepository personRepository;
+	@Autowired
+	private LibraryRepository libraryRepository;
+	@Autowired
+	private OnlineAccountRepository onlineAccountRepository;
 
 @AfterEach
 public void clearDatabase() {
 	userRepository.deleteAll();
+	personRepository.deleteAll();
+	libraryRepository.deleteAll();
+	onlineAccountRepository.deleteAll();
 }
 @Test
 public void testPersistenceAndLoadUser() {
@@ -29,6 +38,7 @@ public void testPersistenceAndLoadUser() {
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
+	l.setLibrarySoftwareSystem(ls);
 	User u = new User();
 	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
@@ -46,6 +56,9 @@ public void testPersistenceAndLoadUser() {
 	u.setId(10);
 	u.setOnlineAccount(oa);
 	u.setPerson(p);
+	personRepository.save(p);
+	libraryRepository.save(l);
+	onlineAccountRepository.save(oa);
 	userRepository.save(u);
 	
 	u = null;

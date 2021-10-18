@@ -20,9 +20,12 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestNewsPaperPersistence {
 	@Autowired
 	private NewspaperRepository newspaperRepository;
+	@Autowired 
+	private LibraryRepository libraryRepository;
 	@AfterEach
 	public void clearDatabase() {
 		newspaperRepository.deleteAll();
+		libraryRepository.deleteAll();
 	}
 	@Test
 	public void testPersistAndLoadNewspaper() {
@@ -41,6 +44,7 @@ public class TestNewsPaperPersistence {
 		np.setName(name);
 		np.setId(3);
 		np.setLibrarySoftwareSystem(ls);
+		libraryRepository.save(l);
 		newspaperRepository.save(np);
 		
 		np = null;

@@ -16,11 +16,14 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class TestItemPersistence {
+	@Autowired 
+	private LibraryRepository libraryRepository;
 @Autowired
 private ItemRepository itemRepository;
 @AfterEach
 public void clearDatabase() {
 	itemRepository.deleteAll();
+	libraryRepository.deleteAll();
 	
 }
 @Test
@@ -33,6 +36,7 @@ public void testPersistAndLoadItem() {
 	l.setOpeningHour(startTime);
 	l.setClosingHour(endTime);
 	l.setLibrarySoftwareSystem(ls);
+	libraryRepository.save(l);
 	Item i = new Item();
 	i.setIsBorrowed(true);
 	i.setIsDamaged(true);

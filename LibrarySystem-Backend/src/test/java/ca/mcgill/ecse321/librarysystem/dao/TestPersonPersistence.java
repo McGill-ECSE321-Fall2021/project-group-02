@@ -19,10 +19,13 @@ public class TestPersonPersistence {
 	
 	@Autowired
 	private PersonRepository personRepository;
+	@Autowired
+	private LibraryRepository libraryRepository;
 	
 @AfterEach
 public void clearDatabase() {
 	personRepository.deleteAll();
+	libraryRepository.deleteAll();
 }
 @Test
 public void testPersistAndLoadPerson() {
@@ -31,12 +34,14 @@ public void testPersistAndLoadPerson() {
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
+	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	String firstName = "testFirstName";
 	String lastName = "testLastName";
 	p.setLibrarySoftwareSystem(ls);
 	p.setFirstName(firstName);
 	p.setLastName(lastName);
+	libraryRepository.save(l);
 	personRepository.save(p);
 	
 	Person testP = (personRepository.findPersonByFirstName(firstName)).get(0);

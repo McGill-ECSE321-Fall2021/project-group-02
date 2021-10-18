@@ -20,9 +20,12 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestJournalPersistence {
 	@Autowired
 	private JournalRepository journalRepository;
+	@Autowired
+	private LibraryRepository libraryRepository;
 	@AfterEach
 	public void clearDatabase() {
 		journalRepository.deleteAll();
+		libraryRepository.deleteAll();
 	}
 	@Test
 	public void testPersistAndLoadJournal() {
@@ -41,6 +44,7 @@ public class TestJournalPersistence {
 		j.setName(name);
 		j.setId(2);
 		j.setLibrarySoftwareSystem(ls);
+		libraryRepository.save(l);
 		journalRepository.save(j);
 		
 		j = null;
