@@ -1,4 +1,4 @@
-package ca.mcgill.ecse321.librarysystem.dao;
+/*package ca.mcgill.ecse321.librarysystem.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -330,3 +330,4 @@ public void testPersistAndLoadPatron() {
 	assertEquals("pat@hotmail.com",pat.getOnlineAccount().getEmail());
 }
 }
+*/
