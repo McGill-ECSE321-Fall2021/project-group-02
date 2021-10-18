@@ -26,9 +26,6 @@ import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 public class TestDailySchedulePersistence {
 	
 	@Autowired
-	EntityManager entityManager;
-	
-	@Autowired
 	private WeeklyScheduleRepository weeklyScheduleRepository;
 	@Autowired
 	private DailyScheduleRepository dailyScheduleRepository;
@@ -45,15 +42,16 @@ public class TestDailySchedulePersistence {
 		Date endDate = java.sql.Date.valueOf(LocalDate.of(2021, 10, 25));
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-		Library library = new Library(startTime, endTime);
-		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
+//		Library library = new Library(startTime, endTime);
+//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
 		
-		WeeklySchedule schedule = new WeeklySchedule(null, null, ls);
+		WeeklySchedule schedule = new WeeklySchedule();
 		schedule.setEndDate(endDate);
 		schedule.setStartDate(startDate);
 		weeklyScheduleRepository.save(schedule);
 		
-		DailySchedule dSchedule = new DailySchedule(null, null, null, ls, schedule);
+		DailySchedule dSchedule = new DailySchedule();
+		int id = 1;
 		dSchedule.setDay(WeekDay.Monday);
 		dSchedule.setStartTime(startTime);
 		dSchedule.setEndTime(endTime);
@@ -66,6 +64,8 @@ public class TestDailySchedulePersistence {
 		assertEquals(startTime, dSchedule.getStartTime());
 		assertEquals(endTime, dSchedule.getEndTime());
 		assertEquals(WeekDay.Monday, dSchedule.getDay());
+		
+		dSchedule = null;
 	}
 
 }

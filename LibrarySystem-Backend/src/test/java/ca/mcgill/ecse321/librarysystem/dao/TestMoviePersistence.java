@@ -22,8 +22,6 @@ import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
 public class TestMoviePersistence {
 	
-	@Autowired
-	EntityManager entityManager;
 	
 	@Autowired
 	private MovieRepository movieRepository;
@@ -38,15 +36,15 @@ public class TestMoviePersistence {
 	
 	@Test
 	public void testPersistAndLoadMovie() {
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-		Library library = new Library(startTime, endTime);
-		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
+//		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
+//		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
+//		Library library = new Library(startTime, endTime);
+//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
 		
 		String title = "TestTitle";
 		String director = "TestDirector";
 		int id = 1;
-		Movie movie = new Movie(false, false, false, 0, ls, title, director, null);
+		Movie movie = new Movie();
 		
 		movie.setDirector(director);
 		movie.setTitle(title);
@@ -64,7 +62,7 @@ public class TestMoviePersistence {
 		
 		movie = null;
 		
-		movie = movieRepository.findMovieByNameAndDirector(title, director);
+		movie = movieRepository.findMovieByTitleAndDirector(title, director);
 		assertNotNull(movie);
 		assertEquals(title, movie.getTitle());
 		assertEquals(director, movie.getDirector());

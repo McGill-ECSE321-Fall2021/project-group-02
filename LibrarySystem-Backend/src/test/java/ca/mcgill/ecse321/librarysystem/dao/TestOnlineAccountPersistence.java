@@ -22,9 +22,6 @@ import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
 public class TestOnlineAccountPersistence {
-
-	@Autowired
-	EntityManager entityManager;
 	
 	@Autowired
 	private OnlineAccountRepository onlineAccountRepository;
@@ -42,14 +39,14 @@ public class TestOnlineAccountPersistence {
 	
 	@Test
 	public void testPersistAndLoadOnlineAccount() {
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-		Library library = new Library(startTime, endTime);
-		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
+//		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
+//		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
+//		Library library = new Library(startTime, endTime);
+//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
 		
 		String firstName = "TestFirstName";
 		String lastName = "TestLastName";
-		Person person = new Person(null, null, ls);
+		Person person = new Person();
 		person.setFirstName(firstName);
 		person.setLastName(lastName);
 		personRepository.save(person);
@@ -57,7 +54,7 @@ public class TestOnlineAccountPersistence {
 		int id = 1;
 		String address = "TestAddress";
 		String city = "TestCity";
-		User user = new User(0, null, null, ls, person);
+		User user = new User();
 		user.setId(id);
 		user.setAddress(address);
 		user.setCity(city);
@@ -66,7 +63,7 @@ public class TestOnlineAccountPersistence {
 		String username = "TestUsername";
 		String email = "TestEmail";
 		String password = "TestPassword";
-		OnlineAccount onlineAccount = new OnlineAccount(null, null, null, null, ls);
+		OnlineAccount onlineAccount = new OnlineAccount();
 		onlineAccount.setUsername(username);
 		onlineAccount.setEmail(email);
 		onlineAccount.setPassword(password);

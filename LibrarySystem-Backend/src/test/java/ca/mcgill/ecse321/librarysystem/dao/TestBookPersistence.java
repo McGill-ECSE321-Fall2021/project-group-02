@@ -40,14 +40,14 @@ public class TestBookPersistence {
 	
 	@Test
 	public void testPersistAndLoadBook() {
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-		Library library = new Library(startTime, endTime);
-		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
+//		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
+//		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
+//		Library library = new Library(startTime, endTime);
+//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
 		String title = "TestTitle";
 		String author = "TestAuthor";
 		Integer id = 1;
-		Book testBook = new Book(false, false, false, 0, ls, author, author, null);
+		Book testBook = new Book();
 		
 		testBook.setAuthor(author);
 		testBook.setTitle(title);
