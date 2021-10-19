@@ -55,11 +55,11 @@ public class TestOnlineAccountPersistence {
 		int id = 1;
 		String address = "TestAddress";
 		String city = "TestCity";
-		User user = new User();
-		user.setId(id);
-		user.setAddress(address);
-		user.setCity(city);
-		userRepository.save(user);
+//		User user = new User();
+//		user.setId(id);
+//		user.setAddress(address);
+//		user.setCity(city);
+//		userRepository.save(user);
 		
 		String username = "TestUsername";
 		String email = "TestEmail";
@@ -68,7 +68,7 @@ public class TestOnlineAccountPersistence {
 		onlineAccount.setUsername(username);
 		onlineAccount.setEmail(email);
 		onlineAccount.setPassword(password);
-		onlineAccount.setUser(user);
+//		onlineAccount.setUser(user);
 		onlineAccountRepository.save(onlineAccount);
 		
 		onlineAccount = null;
@@ -87,17 +87,17 @@ public class TestOnlineAccountPersistence {
 		assertEquals(email, onlineAccount.getEmail());
 		assertEquals(password, onlineAccount.getPassword());
 		
-		user = null;
-		
-		user = userRepository.findUserById(id);
-		assertNotNull(user);
-		assertEquals(id, user.getId());
-		assertEquals(address, user.getAddress());
-		assertEquals(city, user.getCity());
+//		user = null;
+//		
+//		user = userRepository.findUserById(id);
+//		assertNotNull(user);
+//		assertEquals(id, user.getId());
+//		assertEquals(address, user.getAddress());
+//		assertEquals(city, user.getCity());
 		
 		onlineAccount = null;
 		
-		onlineAccount = onlineAccountRepository.findOnlineAccountByUser(user);
+//		onlineAccount = onlineAccountRepository.findOnlineAccountByUser(user);
 		assertNotNull(onlineAccount);
 		assertEquals(username, onlineAccount.getUsername());
 		assertEquals(email, onlineAccount.getEmail());

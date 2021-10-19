@@ -30,8 +30,8 @@ public class TestNewsPaperPersistence {
 	@Test
 	public void testPersistAndLoadNewspaper() {
 		Library l = new Library();
-		LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-		ls.setOpeningHours(l);
+//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
+//		ls.setOpeningHours(l);
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
 		l.setOpeningHour(startTime);
@@ -43,7 +43,7 @@ public class TestNewsPaperPersistence {
 		np.setDate(date);
 		np.setName(name);
 		np.setId(3);
-		np.setLibrarySoftwareSystem(ls);
+//		np.setLibrarySoftwareSystem(ls);
 		libraryRepository.save(l);
 		newspaperRepository.save(np);
 		

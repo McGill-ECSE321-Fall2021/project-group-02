@@ -30,8 +30,8 @@ public class TestJournalPersistence {
 	@Test
 	public void testPersistAndLoadJournal() {
 		Library l = new Library();
-		LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-		ls.setOpeningHours(l);
+//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
+//		ls.setOpeningHours(l);
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
 		l.setOpeningHour(startTime);
@@ -43,7 +43,7 @@ public class TestJournalPersistence {
 		j.setDate(date);
 		j.setName(name);
 		j.setId(2);
-		j.setLibrarySoftwareSystem(ls);
+//		j.setLibrarySoftwareSystem(ls);
 		libraryRepository.save(l);
 		journalRepository.save(j);
 		

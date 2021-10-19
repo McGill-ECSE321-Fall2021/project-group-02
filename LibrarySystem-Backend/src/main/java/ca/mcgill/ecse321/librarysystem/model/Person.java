@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.ManyToOne;
 
+@Table(name="person1")
 @Entity
 public class Person
 {
@@ -32,7 +34,7 @@ public class Person
 
   //Person Associations
   private List<User> users;
-  private LibrarySoftwareSystem librarySoftwareSystem;
+//  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
   // INTERFACE
@@ -68,15 +70,15 @@ public class Person
 	  this.users = u;
   }
 
-  @ManyToOne(optional = false)
-  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-  {
-    return librarySoftwareSystem;
-  }
-
-
-  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    librarySoftwareSystem = aLibrarySoftwareSystem;
-  }
+//  @ManyToOne(optional = false)
+//  public LibrarySoftwareSystem getLibrarySoftwareSystem()
+//  {
+//    return librarySoftwareSystem;
+//  }
+//
+//
+//  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
+//  {
+//    librarySoftwareSystem = aLibrarySoftwareSystem;
+//  }
 }

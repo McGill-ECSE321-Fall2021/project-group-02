@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @DiscriminatorColumn(name = "ITEM_TYPE")
+@Table(name = "item1")
 public abstract class Item
 {
 
@@ -68,15 +69,15 @@ public abstract class Item
     return id;
   }
 
-  @ManyToOne(optional = false)
-  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-  {
-    return librarySoftwareSystem;
-  }
-
-  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-	this.librarySoftwareSystem = aLibrarySoftwareSystem;
-  }
+//  @ManyToOne(optional = false)
+//  public LibrarySoftwareSystem getLibrarySoftwareSystem()
+//  {
+//    return librarySoftwareSystem;
+//  }
+//
+//  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
+//  {
+//	this.librarySoftwareSystem = aLibrarySoftwareSystem;
+//  }
 
 }

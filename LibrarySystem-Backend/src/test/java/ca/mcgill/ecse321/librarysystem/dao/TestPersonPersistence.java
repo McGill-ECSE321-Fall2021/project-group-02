@@ -29,19 +29,19 @@ public void clearDatabase() {
 }
 @Test
 public void testPersistAndLoadPerson() {
-	Library l = new Library ();
-	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
-	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
-	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-	ls.setOpeningHours(l);
+//	Library l = new Library ();
+//	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
+//	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
+//	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
+//	ls.setOpeningHours(l);
 //	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	String firstName = "testFirstName";
 	String lastName = "testLastName";
-	p.setLibrarySoftwareSystem(ls);
+//	p.setLibrarySoftwareSystem(ls);
 	p.setFirstName(firstName);
 	p.setLastName(lastName);
-	libraryRepository.save(l);
+//	libraryRepository.save(l);
 	personRepository.save(p);
 	
 	Person testP = (personRepository.findPersonByFirstName(firstName)).get(0);
