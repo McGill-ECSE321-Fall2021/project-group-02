@@ -4,6 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.User;
+
 public interface OnlineAccountRepository extends CrudRepository<OnlineAccount, Integer>{
 	OnlineAccount findOnlineAccountByUsername(String username);
     OnlineAccount findOnlineAccountByUser(User user);
