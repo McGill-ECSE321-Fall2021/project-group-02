@@ -3,11 +3,9 @@ package ca.mcgill.ecse321.librarysystem.dao;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import ca.mcgill.ecse321.librarysystem.model.Book;
 
-@Repository
 public interface BookRepository extends CrudRepository<Book, Integer>{
 	Book findBookById(int id);
 	List<Book> findBookByTitle(String title);

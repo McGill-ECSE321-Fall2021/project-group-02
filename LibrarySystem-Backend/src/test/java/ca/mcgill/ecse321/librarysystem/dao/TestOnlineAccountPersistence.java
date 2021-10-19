@@ -44,10 +44,6 @@ public class TestOnlineAccountPersistence {
 	
 	@Test
 	public void testPersistAndLoadOnlineAccount() {
-//		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-//		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-//		Library library = new Library(startTime, endTime);
-//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
 		
 		String firstName = "TestFirstName";
 		String lastName = "TestLastName";

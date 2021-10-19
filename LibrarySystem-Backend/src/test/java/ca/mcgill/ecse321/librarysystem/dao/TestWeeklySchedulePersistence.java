@@ -42,9 +42,6 @@ public class TestWeeklySchedulePersistence {
 		Date endDate = java.sql.Date.valueOf(LocalDate.of(2021, 10, 25));
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-//		Library library = new Library(startTime, endTime);
-		
-//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem(library);
 		
 		WeeklySchedule schedule = new WeeklySchedule();
 		schedule.setEndDate(endDate);
