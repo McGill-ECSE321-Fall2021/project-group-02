@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @DiscriminatorColumn(name = "USER_TYPE")
-public class User
+public abstract class User
 {
 
   //------------------------
@@ -17,7 +17,7 @@ public class User
   private int id;
   private String address;
   private String city;
-
+  
   //User Associations
   private LibrarySoftwareSystem librarySoftwareSystem;
   private Person person;
@@ -42,7 +42,7 @@ public class User
     city = aCity;
   }
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId()
   {
     return id;

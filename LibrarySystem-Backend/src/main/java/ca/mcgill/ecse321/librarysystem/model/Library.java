@@ -3,17 +3,23 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.sql.Time;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.ManyToOne;
 
 // line 106 "model.ump"
 // line 209 "model.ump"
+@Table(name="library")
 @Entity
+
 public class Library
 {
   private int id;
@@ -22,7 +28,7 @@ public class Library
     this.id = aId;
   }
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return this.id;
   }
@@ -61,7 +67,7 @@ public class Library
     return closingHour;
   }
 
-  @ManyToOne(optional = false)
+  @OneToOne(cascade=CascadeType.ALL)
   public LibrarySoftwareSystem getLibrarySoftwareSystem()
   {
     return librarySoftwareSystem;

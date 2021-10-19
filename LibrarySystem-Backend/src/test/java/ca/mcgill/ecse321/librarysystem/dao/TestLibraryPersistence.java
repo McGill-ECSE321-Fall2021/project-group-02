@@ -42,7 +42,7 @@ public void testPersistAndLoadLibary() {
 	assertEquals(endTime,l.getClosingHour());
 	
 	l = null;
-	l = libraryRepository.findLibraryByOpeningHour(endTime);
+	l = libraryRepository.findLibraryByOpeningHour(startTime);
 	assertEquals(endTime,l.getClosingHour());
 	assertEquals(startTime,l.getOpeningHour());
 }

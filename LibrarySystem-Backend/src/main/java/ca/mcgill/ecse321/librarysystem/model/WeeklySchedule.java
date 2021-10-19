@@ -24,7 +24,7 @@ public class WeeklySchedule
     this.id = aId;
   }
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return this.id;
   }

@@ -25,7 +25,7 @@ public class LibrarySoftwareSystem
     this.id = aId;
   }
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return this.id;
   }
@@ -56,7 +56,7 @@ public class LibrarySoftwareSystem
     return this.items;
   }
 
-  @OneToOne
+  @OneToOne(cascade=CascadeType.ALL)
   public Library getOpeningHours()
   {
     return this.openingHours;

@@ -6,14 +6,8 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @DiscriminatorColumn(name = "ITEM_TYPE")
-public class Item
+public abstract class Item
 {
-
-  //------------------------
-  // STATIC VARIABLES
-  //------------------------
-
-  private static Map<Integer, Item> itemsById = new HashMap<Integer, Item>();
 
   //------------------------
   // MEMBER VARIABLES
@@ -68,7 +62,7 @@ public class Item
   }
   
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId()
   {
     return id;
