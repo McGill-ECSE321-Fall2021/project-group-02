@@ -40,7 +40,7 @@ public void testPersistAndLoadLibrarian() {
 	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-	ls.setOpeningHours(l);
+//	ls.setOpeningHours(l);
 //	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
@@ -48,7 +48,7 @@ public void testPersistAndLoadLibrarian() {
 	WeeklySchedule ws=new WeeklySchedule();
 	p.setFirstName("lfn");
 	p.setLastName("lln");
-	p.setLibrarySoftwareSystem(ls);
+//	p.setLibrarySoftwareSystem(ls);
 	oa.setEmail("lib@hotmail.com");
 	oa.setUsername("lib");
 	oa.setPassword( "libpassword");
