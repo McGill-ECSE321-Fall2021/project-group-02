@@ -43,7 +43,7 @@ public void testPersistAndLoadHeadLibrarian() {
 	libraryRepository.save(l);
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
-	l.setLibrarySoftwareSystem(ls);
+//	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
 	HeadLibrarian hl = new HeadLibrarian();

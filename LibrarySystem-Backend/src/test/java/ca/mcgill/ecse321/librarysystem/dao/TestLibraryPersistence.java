@@ -19,20 +19,20 @@ public class TestLibraryPersistence {
 	@Autowired
 	private LibraryRepository libraryRepository;
 	
-@AfterEach
+//@AfterEach
 public void clearDatabse() {
 	libraryRepository.deleteAll();
 }
 @Test
 public void testPersistAndLoadLibary() {
 	Library l = new Library();
-	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-	ls.setOpeningHours(l);
+//	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
+//	ls.setOpeningHours(l);
 	Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
 	Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
 	l.setOpeningHour(startTime);
 	l.setClosingHour(endTime);
-	l.setLibrarySoftwareSystem(ls);
+//	l.setLibrarySoftwareSystem(ls);
 	libraryRepository.save(l);
 	
 	l = null;

@@ -34,7 +34,7 @@ public void testPersistAndLoadPerson() {
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
-	l.setLibrarySoftwareSystem(ls);
+//	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	String firstName = "testFirstName";
 	String lastName = "testLastName";

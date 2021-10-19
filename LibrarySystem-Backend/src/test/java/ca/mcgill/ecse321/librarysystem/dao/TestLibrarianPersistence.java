@@ -41,7 +41,7 @@ public void testPersistAndLoadLibrarian() {
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 	ls.setOpeningHours(l);
-	l.setLibrarySoftwareSystem(ls);
+//	l.setLibrarySoftwareSystem(ls);
 	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
 	Librarian lib = new Librarian();

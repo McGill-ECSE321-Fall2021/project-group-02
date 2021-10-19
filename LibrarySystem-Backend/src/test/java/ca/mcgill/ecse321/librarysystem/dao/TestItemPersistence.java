@@ -26,30 +26,30 @@ public void clearDatabase() {
 	libraryRepository.deleteAll();
 	
 }
-@Test
-public void testPersistAndLoadItem() {
-	Library l = new Library();
-	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-	ls.setOpeningHours(l);
-	Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-	Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-	l.setOpeningHour(startTime);
-	l.setClosingHour(endTime);
-	l.setLibrarySoftwareSystem(ls);
-	libraryRepository.save(l);
-	Item i = new Item();
-	i.setIsBorrowed(true);
-	i.setIsDamaged(true);
-	i.setId(20);
-	i.setLibrarySoftwareSystem(ls);
-	itemRepository.save(i);
-	
-	i = null;
-	i = itemRepository.findItemById(20);
-	assertNotNull(i);
-	assertEquals(20,i.getId());
-	assertEquals(false,i.getIsArchived());
-	assertEquals(true,i.getIsBorrowed());
-	assertEquals(true,i.getIsDamaged());
-}
+//@Test
+//public void testPersistAndLoadItem() {
+//	Library l = new Library();
+//	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
+//	ls.setOpeningHours(l);
+//	Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
+//	Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
+//	l.setOpeningHour(startTime);
+//	l.setClosingHour(endTime);
+//	l.setLibrarySoftwareSystem(ls);
+//	libraryRepository.save(l);
+//	Item i = new Item();
+//	i.setIsBorrowed(true);
+//	i.setIsDamaged(true);
+//	i.setId(20);
+//	i.setLibrarySoftwareSystem(ls);
+//	itemRepository.save(i);
+//	
+//	i = null;
+//	i = itemRepository.findItemById(20);
+//	assertNotNull(i);
+//	assertEquals(20,i.getId());
+//	assertEquals(false,i.getIsArchived());
+//	assertEquals(true,i.getIsBorrowed());
+//	assertEquals(true,i.getIsDamaged());
+//}
 }

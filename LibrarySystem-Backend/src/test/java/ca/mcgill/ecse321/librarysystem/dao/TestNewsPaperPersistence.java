@@ -36,7 +36,7 @@ public class TestNewsPaperPersistence {
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
 		l.setOpeningHour(startTime);
 		l.setClosingHour(endTime);
-		l.setLibrarySoftwareSystem(ls);
+//		l.setLibrarySoftwareSystem(ls);
 		Newspaper np = new Newspaper();
 		String name = "testNewspaper";
 		Date date = java.sql.Date.valueOf(LocalDate.of(2021, 10, 17));

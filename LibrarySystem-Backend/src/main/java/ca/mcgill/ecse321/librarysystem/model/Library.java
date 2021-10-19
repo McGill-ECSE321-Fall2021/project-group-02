@@ -28,7 +28,7 @@ public class Library
     this.id = aId;
   }
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId() {
     return this.id;
   }
@@ -41,7 +41,7 @@ public class Library
   private Time closingHour;
 
   //Library Associations
-  private LibrarySoftwareSystem librarySoftwareSystem;
+//  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
   // INTERFACE
@@ -67,14 +67,14 @@ public class Library
     return closingHour;
   }
 
-  @OneToOne(cascade=CascadeType.ALL)
-  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-  {
-    return librarySoftwareSystem;
-  }
-  public void setLibrarySoftwareSystem(LibrarySoftwareSystem a)
-  {
-	this.librarySoftwareSystem = a;
-  }
+//  @OneToOne(cascade=CascadeType.ALL)
+//  public LibrarySoftwareSystem getLibrarySoftwareSystem()
+//  {
+//    return librarySoftwareSystem;
+//  }
+//  public void setLibrarySoftwareSystem(LibrarySoftwareSystem a)
+//  {
+//	this.librarySoftwareSystem = a;
+//  }
 
 }

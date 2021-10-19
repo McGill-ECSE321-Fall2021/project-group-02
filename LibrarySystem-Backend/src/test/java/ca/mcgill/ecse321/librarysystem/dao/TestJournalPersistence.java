@@ -36,7 +36,7 @@ public class TestJournalPersistence {
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
 		l.setOpeningHour(startTime);
 		l.setClosingHour(endTime);
-		l.setLibrarySoftwareSystem(ls);
+//		l.setLibrarySoftwareSystem(ls);
 		Journal j = new Journal();
 		String name = "testJournal";
 		Date date = java.sql.Date.valueOf(LocalDate.of(2021, 10, 16));
