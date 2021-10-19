@@ -19,7 +19,7 @@ public class TestLibraryPersistence {
 	@Autowired
 	private LibraryRepository libraryRepository;
 	
-//@AfterEach
+@AfterEach
 public void clearDatabse() {
 	libraryRepository.deleteAll();
 }

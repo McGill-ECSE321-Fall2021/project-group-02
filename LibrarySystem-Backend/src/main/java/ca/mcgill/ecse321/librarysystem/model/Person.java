@@ -17,7 +17,7 @@ public class Person
   public void setId(int aId) {
     this.id = aId;
   }
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
   public int getId() {
     return this.id;
