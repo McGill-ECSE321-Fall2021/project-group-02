@@ -25,7 +25,7 @@ public class OnlineAccount
   private String email;
 
   //OnlineAccount Associations
-  private User user;
+  private UserEntity userEntity;
   private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
@@ -60,9 +60,9 @@ public class OnlineAccount
   }
 
   @OneToOne
-  public User getUser()
+  public UserEntity getUser()
   {
-    return user;
+    return userEntity;
   }
 
   @ManyToOne(optional = false)
@@ -71,9 +71,9 @@ public class OnlineAccount
     return librarySoftwareSystem;
   }
 
-  public void setUser(User aNewUser)
+  public void setUser(UserEntity aNewUser)
   {
-    user = aNewUser;
+    userEntity = aNewUser;
   }
 
   public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)

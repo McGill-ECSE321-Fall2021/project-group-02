@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("M")
-@Table(name = "MOVIE")
+@Table(name = "movie")
 public class Movie extends Item
 {
   //------------------------

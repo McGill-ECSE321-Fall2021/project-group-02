@@ -26,7 +26,7 @@ import ca.mcgill.ecse321.librarysystem.model.Movie;
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 import ca.mcgill.ecse321.librarysystem.model.Person;
-import ca.mcgill.ecse321.librarysystem.model.User;
+import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -39,6 +39,8 @@ public class TestBookPersistence {
 	private BookRepository bookRepository;
 	@Autowired
 	private ItemRepository itemRepository;
+	@Autowired
+	private PatronRepository patronRepository;
 	
 	@AfterEach
 	public void clearDatabase() {
@@ -48,15 +50,18 @@ public class TestBookPersistence {
 	
 	@Test
 	public void testPersistAndLoadBook() {
-
+		
 		String title = "TestTitle";
 		String author = "TestAuthor";
 		Book testBook = new Book();
+		Patron patron = new Patron();
 		int id = 1;
 		
+		testBook.setPatron(patron);
 		testBook.setAuthor(author);
 		testBook.setTitle(title);
-
+		
+		patronRepository.save(patron);
 		bookRepository.save(testBook);
 		itemRepository.save(testBook);
 		

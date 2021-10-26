@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @DiscriminatorColumn(name = "ITEM_TYPE")
-@Table(name = "item1")
+@Table(name = "item")
 public abstract class Item
 {
 

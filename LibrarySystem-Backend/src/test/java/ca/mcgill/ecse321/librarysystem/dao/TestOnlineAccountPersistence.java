@@ -17,7 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.Person;
-import ca.mcgill.ecse321.librarysystem.model.User;
+import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
@@ -33,13 +33,13 @@ public class TestOnlineAccountPersistence {
 	@Autowired
 	private PersonRepository personRepository;
 	@Autowired
-	private UserRepository userRepository;
+	private UserEntityRepository userEntityRepository;
 	
 	@AfterEach
 	public void clearDatabase() {
 		onlineAccountRepository.deleteAll();
 		personRepository.deleteAll();
-		userRepository.deleteAll();
+		userEntityRepository.deleteAll();
 	}
 	
 	@Test

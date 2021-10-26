@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 
 // line 106 "model.ump"
 // line 209 "model.ump"
-@Table(name="library123")
+@Table(name="library")
 @Entity
 
 public class Library

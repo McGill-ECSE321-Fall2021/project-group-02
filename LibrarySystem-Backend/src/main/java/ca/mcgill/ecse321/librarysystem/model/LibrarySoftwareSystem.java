@@ -18,7 +18,6 @@ import javax.persistence.CascadeType;
 @Entity
 public class LibrarySoftwareSystem
 {
-  
   private int id;
   
   public void setId(int aId) {
@@ -38,7 +37,7 @@ public class LibrarySoftwareSystem
   private List<Item> items;
   private Library openingHours;
   private List<OnlineAccount> accounts;
-  private List<User> users;
+  private List<UserEntity> userEntities;
   private List<WeeklySchedule> weeklySchedules;
   private List<DailySchedule> dailySchedules;
 
@@ -69,9 +68,9 @@ public class LibrarySoftwareSystem
   }
 
   @OneToMany(cascade=CascadeType.ALL)
-  public List<User> getUser()
+  public List<UserEntity> getUser()
   {
-    return this.users;
+    return this.userEntities;
   }
 
   @OneToMany(cascade=CascadeType.ALL)
@@ -109,9 +108,9 @@ public class LibrarySoftwareSystem
     this.accounts = a;
   }
 
-  public void setUser(List<User> u)
+  public void setUser(List<UserEntity> u)
   {
-    this.users = u;
+    this.userEntities = u;
   }
 
   public void setWeeklySchedule(List<WeeklySchedule> w)

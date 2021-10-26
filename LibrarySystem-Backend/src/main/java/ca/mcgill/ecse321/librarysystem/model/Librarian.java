@@ -7,8 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("L")
-@Table(name = "LIBRARIAN")
-public class Librarian extends User
+@Table(name = "librarian")
+public class Librarian extends UserEntity
 {
   //------------------------
   // MEMBER VARIABLES

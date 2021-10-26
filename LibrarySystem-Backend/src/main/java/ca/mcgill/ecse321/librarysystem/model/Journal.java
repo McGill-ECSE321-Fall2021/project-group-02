@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("J")
-@Table(name = "JOURNAL")
+@Table(name = "journal")
 public class Journal extends Item
 {
 

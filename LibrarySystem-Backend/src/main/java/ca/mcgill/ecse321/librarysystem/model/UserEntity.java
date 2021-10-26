@@ -5,8 +5,8 @@ import javax.persistence.*;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@DiscriminatorColumn(name = "USER_TYPE")
-public abstract class User
+@DiscriminatorColumn(name = "user_entity")
+public abstract class UserEntity
 {
 
   //------------------------

@@ -10,8 +10,8 @@ import javax.persistence.*;
 // line 145 "model.ump"
 @Entity
 @DiscriminatorValue("H")
-@Table(name = "HEAD_LIBRARIAN")
-public class HeadLibrarian extends User
+@Table(name = "head_librarian")
+public class HeadLibrarian extends UserEntity
 {
   //------------------------
   // MEMBER VARIABLES

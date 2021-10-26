@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 // line 188 "model.ump"
 @Entity
 @DiscriminatorValue("N")
-@Table(name = "NEWSPAPER")
+@Table(name = "newspaper")
 public class Newspaper extends Item
 {
 

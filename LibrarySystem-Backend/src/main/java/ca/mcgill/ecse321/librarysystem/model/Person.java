@@ -33,7 +33,7 @@ public class Person
   private String lastName;
 
   //Person Associations
-  private List<User> users;
+  private List<UserEntity> userEntities;
 //  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
@@ -61,13 +61,13 @@ public class Person
   }
 
   @OneToMany
-  public List<User> getUser()
+  public List<UserEntity> getUser()
   {
-	return this.users;
+	return this.userEntities;
   }
   
-  public void setUser(List<User> u) {
-	  this.users = u;
+  public void setUser(List<UserEntity> u) {
+	  this.userEntities = u;
   }
 
 //  @ManyToOne(optional = false)
