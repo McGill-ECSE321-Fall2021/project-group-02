@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.ManyToOne;
 
-@Table(name="person1")
+@Table(name="person")
 @Entity
 public class Person
 {
@@ -61,12 +61,12 @@ public class Person
   }
 
   @OneToMany
-  public List<UserEntity> getUser()
+  public List<UserEntity> getUserEntity()
   {
 	return this.userEntities;
   }
   
-  public void setUser(List<UserEntity> u) {
+  public void setUserEntity(List<UserEntity> u) {
 	  this.userEntities = u;
   }
 

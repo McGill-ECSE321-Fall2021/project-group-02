@@ -19,7 +19,6 @@ public abstract class UserEntity
   private String city;
   
   //User Associations
-  private LibrarySoftwareSystem librarySoftwareSystem;
   private Person person;
   private OnlineAccount onlineAccount;
 
@@ -57,13 +56,6 @@ public abstract class UserEntity
   {
     return city;
   }
-
-  @ManyToOne(optional = false)
-  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-  {
-    return librarySoftwareSystem;
-  }
-
   @ManyToOne(optional = false)
   public Person getPerson()
   {
@@ -74,12 +66,6 @@ public abstract class UserEntity
   public OnlineAccount getOnlineAccount()
   {
     return onlineAccount;
-  }
-
-
-  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    librarySoftwareSystem = aLibrarySoftwareSystem;
   }
 
   public void setPerson(Person aPerson)
