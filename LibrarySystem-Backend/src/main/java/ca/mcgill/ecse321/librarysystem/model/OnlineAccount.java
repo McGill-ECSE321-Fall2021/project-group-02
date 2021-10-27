@@ -24,8 +24,8 @@ public class OnlineAccount
   private String password;
   private String email;
 
-//  //OnlineAccount Associations
-//  private UserEntity userEntity;
+  //OnlineAccount Associations
+  private UserEntity userEntity;
 
   //------------------------
   // INTERFACE
@@ -58,14 +58,14 @@ public class OnlineAccount
     return password;
   }
 
-//  @OneToOne
-//  public UserEntity getUser()
-//  {
-//    return userEntity;
-//  }
-//  
-//  public void setUser(UserEntity aNewUser)
-//  {
-//    userEntity = aNewUser;
-//  }
+  @OneToOne
+  public UserEntity getUser()
+  {
+    return userEntity;
+  }
+  
+  public void setUser(UserEntity aNewUser)
+  {
+    userEntity = aNewUser;
+  }
 }
