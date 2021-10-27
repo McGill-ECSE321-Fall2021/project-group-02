@@ -60,7 +60,7 @@ public class TestBookPersistence {
 		Book testBook = new Book();
 		Patron patron = new Patron();
 		Person person = new Person();
-		int id = 1;
+		
 		
 		testBook.setPatron(patron);
 		testBook.setAuthor(author);
@@ -68,12 +68,12 @@ public class TestBookPersistence {
 		patron.setPerson(person);
 		List<UserEntity> patrons = new ArrayList<UserEntity>();
 		patrons.add(patron);
-		person.setUserEntity(patrons);
 		
+		personRepository.save(person);
 		patronRepository.save(patron);
 		bookRepository.save(testBook);
 		itemRepository.save(testBook);
-		personRepository.save(person);
+		int id = testBook.getId();
 		
 		testBook = null;
 		
@@ -91,7 +91,5 @@ public class TestBookPersistence {
 		assertNotNull(testBook);
 		assertEquals(title, testBook.getTitle());
 		assertEquals(author, testBook.getAuthor());
-		
 	}
-
 }

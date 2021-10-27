@@ -24,9 +24,8 @@ public class OnlineAccount
   private String password;
   private String email;
 
-  //OnlineAccount Associations
-  private UserEntity userEntity;
-  private LibrarySoftwareSystem librarySoftwareSystem;
+//  //OnlineAccount Associations
+//  private UserEntity userEntity;
 
   //------------------------
   // INTERFACE
@@ -59,26 +58,14 @@ public class OnlineAccount
     return password;
   }
 
-  @OneToOne
-  public UserEntity getUser()
-  {
-    return userEntity;
-  }
-
-  @ManyToOne(optional = false)
-  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-  {
-    return librarySoftwareSystem;
-  }
-
-  public void setUser(UserEntity aNewUser)
-  {
-    userEntity = aNewUser;
-  }
-
-  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    librarySoftwareSystem = aLibrarySoftwareSystem;
-  }
-
+//  @OneToOne
+//  public UserEntity getUser()
+//  {
+//    return userEntity;
+//  }
+//  
+//  public void setUser(UserEntity aNewUser)
+//  {
+//    userEntity = aNewUser;
+//  }
 }

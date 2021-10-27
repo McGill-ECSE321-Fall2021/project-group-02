@@ -47,8 +47,7 @@ public void testPersistAndLoadPatron() {
 	oa.setEmail("pat@hotmail.com");
 	oa.setUsername("patib");
 	oa.setPassword("patpassword");
-	oa.setUser(pat);
-	oa.setLibrarySoftwareSystem(ls);
+	//oa.setUser(pat);
 	pat.setAddress("123 Test W");
 	pat.setCity("Montreal");
 	pat.setId(13);

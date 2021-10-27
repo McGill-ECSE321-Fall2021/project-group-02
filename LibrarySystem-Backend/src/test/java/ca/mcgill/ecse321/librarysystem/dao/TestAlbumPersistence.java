@@ -22,23 +22,17 @@ private AlbumRepository albumRepository;
 private LibraryRepository libraryRepository;
 @Autowired
 private PatronRepository patronRepository;
+@Autowired
+private PersonRepository personRepository;
 @AfterEach
 public void clearDatabase() {
 	albumRepository.deleteAll();
 	libraryRepository.deleteAll();
 	patronRepository.deleteAll();
+	personRepository.deleteAll();
 }
 	@Test
 	public void testPersistAndLoadAlbum() {
-//		Library l = new Library();
-//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-//		ls.setOpeningHours(l);
-//		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-//		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-//		l.setOpeningHour(startTime);
-//		l.setClosingHour(endTime);
-//		l.setLibrarySoftwareSystem(ls);
-//		libraryRepository.save(l);
 		Album a = new Album();
 		String title = "testTitle";
 		String artist = "testArtist";
@@ -47,10 +41,14 @@ public void clearDatabase() {
 		a.setIsArchived(false);
 		a.setIsBorrowed(false);
 		a.setIsDamaged(false);
-//		a.setLibrarySoftwareSystem(ls);
-		Patron p = new Patron();
-		a.setPatron(p);
-		patronRepository.save(p);
+		
+		Person person = new Person();
+		Patron patron = new Patron();
+		patron.setPerson(person);
+		a.setPatron(patron);
+		
+		personRepository.save(person);
+		patronRepository.save(patron);
 		albumRepository.save(a);
 		
 //		a = null;

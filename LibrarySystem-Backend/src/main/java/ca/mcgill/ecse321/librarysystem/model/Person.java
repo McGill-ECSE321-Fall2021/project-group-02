@@ -32,8 +32,6 @@ public class Person
   private String firstName;
   private String lastName;
 
-  //Person Associations
-  private List<UserEntity> userEntities;
 //  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
@@ -60,25 +58,4 @@ public class Person
     return lastName;
   }
 
-  @OneToMany
-  public List<UserEntity> getUserEntity()
-  {
-	return this.userEntities;
-  }
-  
-  public void setUserEntity(List<UserEntity> u) {
-	  this.userEntities = u;
-  }
-
-//  @ManyToOne(optional = false)
-//  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-//  {
-//    return librarySoftwareSystem;
-//  }
-//
-//
-//  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-//  {
-//    librarySoftwareSystem = aLibrarySoftwareSystem;
-//  }
 }
