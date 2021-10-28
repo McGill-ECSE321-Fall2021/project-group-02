@@ -69,7 +69,7 @@ public void testPersistAndLoadHeadLibrarian() {
 	int id = hl.getId();
 	
 	hl = null;
-	hl = headLibrarianRepository.findHeadLibrarianById(2);
+	hl = headLibrarianRepository.findHeadLibrarianById(id);
 	assertNotNull(hl);
 	assertEquals(id, hl.getId());
 	assertEquals("hlfn",hl.getPerson().getFirstName());

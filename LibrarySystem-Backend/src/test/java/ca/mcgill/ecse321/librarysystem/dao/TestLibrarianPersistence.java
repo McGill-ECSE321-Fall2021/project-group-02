@@ -84,5 +84,15 @@ public void testPersistAndLoadLibrarian() {
 		assertEquals("Montreal", lib.getCity());
 		assertEquals("lib@hotmail.com",lib.getOnlineAccount().getEmail());
 		assertEquals(java.sql.Date.valueOf(LocalDate.of(2021, 10, 18)),lib.getWeeklySchedule().getStartDate());
+		
+		lib = null;
+		lib = librarianRepository.findLibrarianByOnlineAccount(oa);
+		assertNotNull(lib);
+		assertEquals(id, lib.getId());
+		assertEquals("lfn",lib.getPerson().getFirstName());
+		assertEquals("123 Test St", lib.getAddress());
+		assertEquals("Montreal", lib.getCity());
+		assertEquals("lib@hotmail.com",lib.getOnlineAccount().getEmail());
+		assertEquals(java.sql.Date.valueOf(LocalDate.of(2021, 10, 18)),lib.getWeeklySchedule().getStartDate());
 	}
 }
