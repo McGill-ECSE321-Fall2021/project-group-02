@@ -43,6 +43,7 @@ public class LibrarySystemService {
 	@Autowired 
 	PatronRepository patronRepository;
 	
+	// SAMI - Borrow Items
 	@Transactional
 	public Item borrowItem(int itemId, String itemName, int patronId) {
 		Patron patronOfInterest;
@@ -99,4 +100,11 @@ public class LibrarySystemService {
 		}
 		return null; // error telling us that "item does not exist"
 	}
+	
+	// JULIE - Return items
+		@Transactional
+		public Item returnItem(int itemId, String itemName, int patronId) {
+			Book book = new Book();
+			return book;
+		}
 }
