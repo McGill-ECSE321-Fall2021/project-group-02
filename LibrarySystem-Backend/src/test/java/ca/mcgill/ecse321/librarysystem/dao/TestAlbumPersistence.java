@@ -50,19 +50,20 @@ public void clearDatabase() {
 		personRepository.save(person);
 		patronRepository.save(patron);
 		albumRepository.save(a);
+		int id = a.getId();
 		
-//		a = null;
-//		a = albumRepository.findAlbumById(1);
-//		assertNotNull(a);
-//		assertEquals(title,a.getTitle());
-//		assertEquals(artist,a.getArtist());
-//		assertEquals(1,a.getId());
+		a = null;
+		a = albumRepository.findAlbumById(id);
+		assertNotNull(a);
+		assertEquals(title,a.getTitle());
+		assertEquals(artist,a.getArtist());
+		assertEquals(id,a.getId());
 		
 		a = null;
 		a = albumRepository.findAlbumByTitleAndArtist(title, artist);
 		assertNotNull(a);
 		assertEquals(title,a.getTitle());
 		assertEquals(artist,a.getArtist());
-//		assertEquals(1,a.getId());
+		assertEquals(id,a.getId());
 	}
 }
