@@ -49,11 +49,10 @@ public void testPersistAndLoadLibrarian() {
 	oa.setEmail("lib@hotmail.com");
 	oa.setUsername("lib");
 	oa.setPassword( "libpassword");
-	//oa.setUser(lib);
+	
 		ws.setStartDate(java.sql.Date.valueOf(LocalDate.of(2021, 10, 18)));
 		ws.setEndDate(java.sql.Date.valueOf(LocalDate.of(2021, 10, 22)));
 		lib.setOnlineAccount(oa);
-		lib.setId(1);
 		lib.setAddress("123 Test St");
 		lib.setCity("Montreal");
 		lib.setPerson(p);
@@ -63,12 +62,14 @@ public void testPersistAndLoadLibrarian() {
 		libraryRepository.save(l);
 		weeklyScheduleRepository.save(ws);
 		librarianRepository.save(lib);
+		int id = lib.getId();
+		oa.setUser(lib);
 		
 		lib = null;
-		lib = librarianRepository.findLibrarianById(1);
+		lib = librarianRepository.findLibrarianById(id);
 		assertNotNull(lib);
-		assertEquals(1, lib.getId());
-		assertEquals("libfn",lib.getPerson().getFirstName());
+		assertEquals(id, lib.getId());
+		assertEquals("lfn",lib.getPerson().getFirstName());
 		assertEquals("123 Test St", lib.getAddress());
 		assertEquals("Montreal", lib.getCity());
 		assertEquals("lib@hotmail.com",lib.getOnlineAccount().getEmail());
@@ -77,8 +78,8 @@ public void testPersistAndLoadLibrarian() {
 		lib = null;
 		lib = librarianRepository.findLibrarianByPerson(p);
 		assertNotNull(lib);
-		assertEquals(1, lib.getId());
-		assertEquals("libfn",lib.getPerson().getFirstName());
+		assertEquals(id, lib.getId());
+		assertEquals("lfn",lib.getPerson().getFirstName());
 		assertEquals("123 Test St", lib.getAddress());
 		assertEquals("Montreal", lib.getCity());
 		assertEquals("lib@hotmail.com",lib.getOnlineAccount().getEmail());
