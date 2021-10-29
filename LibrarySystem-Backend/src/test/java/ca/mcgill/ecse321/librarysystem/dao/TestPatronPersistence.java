@@ -20,14 +20,11 @@ private PatronRepository patronRepository;
 @Autowired 
 private LibraryRepository libraryRepository;
 @Autowired
-private PersonRepository personRepository;
-@Autowired
 private OnlineAccountRepository onlineAccountRepository;
 @AfterEach
 public void clearDatabse() {
 	patronRepository.deleteAll();
 	libraryRepository.deleteAll();
-	personRepository.deleteAll();
 	onlineAccountRepository.deleteAll();
 }
 @Test
@@ -36,41 +33,26 @@ public void testPersistAndLoadPatron() {
 	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-//	ls.setOpeningHours(l);
-//	l.setLibrarySoftwareSystem(ls);
-	Person p = new Person();
+
 	OnlineAccount oa=new OnlineAccount();
 	Patron pat = new Patron();
-	p.setFirstName("patfn");
-	p.setLastName("patln");
-//	p.setLibrarySoftwareSystem(ls);
+
 	oa.setEmail("pat@hotmail.com");
 	oa.setUsername("patib");
 	oa.setPassword("patpassword");
-	oa.setUser(pat);
-	oa.setLibrarySoftwareSystem(ls);
+
 	pat.setAddress("123 Test W");
 	pat.setCity("Montreal");
-	pat.setId(13);
 	pat.setOnlineAccount(oa);
-	pat.setPerson(p);
+
 	onlineAccountRepository.save(oa);
-	personRepository.save(p);
 	libraryRepository.save(l);
 	patronRepository.save(pat);
+	int id = pat.getId();
 	
-	pat = patronRepository.findPatronById(13);
+	pat = patronRepository.findPatronById(id);
 	assertNotNull(pat);
-	assertEquals(13, pat.getId());
-	assertEquals("patfn",pat.getPerson().getFirstName());
-	assertEquals("123 Test W", pat.getAddress());
-	assertEquals("Montreal", pat.getCity());
-	assertEquals("pat@hotmail.com",pat.getOnlineAccount().getEmail());
-	
-	pat = patronRepository.findPatronByPerson(p);
-	assertNotNull(pat);
-	assertEquals(13, pat.getId());
-	assertEquals("patfn",pat.getPerson().getFirstName());
+	assertEquals(id, pat.getId());
 	assertEquals("123 Test W", pat.getAddress());
 	assertEquals("Montreal", pat.getCity());
 	assertEquals("pat@hotmail.com",pat.getOnlineAccount().getEmail());

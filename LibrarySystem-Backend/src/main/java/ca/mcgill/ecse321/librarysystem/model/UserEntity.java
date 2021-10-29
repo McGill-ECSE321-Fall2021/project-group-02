@@ -17,15 +17,47 @@ public abstract class UserEntity
   private int id;
   private String address;
   private String city;
+  private String firstName;
+  private String lastName;
+  private int balance;
   
   //User Associations
-  private Person person;
   private OnlineAccount onlineAccount;
 
   //------------------------
   // INTERFACE
   //------------------------
+  
+  public void setFirstName(String aFirstName)
+  {
+    firstName = aFirstName;
+  }
 
+  public void setLastName(String aLastName)
+  {
+	this.lastName = aLastName;
+  }
+
+  public String getFirstName()
+  {
+    return firstName;
+  }
+
+  public String getLastName()
+  {
+    return lastName;
+  }
+  
+  public int getBalance()
+  {
+    return balance;
+  }
+
+  public void setBalance(int b)
+  {
+    this.balance = b;
+  }
+  
   public void setId(int aId)
   {
 	  this.id = aId;
@@ -56,21 +88,11 @@ public abstract class UserEntity
   {
     return city;
   }
-  @ManyToOne(optional = false)
-  public Person getPerson()
-  {
-    return person;
-  }
 
   @OneToOne(optional = true)
   public OnlineAccount getOnlineAccount()
   {
     return onlineAccount;
-  }
-
-  public void setPerson(Person aPerson)
-  {
-    person = aPerson;
   }
 
   public void setOnlineAccount(OnlineAccount aOnlineAccount)

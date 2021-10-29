@@ -43,14 +43,13 @@ public class TestMoviePersistence {
 		
 		String title = "TestTitle";
 		String director = "TestDirector";
-		int id = 1;
 		Movie movie = new Movie();
 		
 		movie.setDirector(director);
 		movie.setTitle(title);
-		movie.setId(id);
 		movieRepository.save(movie);
 		itemRepository.save(movie);
+		int id = movie.getId();
 		
 		movie = null;
 		
