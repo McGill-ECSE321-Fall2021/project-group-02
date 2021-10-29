@@ -20,14 +20,11 @@ private PatronRepository patronRepository;
 @Autowired 
 private LibraryRepository libraryRepository;
 @Autowired
-private PersonRepository personRepository;
-@Autowired
 private OnlineAccountRepository onlineAccountRepository;
 @AfterEach
 public void clearDatabse() {
 	patronRepository.deleteAll();
 	libraryRepository.deleteAll();
-	personRepository.deleteAll();
 	onlineAccountRepository.deleteAll();
 }
 @Test
@@ -37,11 +34,8 @@ public void testPersistAndLoadPatron() {
 	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
 	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
 
-	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
 	Patron pat = new Patron();
-	p.setFirstName("patfn");
-	p.setLastName("patln");
 
 	oa.setEmail("pat@hotmail.com");
 	oa.setUsername("patib");
@@ -50,10 +44,8 @@ public void testPersistAndLoadPatron() {
 	pat.setAddress("123 Test W");
 	pat.setCity("Montreal");
 	pat.setOnlineAccount(oa);
-	pat.setPerson(p);
 
 	onlineAccountRepository.save(oa);
-	personRepository.save(p);
 	libraryRepository.save(l);
 	patronRepository.save(pat);
 	int id = pat.getId();
@@ -61,15 +53,6 @@ public void testPersistAndLoadPatron() {
 	pat = patronRepository.findPatronById(id);
 	assertNotNull(pat);
 	assertEquals(id, pat.getId());
-	assertEquals("patfn",pat.getPerson().getFirstName());
-	assertEquals("123 Test W", pat.getAddress());
-	assertEquals("Montreal", pat.getCity());
-	assertEquals("pat@hotmail.com",pat.getOnlineAccount().getEmail());
-	
-	pat = patronRepository.findPatronByPerson(p);
-	assertNotNull(pat);
-	assertEquals(id, pat.getId());
-	assertEquals("patfn",pat.getPerson().getFirstName());
 	assertEquals("123 Test W", pat.getAddress());
 	assertEquals("Montreal", pat.getCity());
 	assertEquals("pat@hotmail.com",pat.getOnlineAccount().getEmail());

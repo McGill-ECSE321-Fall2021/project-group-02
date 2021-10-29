@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
-import ca.mcgill.ecse321.librarysystem.model.Person;
 import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 import ca.mcgill.ecse321.librarysystem.model.Librarian;
 import ca.mcgill.ecse321.librarysystem.model.Library;
@@ -32,33 +31,25 @@ public class TestOnlineAccountPersistence {
 	@Autowired
 	private OnlineAccountRepository onlineAccountRepository;
 	@Autowired
-	private PersonRepository personRepository;
-	@Autowired
 	private LibrarianRepository librarianRepository;
 	
 	@AfterEach
 	public void clearDatabase() {
 		onlineAccountRepository.deleteAll();
 		librarianRepository.deleteAll();
-		personRepository.deleteAll();
 	}
 	
 	@Test
 	public void testPersistAndLoadOnlineAccount() {
 		
 		String firstName = "TestFirstName";
-		String lastName = "TestLastName";
-		Person person = new Person();
-		person.setFirstName(firstName);
-		person.setLastName(lastName);
-		
+		String lastName = "TestLastName";	
 		
 		String address = "TestAddress";
 		String city = "TestCity";
 		Librarian librarian = new Librarian();
 		librarian.setAddress(address);
 		librarian.setCity(city);
-		librarian.setPerson(person);
 		
 		
 		String username = "TestUsername";
@@ -70,7 +61,6 @@ public class TestOnlineAccountPersistence {
 		onlineAccount.setPassword(password);
 		onlineAccount.setUser(librarian);
 		
-		personRepository.save(person);
 		librarianRepository.save(librarian);
 		onlineAccountRepository.save(onlineAccount);
 		

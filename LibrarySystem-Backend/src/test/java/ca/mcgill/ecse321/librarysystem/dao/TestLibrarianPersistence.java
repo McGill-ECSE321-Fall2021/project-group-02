@@ -18,34 +18,21 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestLibrarianPersistence {
 	@Autowired
 	private LibrarianRepository librarianRepository;
-	@Autowired 
-	private LibraryRepository libraryRepository;
-	@Autowired
-	private PersonRepository personRepository;
 	@Autowired
 	private OnlineAccountRepository onlineAccountRepository;
 	@Autowired
 	private WeeklyScheduleRepository weeklyScheduleRepository;
 @AfterEach
 public void clearDatabase() {
-	librarianRepository.deleteAll();
-	libraryRepository.deleteAll();
-	personRepository.deleteAll();
 	onlineAccountRepository.deleteAll();
+	librarianRepository.deleteAll();
 	weeklyScheduleRepository.deleteAll();
 }
 @Test
 public void testPersistAndLoadLibrarian() {
-	Library l = new Library ();
-	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
-	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
-	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-	Person p = new Person();
 	OnlineAccount oa=new OnlineAccount();
 	Librarian lib = new Librarian();
 	WeeklySchedule ws=new WeeklySchedule();
-	p.setFirstName("lfn");
-	p.setLastName("lln");
 	oa.setEmail("lib@hotmail.com");
 	oa.setUsername("lib");
 	oa.setPassword( "libpassword");
@@ -55,11 +42,8 @@ public void testPersistAndLoadLibrarian() {
 		lib.setOnlineAccount(oa);
 		lib.setAddress("123 Test St");
 		lib.setCity("Montreal");
-		lib.setPerson(p);
 		lib.setWeeklySchedule(ws);
-		personRepository.save(p);
 		onlineAccountRepository.save(oa);
-		libraryRepository.save(l);
 		weeklyScheduleRepository.save(ws);
 		librarianRepository.save(lib);
 		int id = lib.getId();
@@ -69,27 +53,16 @@ public void testPersistAndLoadLibrarian() {
 		lib = librarianRepository.findLibrarianById(id);
 		assertNotNull(lib);
 		assertEquals(id, lib.getId());
-		assertEquals("lfn",lib.getPerson().getFirstName());
 		assertEquals("123 Test St", lib.getAddress());
 		assertEquals("Montreal", lib.getCity());
 		assertEquals("lib@hotmail.com",lib.getOnlineAccount().getEmail());
 		assertEquals(java.sql.Date.valueOf(LocalDate.of(2021, 10, 18)),lib.getWeeklySchedule().getStartDate());
 		
-		lib = null;
-		lib = librarianRepository.findLibrarianByPerson(p);
-		assertNotNull(lib);
-		assertEquals(id, lib.getId());
-		assertEquals("lfn",lib.getPerson().getFirstName());
-		assertEquals("123 Test St", lib.getAddress());
-		assertEquals("Montreal", lib.getCity());
-		assertEquals("lib@hotmail.com",lib.getOnlineAccount().getEmail());
-		assertEquals(java.sql.Date.valueOf(LocalDate.of(2021, 10, 18)),lib.getWeeklySchedule().getStartDate());
 		
 		lib = null;
 		lib = librarianRepository.findLibrarianByOnlineAccount(oa);
 		assertNotNull(lib);
 		assertEquals(id, lib.getId());
-		assertEquals("lfn",lib.getPerson().getFirstName());
 		assertEquals("123 Test St", lib.getAddress());
 		assertEquals("Montreal", lib.getCity());
 		assertEquals("lib@hotmail.com",lib.getOnlineAccount().getEmail());

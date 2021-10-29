@@ -22,14 +22,12 @@ private AlbumRepository albumRepository;
 private LibraryRepository libraryRepository;
 @Autowired
 private PatronRepository patronRepository;
-@Autowired
-private PersonRepository personRepository;
+
 @AfterEach
 public void clearDatabase() {
 	albumRepository.deleteAll();
 	libraryRepository.deleteAll();
 	patronRepository.deleteAll();
-	personRepository.deleteAll();
 }
 	@Test
 	public void testPersistAndLoadAlbum() {
@@ -42,12 +40,9 @@ public void clearDatabase() {
 		a.setIsBorrowed(false);
 		a.setIsDamaged(false);
 		
-		Person person = new Person();
 		Patron patron = new Patron();
-		patron.setPerson(person);
 		a.setPatron(patron);
 		
-		personRepository.save(person);
 		patronRepository.save(patron);
 		albumRepository.save(a);
 		int id = a.getId();
