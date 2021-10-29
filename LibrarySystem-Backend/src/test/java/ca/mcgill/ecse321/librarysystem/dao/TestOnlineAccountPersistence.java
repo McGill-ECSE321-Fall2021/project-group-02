@@ -16,8 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
+import ca.mcgill.ecse321.librarysystem.model.Person;
 import ca.mcgill.ecse321.librarysystem.model.UserEntity;
-import ca.mcgill.ecse321.librarysystem.model.Librarian;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
@@ -31,26 +31,35 @@ public class TestOnlineAccountPersistence {
 	@Autowired
 	private OnlineAccountRepository onlineAccountRepository;
 	@Autowired
-	private LibrarianRepository librarianRepository;
+	private PersonRepository personRepository;
+	@Autowired
+	private UserEntityRepository userEntityRepository;
 	
 	@AfterEach
 	public void clearDatabase() {
 		onlineAccountRepository.deleteAll();
-		librarianRepository.deleteAll();
+		personRepository.deleteAll();
+		userEntityRepository.deleteAll();
 	}
 	
 	@Test
 	public void testPersistAndLoadOnlineAccount() {
 		
 		String firstName = "TestFirstName";
-		String lastName = "TestLastName";	
+		String lastName = "TestLastName";
+		Person person = new Person();
+		person.setFirstName(firstName);
+		person.setLastName(lastName);
+		personRepository.save(person);
 		
+		int id = 1;
 		String address = "TestAddress";
 		String city = "TestCity";
-		Librarian librarian = new Librarian();
-		librarian.setAddress(address);
-		librarian.setCity(city);
-		
+//		User user = new User();
+//		user.setId(id);
+//		user.setAddress(address);
+//		user.setCity(city);
+//		userRepository.save(user);
 		
 		String username = "TestUsername";
 		String email = "TestEmail";
@@ -59,12 +68,8 @@ public class TestOnlineAccountPersistence {
 		onlineAccount.setUsername(username);
 		onlineAccount.setEmail(email);
 		onlineAccount.setPassword(password);
-		onlineAccount.setUser(librarian);
-		
-		librarianRepository.save(librarian);
+//		onlineAccount.setUser(user);
 		onlineAccountRepository.save(onlineAccount);
-		
-		// Tests
 		
 		onlineAccount = null;
 		
@@ -82,9 +87,17 @@ public class TestOnlineAccountPersistence {
 		assertEquals(email, onlineAccount.getEmail());
 		assertEquals(password, onlineAccount.getPassword());
 		
+//		user = null;
+//		
+//		user = userRepository.findUserById(id);
+//		assertNotNull(user);
+//		assertEquals(id, user.getId());
+//		assertEquals(address, user.getAddress());
+//		assertEquals(city, user.getCity());
+		
 		onlineAccount = null;
 		
-		onlineAccount = onlineAccountRepository.findOnlineAccountByUser(librarian);
+//		onlineAccount = onlineAccountRepository.findOnlineAccountByUser(user);
 		assertNotNull(onlineAccount);
 		assertEquals(username, onlineAccount.getUsername());
 		assertEquals(email, onlineAccount.getEmail());

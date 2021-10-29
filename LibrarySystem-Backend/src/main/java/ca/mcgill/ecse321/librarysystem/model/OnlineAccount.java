@@ -26,6 +26,7 @@ public class OnlineAccount
 
   //OnlineAccount Associations
   private UserEntity userEntity;
+  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
   // INTERFACE
@@ -63,9 +64,21 @@ public class OnlineAccount
   {
     return userEntity;
   }
-  
+
+  @ManyToOne(optional = false)
+  public LibrarySoftwareSystem getLibrarySoftwareSystem()
+  {
+    return librarySoftwareSystem;
+  }
+
   public void setUser(UserEntity aNewUser)
   {
     userEntity = aNewUser;
   }
+
+  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
+  {
+    librarySoftwareSystem = aLibrarySoftwareSystem;
+  }
+
 }

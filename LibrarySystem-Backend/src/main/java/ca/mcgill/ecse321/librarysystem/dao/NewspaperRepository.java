@@ -10,13 +10,11 @@ public interface NewspaperRepository extends CrudRepository<Newspaper, Integer>{
 	Newspaper findNewspaperByNameAndDate(String name, Date date);
 	List<Newspaper> findNewspaperByName(String name);
 	List<Newspaper> findNewspaperByDate(Date date);
-	Newspaper findNewspaperById(int id);
-	
+
 	List<Newspaper> findNewspaperByIsArchived(boolean isArchived);
 	List<Newspaper> findNewspaperByIsDamaged(boolean isDamaged);
 
 	boolean existsNewspaperByNameAndDate(String name, Date date);
 	boolean existsNewspaperByName(String name);
 	boolean existsNewspaperByDate(Date date);
-	
 } 

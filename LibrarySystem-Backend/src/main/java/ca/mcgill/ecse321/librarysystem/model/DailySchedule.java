@@ -37,14 +37,19 @@ public class DailySchedule
   private Time endTime;
 
   //DailySchedule Associations
-//  private WeeklySchedule weeklySchedule;
+  private LibrarySoftwareSystem librarySoftwareSystem;
+  private WeeklySchedule weeklySchedule;
   
 //----------------------------------------------GETTERS
+  @ManyToOne(optional = false)
+  public LibrarySoftwareSystem getLibrarySoftwareSystem() {
+	  return this.librarySoftwareSystem;
+  }
   
-//  @ManyToOne(optional = true)
-//  public WeeklySchedule getWeeklySchedule() {
-//	  return this.weeklySchedule;
-//  }
+  @ManyToOne(optional = false)
+  public WeeklySchedule getWeeklySchedule() {
+	  return this.weeklySchedule;
+  }
   
   public WeekDay getDay() {
 	  return this.day;
@@ -60,9 +65,13 @@ public class DailySchedule
     
 //----------------------------------------------SETTERS
   
-//  public void setWeeklySchedule(WeeklySchedule w) {
-//	  this.weeklySchedule = w;
-//  }
+  public void setLibrarySoftwareSystem(LibrarySoftwareSystem l) {
+	  this.librarySoftwareSystem = l;
+  }
+  
+  public void setWeeklySchedule(WeeklySchedule w) {
+	  this.weeklySchedule = w;
+  }
   
   public void setDay(WeekDay d) {
 	  this.day = d;
