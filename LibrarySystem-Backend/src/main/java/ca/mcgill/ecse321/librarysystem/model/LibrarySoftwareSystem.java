@@ -33,21 +33,13 @@ public class LibrarySoftwareSystem
   //------------------------
 
   //LibrarySoftwareSystem Associations
-  private List<Person> persons;
   private List<Item> items;
   private Library openingHours;
   private List<OnlineAccount> accounts;
   private List<UserEntity> userEntities;
   private List<WeeklySchedule> weeklySchedules;
-  private List<DailySchedule> dailySchedules;
 
 //----------------------------------------------GETTERS
-  
-  @OneToMany(cascade=CascadeType.ALL)
-  public List<Person> getPerson()
-  {
-    return this.persons;
-  }
   
   @OneToMany(cascade=CascadeType.ALL)
   public List<Item> getItem()
@@ -68,7 +60,7 @@ public class LibrarySoftwareSystem
   }
 
   @OneToMany(cascade=CascadeType.ALL)
-  public List<UserEntity> getUser()
+  public List<UserEntity> getUserEntity()
   {
     return this.userEntities;
   }
@@ -79,19 +71,13 @@ public class LibrarySoftwareSystem
     return this.weeklySchedules;
   }
 
-  @OneToMany(cascade=CascadeType.ALL)
-  public List<DailySchedule> getDailySchedule()
-  {
-    return this.dailySchedules;
-  }
+//  @OneToMany(cascade=CascadeType.ALL)
+//  public List<DailySchedule> getDailySchedule()
+//  {
+//    return this.dailySchedules;
+//  }
   
   //----------------------------------------------SETTERS
-  
-  
-  public void setPerson(List<Person> p)
-  {
-    this.persons = p;
-  }
   
   public void setItem(List<Item> i)
   {
@@ -108,7 +94,7 @@ public class LibrarySoftwareSystem
     this.accounts = a;
   }
 
-  public void setUser(List<UserEntity> u)
+  public void setUserEntity(List<UserEntity> u)
   {
     this.userEntities = u;
   }
@@ -118,10 +104,10 @@ public class LibrarySoftwareSystem
     this.weeklySchedules = w;
   }
 
-  public void setDailySchedule(List<DailySchedule> d)
-  {
-    this.dailySchedules = d;
-  }
+//  public void setDailySchedule(List<DailySchedule> d)
+//  {
+//    this.dailySchedules = d;
+//  }
 
 
 }
