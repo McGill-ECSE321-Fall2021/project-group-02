@@ -21,7 +21,7 @@ import ca.mcgill.ecse321.librarysystem.model.Movie;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 @Service
-public class LibrarySystemService {
+public class BorrowItemsService {
 	@Autowired 
 	AlbumRepository albumRepository;
 	
@@ -50,11 +50,11 @@ public class LibrarySystemService {
 			patronOfInterest= patronRepository.findPatronById(patronId);
 		}
 		else {
-			return null; //should be replaced by some error telling us that "patron has invalid ID"
+			throw new IllegalArgumentException("Patron has invalid ID");
 		}
 		
 		if(patronOfInterest.getBorrowedAlbums().size()+patronOfInterest.getBorrowedMovies().size()+patronOfInterest.getBorrowedBooks().size()>=5) {
-			return null; //should be replaced by "Can't borrow because already has 5 books"
+			throw new IllegalArgumentException("Patron can't borrow because he has already borrowed 5 books");
 		}
 		
 		if(itemRepository.existsItemById(itemId)) {
@@ -65,7 +65,7 @@ public class LibrarySystemService {
 						if(a.getTitle().equals(itemName)) {
 							List<Album> albums=patronOfInterest.getBorrowedAlbums();
 							albums.add(a);
-							patronOfInterest.setBorrowedAlbums(albums);
+							patronOfInterest.setBorrowedAlbums(albums); //TRY TO SAVE TO REPOSITORY. check github.
 							return a;
 						}
 					}
@@ -90,13 +90,13 @@ public class LibrarySystemService {
 					
 				}
 				else {
-					return null; //error telling us that "item is already borrowed"
+					throw new IllegalArgumentException("The item you are looking for has already been borrowed.");
 				}
 			}
 			else {
-				return null; //error telling us that "item is archived"
+				throw new IllegalArgumentException("The item you are looking for is in the archives");
 			}
 		}
-		return null; // error telling us that "item does not exist"
+		throw new IllegalArgumentException("The item you are looking for does not exist.");
 	}
 }
