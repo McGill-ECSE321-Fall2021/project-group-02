@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Date;
 
 import org.junit.jupiter.api.AfterEach;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import ca.mcgill.ecse321.librarysystem.model.DailySchedule;
 import ca.mcgill.ecse321.librarysystem.model.WeeklySchedule;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
@@ -30,6 +33,8 @@ public class TestWeeklySchedulePersistence {
 
 	@Autowired
 	private WeeklyScheduleRepository weeklyScheduleRepository;
+	@Autowired
+	private DailyScheduleRepository dailyScheduleRepository;
 	
 	@AfterEach
 	public void clearDatabase() {
@@ -46,7 +51,15 @@ public class TestWeeklySchedulePersistence {
 		WeeklySchedule schedule = new WeeklySchedule();
 		schedule.setEndDate(endDate);
 		schedule.setStartDate(startDate);
+		List<DailySchedule> ls = new ArrayList<DailySchedule>();
+		DailySchedule d = new DailySchedule();
+		
+		ls.add(d);
+		schedule.setDay(ls);
+		
+		dailyScheduleRepository.save(d);
 		weeklyScheduleRepository.save(schedule);
+		
 		
 		schedule = null;
 		

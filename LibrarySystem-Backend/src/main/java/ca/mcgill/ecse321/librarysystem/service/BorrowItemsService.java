@@ -21,7 +21,7 @@ import ca.mcgill.ecse321.librarysystem.model.Movie;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 @Service
-public class LibrarySystemService {
+public class BorrowItemsService {
 	@Autowired 
 	AlbumRepository albumRepository;
 	
@@ -50,53 +50,53 @@ public class LibrarySystemService {
 			patronOfInterest= patronRepository.findPatronById(patronId);
 		}
 		else {
-			return null; //should be replaced by some error telling us that "patron has invalid ID"
+			throw new IllegalArgumentException("Patron has invalid ID");
 		}
 		
-		if(patronOfInterest.getBorrowedAlbums().size()+patronOfInterest.getBorrowedMovies().size()+patronOfInterest.getBorrowedBooks().size()>=5) {
-			return null; //should be replaced by "Can't borrow because already has 5 books"
+		if(patronOfInterest.getBorrowedAlbum().size()+patronOfInterest.getBorrowedMovie().size()+patronOfInterest.getBorrowedBook().size()>=5) {
+			throw new IllegalArgumentException("Patron can't borrow because he has already borrowed 5 books");
 		}
 		
 		if(itemRepository.existsItemById(itemId)) {
 			Item itemOfInterest=itemRepository.findItemById(itemId); //should be name not id
 			if (!itemOfInterest.getIsArchived()) {
 				if(!itemOfInterest.getIsBorrowed()) {
-					for(Album a : patronOfInterest.getBorrowedAlbums()) {
+					for(Album a : patronOfInterest.getBorrowedAlbum()) {
 						if(a.getTitle().equals(itemName)) {
-							List<Album> albums=patronOfInterest.getBorrowedAlbums();
+							List<Album> albums=patronOfInterest.getBorrowedAlbum();
 							albums.add(a);
-							patronOfInterest.setBorrowedAlbums(albums);
+							patronOfInterest.setBorrowedAlbum(albums); //TRY TO SAVE TO REPOSITORY. check github.
 							return a;
 						}
 					}
 					
-					for (Movie m : patronOfInterest.getBorrowedMovies()) {
+					for (Movie m : patronOfInterest.getBorrowedMovie()) {
 						if(m.getTitle().equals(itemName)) {
-							List<Movie> movies=patronOfInterest.getBorrowedMovies();
+							List<Movie> movies=patronOfInterest.getBorrowedMovie();
 							movies.add(m);
-							patronOfInterest.setBorrowedMovies(movies);
+							patronOfInterest.setBorrowedMovie(movies);
 							return m;
 						}
 					}
 					
-					for (Book b : patronOfInterest.getBorrowedBooks()) {
+					for (Book b : patronOfInterest.getBorrowedBook()) {
 						if(b.getTitle().equals(itemName)) {
-							List<Book> books=patronOfInterest.getBorrowedBooks();
+							List<Book> books=patronOfInterest.getBorrowedBook();
 							books.add(b);
-							patronOfInterest.setBorrowedBooks(books);
+							patronOfInterest.setBorrowedBook(books);
 							return b;
 						}
 					}
 					
 				}
 				else {
-					return null; //error telling us that "item is already borrowed"
+					throw new IllegalArgumentException("The item you are looking for has already been borrowed.");
 				}
 			}
 			else {
-				return null; //error telling us that "item is archived"
+				throw new IllegalArgumentException("The item you are looking for is in the archives");
 			}
 		}
-		return null; // error telling us that "item does not exist"
+		throw new IllegalArgumentException("The item you are looking for does not exist.");
 	}
 }

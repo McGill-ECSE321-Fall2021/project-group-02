@@ -1,5 +1,3 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.sql.Date;
@@ -13,8 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.persistence.ManyToOne;
 
-// line 112 "model.ump"
-// line 214 "model.ump"
 @Entity
 public class WeeklySchedule
 {
@@ -38,7 +34,6 @@ public class WeeklySchedule
 
   //WeeklySchedule Associations
   private List<DailySchedule> days;
-  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
   // INTERFACE
@@ -73,16 +68,5 @@ public class WeeklySchedule
   public void setDay(List<DailySchedule> d) 
   {
 	  this.days = d;
-  }
-  
-  @ManyToOne(optional = false)
-  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-  {
-    return librarySoftwareSystem;
-  }
-
-  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-  {
-    librarySoftwareSystem = aLibrarySoftwareSystem;
   }
 }
