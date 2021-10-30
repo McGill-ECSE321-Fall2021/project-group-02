@@ -33,7 +33,7 @@ public class ArchiveItemService {
 		if(itemRepository.existsItemById(itemID)) {
 			Item itemOfInterest = itemRepository.findItemById(itemID);
 			if(!(itemOfInterest.getIsArchived())) {
-				
+				itemOfInterest.setIsArchived(true);
 			}
 		}
 		return null;
