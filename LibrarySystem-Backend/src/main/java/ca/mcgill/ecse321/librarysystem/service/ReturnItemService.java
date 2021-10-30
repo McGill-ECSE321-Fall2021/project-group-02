@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ca.mcgill.ecse321.librarysystem.dao.AlbumRepository;
 import ca.mcgill.ecse321.librarysystem.dao.BookRepository;
+import ca.mcgill.ecse321.librarysystem.dao.HeadLibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ItemRepository;
 import ca.mcgill.ecse321.librarysystem.dao.JournalRepository;
 import ca.mcgill.ecse321.librarysystem.dao.MovieRepository;
@@ -16,6 +17,7 @@ import ca.mcgill.ecse321.librarysystem.dao.NewspaperRepository;
 import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.model.Album;
 import ca.mcgill.ecse321.librarysystem.model.Book;
+import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.model.Item;
 import ca.mcgill.ecse321.librarysystem.model.Journal;
 import ca.mcgill.ecse321.librarysystem.model.Movie;
@@ -44,8 +46,11 @@ public class ReturnItemService {
 	@Autowired 
 	PatronRepository patronRepository;
 	
+	@Autowired 
+	HeadLibrarianRepository headLibrarianRepository;
+	
 	@Transactional
-	public Item returnItem(int itemId, String itemName, int patronId) throws IllegalArgumentException {
+	public Item returnItem(int itemId, int patronId) throws IllegalArgumentException {
 		
 		// Identify the specific patron
 		Patron specificPatron;
@@ -55,14 +60,11 @@ public class ReturnItemService {
 		else {
 			throw new IllegalArgumentException("Patron ID does not exist."); 
 		}
-		
-		
-		int numborrowedItems = specificPatron.getBorrowedAlbums().size() + specificPatron.getBorrowedMovies().size() + specificPatron.getBorrowedBooks().size();
-		
-		// Remove item from patron's borrowed list by making a copy without the specificItem
+
 		if(itemRepository.existsItemById(itemId)) {
 			Item specificItem = itemRepository.findItemById(itemId); 
 			
+			// Remove item from patron's borrowed list by making a copy without the specificItem
 			if (specificItem.getClass() == Album.class) {
 				List<Album> copyList = new ArrayList<Album>();
 				for (Album a : specificPatron.getBorrowedAlbums()) {
@@ -90,13 +92,52 @@ public class ReturnItemService {
 				}
 				specificPatron.setBorrowedMovies(copyList);
 			}
+			specificItem.setIsBorrowed(false);
+			return specificItem;
+			
+		} else {
+			throw new IllegalArgumentException("Item ID does not exist.");
+		}
+	}
+	
+	@Transactional
+	public Item damageItem(int itemId, int userId) throws IllegalArgumentException {
+		
+		if (headLibrarianRepository.existsById(userId)) {
+			
+			Item specificItem = itemRepository.findItemById(itemId); 
+			if(itemRepository.existsItemById(itemId)) {
+				specificItem.setIsBorrowed(false);
+				specificItem.setIsDamaged(true);
+			} else {
+				throw new IllegalArgumentException("Item ID does not exists.");
+			}
+			
+			return specificItem;
+			
+		} else {
+			throw new IllegalArgumentException("Head librarian ID does not exist.");
+		}
+			
+	}
+	
+	@Transactional
+	public Item discardItem(int itemId, int userId) throws IllegalArgumentException {
+		
+	if (headLibrarianRepository.existsById(userId)) {
+			
+			Item specificItem = itemRepository.findItemById(itemId); 
+			if(itemRepository.existsItemById(itemId)) {
+				itemRepository.delete(specificItem);
+			} else {
+				throw new IllegalArgumentException("Item ID does not exists.");
+			}
+			
+			return specificItem;
+			
+		} else {
+			throw new IllegalArgumentException("Head librarian ID does not exist.");
 		}
 		
-		// need if damaged case
-		// overdue count?
-		
-		// filler for now
-		Book book = new Book();
-		return book;
 	}
 }
