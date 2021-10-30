@@ -39,12 +39,37 @@ public class ArchiveItemService {
 		return null;
 	}
 	
-	private <T> List<T> toList(Iterable<T> iterable){
-		List<T> resultList = new ArrayList<T>();
-		for (T t : iterable) {
-			resultList.add(t);
+	/*
+	 * Find item by its ID
+	 * @author John Park
+	 * @param ID
+	 * @return item
+	 */
+	@Transactional
+	public Item getItem(int id) {
+		Item item = itemRepository.findItemById(id);
+		return item;
+	}
+	
+	/*
+	 * Returns a list of all archived items in the library
+	 * @author John
+	 * @param 
+	 * @return List
+	 */
+	@Transactional
+	public List<Item> getItemsByArchiveStatus() {
+		return toList(itemRepository.findItemByIsArchived(true));
+	}
+	
+	@Transactional
+	public void updateItemStatus(Item item, int id) {
+		if (item.getIsArchived() == true) {
+//			throw new InvalidInputException("Item is already archived.");
+		} else {
+			Item itemOfInterest = itemRepository.findItemById(id);
+			itemOfInterest.setIsArchived(true);
 		}
-		return resultList;
 	}
 	
 	@Transactional
@@ -133,18 +158,18 @@ public class ArchiveItemService {
 	}
 	
 	@Transactional
-	public List<Album> getAllAlbums() {
-		return toList(albumRepository.findAll());
+	public List<Album> getAllArchivedAlbums() {
+		return toList(albumRepository.findAlbumByIsArchived(true));
 	}
 	
 	@Transactional
-	public List<Book> getAllBooks() {
-		return toList(bookRepository.findAll());
+	public List<Book> getAllArchivedBooks() {
+		return toList(bookRepository.findBookByIsArchived(true));
 	}
 	
 	@Transactional
-	public List<Movie> getAllMovies() {
-		return toList(movieRepository.findAll());
+	public List<Movie> getAllArchivedMovies() {
+		return toList(movieRepository.findMovieByIsArchived(true));
 	}
 	
 	@Transactional
@@ -200,5 +225,19 @@ public class ArchiveItemService {
 			newspapersByName.add(n);
 		}
 		return newspapersByName;
+	}
+	
+	// --------------------- Helper method ------------------
+	/* Converts iterable to list
+	 * @param <T>
+	 * @param iterable
+	 * @return
+	 */
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
 	}
 }
