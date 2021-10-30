@@ -27,6 +27,18 @@ public class ArchiveItemService {
 	@Autowired
 	NewspaperRepository newspaperRepository;
 	
+	@Transactional
+	public Item archiveItem(int itemID, String itemName) {
+		
+		if(itemRepository.existsItemById(itemID)) {
+			Item itemOfInterest = itemRepository.findItemById(itemID);
+			if(!(itemOfInterest.getIsArchived())) {
+				
+			}
+		}
+		return null;
+	}
+	
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {
