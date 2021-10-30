@@ -35,13 +35,7 @@ public class ReturnItemService {
 	ItemRepository itemRepository;
 	
 	@Autowired 
-	JournalRepository journalRepository;
-	
-	@Autowired 
 	MovieRepository movieRepository;
-	
-	@Autowired 
-	NewspaperRepository newspaperRepository;
 	
 	@Autowired 
 	PatronRepository patronRepository;
@@ -101,7 +95,7 @@ public class ReturnItemService {
 	}
 	
 	@Transactional
-	public Item damageItem(int itemId, int userId) throws IllegalArgumentException {
+	public Item setDamagedItem(int itemId, int userId) throws IllegalArgumentException {
 		
 		if (headLibrarianRepository.existsById(userId)) {
 			
@@ -125,8 +119,8 @@ public class ReturnItemService {
 	public Item discardItem(int itemId, int userId) throws IllegalArgumentException {
 		
 	if (headLibrarianRepository.existsById(userId)) {
-			
 			Item specificItem = itemRepository.findItemById(itemId); 
+			
 			if(itemRepository.existsItemById(itemId)) {
 				itemRepository.delete(specificItem);
 			} else {
@@ -140,4 +134,5 @@ public class ReturnItemService {
 		}
 		
 	}
+	
 }
