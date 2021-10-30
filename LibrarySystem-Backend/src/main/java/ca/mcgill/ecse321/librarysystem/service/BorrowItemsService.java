@@ -58,14 +58,15 @@ public class BorrowItemsService {
 		}
 		
 		if(itemRepository.existsItemById(itemId)) {
-			Item itemOfInterest=itemRepository.findItemById(itemId); //should be name not id
+			Item itemOfInterest=itemRepository.findItemById(itemId); 
 			if (!itemOfInterest.getIsArchived()) {
 				if(!itemOfInterest.getIsBorrowed()) {
 					for(Album a : patronOfInterest.getBorrowedAlbums()) {
 						if(a.getTitle().equals(itemName)) {
 							List<Album> albums=patronOfInterest.getBorrowedAlbums();
 							albums.add(a);
-							patronOfInterest.setBorrowedAlbums(albums); //TRY TO SAVE TO REPOSITORY. check github.
+							patronOfInterest.setBorrowedAlbums(albums); 
+							patronRepository.save(patronOfInterest);
 							return a;
 						}
 					}
@@ -75,6 +76,7 @@ public class BorrowItemsService {
 							List<Movie> movies=patronOfInterest.getBorrowedMovies();
 							movies.add(m);
 							patronOfInterest.setBorrowedMovies(movies);
+							patronRepository.save(patronOfInterest);
 							return m;
 						}
 					}
@@ -84,6 +86,7 @@ public class BorrowItemsService {
 							List<Book> books=patronOfInterest.getBorrowedBooks();
 							books.add(b);
 							patronOfInterest.setBorrowedBooks(books);
+							patronRepository.save(patronOfInterest);
 							return b;
 						}
 					}
