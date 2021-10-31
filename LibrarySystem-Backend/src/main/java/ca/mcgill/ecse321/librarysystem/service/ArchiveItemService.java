@@ -39,6 +39,56 @@ public class ArchiveItemService {
 		return null;
 	}
 	
+	@Transactional
+	public Album archiveAlbum(int albumID, String albumName, String albumArtist) {
+		
+		if(albumRepository.existsById(albumID) && albumRepository.existsByTitleAndArtist(albumName, albumArtist)) {
+			Album albumOfInterest = albumRepository.findAlbumByTitleAndArtist(albumName, albumArtist);
+			if(albumOfInterest.getIsArchived() == false) {
+				albumOfInterest.setIsArchived(true);
+			}
+		}
+		
+		return null;
+	}
+	
+	@Transactional
+	public Book archiveBook(int bookID, String bookName, String bookAuthor) {
+		
+		if (bookRepository.existsById(bookID) && bookRepository.existsByTitleAndAuthor(bookName, bookAuthor)) {
+			Book bookOfInterest = bookRepository.findBookByTitleAndAuthor(bookName, bookAuthor);
+			if(bookOfInterest.getIsArchived() == false) {
+				bookOfInterest.setIsArchived(true);
+			}
+		}
+		return null;
+	}
+	
+	@Transactional
+	public Movie archiveMovie(int movieID, String movieName, String movieDirector) {
+		
+		if(movieRepository.existsById(movieID) && movieRepository.existsMovieByTitleAndDirector(movieName, movieDirector)) {
+			Movie movieOfInterest = movieRepository.findMovieByTitleAndDirector(movieName, movieDirector);
+			if(movieOfInterest.getIsArchived() == false) {
+				movieOfInterest.setIsArchived(true);
+			}
+		}
+		
+		return null;
+	}
+	
+	@Transactional
+	public Journal archiveJournal(int journalID, String journalName, Date journalDate) {
+		
+		if(journalRepository.existsById(journalID) && journalRepository.existsJournalByNameAndDate(journalName, journalDate)) {
+			Journal journalOfInterest = journalRepository.findJournalByNameAndDate(journalName, journalDate);
+			if(journalOfInterest.getIsArchived() == false) {
+				journalOfInterest.setIsArchived(true);
+			}
+		}
+		return null;
+	}
+	
 	/*
 	 * Find item by its ID
 	 * @author John Park
