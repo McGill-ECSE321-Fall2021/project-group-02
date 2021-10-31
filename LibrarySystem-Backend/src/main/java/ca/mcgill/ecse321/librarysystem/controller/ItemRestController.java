@@ -14,7 +14,7 @@ import ca.mcgill.ecse321.librarysystem.model.Book;
 import ca.mcgill.ecse321.librarysystem.model.Journal;
 import ca.mcgill.ecse321.librarysystem.model.Movie;
 import ca.mcgill.ecse321.librarysystem.model.Newspaper;
-import ca.mcgill.ecse321.librarysystem.service.ItemsService;
+import ca.mcgill.ecse321.librarysystem.service.ItemService;
 
 import java.sql.Date;
 
@@ -22,7 +22,7 @@ import java.sql.Date;
 @RestController
 public class ItemRestController {
 	@Autowired
-	private ItemsService borrowItemsService;
+	private ItemService borrowItemsService;
 	
 	@GetMapping(value = { "/books", "/books/" })
 	public List<BookDto> getAllBooks() {

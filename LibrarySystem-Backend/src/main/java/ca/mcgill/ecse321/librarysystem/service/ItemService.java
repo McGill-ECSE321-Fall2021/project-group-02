@@ -25,7 +25,7 @@ import ca.mcgill.ecse321.librarysystem.model.Newspaper;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 @Service
-public class ItemsService {
+public class ItemService {
 	@Autowired 
 	AlbumRepository albumRepository;
 	
