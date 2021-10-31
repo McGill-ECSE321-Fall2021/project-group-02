@@ -1,5 +1,29 @@
 package ca.mcgill.ecse321.librarysystem.dto;
 
-public class JournalDto {
+import java.util.Date;
 
+import ca.mcgill.ecse321.librarysystem.model.Patron;
+
+public class JournalDto {
+	private String name;
+	private Date date;
+	
+	public JournalDto() {
+		
+	}
+
+	
+	public JournalDto(String name, Date date) {
+		this.name=name;
+		this.date=date;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+	
 }

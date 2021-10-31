@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import ca.mcgill.ecse321.librarysystem.dto.*;
 import ca.mcgill.ecse321.librarysystem.model.Album;
 import ca.mcgill.ecse321.librarysystem.model.Book;
+import ca.mcgill.ecse321.librarysystem.model.Journal;
+import ca.mcgill.ecse321.librarysystem.model.Movie;
+import ca.mcgill.ecse321.librarysystem.model.Newspaper;
 import ca.mcgill.ecse321.librarysystem.service.ItemsService;
+
+import java.sql.Date;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -27,6 +32,45 @@ public class ItemRestController {
 	@GetMapping(value = { "/albums", "/albums/" })
 	public List<AlbumDto> getAllAlbums() {
 		return borrowItemsService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
+	}
+	
+	@GetMapping(value = { "/movies", "/movies/" })
+	public List<MovieDto> getAllMovies() {
+		return borrowItemsService.getAllMovies().stream().map(m -> convertToDto(m)).collect(Collectors.toList());
+	}
+	
+	@GetMapping(value = { "/newspapers", "/newspapers/" })
+	public List<NewspaperDto> getAllNewspapers() {
+		return borrowItemsService.getAllNewspapers().stream().map(n -> convertToDto(n)).collect(Collectors.toList());
+	}
+	
+	@GetMapping(value = { "/journals", "/journals/" })
+	public List<JournalDto> getAllJournals() {
+		return borrowItemsService.getAllJournals().stream().map(j -> convertToDto(j)).collect(Collectors.toList());
+	}
+	
+	private MovieDto convertToDto(Movie m) {
+		if (m == null) {
+			throw new IllegalArgumentException("There is no such Movie!");
+		}
+		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector(),m.getPatron());
+		return movieDto;
+	}
+	
+	private NewspaperDto convertToDto(Newspaper n) {
+		if (n == null) {
+			throw new IllegalArgumentException("There is no such Newspaper!");
+		}
+		NewspaperDto newspaperDto = new NewspaperDto(n.getName(),n.getDate());
+		return newspaperDto;
+	}
+	
+	private JournalDto convertToDto(Journal j) {
+		if (j == null) {
+			throw new IllegalArgumentException("There is no such Journal!");
+		}
+		JournalDto journalDto = new JournalDto(j.getName(),j.getDate());
+		return journalDto;
 	}
 	
 	private AlbumDto convertToDto(Album a) {

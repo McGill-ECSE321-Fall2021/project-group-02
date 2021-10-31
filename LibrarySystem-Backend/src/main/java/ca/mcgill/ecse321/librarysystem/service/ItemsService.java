@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,7 +19,9 @@ import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.model.Album;
 import ca.mcgill.ecse321.librarysystem.model.Book;
 import ca.mcgill.ecse321.librarysystem.model.Item;
+import ca.mcgill.ecse321.librarysystem.model.Journal;
 import ca.mcgill.ecse321.librarysystem.model.Movie;
+import ca.mcgill.ecse321.librarysystem.model.Newspaper;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 @Service
@@ -118,6 +121,46 @@ public class ItemsService {
 	@Transactional
 	public List<Album> getAllAlbums(){
 		return toList(albumRepository.findAll());
+	}
+	
+	@Transactional 
+	public Newspaper createNewspaper(String name, Date date) {
+		Newspaper newspaper = new Newspaper();
+		newspaper.setName(name);
+		newspaper.setDate(date);
+		return newspaper;
+	}
+	
+	@Transactional
+	public Newspaper getNewspaper(String name, Date date) {
+		
+		Newspaper newspaper=newspaperRepository.findNewspaperByNameAndDate(name, date);
+		return newspaper;
+	}
+	
+	@Transactional
+	public List<Newspaper> getAllNewspapers(){
+		return toList(newspaperRepository.findAll());
+	}
+	
+	@Transactional 
+	public Journal createJournal(String name, Date date) {
+		Journal journal=new Journal();
+		journal.setName(name);
+		journal.setDate(date);
+		return journal;
+	}
+	
+	@Transactional
+	public Journal getJournal(String name, Date date) {
+		
+		Journal journal=journalRepository.findJournalByNameAndDate(name, date);
+		return journal;
+	}
+	
+	@Transactional
+	public List<Journal> getAllJournals(){
+		return toList(journalRepository.findAll());
 	}
 	
 	
