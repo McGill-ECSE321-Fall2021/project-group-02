@@ -89,9 +89,7 @@ public class ItemRestController {
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI
 	 ****************************************************/
-	
-	// add code
-	
+
 	@GetMapping(value = { "/books", "/books/" })
 	public List<BookDto> getAllBooks() {
 		return borrowItemsService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
