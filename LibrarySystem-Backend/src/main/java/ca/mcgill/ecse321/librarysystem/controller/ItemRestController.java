@@ -42,13 +42,6 @@ public class ItemRestController {
 	@Autowired
 	private ItemService borrowItemsService;
 	
-	// return item
-	@PostMapping(value = { "/return", "/return/"})
-	public ItemDto returnItems(@RequestParam(name = "itemId") ItemDto itemDto, @RequestParam(name = "patronId") PatronDto patronDto) {
-		Item i = service.returnItem(itemDto.getID(), patronDto.getId());
-		return convertToDto(i);
-	}
-		
 	private ItemDto convertToDto(Item i) {
 		if (i == null) {
 			throw new IllegalArgumentException("Item does not exist.");
@@ -56,13 +49,48 @@ public class ItemRestController {
 		ItemDto itemDto = new ItemDto(i.getId());
 		return itemDto;
 	}
-	 //borrow item
+	
+	/************************************
+    	  BORROW ITEM SERVICE - SAMI
+	 ************************************/
 	@PostMapping(value = {"/borrow/{name}", "/borrow/{name}/"} )
 	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemID") ItemDto itemDto, @RequestParam(name= "patronId") PatronDto patronDto) {
 		Item i= borrowItemsService.borrowItem(itemDto.getID(), itemName, patronDto.getId());
 		return convertToDto(i);
 	}
-	// combine 'view library contents', 'return items', 'borrow items' into one ItemService.java?
+	
+	/************************************
+          RETURN ITEM SERVICE - JULIE
+    ************************************/
+	@PostMapping(value = { "/return", "/return/"})
+	public ItemDto returnItem(@RequestParam(name = "itemId") ItemDto itemDto, @RequestParam(name = "patronId") PatronDto patronDto) {
+		Item i = service.returnItem(itemDto.getID(), patronDto.getId());
+		return convertToDto(i);
+	}
+	
+	/************************************
+          ARCHIVE ITEM SERVICE - JOHN
+	 ************************************/
+	
+	// add code
+	
+	/******************************************
+	    VIEW LIBRARY CONTENTS - JULIE/NIILO
+	 ******************************************/
+
+	// add code
+
+	/****************************************************
+           OTHER GENERAL ITEM METHODS - JULIE
+	 ****************************************************/
+
+	// add code
+	
+	/****************************************************
+             SPECIFIC ITEM TYPE METHODS - SAMI
+	 ****************************************************/
+	
+	// add code
 	
 	@GetMapping(value = { "/books", "/books/" })
 	public List<BookDto> getAllBooks() {
