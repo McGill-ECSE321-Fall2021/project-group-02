@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -43,10 +44,93 @@ public class BorrowItemsService {
 	@Autowired 
 	PatronRepository patronRepository;
 	
+	@Transactional 
+	public Book createBook(String author, String title, Patron patron, boolean isArchived) {
+		Item booker = new Book();
+		booker.setIsBorrowed(false);
+		booker.setIsDamaged(false);
+		booker.setIsArchived(isArchived);
+		Book book=(Book)booker;
+		book.setAuthor(author);
+		book.setTitle(title);
+		book.setPatron(patron);
+		return book;
+	}
+	
+	@Transactional
+	public Book getBook(String title, String author) {
+		Book book=bookRepository.findBookByTitleAndAuthor(title, author);
+		return book;
+	}
+	
+	@Transactional
+	public List<Book> getAllBooks(){
+		return toList(bookRepository.findAll());
+	}
+	
+	@Transactional 
+	public Movie createMovie(String director, String title, Patron patron, boolean isArchived) {
+		Item mover = new Movie();
+		mover.setIsBorrowed(false);
+		mover.setIsDamaged(false);
+		mover.setIsArchived(isArchived);
+		Movie movie=(Movie)mover;
+		movie.setDirector(title);
+		movie.setTitle(title);
+		movie.setPatron(patron);
+		return movie;
+	}
+	
+	@Transactional
+	public Movie getMovie(String director, String title) {
+		Movie movie=movieRepository.findMovieByTitleAndDirector(title, director);
+		return movie;
+	}
+	
+	@Transactional
+	public List<Movie> getAllMovies(){
+		return toList(movieRepository.findAll());
+	}
+	
+	
+	@Transactional 
+	public Album createAlbum(String artist, String title, Patron patron, boolean isArchived) {
+		Item albumer = new Album();
+		albumer.setIsBorrowed(false);
+		albumer.setIsDamaged(false);
+		albumer.setIsArchived(isArchived);
+		Album album=(Album)albumer;
+		album.setArtist(artist);
+		album.setTitle(title);
+		album.setPatron(patron);
+		return album;
+	}
+	
+	@Transactional
+	public Album getAlbum(String artist, String title) {
+		
+		Album album=albumRepository.findAlbumByTitleAndArtist(title, artist);
+		return album;
+	}
+	
+	@Transactional
+	public List<Album> getAllAlbums(){
+		return toList(albumRepository.findAll());
+	}
+	
+	
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
+	}
+	
 	@Transactional
 	public Item borrowItem(int itemId, String itemName, int patronId) {
 		Patron patronOfInterest;
-		if (patronRepository.existsById(patronId)) {
+		if (patronRepository.existsPatronById(patronId)) {
 			patronOfInterest= patronRepository.findPatronById(patronId);
 		}
 		else {
