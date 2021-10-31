@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.dto.*;
+import ca.mcgill.ecse321.librarysystem.model.Album;
 import ca.mcgill.ecse321.librarysystem.model.Book;
 import ca.mcgill.ecse321.librarysystem.service.BorrowItemsService;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class LibrarySystemRestController {
+public class ItemRestController {
 	@Autowired
 	private BorrowItemsService borrowItemsService;
 	
@@ -24,16 +25,16 @@ public class LibrarySystemRestController {
 	}
 	
 	@GetMapping(value = { "/albums", "/albums/" })
-	public List<BookDto> getAllAlbums() {
+	public List<AlbumDto> getAllAlbums() {
 		return borrowItemsService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
 	
-	private BookDto convertToDto(Album a) {
-		if (b == null) {
-			throw new IllegalArgumentException("There is no such Book!");
+	private AlbumDto convertToDto(Album a) {
+		if (a == null) {
+			throw new IllegalArgumentException("There is no such Album!");
 		}
-		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(),b.getPatron());
-		return bookDto;
+		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist(),a.getPatron());
+		return albumDto;
 	}
 	
 	private BookDto convertToDto(Book b) {
