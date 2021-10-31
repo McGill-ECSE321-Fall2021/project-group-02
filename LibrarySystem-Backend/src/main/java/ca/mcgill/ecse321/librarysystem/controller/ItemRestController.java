@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,7 +56,12 @@ public class ItemRestController {
 		ItemDto itemDto = new ItemDto(i.getId());
 		return itemDto;
 	}
-		
+	 //borrow item
+	@PostMapping(value = {"/borrow/{name}", "/borrow/{name}/"} )
+	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemID") ItemDto itemDto, @RequestParam(name= "patronId") PatronDto patronDto) {
+		Item i= borrowItemsService.borrowItem(itemDto.getID(), itemName, patronDto.getId());
+		return convertToDto(i);
+	}
 	// combine 'view library contents', 'return items', 'borrow items' into one ItemService.java?
 	
 	@GetMapping(value = { "/books", "/books/" })
