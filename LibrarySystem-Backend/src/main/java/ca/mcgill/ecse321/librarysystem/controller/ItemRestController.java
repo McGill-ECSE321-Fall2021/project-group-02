@@ -31,16 +31,13 @@ import java.sql.Date;
 public class ItemRestController {
 	
 	@Autowired
-	ItemService service;
+	ItemService itemService;
 	
 	@Autowired
 	UserEntityRepository useRepository;
 	
 	@Autowired
 	ItemRepository itemRepository;
-	
-	@Autowired
-	private ItemService borrowItemsService;
 	
 	private ItemDto convertToDto(Item i) {
 		if (i == null) {
@@ -55,7 +52,7 @@ public class ItemRestController {
 	 ************************************/
 	@PostMapping(value = {"/borrow/{name}", "/borrow/{name}/"} )
 	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemID") ItemDto itemDto, @RequestParam(name= "patronId") PatronDto patronDto) {
-		Item i= borrowItemsService.borrowItem(itemDto.getID(), itemName, patronDto.getId());
+		Item i= itemService.borrowItem(itemDto.getID(), itemName, patronDto.getId());
 		return convertToDto(i);
 	}
 	
@@ -64,7 +61,7 @@ public class ItemRestController {
     ************************************/
 	@PostMapping(value = { "/return", "/return/"})
 	public ItemDto returnItem(@RequestParam(name = "itemId") ItemDto itemDto, @RequestParam(name = "patronId") PatronDto patronDto) {
-		Item i = service.returnItem(itemDto.getID(), patronDto.getId());
+		Item i = itemService.returnItem(itemDto.getID(), patronDto.getId());
 		return convertToDto(i);
 	}
 	
@@ -92,27 +89,27 @@ public class ItemRestController {
 
 	@GetMapping(value = { "/books", "/books/" })
 	public List<BookDto> getAllBooks() {
-		return borrowItemsService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+		return itemService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
 	
 	@GetMapping(value = { "/albums", "/albums/" })
 	public List<AlbumDto> getAllAlbums() {
-		return borrowItemsService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
+		return itemService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
 	
 	@GetMapping(value = { "/movies", "/movies/" })
 	public List<MovieDto> getAllMovies() {
-		return borrowItemsService.getAllMovies().stream().map(m -> convertToDto(m)).collect(Collectors.toList());
+		return itemService.getAllMovies().stream().map(m -> convertToDto(m)).collect(Collectors.toList());
 	}
 	
 	@GetMapping(value = { "/newspapers", "/newspapers/" })
 	public List<NewspaperDto> getAllNewspapers() {
-		return borrowItemsService.getAllNewspapers().stream().map(n -> convertToDto(n)).collect(Collectors.toList());
+		return itemService.getAllNewspapers().stream().map(n -> convertToDto(n)).collect(Collectors.toList());
 	}
 	
 	@GetMapping(value = { "/journals", "/journals/" })
 	public List<JournalDto> getAllJournals() {
-		return borrowItemsService.getAllJournals().stream().map(j -> convertToDto(j)).collect(Collectors.toList());
+		return itemService.getAllJournals().stream().map(j -> convertToDto(j)).collect(Collectors.toList());
 	}
 	
 	private MovieDto convertToDto(Movie m) {
