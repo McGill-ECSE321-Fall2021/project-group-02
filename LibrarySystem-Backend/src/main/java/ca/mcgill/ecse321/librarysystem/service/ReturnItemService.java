@@ -94,6 +94,7 @@ public class ReturnItemService {
 		}
 	}
 	
+	// these should be in ItemService.java
 	@Transactional
 	public Item setDamagedItem(int itemId, int userId) throws IllegalArgumentException {
 		
