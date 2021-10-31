@@ -1,5 +1,8 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,7 +57,7 @@ public class ManagingEmploymentService {
 	 * @return the hired librarian
 	 */
 	@Transactional
-	public Librarian hireLibrarian(String fn, String ln, String ad, String city, String email, String username, String pswd) {
+	public Librarian createLibrarian(String fn, String ln, String ad, String city, String email, String username, String pswd) {
 		OnlineAccount oa = new OnlineAccount();
 		oa.setEmail(email);
 		oa.setUsername(username);
@@ -82,7 +85,7 @@ public class ManagingEmploymentService {
 	 * @param id the id of the librarian to be fired
 	 */
 	@Transactional
-	public void fireLibrarian(int id) {
+	public void deleteLibrarian(int id) {
 		if (librarianRepository.existsById(id)) {
 			Librarian fired = librarianRepository.findLibrarianById(id);
 			weeklyScheduleRepository.delete(fired.getWeeklySchedule());
@@ -108,6 +111,73 @@ public class ManagingEmploymentService {
 	@Transactional
 	public boolean librarianIsFired(int id) {
 		return !(librarianRepository.existsById(id));
+	}
+	
+	/**
+	 * 
+	 * @return list of all the librarians
+	 */
+	@Transactional
+	public List<Librarian> getAllLibrarians(){
+	    if(librarianRepository.findAll() instanceof ArrayList) {
+	        return (ArrayList<Librarian>) librarianRepository.findAll();
+	      }
+	      ArrayList<Librarian> librarianList = new ArrayList<Librarian>();
+	      if(librarianRepository.findAll() != null) {
+	        for(Librarian e: librarianRepository.findAll()) {
+	        	librarianList.add(e);
+	        }
+	      }
+	      return librarianList;
+	}
+	
+	/**
+	 * 
+	 * @param firstName first name of the librarians
+	 * @return list of librarians with the same first name
+	 */
+	@Transactional
+	public List<Librarian> getAllLibrariansByFirstName(String firstName){
+		ArrayList<Librarian> allLibrarians = new ArrayList<Librarian>();
+		for(Librarian l : getAllLibrarians()) {
+			if(l.getFirstName().equals(firstName)) {
+				allLibrarians.add(l);
+			}
+		}
+		return allLibrarians;
+	}
+	
+	/**
+	 * 
+	 * @param lastName last name of the librarians
+	 * @return list of librarians with the same last name
+	 */
+	@Transactional
+	public List<Librarian> getAllLibrariansByLastName(String lastName){
+		ArrayList<Librarian> allLibrarians = new ArrayList<Librarian>();
+		for(Librarian l : getAllLibrarians()) {
+			if(l.getLastName().equals(lastName)) {
+				allLibrarians.add(l);
+			}
+		}
+		return allLibrarians;
+	}
+	
+	/**
+	 * 
+	 * @param fn first name of the librarians
+	 * @param ln last name of the librarians
+	 * @return list of librarians with same first and last name
+	 */
+	@Transactional
+	public List<Librarian> getAllLibrariansByFirstAndLastName(String fn,String ln){
+		ArrayList<Librarian> allLibrarians = new ArrayList<Librarian>();
+		for(Librarian l : getAllLibrarians()) {
+			if(l.getLastName().equals(ln) && l.getFirstName().equals(fn)) {
+				allLibrarians.add(l);
+			}
+		}
+		return allLibrarians;
 	}
 	
 	/**
