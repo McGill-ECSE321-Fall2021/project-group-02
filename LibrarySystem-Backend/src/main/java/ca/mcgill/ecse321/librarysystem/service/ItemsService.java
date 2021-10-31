@@ -68,6 +68,8 @@ public class ItemsService {
 		return toList(bookRepository.findAll());
 	}
 	
+	//ADD GET NEWSPAPERS AND JOURNAL
+	
 	@Transactional 
 	public Movie createMovie(String director, String title, Patron patron, boolean isArchived) {
 		Item mover = new Movie();
