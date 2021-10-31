@@ -178,7 +178,6 @@ public class ItemService {
 			}
 		}
 	}
-	
 	@Transactional
 	public Album createAlbum(String title, String artist) {
 		Album album = new Album();
@@ -187,85 +186,102 @@ public class ItemService {
 		
 		itemRepository.save(album);
 		albumRepository.save(album);
-		
-		return album;
 	}
 	
-	@Transactional
-	public Book createBook(String title, String author) {
-		Book book = new Book();
-		book.setTitle(title);
+	@Transactional 
+	public Book createBook(String author, String title, Patron patron, boolean isArchived) {
+		Item booker = new Book();
+		booker.setIsBorrowed(false);
+		booker.setIsDamaged(false);
+		booker.setIsArchived(isArchived);
+		Book book=(Book)booker;
 		book.setAuthor(author);
-		
+		book.setTitle(title);
+		book.setPatron(patron);
 		itemRepository.save(book);
 		bookRepository.save(book);
-		
 		return book;
-	}
-	
-	@Transactional
-	public Movie createMovie(String title, String director) {
-		Movie movie = new Movie();
-		movie.setDirector(director);
-		movie.setTitle(title);
-		
-		itemRepository.save(movie);
-		movieRepository.save(movie);
-		
-		return movie;
-	}
-	
-	@Transactional
-	public Journal createJournal(String name, Date date) {
-		Journal journal = new Journal();
-		journal.setDate(date);
-		journal.setName(name);
-		
-		itemRepository.save(journal);
-		journalRepository.save(journal);
-		
-		return journal;
-	}
-	
-	@Transactional
-	public Newspaper createNewspaper(String name, Date date) {
-		Newspaper newspaper = new Newspaper();
-		newspaper.setDate(date);
-		newspaper.setName(name);
-		
-		itemRepository.save(newspaper);
-		newspaperRepository.save(newspaper);
-		
-		return newspaper;
-	}
-	
-	@Transactional
-	public Album getAlbum(String title, String artist) {
-		Album album = albumRepository.findAlbumByTitleAndArtist(title, artist);
-		return album;
 	}
 	
 	@Transactional
 	public Book getBook(String title, String author) {
-		Book book = bookRepository.findBookByTitleAndAuthor(title, author);
+		Book book=bookRepository.findBookByTitleAndAuthor(title, author);
 		return book;
 	}
 	
 	@Transactional
-	public Movie getMovie(String title, String director) {
-		Movie movie = movieRepository.findMovieByTitleAndDirector(title, director);
+	public List<Book> getAllBooks(){
+		return toList(bookRepository.findAll());
+	}
+	
+	//ADD GET NEWSPAPERS AND JOURNAL
+	
+	@Transactional 
+	public Movie createMovie(String director, String title, Patron patron, boolean isArchived) {
+		Item mover = new Movie();
+		mover.setIsBorrowed(false);
+		mover.setIsDamaged(false);
+		mover.setIsArchived(isArchived);
+		Movie movie=(Movie)mover;
+		movie.setDirector(title);
+		movie.setTitle(title);
+		movie.setPatron(patron);
+		itemRepository.save(movie);
+		movieRepository.save(movie);
 		return movie;
 	}
 	
 	@Transactional
-	public Journal getJournal(String name, Date date) {
-		Journal journal = journalRepository.findJournalByNameAndDate(name, date);
-		return journal;
+	public Movie getMovie(String director, String title) {
+		Movie movie=movieRepository.findMovieByTitleAndDirector(title, director);
+		return movie;
+	}
+	
+	@Transactional
+	public List<Movie> getAllMovies(){
+		return toList(movieRepository.findAll());
+	}
+	
+	
+	@Transactional 
+	public Album createAlbum(String artist, String title, Patron patron, boolean isArchived) {
+		Item albumer = new Album();
+		albumer.setIsBorrowed(false);
+		albumer.setIsDamaged(false);
+		albumer.setIsArchived(isArchived);
+		Album album=(Album)albumer;
+		album.setArtist(artist);
+		album.setTitle(title);
+		album.setPatron(patron);
+		return album;
+	}
+	
+	
+	public Album getAlbum(String artist, String title) {
+		
+		Album album=albumRepository.findAlbumByTitleAndArtist(title, artist);
+		return album;
+	}
+	
+	@Transactional
+	public List<Album> getAllAlbums(){
+		return toList(albumRepository.findAll());
+	}
+	
+	@Transactional 
+	public Newspaper createNewspaper(String name, Date date) {
+		Newspaper newspaper = new Newspaper();
+		newspaper.setName(name);
+		newspaper.setDate(date);
+		itemRepository.save(newspaper);
+		newspaperRepository.save(newspaper);
+		return newspaper;
 	}
 	
 	@Transactional
 	public Newspaper getNewspaper(String name, Date date) {
-		Newspaper newspaper = newspaperRepository.findNewspaperByNameAndDate(name, date);
+		
+		Newspaper newspaper=newspaperRepository.findNewspaperByNameAndDate(name, date);
 		return newspaper;
 	}
 	
@@ -314,16 +330,6 @@ public class ItemService {
 	}
 	
 	@Transactional
-	public List<Journal> getAllJournals() {
-		return toList(journalRepository.findAll());       // All journals's archive status are initially set to true
-	}
-	
-	@Transactional
-	public List<Newspaper> getAllNewspaper() {            // All newspaper's archive status are initially set to true
-		return toList(newspaperRepository.findAll());
-	}
-	
-	@Transactional
 	public List<Album> getAlbumsByArtist(String artist) {
 		List<Album> albumsByArtist = new ArrayList<>();
 		for (Album a : albumRepository.findAlbumByArtist(artist)) {
@@ -368,12 +374,33 @@ public class ItemService {
 		return newspapersByName;
 	}
 	
-	// --------------------- Helper method ------------------
-	/* Converts iterable to list
-	 * @param <T>
-	 * @param iterable
-	 * @return
-	 */
+	public List<Newspaper> getAllNewspapers(){
+		return toList(newspaperRepository.findAll());
+	}
+	
+	@Transactional 
+	public Journal createJournal(String name, Date date) {
+		Journal journal=new Journal();
+		journal.setName(name);
+		journal.setDate(date);
+		itemRepository.save(journal);
+		journalRepository.save(journal);
+		return journal;
+	}
+	
+	@Transactional
+	public Journal getJournal(String name, Date date) {
+		
+		Journal journal=journalRepository.findJournalByNameAndDate(name, date);
+		return journal;
+	}
+	
+	@Transactional
+	public List<Journal> getAllJournals(){
+		return toList(journalRepository.findAll());
+	}
+	
+	
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {
@@ -381,4 +408,66 @@ public class ItemService {
 		}
 		return resultList;
 	}
+	
+	@Transactional
+	public Item borrowItem(int itemId, String itemName, int patronId) {
+		Patron patronOfInterest;
+		if (patronRepository.existsPatronById(patronId)) {
+			patronOfInterest= patronRepository.findPatronById(patronId);
+		}
+		else {
+			throw new IllegalArgumentException("Patron has invalid ID");
+		}
+		
+		if(patronOfInterest.getBorrowedAlbums().size()+patronOfInterest.getBorrowedMovies().size()+patronOfInterest.getBorrowedBooks().size()>=5) {
+			throw new IllegalArgumentException("Patron can't borrow because he has already borrowed 5 books");
+		}
+		
+		if(itemRepository.existsItemById(itemId)) {
+			Item itemOfInterest=itemRepository.findItemById(itemId); 
+			if (!itemOfInterest.getIsArchived()) {
+				if(!itemOfInterest.getIsBorrowed()) {
+					for(Album a : patronOfInterest.getBorrowedAlbums()) {
+						if(a.getTitle().equals(itemName)) {
+							List<Album> albums=patronOfInterest.getBorrowedAlbums();
+							albums.add(a);
+							patronOfInterest.setBorrowedAlbums(albums); 
+							patronRepository.save(patronOfInterest);
+							return a;
+						}
+					}
+					
+					for (Movie m : patronOfInterest.getBorrowedMovies()) {
+						if(m.getTitle().equals(itemName)) {
+							List<Movie> movies=patronOfInterest.getBorrowedMovies();
+							movies.add(m);
+							patronOfInterest.setBorrowedMovies(movies);
+							patronRepository.save(patronOfInterest);
+							return m;
+						}
+					}
+					
+					for (Book b : patronOfInterest.getBorrowedBooks()) {
+						if(b.getTitle().equals(itemName)) {
+							List<Book> books=patronOfInterest.getBorrowedBooks();
+							books.add(b);
+							patronOfInterest.setBorrowedBooks(books);
+							patronRepository.save(patronOfInterest);
+							return b;
+						}
+					}
+					
+				}
+				else {
+					throw new IllegalArgumentException("The item you are looking for has already been borrowed.");
+				}
+			}
+			else {
+				throw new IllegalArgumentException("The item you are looking for is in the archives");
+			}
+		}
+		throw new IllegalArgumentException("The item you are looking for does not exist.");
+	}
+	
+	
 }

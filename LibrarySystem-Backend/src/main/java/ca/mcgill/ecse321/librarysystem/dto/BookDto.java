@@ -1,23 +1,41 @@
 package ca.mcgill.ecse321.librarysystem.dto;
 
+import ca.mcgill.ecse321.librarysystem.model.Patron;
+
 public class BookDto {
-	private String name;
+	
+	private Patron patron;
+	private String title;
 	private String author;
 	
 	public BookDto() {
 		
 	}
 	
-	public BookDto(String name, String author) {
-		this.name = name;
-		this.author = author;
+	@SuppressWarnings("unchecked")
+	public BookDto(String title, String author) {
+		this(title, author, null);
 	}
 	
-	public String getName() {
-		return name;
+	public BookDto(String title, String author, Patron patron) {
+		this.title=title;
+		this.author=author;
+		this.patron=patron;
 	}
 	
-	public String getauthor() {
+	public String getTitle() {
+		return title;
+	}
+	
+	public String getAuthor() {
 		return author;
+	}
+	
+	public Patron getPatron() {
+		return patron;
+	}
+	
+	public void setPatron(Patron patron) {
+		this.patron=patron;
 	}
 }
