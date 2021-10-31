@@ -9,6 +9,10 @@ import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.dao.UserEntityRepository;
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
+<<<<<<< HEAD
+=======
+import ca.mcgill.ecse321.librarysystem.model.Person;
+>>>>>>> fd4abcee74f78911597192e8455d4386a7b1c9b1
 import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 
 @Service
@@ -22,7 +26,11 @@ public class CreateOnlineAccountService {
 	@Autowired
 	UserEntityRepository userEntityRepository;
 	@Transactional
+<<<<<<< HEAD
 	public OnlineAccount createOnlineAccountNewUser(String firstName, String lastName, String address, String city, String username, String password, String email) throws IllegalArgumentException {
+=======
+	public OnlineAccount createOnlineAccountNewUser(Person person, String address, String city, String username, String password, String email) throws IllegalArgumentException {
+>>>>>>> fd4abcee74f78911597192e8455d4386a7b1c9b1
 		String error = "";
 		
 		// create online account
@@ -39,6 +47,7 @@ public class CreateOnlineAccountService {
 		Patron patron = new Patron();
 		patron.setAddress(address);
 		patron.setCity(city);
+<<<<<<< HEAD
 		patron.setFirstName(firstName);
 		patron.setLastName(lastName);
 		boolean withinCity = (city == "Montreal");
@@ -51,6 +60,14 @@ public class CreateOnlineAccountService {
 		account.setEmail(email);
 		account.setPassword(password);
 		account.setUsername(username);
+=======
+		patron.setPerson(person);
+		boolean withinCity = (city == "Montreal");
+		if(!withinCity) patron.setBalance(patron.getBalance() + 50);
+		OnlineAccount account = new OnlineAccount();
+		account.setEmail(email);
+		account.setPassword(password);
+>>>>>>> fd4abcee74f78911597192e8455d4386a7b1c9b1
 		account.setUser(patron);
 		patron.setOnlineAccount(account);
 		onlineAccountRepository.save(account);
