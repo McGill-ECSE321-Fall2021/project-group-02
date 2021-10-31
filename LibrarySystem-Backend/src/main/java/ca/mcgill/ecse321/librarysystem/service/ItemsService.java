@@ -22,7 +22,7 @@ import ca.mcgill.ecse321.librarysystem.model.Movie;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 @Service
-public class BorrowItemsService {
+public class ItemsService {
 	@Autowired 
 	AlbumRepository albumRepository;
 	
@@ -151,7 +151,6 @@ public class BorrowItemsService {
 							albums.add(a);
 							patronOfInterest.setBorrowedAlbums(albums); 
 							patronRepository.save(patronOfInterest);
-
 							return a;
 						}
 					}

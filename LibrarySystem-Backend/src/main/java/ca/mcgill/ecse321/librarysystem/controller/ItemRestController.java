@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import ca.mcgill.ecse321.librarysystem.dto.*;
 import ca.mcgill.ecse321.librarysystem.model.Album;
 import ca.mcgill.ecse321.librarysystem.model.Book;
-import ca.mcgill.ecse321.librarysystem.service.BorrowItemsService;
+import ca.mcgill.ecse321.librarysystem.service.ItemsService;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class ItemRestController {
 	@Autowired
-	private BorrowItemsService borrowItemsService;
+	private ItemsService borrowItemsService;
 	
 	@GetMapping(value = { "/books", "/books/" })
 	public List<BookDto> getAllBooks() {
