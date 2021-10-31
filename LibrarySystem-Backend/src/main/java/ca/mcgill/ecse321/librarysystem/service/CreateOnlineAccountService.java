@@ -16,7 +16,6 @@ import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 public class CreateOnlineAccountService {
 	// --------------------------------------------------------------
 	// note: removed email verification as currently it is impossible to send emails
-	// need to add balance to patron class
 	@Autowired
 	PatronRepository patronRepository;
 	@Autowired
@@ -53,7 +52,7 @@ public class CreateOnlineAccountService {
 		patronRepository.save(patron);
 		// -----------------------------------------
 		// do I need to save patron to entity repo as well?
-		userEntityRepository.save(patron);
+		//userEntityRepository.save(patron);
 		
 		return account;
 	}
