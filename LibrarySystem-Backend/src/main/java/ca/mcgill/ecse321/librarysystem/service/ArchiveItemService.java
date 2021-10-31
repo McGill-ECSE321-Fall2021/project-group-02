@@ -159,17 +159,35 @@ public class ArchiveItemService {
 	
 	@Transactional
 	public List<Album> getAllArchivedAlbums() {
-		return toList(albumRepository.findAlbumByIsArchived(true));
+		List<Album> archivedAlbums = new ArrayList<>();
+		for(Album a : albumRepository.findAlbumByIsArchived(true)) {
+			if(a.getIsArchived() == true) {
+				archivedAlbums.add(a);
+			}
+		}
+		return archivedAlbums;
 	}
 	
 	@Transactional
 	public List<Book> getAllArchivedBooks() {
-		return toList(bookRepository.findBookByIsArchived(true));
+		List<Book> archivedBooks = new ArrayList<>();
+		for(Book b : bookRepository.findBookByIsArchived(true)) {
+			if(b.getIsArchived() == true) {
+				archivedBooks.add(b);
+			}
+		}
+		return archivedBooks;
 	}
 	
 	@Transactional
 	public List<Movie> getAllArchivedMovies() {
-		return toList(movieRepository.findMovieByIsArchived(true));
+		List<Movie> archivedMovies = new ArrayList<>();
+		for(Movie m : movieRepository.findMovieByIsArchived(true)) {
+			if(m.getIsArchived() == true) {
+				archivedMovies.add(m);
+			}
+		}
+		return archivedMovies;
 	}
 	
 	@Transactional
