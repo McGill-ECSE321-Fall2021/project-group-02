@@ -25,7 +25,6 @@ import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 import ca.mcgill.ecse321.librarysystem.model.Movie;
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
-import ca.mcgill.ecse321.librarysystem.model.Person;
 import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 
 @ExtendWith(SpringExtension.class)
@@ -41,15 +40,12 @@ public class TestBookPersistence {
 	private ItemRepository itemRepository;
 	@Autowired
 	private PatronRepository patronRepository;
-	@Autowired
-	private PersonRepository personRepository;
 	
 	@AfterEach
 	public void clearDatabase() {
 		bookRepository.deleteAll();
 		itemRepository.deleteAll();
 		patronRepository.deleteAll();
-		personRepository.deleteAll();
 	}
 	
 	@Test
@@ -59,21 +55,18 @@ public class TestBookPersistence {
 		String author = "TestAuthor";
 		Book testBook = new Book();
 		Patron patron = new Patron();
-		Person person = new Person();
-		int id = 1;
+		
 		
 		testBook.setPatron(patron);
 		testBook.setAuthor(author);
 		testBook.setTitle(title);
-		patron.setPerson(person);
 		List<UserEntity> patrons = new ArrayList<UserEntity>();
 		patrons.add(patron);
-		person.setUserEntity(patrons);
 		
 		patronRepository.save(patron);
 		bookRepository.save(testBook);
 		itemRepository.save(testBook);
-		personRepository.save(person);
+		int id = testBook.getId();
 		
 		testBook = null;
 		
@@ -91,7 +84,5 @@ public class TestBookPersistence {
 		assertNotNull(testBook);
 		assertEquals(title, testBook.getTitle());
 		assertEquals(author, testBook.getAuthor());
-		
 	}
-
 }

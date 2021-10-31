@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.librarysystem.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.intThat;
 
 import java.sql.Time;
 import java.sql.Date;
@@ -29,29 +30,27 @@ public class TestNewsPaperPersistence {
 	}
 	@Test
 	public void testPersistAndLoadNewspaper() {
-		Library l = new Library();
-//		LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-//		ls.setOpeningHours(l);
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-		l.setOpeningHour(startTime);
-		l.setClosingHour(endTime);
-//		l.setLibrarySoftwareSystem(ls);
+
 		Newspaper np = new Newspaper();
 		String name = "testNewspaper";
 		Date date = java.sql.Date.valueOf(LocalDate.of(2021, 10, 17));
 		np.setDate(date);
 		np.setName(name);
-		np.setId(3);
-//		np.setLibrarySoftwareSystem(ls);
-		libraryRepository.save(l);
+		
 		newspaperRepository.save(np);
+		int id = np.getId();
 		
 		np = null;
 		np = newspaperRepository.findNewspaperByNameAndDate(name, date);
 		assertNotNull(np);
 		assertEquals(date,np.getDate());
 		assertEquals(name,np.getName());
-		assertEquals(3,np.getId());
+		assertEquals(id, np.getId());
+		
+		np = newspaperRepository.findNewspaperById(id);
+		assertNotNull(np);
+		assertEquals(date,np.getDate());
+		assertEquals(name,np.getName());
+		assertEquals(id, np.getId());
 	}
 }
