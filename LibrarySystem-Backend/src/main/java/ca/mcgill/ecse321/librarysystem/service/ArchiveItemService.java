@@ -69,6 +69,16 @@ public class ArchiveItemService {
 		} else {
 			Item itemOfInterest = itemRepository.findItemById(id);
 			itemOfInterest.setIsArchived(true);
+			if (itemOfInterest instanceof Album) {
+				itemRepository.save(itemOfInterest);
+				albumRepository.save((Album) itemOfInterest);
+			} else if (itemOfInterest instanceof Book) {
+				itemRepository.save(itemOfInterest);
+				bookRepository.save((Book) itemOfInterest);
+			} else if (itemOfInterest instanceof Movie) {
+				itemRepository.save(itemOfInterest);
+				movieRepository.save((Movie) itemOfInterest);
+			}
 		}
 	}
 	
@@ -78,6 +88,7 @@ public class ArchiveItemService {
 		album.setArtist(artist);
 		album.setTitle(title);
 		
+		itemRepository.save(album);
 		albumRepository.save(album);
 		
 		return album;
@@ -89,6 +100,7 @@ public class ArchiveItemService {
 		book.setTitle(title);
 		book.setAuthor(author);
 		
+		itemRepository.save(book);
 		bookRepository.save(book);
 		
 		return book;
@@ -100,6 +112,7 @@ public class ArchiveItemService {
 		movie.setDirector(director);
 		movie.setTitle(title);
 		
+		itemRepository.save(movie);
 		movieRepository.save(movie);
 		
 		return movie;
@@ -111,6 +124,7 @@ public class ArchiveItemService {
 		journal.setDate(date);
 		journal.setName(name);
 		
+		itemRepository.save(journal);
 		journalRepository.save(journal);
 		
 		return journal;
@@ -122,6 +136,7 @@ public class ArchiveItemService {
 		newspaper.setDate(date);
 		newspaper.setName(name);
 		
+		itemRepository.save(newspaper);
 		newspaperRepository.save(newspaper);
 		
 		return newspaper;
@@ -155,6 +170,17 @@ public class ArchiveItemService {
 	public Newspaper getNewspaper(String name, Date date) {
 		Newspaper newspaper = newspaperRepository.findNewspaperByNameAndDate(name, date);
 		return newspaper;
+	}
+	
+	@Transactional
+	public List<Item> getAllArchivedItems() {
+		List<Item> archivedItems = new ArrayList<>();
+		for (Item i : itemRepository.findItemByIsArchived(true)) {
+			if(i.getIsArchived() == true) {
+				archivedItems.add(i);
+			}
+		}
+		return archivedItems;
 	}
 	
 	@Transactional
@@ -192,11 +218,11 @@ public class ArchiveItemService {
 	
 	@Transactional
 	public List<Journal> getAllJournals() {
-		return toList(journalRepository.findAll());
+		return toList(journalRepository.findAll());       // All journals's archive status are initially set to true
 	}
 	
 	@Transactional
-	public List<Newspaper> getAllNewspaper() {
+	public List<Newspaper> getAllNewspaper() {            // All newspaper's archive status are initially set to true
 		return toList(newspaperRepository.findAll());
 	}
 	
