@@ -137,7 +137,7 @@ public class BorrowItemsService {
 			throw new IllegalArgumentException("Patron has invalid ID");
 		}
 		
-		if(patronOfInterest.getBorrowedAlbums().size()+patronOfInterest.getBorrowedMovies().size()+patronOfInterest.getBorrowedBooks().size()>=5) {
+		if(patronOfInterest.getBorrowedAlbum().size()+patronOfInterest.getBorrowedMovie().size()+patronOfInterest.getBorrowedBook().size()>=5) {
 			throw new IllegalArgumentException("Patron can't borrow because he has already borrowed 5 books");
 		}
 		
@@ -145,19 +145,20 @@ public class BorrowItemsService {
 			Item itemOfInterest=itemRepository.findItemById(itemId); 
 			if (!itemOfInterest.getIsArchived()) {
 				if(!itemOfInterest.getIsBorrowed()) {
-					for(Album a : patronOfInterest.getBorrowedAlbums()) {
+					for(Album a : patronOfInterest.getBorrowedAlbum()) {
 						if(a.getTitle().equals(itemName)) {
-							List<Album> albums=patronOfInterest.getBorrowedAlbums();
+							List<Album> albums=patronOfInterest.getBorrowedAlbum();
 							albums.add(a);
 							patronOfInterest.setBorrowedAlbums(albums); 
 							patronRepository.save(patronOfInterest);
+
 							return a;
 						}
 					}
 					
-					for (Movie m : patronOfInterest.getBorrowedMovies()) {
+					for (Movie m : patronOfInterest.getBorrowedMovie()) {
 						if(m.getTitle().equals(itemName)) {
-							List<Movie> movies=patronOfInterest.getBorrowedMovies();
+							List<Movie> movies=patronOfInterest.getBorrowedMovie();
 							movies.add(m);
 							patronOfInterest.setBorrowedMovies(movies);
 							patronRepository.save(patronOfInterest);
@@ -165,9 +166,9 @@ public class BorrowItemsService {
 						}
 					}
 					
-					for (Book b : patronOfInterest.getBorrowedBooks()) {
+					for (Book b : patronOfInterest.getBorrowedBook()) {
 						if(b.getTitle().equals(itemName)) {
-							List<Book> books=patronOfInterest.getBorrowedBooks();
+							List<Book> books=patronOfInterest.getBorrowedBook();
 							books.add(b);
 							patronOfInterest.setBorrowedBooks(books);
 							patronRepository.save(patronOfInterest);
