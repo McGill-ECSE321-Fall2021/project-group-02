@@ -186,6 +186,7 @@ public class ItemService {
 		
 		itemRepository.save(album);
 		albumRepository.save(album);
+		return album;
 	}
 	
 	@Transactional 
