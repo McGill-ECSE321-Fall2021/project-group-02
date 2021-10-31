@@ -137,7 +137,7 @@ public class BorrowItemsService {
 			throw new IllegalArgumentException("Patron has invalid ID");
 		}
 		
-		if(patronOfInterest.getBorrowedAlbum().size()+patronOfInterest.getBorrowedMovie().size()+patronOfInterest.getBorrowedBook().size()>=5) {
+		if(patronOfInterest.getBorrowedAlbums().size()+patronOfInterest.getBorrowedMovies().size()+patronOfInterest.getBorrowedBooks().size()>=5) {
 			throw new IllegalArgumentException("Patron can't borrow because he has already borrowed 5 books");
 		}
 		
@@ -145,9 +145,9 @@ public class BorrowItemsService {
 			Item itemOfInterest=itemRepository.findItemById(itemId); 
 			if (!itemOfInterest.getIsArchived()) {
 				if(!itemOfInterest.getIsBorrowed()) {
-					for(Album a : patronOfInterest.getBorrowedAlbum()) {
+					for(Album a : patronOfInterest.getBorrowedAlbums()) {
 						if(a.getTitle().equals(itemName)) {
-							List<Album> albums=patronOfInterest.getBorrowedAlbum();
+							List<Album> albums=patronOfInterest.getBorrowedAlbums();
 							albums.add(a);
 							patronOfInterest.setBorrowedAlbums(albums); 
 							patronRepository.save(patronOfInterest);
@@ -156,9 +156,9 @@ public class BorrowItemsService {
 						}
 					}
 					
-					for (Movie m : patronOfInterest.getBorrowedMovie()) {
+					for (Movie m : patronOfInterest.getBorrowedMovies()) {
 						if(m.getTitle().equals(itemName)) {
-							List<Movie> movies=patronOfInterest.getBorrowedMovie();
+							List<Movie> movies=patronOfInterest.getBorrowedMovies();
 							movies.add(m);
 							patronOfInterest.setBorrowedMovies(movies);
 							patronRepository.save(patronOfInterest);
@@ -166,9 +166,9 @@ public class BorrowItemsService {
 						}
 					}
 					
-					for (Book b : patronOfInterest.getBorrowedBook()) {
+					for (Book b : patronOfInterest.getBorrowedBooks()) {
 						if(b.getTitle().equals(itemName)) {
-							List<Book> books=patronOfInterest.getBorrowedBook();
+							List<Book> books=patronOfInterest.getBorrowedBooks();
 							books.add(b);
 							patronOfInterest.setBorrowedBooks(books);
 							patronRepository.save(patronOfInterest);

@@ -19,8 +19,21 @@ public class LibrarySystemRestController {
 	private BorrowItemsService borrowItemsService;
 	
 	@GetMapping(value = { "/books", "/books/" })
-	public List<BookDto> getAllPersons() {
+	public List<BookDto> getAllBooks() {
 		return borrowItemsService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	@GetMapping(value = { "/albums", "/albums/" })
+	public List<BookDto> getAllAlbums() {
+		return borrowItemsService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
+	}
+	
+	private BookDto convertToDto(Album a) {
+		if (b == null) {
+			throw new IllegalArgumentException("There is no such Book!");
+		}
+		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(),b.getPatron());
+		return bookDto;
 	}
 	
 	private BookDto convertToDto(Book b) {
