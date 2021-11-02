@@ -36,7 +36,7 @@ public class ItemService {
 	 ************************************/
 	
 	/** 
-	 * DESCRIPTION HERE
+	 * Sets an item as borrowed by a specific patron
 	 * @param itemId
 	 * @param itemName
 	 * @param patronId
@@ -110,7 +110,7 @@ public class ItemService {
 	 ************************************/
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Places an item into the library contents as borrowable and removes from the patron's borrowed list
 	 * @param itemId
 	 * @param patronId
 	 * @return
@@ -177,7 +177,7 @@ public class ItemService {
          ARCHIVE ITEM SERVICE - JOHN
 	 ************************************/
 	/**
-	 * DESCRIPTION HERE
+	 * Sets an item as archived and cannot be borrowed
 	 * @param itemID
 	 * @param itemName
 	 * @return
@@ -227,7 +227,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the archived albums
 	 * @return
 	 * 
 	 * @author John
@@ -244,7 +244,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the archived books
 	 * @return
 	 * 
 	 * @author John
@@ -261,7 +261,7 @@ public class ItemService {
 	}
 	
 	/** 
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the archived movies
 	 * @return
 	 * 
 	 * @author John
@@ -281,8 +281,7 @@ public class ItemService {
 	/******************************************
     	VIEW LIBRARY CONTENTS - JULIE/NIILO
 	 ******************************************/
-
-	// get all items
+	
 	/**
 	 * Find all of the items in the library system
 	 * @return
@@ -614,7 +613,7 @@ public class ItemService {
 	 ****************************************************/
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Sets an item as damaged and cannot be borrowed
 	 * @param itemId
 	 * @param userId
 	 * @return
@@ -644,7 +643,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Removes an item from the library software system
 	 * @param itemId
 	 * @param userId
 	 * @return
@@ -668,7 +667,7 @@ public class ItemService {
           SPECIFIC ITEM TYPE METHODS - SAMI/JULIE
 	 ****************************************************/
 	/**
-	 * DESCRIPTION HERE
+	 * Creates an album
 	 * @param title
 	 * @param artist
 	 * @return
@@ -687,7 +686,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates a book
 	 * @param author
 	 * @param title
 	 * @param patron
@@ -712,7 +711,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific book by title and author
 	 * @param title
 	 * @param author
 	 * @return
@@ -726,7 +725,7 @@ public class ItemService {
 	}
 		
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the books
 	 * @return
 	 * 
 	 * @author Sami
@@ -737,7 +736,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates a movie
 	 * @param director
 	 * @param title
 	 * @param patron
@@ -762,7 +761,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific movie by title and director
 	 * @param director
 	 * @param title
 	 * @return
@@ -776,7 +775,7 @@ public class ItemService {
 	}
 		
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the movies
 	 * @return
 	 * 
 	 * @author Sami
@@ -787,7 +786,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates an album
 	 * @param artist
 	 * @param title
 	 * @param patron
@@ -810,7 +809,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific album by artist and title
 	 * @param artist
 	 * @param title
 	 * @return
@@ -824,7 +823,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the albums
 	 * @return
 	 * 
 	 * @author Sami
@@ -835,7 +834,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates a newspaper
 	 * @param name
 	 * @param date
 	 * @return
@@ -853,7 +852,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific newspaper by name and date
 	 * @param name
 	 * @param date
 	 * @return
@@ -868,7 +867,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of albums by artist
 	 * @param artist
 	 * @return
 	 * 
@@ -884,7 +883,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of albums by title
 	 * @param title
 	 * @return
 	 * 
@@ -902,7 +901,7 @@ public class ItemService {
 	
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of books by an author
 	 * @param author
 	 * @return
 	 * 
@@ -918,7 +917,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of books by title
 	 * @param title
 	 * @return
 	 * 
@@ -935,7 +934,7 @@ public class ItemService {
 	
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of movies by a director
 	 * @param director
 	 * @return
 	 * 
@@ -951,7 +950,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of movies by title
 	 * @param name
 	 * @return
 	 * 
@@ -967,7 +966,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of journals by name
 	 * @param name
 	 * @return
 	 * 
@@ -983,7 +982,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of journals by date
 	 * @param date
 	 * @return
 	 * 
@@ -999,7 +998,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of newspapers by name
 	 * @param name
 	 * @return
 	 * 
@@ -1015,7 +1014,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of newpapers by date
 	 * @param date
 	 * @return
 	 * 
@@ -1032,7 +1031,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the newspapers
 	 * @return
 	 * 
 	 * @author Sami
@@ -1043,7 +1042,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Create a journal
 	 * @param name
 	 * @param date
 	 * @return
@@ -1061,7 +1060,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific journal by name and date
 	 * @param name
 	 * @param date
 	 * @return
@@ -1076,7 +1075,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all the journals
 	 * @return
 	 * 
 	 * @author Sami
