@@ -81,7 +81,10 @@ public class ItemRestController {
            OTHER GENERAL ITEM METHODS - JULIE
 	 ****************************************************/
 
-	// add code
+	@GetMapping(value = { "/items", "/items/" })
+	public List<ItemDto> getAllItems() {
+		return itemService.getAllItems().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
 	
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI
