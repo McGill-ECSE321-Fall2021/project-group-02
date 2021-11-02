@@ -21,6 +21,7 @@ import ca.mcgill.ecse321.librarysystem.model.Item;
 import ca.mcgill.ecse321.librarysystem.model.Journal;
 import ca.mcgill.ecse321.librarysystem.model.Movie;
 import ca.mcgill.ecse321.librarysystem.model.Newspaper;
+import ca.mcgill.ecse321.librarysystem.model.Patron;
 import ca.mcgill.ecse321.librarysystem.service.ItemService;
 
 import java.sql.Date;
@@ -182,7 +183,36 @@ public class ItemRestController {
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI
 	 ****************************************************/
+	@PostMapping(value = {"/createBook/{title}", "/createBook/{title}/"} )
+	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+		Book b= itemService.createBook(authorName, bookTitle, patron, isArchived);
+		return convertToDto(b);
+	}
+	
+	@PostMapping(value = {"/createAlbum/{title}", "/createAlbum/{title}/"} )
+	public AlbumDto createAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+		Album a= itemService.createAlbum(artistName,albumTitle, patron, isArchived);
+		return convertToDto(a);
+	}
+	
+	@PostMapping(value = {"/createMovie/{title}", "/createMovie/{title}/"} )
+	public MovieDto createMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+		Movie m= itemService.createMovie(directorName, movieTitle, patron, isArchived);
+		return convertToDto(m);
+	}
 
+	@PostMapping(value = {"/createNewspaper/{title}", "/createNewspaper/{title}/"} )
+	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
+		Newspaper n= itemService.createNewspaper(newspaperTitle, newspaperDate);
+		return convertToDto(n);
+	}
+	
+	@PostMapping(value = {"/createJournal/{title}", "/createJournal/{title}/"} )
+	public JournalDto createJournal(@PathVariable("title") String journalTitle, @RequestParam(name="journalDate") Date journalDate) {
+		Journal j= itemService.createJournal(journalTitle, journalDate);
+		return convertToDto(j);
+	}
+	
 	@GetMapping(value = { "/items/books", "/items/books/" })
 	public List<BookDto> getAllBooks() {
 		return itemService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
