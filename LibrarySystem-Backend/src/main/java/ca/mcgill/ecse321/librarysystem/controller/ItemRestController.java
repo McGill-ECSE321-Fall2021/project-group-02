@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,8 +60,8 @@ public class ItemRestController {
 	/************************************
           RETURN ITEM SERVICE - JULIE
     ************************************/
-	@PostMapping(value = { "/return", "/return/"})
-	public ItemDto returnItem(@RequestParam(name = "itemId") ItemDto itemDto, @RequestParam(name = "patronId") PatronDto patronDto) {
+	@PostMapping(value = { "/retur/{name}", "/return/{name}/"})
+	public ItemDto returnItem(@PathVariable("name") String itemName,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
 		Item i = itemService.returnItem(itemDto.getID(), patronDto.getId());
 		return convertToDto(i);
 	}
@@ -173,11 +174,29 @@ public class ItemRestController {
 	/****************************************************
            OTHER GENERAL ITEM METHODS - JULIE
 	 ****************************************************/
-
+	/**
+	 * Get a list of all the items in the library software system
+	 * @return
+	 * 
+	 * @author Julie
+	 */
 	@GetMapping(value = { "/items", "/items/" })
 	public List<ItemDto> getAllItems() {
 		return itemService.getAllItems().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
+	
+	/**
+	 * Remove an item from the library software system
+	 * @param itemId
+	 * @param userID
+	 * 
+	 * @author Julie
+	 */
+	@DeleteMapping(value = {"/items/{name}", "/items/{name}"})
+	public void discardItem(@PathVariable("name") String itemName,  @RequestParam(name = "itemID") ItemDto itemDto) {
+		itemService.discardItem(itemDto.getID());
+	}
+	
 	
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI

@@ -610,36 +610,8 @@ public class ItemService {
 	
 	
 	/****************************************************
-           OTHER GENERAL ITEM METHODS - JULIE/JOHN
+           OTHER GENERAL ITEM METHODS - JULIE
 	 ****************************************************/
-
-	/**
-	 * not sure what this is - Julie
-	 * @param item
-	 * @param id
-	 * @throws IllegalArgumentException
-	 * 
-	 * @author John
-	 */
-	@Transactional
-	public void updateItemStatus(Item item, int id) throws IllegalArgumentException {
-		if (item.getIsArchived() == true) {
-				throw new IllegalArgumentException("Item is already archived.");
-		} else {
-			Item itemOfInterest = itemRepository.findItemById(id);
-			itemOfInterest.setIsArchived(true);
-			if (itemOfInterest instanceof Album) {
-				itemRepository.save(itemOfInterest);
-				albumRepository.save((Album) itemOfInterest);
-			} else if (itemOfInterest instanceof Book) {
-				itemRepository.save(itemOfInterest);
-				bookRepository.save((Book) itemOfInterest);
-			} else if (itemOfInterest instanceof Movie) {
-				itemRepository.save(itemOfInterest);
-				movieRepository.save((Movie) itemOfInterest);
-			}
-		}
-	}
 	
 	/**
 	 * DESCRIPTION HERE
@@ -659,8 +631,6 @@ public class ItemService {
 			if(itemRepository.existsItemById(itemId)) {
 				specificItem.setIsBorrowed(false);
 				specificItem.setIsDamaged(true);
-				itemRepository.save(specificItem);
-				// bookRepository.save etcetc?
 			} else {
 				throw new IllegalArgumentException("Item ID does not exist.");
 			}
@@ -683,21 +653,13 @@ public class ItemService {
 	 * @author Julie
 	 */
 	@Transactional
-	public Item discardItem(int itemId, int userId) throws IllegalArgumentException {
+	public void discardItem(int itemId) {
+		Item specificItem = itemRepository.findItemById(itemId); 
 		
-	if (headLibrarianRepository.existsById(userId)) {
-			Item specificItem = itemRepository.findItemById(itemId); 
-			
-			if(itemRepository.existsItemById(itemId)) {
-				itemRepository.delete(specificItem);
-			} else {
-				throw new IllegalArgumentException("Item ID does not exist.");
-			}
-			
-			return specificItem;
-			
+		if(itemRepository.existsItemById(itemId)) {
+			itemRepository.delete(specificItem);
 		} else {
-			throw new IllegalArgumentException("Must be a head librarian to proceed.");
+			throw new IllegalArgumentException("Item ID does not exist.");
 		}
 		
 	}
