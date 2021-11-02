@@ -49,17 +49,18 @@ public class CreateOnlineAccountService {
 			
 			patron.setBalance(0);
 		}
+		patronRepository.save(patron);
+		
 		OnlineAccount account = new OnlineAccount();
 		account.setEmail(email);
 		account.setPassword(password);
 		account.setUsername(username);
 		account.setUser(patron);
-		patron.setOnlineAccount(account);
 		onlineAccountRepository.save(account);
+		
+		patron.setOnlineAccount(account);
 		patronRepository.save(patron);
-		// -----------------------------------------
-		// do I need to save patron to entity repo as well?
-		//userEntityRepository.save(patron);
+//		onlineAccountRepository.save(account);
 		
 		return account;
 	}

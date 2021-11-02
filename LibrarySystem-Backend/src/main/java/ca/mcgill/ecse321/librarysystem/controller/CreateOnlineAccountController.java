@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.librarysystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,18 +16,18 @@ import ca.mcgill.ecse321.librarysystem.service.CreateOnlineAccountService;
 public class CreateOnlineAccountController {
 	@Autowired CreateOnlineAccountService service;
 	
-	@PostMapping(value = {"/onlineAccount", "/onlineAccount"})
-	public OnlineAccountDto createOnlineAccountNewUser(@RequestParam(name = "firstName") String firstName, 
-			@RequestParam(name = "lastName") String lastName, @RequestParam(name = "address") String address, 
-			@RequestParam(name = "city") String city, @RequestParam(name = "username") String username, 
-			@RequestParam(name = "password") String password, @RequestParam(name = "email") String email) throws IllegalArgumentException {
+	@PostMapping(value = {"/onlineAccountNew/{firstName}/{lastName}/{address}/{city}/{username}/{password}/{email}", "/onlineAccountNew/{firstName}/{lastName}/{address}/{city}/{username}/{password}/{email}/"})
+	public OnlineAccountDto createOnlineAccountNewUser(@PathVariable(name = "firstName") String firstName, 
+			@PathVariable(name = "lastName") String lastName, @PathVariable(name = "address") String address, 
+			@PathVariable(name = "city") String city, @PathVariable(name = "username") String username, 
+			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
 		OnlineAccount account = service.createOnlineAccountNewUser(firstName, lastName, address, city, username, password, email);
 		return convertToDto(account);
 	}
 	
-	@PostMapping(value = {"/onlineAccount", "/onlineAccount"})
-	public OnlineAccountDto createOnlineAccountExistingUser(@RequestParam(name = "firstName") int id, @RequestParam(name = "username") String username, 
-			@RequestParam(name = "password") String password, @RequestParam(name = "email") String email) throws IllegalArgumentException {
+	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})
+	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id, @PathVariable(name = "username") String username, 
+			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
 		OnlineAccount account = service.createOnlineAccountExistingUser(id, username, password, email);
 		return convertToDto(account);
 	}
