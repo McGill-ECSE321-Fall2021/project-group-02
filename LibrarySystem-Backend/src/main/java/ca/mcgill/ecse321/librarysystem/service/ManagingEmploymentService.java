@@ -28,9 +28,10 @@ public class ManagingEmploymentService {
 	 * @param ad the user's address of residence
 	 * @param city the user's city of residence
 	 * @return the hired librarian
+	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public Librarian hireLibrarianOnlineAccount(OnlineAccount oa, String fn, String ln, String ad, String city) {
+	public Librarian createLibrarianOnlineAccount(OnlineAccount oa, String fn, String ln, String ad, String city) {
 		Librarian hired = new Librarian();
 		hired.setOnlineAccount(oa);
 		hired.setFirstName(fn);
@@ -55,6 +56,7 @@ public class ManagingEmploymentService {
 	 * @param username the user's username
 	 * @param pswd the user's password
 	 * @return the hired librarian
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public Librarian createLibrarian(String fn, String ln, String ad, String city, String email, String username, String pswd) {
@@ -83,6 +85,7 @@ public class ManagingEmploymentService {
 	/**
 	 * 
 	 * @param id the id of the librarian to be fired
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public void deleteLibrarian(int id) {
@@ -97,6 +100,7 @@ public class ManagingEmploymentService {
 	 * 
 	 * @param id the id of the hired librarian  
 	 * @return if the hired librarian exists in the system
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public boolean librarianIsHired(int id) {
@@ -107,6 +111,7 @@ public class ManagingEmploymentService {
 	 * 
 	 * @param id the id of the fired librarian
 	 * @return if the fired librarian does not exist in the system
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public boolean librarianIsFired(int id) {
@@ -116,6 +121,7 @@ public class ManagingEmploymentService {
 	/**
 	 * 
 	 * @return list of all the librarians
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrarians(){
@@ -135,6 +141,7 @@ public class ManagingEmploymentService {
 	 * 
 	 * @param firstName first name of the librarians
 	 * @return list of librarians with the same first name
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByFirstName(String firstName){
@@ -151,6 +158,7 @@ public class ManagingEmploymentService {
 	 * 
 	 * @param lastName last name of the librarians
 	 * @return list of librarians with the same last name
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByLastName(String lastName){
@@ -168,6 +176,7 @@ public class ManagingEmploymentService {
 	 * @param fn first name of the librarians
 	 * @param ln last name of the librarians
 	 * @return list of librarians with same first and last name
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByFirstAndLastName(String fn,String ln){
@@ -184,6 +193,7 @@ public class ManagingEmploymentService {
 	 * 
 	 * @param ws the weekly schedule assigned to the librarian
 	 * @param id the id of the librarian
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public void setWeeklySchedule(WeeklySchedule ws,int id) {
@@ -199,6 +209,7 @@ public class ManagingEmploymentService {
 	 * 
 	 * @param id the id of the librarian
 	 * @return the weekly schedule of the librarian with the id input
+	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public WeeklySchedule getWeeklySchedule(int id) {
