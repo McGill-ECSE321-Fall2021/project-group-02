@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.librarysystem.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -128,13 +129,15 @@ public class ManagingEmploymentService {
 	    if(librarianRepository.findAll() instanceof ArrayList) {
 	        return (ArrayList<Librarian>) librarianRepository.findAll();
 	      }
-	      ArrayList<Librarian> librarianList = new ArrayList<Librarian>();
+	    else {
+	      List<Librarian> librarianList = new ArrayList<Librarian>();
 	      if(librarianRepository.findAll() != null) {
 	        for(Librarian e: librarianRepository.findAll()) {
 	        	librarianList.add(e);
 	        }
 	      }
 	      return librarianList;
+	    }
 	}
 	
 	/**
@@ -145,7 +148,7 @@ public class ManagingEmploymentService {
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByFirstName(String firstName){
-		ArrayList<Librarian> allLibrarians = new ArrayList<Librarian>();
+		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : getAllLibrarians()) {
 			if(l.getFirstName().equals(firstName)) {
 				allLibrarians.add(l);
@@ -162,7 +165,7 @@ public class ManagingEmploymentService {
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByLastName(String lastName){
-		ArrayList<Librarian> allLibrarians = new ArrayList<Librarian>();
+		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : getAllLibrarians()) {
 			if(l.getLastName().equals(lastName)) {
 				allLibrarians.add(l);
@@ -180,13 +183,25 @@ public class ManagingEmploymentService {
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByFirstAndLastName(String fn,String ln){
-		ArrayList<Librarian> allLibrarians = new ArrayList<Librarian>();
+		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : getAllLibrarians()) {
 			if(l.getLastName().equals(ln) && l.getFirstName().equals(fn)) {
 				allLibrarians.add(l);
 			}
 		}
 		return allLibrarians;
+	}
+	
+	/**
+	 * 
+	 * @param id id of the desired librarian
+	 * @return the librarian with that id if they exist
+	 * @author vy-khahuynh
+	 */
+	@Transactional
+	public Optional<Librarian> getLibrarianByID(int id) {
+		Optional<Librarian> l = librarianRepository.findById(id);
+		return l;
 	}
 	
 	/**
@@ -202,7 +217,7 @@ public class ManagingEmploymentService {
 			weeklyScheduleRepository.save(ws);
 			cur.setWeeklySchedule(ws);
 		}
-		else throw new IllegalArgumentException("This librarian does not exist");
+		else throw new IllegalArgumentException("This librarian does not exist!");
 	}
 	
 	/**
@@ -217,7 +232,26 @@ public class ManagingEmploymentService {
 			Librarian cur = librarianRepository.findLibrarianById(id);
 			return cur.getWeeklySchedule();
 		}
-		else throw new IllegalArgumentException("This librarian does not exist");
+		else throw new IllegalArgumentException("This librarian does not exist!");
+	}
+	
+	/**
+	 * 
+	 * @return list of every weekly schedule assigned to an employee
+	 * @author vy-khahuynh
+	 */
+	@Transactional
+	public List<WeeklySchedule> getAllWeeklySchedule(){
+		if(weeklyScheduleRepository.findAll() instanceof ArrayList) {
+			return (ArrayList<WeeklySchedule>) weeklyScheduleRepository.findAll();
+		}
+		else {
+			List<WeeklySchedule> ws = new ArrayList<WeeklySchedule>();
+			for(WeeklySchedule w : weeklyScheduleRepository.findAll()) {
+				ws.add(w);
+			}
+			return ws;
+		}
 	}
 
 }
