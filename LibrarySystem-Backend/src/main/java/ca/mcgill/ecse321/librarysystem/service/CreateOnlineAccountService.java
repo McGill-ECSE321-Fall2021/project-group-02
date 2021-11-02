@@ -46,6 +46,7 @@ public class CreateOnlineAccountService {
 		if(!withinCity) {
 			patron.setBalance(patron.getBalance() + 50);
 		} else {
+			
 			patron.setBalance(0);
 		}
 		OnlineAccount account = new OnlineAccount();
@@ -65,7 +66,7 @@ public class CreateOnlineAccountService {
 	public OnlineAccount createOnlineAccountExistingUser(int id, String username, String password, String email) throws IllegalArgumentException {
 		String error = "";
 		// verify ID
-		UserEntity user = userEntityRepository.findUserEntityById(id);
+		UserEntity user = findUserById(id);
 		if (user==null) {
 			error += "ID does not exist.\n";
 			throw new IllegalArgumentException(error);
@@ -120,7 +121,7 @@ public class CreateOnlineAccountService {
 	
 	private boolean verifyUsernameExists(String username) {
 		boolean valid = true;
-		OnlineAccount account = onlineAccountRepository.findOnlineAccountByUsername(username);
+		OnlineAccount account = findAccountByUsername(username);
 		// if username is already used
 		if (account != null) valid = false;
 		return valid;
@@ -128,7 +129,7 @@ public class CreateOnlineAccountService {
 	
 	private boolean verifyEmailExists(String email) {
 		boolean valid = true;
-		OnlineAccount account = onlineAccountRepository.findOnlineAccountByEmail(email);
+		OnlineAccount account = findAccountByEmail(email);
 		// if email is already used
 		if (account != null) valid = false;
 		return valid;
@@ -139,5 +140,17 @@ public class CreateOnlineAccountService {
 		int length = password.length();
 		if (length<8 || length >16) valid = false;
 		return valid;
+	}
+	
+	public OnlineAccount findAccountByUsername(String username) {
+		return onlineAccountRepository.findOnlineAccountByUsername(username);
+	}
+	
+	public OnlineAccount findAccountByEmail(String email) {
+		return onlineAccountRepository.findOnlineAccountByUsername(email);
+	}
+	
+	public UserEntity findUserById(int id) {
+		return userEntityRepository.findUserEntityById(id);
 	}
 }
