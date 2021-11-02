@@ -74,8 +74,101 @@ public class ItemRestController {
 	/******************************************
 	    VIEW LIBRARY CONTENTS - JULIE/NIILO
 	 ******************************************/
-
-	// add code
+	/*
+	 * Finds all books under a specific name
+	 * @param title The name of the book that is being searched for
+	 * 
+	 * @return the list of all books under the name specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/books", "/items/books/"}, params = "title")
+	public List<BookDto> getBooksByTitle(@RequestParam String title) throws IllegalArgumentException {
+		return itemService.getBooksByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	/*
+	 * Finds all books under a specific author
+	 * @param title The name of the author that is being searched for
+	 * 
+	 * @return the list of all books under the author specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/books", "/items/books/"}, params = "author")
+	public List<BookDto> getBooksByAuthor(@RequestParam String author) throws IllegalArgumentException {
+		return itemService.getBooksByAuthor(author).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	/*
+	 * Finds all albums under a specific name
+	 * @param title The name of the albums that is being searched for
+	 * 
+	 * @return the list of all albums under the name specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/albums", "/items/albums/"}, params = "title")
+	public List<AlbumDto> getAlbumsByTitle(@RequestParam String title) throws IllegalArgumentException {
+		return itemService.getAlbumsByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	/*
+	 * Finds all albums under a specific artist
+	 * @param artist The name of the artist that is being searched for
+	 * 
+	 * @return the list of all albums under the artist specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/albums", "/items/albums/"}, params = "artist")
+	public List<AlbumDto> getAlbumsByArtist(@RequestParam String artist) throws IllegalArgumentException {
+		return itemService.getAlbumsByArtist(artist).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	/*
+	 * Finds all movies under a specific name
+	 * @param title The name of the movie that is being searched for
+	 * 
+	 * @return the list of all movies under the name specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/movies", "/items/movies/"}, params = "title")
+	public List<MovieDto> getMoviesByTitle(@RequestParam String title) throws IllegalArgumentException {
+		return itemService.getMoviesByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	/*
+	 * Finds all movies under a specific director
+	 * @param title The name of the director that is being searched for
+	 * 
+	 * @return the list of all movies under the director specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/movies", "/items/movies/"}, params = "director")
+	public List<MovieDto> getMoviesByDirector(@RequestParam String director) throws IllegalArgumentException {
+		return itemService.getMoviesByDirector(director).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	/*
+	 * Finds all journals under a specific name
+	 * @param title The name of the journal that is being searched for
+	 * 
+	 * @return the list of all journals under the name specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/journals", "/items/journals/"}, params = "name")
+	public List<JournalDto> getJournalsByName(@RequestParam String name) throws IllegalArgumentException {
+		return itemService.getJournalsByName(name).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+	
+	/*
+	 * Finds all newspapers under a specific name
+	 * @param name The name of the newspaper that is being searched for
+	 * 
+	 * @return the list of all newspapers under the name specified
+	 * @author Niilo
+	 */
+	@GetMapping(value = {"/items/newspapers", "/items/newspapers/"}, params = "name")
+	public List<NewspaperDto> getNewspapersByName(@RequestParam String name) throws IllegalArgumentException {
+		return itemService.getNewspaperByName(name).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
 
 	/****************************************************
            OTHER GENERAL ITEM METHODS - JULIE
@@ -90,27 +183,27 @@ public class ItemRestController {
              SPECIFIC ITEM TYPE METHODS - SAMI
 	 ****************************************************/
 
-	@GetMapping(value = { "/books", "/books/" })
+	@GetMapping(value = { "/items/books", "/items/books/" })
 	public List<BookDto> getAllBooks() {
 		return itemService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
 	
-	@GetMapping(value = { "/albums", "/albums/" })
+	@GetMapping(value = { "/items/albums", "/items/albums/" })
 	public List<AlbumDto> getAllAlbums() {
 		return itemService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
 	
-	@GetMapping(value = { "/movies", "/movies/" })
+	@GetMapping(value = { "/items/movies", "/items/movies/" })
 	public List<MovieDto> getAllMovies() {
 		return itemService.getAllMovies().stream().map(m -> convertToDto(m)).collect(Collectors.toList());
 	}
 	
-	@GetMapping(value = { "/newspapers", "/newspapers/" })
+	@GetMapping(value = { "/items/newspapers", "/items/newspapers/" })
 	public List<NewspaperDto> getAllNewspapers() {
 		return itemService.getAllNewspapers().stream().map(n -> convertToDto(n)).collect(Collectors.toList());
 	}
 	
-	@GetMapping(value = { "/journals", "/journals/" })
+	@GetMapping(value = { "/items/journals", "/items/journals/" })
 	public List<JournalDto> getAllJournals() {
 		return itemService.getAllJournals().stream().map(j -> convertToDto(j)).collect(Collectors.toList());
 	}
