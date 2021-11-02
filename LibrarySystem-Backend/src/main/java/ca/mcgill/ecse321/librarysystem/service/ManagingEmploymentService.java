@@ -41,8 +41,8 @@ public class ManagingEmploymentService {
 		hired.setCity(city);
 		hired.setBalance(0);
 		
-		librarianRepository.save(hired);
 		onlineAccountRepository.save(oa);
+		librarianRepository.save(hired);
 		
 		return hired;	
 	}
@@ -73,12 +73,10 @@ public class ManagingEmploymentService {
 		hired.setAddress(ad);
 		hired.setCity(city);
 		hired.setBalance(0);
-		
-		librarianRepository.save(hired);
-		
 		oa.setUser(hired);
 		
 		onlineAccountRepository.save(oa);
+		librarianRepository.save(hired);
 		
 		return hired;
 	}
