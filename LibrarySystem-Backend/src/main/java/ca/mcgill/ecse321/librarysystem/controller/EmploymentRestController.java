@@ -83,10 +83,12 @@ public class EmploymentRestController {
 	 * @throws IllegalArgumentException
 	 * @author vy-khahuynh
 	 */
-	@PostMapping(value = { "/librarians", "/librarians/" })
-	public LibrarianDto createLibrarian(@RequestParam(name="firstname") String firstname,@RequestParam(name="lastname") String lastname,@RequestParam(name="address") String address,
-			@RequestParam(name="city") String city,@RequestParam(name="email") String email,@RequestParam(name="username") String username,
-			@RequestParam(name="password") String password) throws IllegalArgumentException {
+	@PostMapping(value = { "/librarians/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}", "/librarians/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}/" })
+	public LibrarianDto createLibrarian(@PathVariable(name="firstname") String firstname,
+			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
+			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
+			@PathVariable(name="username") String username,
+			@PathVariable(name="password") String password) throws IllegalArgumentException {
 		Librarian l = service.createLibrarian(firstname, lastname, address, city, email, username, password);
 		return convertToDto(l);
 	}
@@ -102,9 +104,10 @@ public class EmploymentRestController {
 	 * @throws IllegalArgumentException
 	 * @author vy-khahuynh
 	 */
-	@PostMapping(value = { "/librarians", "/librarians/" })
-	public LibrarianDto createLibrarianOnlineAccount(@RequestParam(name="onlineaccount") OnlineAccount oa,@RequestParam(name="firstname") String firstname,@RequestParam(name="lastname") String lastname,@RequestParam(name="address") String address,
-			@RequestParam(name="city") String city) throws IllegalArgumentException {
+	@PostMapping(value = { "/librarians/{onlineaccount}/{firstname}/{lastname}/{address}/{city}", "/librarians/{onlineaccount}/{firstname}/{lastname}/{address}/{city}/" })
+	public LibrarianDto createLibrarianOnlineAccount(@PathVariable(name="onlineaccount") OnlineAccount oa,@PathVariable(name="firstname") String firstname,
+			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
+			@PathVariable(name="city") String city) throws IllegalArgumentException {
 		Librarian l = service.createLibrarianOnlineAccount(oa, firstname, lastname, address, city);
 		return convertToDto(l);
 	}
