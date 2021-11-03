@@ -43,8 +43,8 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same first and last name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians", "/librarians/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@RequestParam(name="firstname") String fn,@RequestParam(name="lastname") String ln) {
+	@GetMapping(value = { "/librarians/{firstname}/{lastname}", "/librarians/{firstname}/{lastname}/" })
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="firstname") String fn,@PathVariable(name="lastname") String ln) {
 		return service.getAllLibrariansByFirstAndLastName(fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -54,8 +54,8 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same first name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians", "/librarians/" })
-	public List<LibrarianDto> getAllLibrariansByFirstName(@RequestParam(name="firstname") String fn) {
+	@GetMapping(value = { "/librarians/{firstname}", "/librarians/{firstname}/" })
+	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="firstname") String fn) {
 		return service.getAllLibrariansByFirstName(fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -65,8 +65,8 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same last name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians", "/librarians/" })
-	public List<LibrarianDto> getAllLibrariansByLastName(@RequestParam(name="lastname") String ln) {
+	@GetMapping(value = { "/librarians/{lastname}", "/librarians/{lastname}/" })
+	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="lastname") String ln) {
 		return service.getAllLibrariansByLastName(ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
