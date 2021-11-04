@@ -3,15 +3,23 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 // line 91 "model.ump"
 // line 198 "model.ump"
 @Entity
+@Table(name = "onlineAccount")
 public class OnlineAccount
 {
 
@@ -20,13 +28,21 @@ public class OnlineAccount
   //------------------------
 
   //OnlineAccount Attributes
+  @Column(unique = true)
   private String username;
+  @Id
+  @Column(name = "account_id")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id;
   private String password;
   private String email;
 
   //OnlineAccount Associations
+  @OneToOne
   private UserEntity userEntity;
 
+  
+  
   //------------------------
   // INTERFACE
   //------------------------
@@ -44,7 +60,7 @@ public class OnlineAccount
   {
     password = aPassword;
   }
-  @Id
+
   public String getUsername()
   {
     return username;
@@ -57,8 +73,12 @@ public class OnlineAccount
   {
     return password;
   }
+  
+  public int getId()
+  {
+    return id;
+  }
 
-  @OneToOne
   public UserEntity getUser()
   {
     return userEntity;

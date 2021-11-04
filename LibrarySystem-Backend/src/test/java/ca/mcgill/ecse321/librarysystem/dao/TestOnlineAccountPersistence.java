@@ -84,7 +84,7 @@ public class TestOnlineAccountPersistence {
 		
 		onlineAccount = null;
 		
-		onlineAccount = onlineAccountRepository.findOnlineAccountByUser(librarian);
+		onlineAccount = onlineAccountRepository.findOnlineAccountByUserEntity(librarian);
 		assertNotNull(onlineAccount);
 		assertEquals(username, onlineAccount.getUsername());
 		assertEquals(email, onlineAccount.getEmail());

@@ -33,6 +33,7 @@ public class WeeklySchedule
   private Date endDate;
 
   //WeeklySchedule Associations
+  @OneToMany
   private List<DailySchedule> days;
 
   //------------------------
@@ -59,8 +60,7 @@ public class WeeklySchedule
     return endDate;
   }
 
-  @OneToMany
-  public List<DailySchedule> getDay()
+  public List<DailySchedule> getDailySchedules()
   {
     return this.days;
   }

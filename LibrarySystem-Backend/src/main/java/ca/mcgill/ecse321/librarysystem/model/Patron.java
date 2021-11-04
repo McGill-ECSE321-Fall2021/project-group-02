@@ -13,33 +13,32 @@ public class Patron extends UserEntity
   //------------------------
 
   //Patron Associations
+  @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL)
   private List<Album> borrowedAlbums;
+  @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL)
   private List<Book> borrowedBooks;
+  @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL)
   private List<Movie> borrowedMovies;
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  @OneToMany
   public List<Album> getBorrowedAlbums()
   {
     return this.borrowedAlbums;
   }
   
-  @OneToMany
   public List<Book> getBorrowedBooks()
   {
     return this.borrowedBooks;
   }
   
-  @OneToMany
   public List<Movie> getBorrowedMovies()
   {
     return this.borrowedMovies;
   }
   
-
   public void setBorrowedAlbums(List<Album> a) {
 	  this.borrowedAlbums = a;
   }

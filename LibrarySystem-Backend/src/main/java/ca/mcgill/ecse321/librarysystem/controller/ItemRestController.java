@@ -224,7 +224,7 @@ public class ItemRestController {
 	 */
 	@PostMapping(value = {"/createBook/{title}", "/createBook/{title}/"} )
 	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
-		Book b= itemService.createBook(authorName, bookTitle, patron, isArchived);
+		Book b= itemService.createBook(authorName, bookTitle, isArchived);
 		return convertToDto(b);
 	}
 	
@@ -240,7 +240,7 @@ public class ItemRestController {
 	 */
 	@PostMapping(value = {"/createAlbum/{title}", "/createAlbum/{title}/"} )
 	public AlbumDto createAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
-		Album a= itemService.createAlbum(artistName,albumTitle, patron, isArchived);
+		Album a= itemService.createAlbum(artistName,albumTitle, isArchived);
 		return convertToDto(a);
 	}
 	
@@ -256,7 +256,7 @@ public class ItemRestController {
 	 */
 	@PostMapping(value = {"/createMovie/{title}", "/createMovie/{title}/"} )
 	public MovieDto createMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
-		Movie m= itemService.createMovie(directorName, movieTitle, patron, isArchived);
+		Movie m= itemService.createMovie(directorName, movieTitle, isArchived);
 		return convertToDto(m);
 	}
 	
@@ -360,7 +360,7 @@ public class ItemRestController {
 		if (m == null) {
 			throw new IllegalArgumentException("There is no such Movie!");
 		}
-		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector(),m.getPatron());
+		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector());
 		return movieDto;
 	}
 	
@@ -385,7 +385,7 @@ public class ItemRestController {
 		if (a == null) {
 			throw new IllegalArgumentException("There is no such Album!");
 		}
-		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist(),a.getPatron());
+		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist());
 		return albumDto;
 	}
 	
@@ -393,7 +393,7 @@ public class ItemRestController {
 		if (b == null) {
 			throw new IllegalArgumentException("There is no such Book!");
 		}
-		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(),b.getPatron());
+		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor());
 		return bookDto;
 	}
 }

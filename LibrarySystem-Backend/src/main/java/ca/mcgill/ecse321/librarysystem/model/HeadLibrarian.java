@@ -18,13 +18,14 @@ public class HeadLibrarian extends UserEntity
   //------------------------
 
   //HeadLibrarian Associations
+  @OneToOne
   private WeeklySchedule weeklySchedule;
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  @OneToOne
+
   public WeeklySchedule getWeeklySchedule()
   {
     return weeklySchedule;

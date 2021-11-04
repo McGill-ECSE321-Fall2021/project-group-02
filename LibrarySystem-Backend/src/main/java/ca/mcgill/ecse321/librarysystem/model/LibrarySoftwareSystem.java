@@ -18,13 +18,11 @@ import javax.persistence.CascadeType;
 @Entity
 public class LibrarySoftwareSystem
 {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO) 
   private int id;
   
-  public void setId(int aId) {
-    this.id = aId;
-  }
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  
   public int getId() {
     return this.id;
   }

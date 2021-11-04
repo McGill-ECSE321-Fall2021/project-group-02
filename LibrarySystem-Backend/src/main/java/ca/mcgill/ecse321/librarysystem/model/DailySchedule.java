@@ -18,10 +18,7 @@ public class DailySchedule
 
   public enum WeekDay { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
   private int id;
-  
-  public void setId(int aId) {
-    this.id = aId;
-  }
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId() {

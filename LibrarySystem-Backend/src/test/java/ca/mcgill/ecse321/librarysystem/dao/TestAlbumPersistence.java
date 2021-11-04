@@ -20,14 +20,11 @@ public class TestAlbumPersistence {
 private AlbumRepository albumRepository;
 @Autowired
 private LibraryRepository libraryRepository;
-@Autowired
-private PatronRepository patronRepository;
 
 @AfterEach
 public void clearDatabase() {
 	albumRepository.deleteAll();
 	libraryRepository.deleteAll();
-	patronRepository.deleteAll();
 }
 	@Test
 	public void testPersistAndLoadAlbum() {
@@ -40,10 +37,6 @@ public void clearDatabase() {
 		a.setIsBorrowed(false);
 		a.setIsDamaged(false);
 		
-		Patron patron = new Patron();
-		a.setPatron(patron);
-		
-		patronRepository.save(patron);
 		albumRepository.save(a);
 		int id = a.getId();
 		

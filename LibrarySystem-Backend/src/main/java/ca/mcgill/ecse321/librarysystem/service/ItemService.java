@@ -689,14 +689,13 @@ public class ItemService {
 	 * Creates a book
 	 * @param author
 	 * @param title
-	 * @param patron
 	 * @param isArchived
 	 * @return
 	 * 
 	 * @author Sami
 	 */
 	@Transactional 
-	public Book createBook(String author, String title, Patron patron, boolean isArchived) {
+	public Book createBook(String author, String title, boolean isArchived) {
 		Item booker = new Book();
 		booker.setIsBorrowed(false);
 		booker.setIsDamaged(false);
@@ -704,7 +703,6 @@ public class ItemService {
 		Book book=(Book)booker;
 		book.setAuthor(author);
 		book.setTitle(title);
-		book.setPatron(patron);
 		itemRepository.save(book);
 		bookRepository.save(book);
 		return book;
@@ -739,14 +737,13 @@ public class ItemService {
 	 * Creates a movie
 	 * @param director
 	 * @param title
-	 * @param patron
 	 * @param isArchived
 	 * @return
 	 * 
 	 * @author Sami
 	 */
 	@Transactional 
-	public Movie createMovie(String director, String title, Patron patron, boolean isArchived) {
+	public Movie createMovie(String director, String title, boolean isArchived) {
 		Item mover = new Movie();
 		mover.setIsBorrowed(false);
 		mover.setIsDamaged(false);
@@ -754,7 +751,6 @@ public class ItemService {
 		Movie movie=(Movie)mover;
 		movie.setDirector(title);
 		movie.setTitle(title);
-		movie.setPatron(patron);
 		itemRepository.save(movie);
 		movieRepository.save(movie);
 		return movie;
@@ -789,14 +785,13 @@ public class ItemService {
 	 * Creates an album
 	 * @param artist
 	 * @param title
-	 * @param patron
 	 * @param isArchived
 	 * @return
 	 * 
 	 * @author Sami
 	 */
 	@Transactional 
-	public Album createAlbum(String artist, String title, Patron patron, boolean isArchived) {
+	public Album createAlbum(String artist, String title, boolean isArchived) {
 		Item albumer = new Album();
 		albumer.setIsBorrowed(false);
 		albumer.setIsDamaged(false);
@@ -804,7 +799,6 @@ public class ItemService {
 		Album album=(Album)albumer;
 		album.setArtist(artist);
 		album.setTitle(title);
-		album.setPatron(patron);
 		return album;
 	}
 	

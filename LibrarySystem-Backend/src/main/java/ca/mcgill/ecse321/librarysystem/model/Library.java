@@ -21,14 +21,11 @@ import javax.persistence.ManyToOne;
 @Entity
 
 public class Library
-{
-  private int id;
-  
-  public void setId(int aId) {
-    this.id = aId;
-  }
+{  
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id;
+
   public int getId() {
     return this.id;
   }

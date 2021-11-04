@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@DiscriminatorColumn(name = "ITEM_TYPE")
+@DiscriminatorColumn(name = "item_type")
 @Table(name = "item")
 public abstract class Item
 {
@@ -18,10 +18,10 @@ public abstract class Item
   private boolean isArchived;
   private boolean isBorrowed;
   private boolean isDamaged;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
 
-  //Item Associations
-  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
   // INTERFACE
@@ -42,11 +42,6 @@ public abstract class Item
     isDamaged = aIsDamaged;
   }
 
-  public void setId(int aId)
-  {
-	 this.id = aId;
-  }
-
   public boolean getIsArchived()
   {
     return isArchived;
@@ -62,22 +57,9 @@ public abstract class Item
     return isDamaged;
   }
   
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId()
   {
     return id;
   }
-
-//  @ManyToOne(optional = false)
-//  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-//  {
-//    return librarySoftwareSystem;
-//  }
-//
-//  public void setLibrarySoftwareSystem(LibrarySoftwareSystem aLibrarySoftwareSystem)
-//  {
-//	this.librarySoftwareSystem = aLibrarySoftwareSystem;
-//  }
 
 }

@@ -57,7 +57,6 @@ public class TestBookPersistence {
 		Patron patron = new Patron();
 		
 		
-		testBook.setPatron(patron);
 		testBook.setAuthor(author);
 		testBook.setTitle(title);
 		List<UserEntity> patrons = new ArrayList<UserEntity>();
