@@ -33,18 +33,32 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestManagingEmploymentService {
 	@Mock
 	private LibrarianRepository librarianDao;
+	@Mock
+	private HeadLibrarianRepository headLibrarianDao;
 
 	@InjectMocks
 	private ManagingEmploymentService service;
 
-	private static final String LIBRARIAN_KEY = "123 Grove Street";
+	
+	private static final int HEADLIBRARIAN_ID1 = 1;
+	private static final int HEADLIBRARIAN_ID2 = 10000;
+	private static final int LIBRARIAN_ID1 = 3;
+	private static final int LIBRARIAN_ID2 = 50000;
+	
+	private static final String LIBRARIAN_FIRSTNAME = "testFirstName";
+	private static final String LIBRARIAN_LASTNAME = "testLastName";
+	private static final String LIBRARIAN_ADDRESS = "testAddress";
+	private static final String LIBRARIAN_CITY = "testCity";
+	private static final String LIBRARIAN_EMAIL = "testEmail";
+	private static final String LIBRARIAN_USERNAME = "testUsername";
+	private static final String LIBRARIAN_PASSWORD = "testPassword";
 
 	@BeforeEach
 	public void setMockOutput() {
 	    lenient().when(librarianDao.findLibrarianByAddress(anyString())).thenAnswer( (InvocationOnMock invocation) -> {
-	        if(invocation.getArgument(0).equals(LIBRARIAN_KEY)) {
+	        if(invocation.getArgument(0).equals(HEADLIBRARIAN_ID1)) {
 	            Librarian l = new Librarian();
-	            l.setAddress(LIBRARIAN_KEY);
+	            l.setAddress(LIBRARIAN_ADDRESS);
 	            return l;
 	        } else {
 	            return null;

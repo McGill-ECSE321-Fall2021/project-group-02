@@ -25,53 +25,59 @@ public class EmploymentRestController {
 	
 	@Autowired
 	LibrarianRepository librarians;
-
-	/**
-	 * 
-	 * @return all librarians
-	 * @author vy-khahuynh
-	 */
-	@GetMapping(value = { "/librarians", "/librarians/" })
-	public List<LibrarianDto> getAllLibrarians() {
-		return service.getAllLibrarians().stream().map(l -> convertToDto(l)).collect(Collectors.toList());
-	}
+	
 	
 	/**
 	 * 
-	 * @param fn first name to be searched
-	 * @param ln last name to be searched
+	 * @param id id of the user
 	 * @return list of all librarians sharing the same first and last name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians/{firstname}/{lastname}", "/librarians/{firstname}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="firstname") String fn,@PathVariable(name="lastname") String ln) {
-		return service.getAllLibrariansByFirstAndLastName(fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	@GetMapping(value = { "/librarians/{id}/{firstname}/{lastname}", "/librarians/{id}/{firstname}/{lastname}/" })
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String fn,@PathVariable(name="lastname") String ln) {
+		return service.getAllLibrariansByFirstAndLastName(id, fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
+
+	/**
+	 * 
+	 * @param id id of the user
+	 * @return list of all librarians sharing the same first and last name
+	 * @author vy-khahuynh
+	 */
+	@GetMapping(value = { "/librarians/{id}/{firstname}/{lastname}", "/librarians/{id}/{firstname}/{lastname}/" })
+	public List<LibrarianDto> getAllLibrarians(@PathVariable(name="userID") int id) {
+		return service.getAllLibrarians(id).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
 	/**
 	 * 
+	 * @param id id of the user
 	 * @param fn first name to be searched
 	 * @return list of all librarians sharing the same first name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians/{firstname}", "/librarians/{firstname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="firstname") String fn) {
-		return service.getAllLibrariansByFirstName(fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	@GetMapping(value = { "/librarians/{id}/{firstname}", "//librarians/{id}/{firstname}/" })
+	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String fn) {
+		return service.getAllLibrariansByFirstName(id, fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
 	/**
 	 * 
+	 * @param id id of the user
 	 * @param ln last name to be searched
 	 * @return list of all librarians sharing the same last name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians/{lastname}", "/librarians/{lastname}/" })
+	@GetMapping(value = { "/librarians/{id}/{lastname}", "/librarians/{id}/{lastname}/" })
 	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="lastname") String ln) {
-		return service.getAllLibrariansByLastName(ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+		return service.getAllLibrariansByLastName(0, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
+	
 	
 	/**
 	 * 
+	 * @param id id of the user
 	 * @param firstname first name of the librarian 
 	 * @param lastname last name of the librarian
 	 * @param address address of librarian
@@ -83,18 +89,19 @@ public class EmploymentRestController {
 	 * @throws IllegalArgumentException
 	 * @author vy-khahuynh
 	 */
-	@PostMapping(value = { "/librarians/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}", "/librarians/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}/" })
-	public LibrarianDto createLibrarian(@PathVariable(name="firstname") String firstname,
+	@PostMapping(value = { "/librarians/{id}/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}", "/librarians/{id}/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}/" })
+	public LibrarianDto createLibrarian(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
 			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
 			@PathVariable(name="username") String username,
 			@PathVariable(name="password") String password) throws IllegalArgumentException {
-		Librarian l = service.createLibrarian(firstname, lastname, address, city, email, username, password);
+		Librarian l = service.createLibrarian(id, firstname, lastname, address, city, email, username, password);
 		return convertToDto(l);
 	}
 	
 	/**
 	 * 
+	 * @param id id of the user
 	 * @param oa online account of the librarian
 	 * @param firstname first name of the librarian 
 	 * @param lastname last name of the librarian
@@ -104,11 +111,11 @@ public class EmploymentRestController {
 	 * @throws IllegalArgumentException
 	 * @author vy-khahuynh
 	 */
-	@PostMapping(value = { "/librarians/{onlineaccount}/{firstname}/{lastname}/{address}/{city}", "/librarians/{onlineaccount}/{firstname}/{lastname}/{address}/{city}/" })
-	public LibrarianDto createLibrarianOnlineAccount(@PathVariable(name="onlineaccount") OnlineAccount oa,@PathVariable(name="firstname") String firstname,
+	@PostMapping(value = { "/librarians/{id}/{onlineaccount}/{firstname}/{lastname}/{address}/{city}", "/{id}/librarians/{onlineaccount}/{firstname}/{lastname}/{address}/{city}/" })
+	public LibrarianDto createLibrarianOnlineAccount(@PathVariable(name="userID")int id,@PathVariable(name="onlineaccount") OnlineAccount oa,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
 			@PathVariable(name="city") String city) throws IllegalArgumentException {
-		Librarian l = service.createLibrarianOnlineAccount(oa, firstname, lastname, address, city);
+		Librarian l = service.createLibrarianOnlineAccount(id, oa, firstname, lastname, address, city);
 		return convertToDto(l);
 	}
 	

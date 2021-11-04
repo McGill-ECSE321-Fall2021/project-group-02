@@ -51,7 +51,7 @@ public class ManagingEmploymentService {
 		
 			return hired;
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class ManagingEmploymentService {
 			
 			return hired;
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -107,7 +107,7 @@ public class ManagingEmploymentService {
 				librarianRepository.delete(fired);
 			}
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -122,7 +122,7 @@ public class ManagingEmploymentService {
 		if(headLibrarianRepository.existsById(h)) {
 			return librarianRepository.existsById(id);
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -137,7 +137,7 @@ public class ManagingEmploymentService {
 		if(headLibrarianRepository.existsById(h)) {
 			return !(librarianRepository.existsById(id));
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -162,7 +162,7 @@ public class ManagingEmploymentService {
 	      return librarianList;
 	    }
 	    }
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -183,7 +183,7 @@ public class ManagingEmploymentService {
 		}
 		return allLibrarians;
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -204,7 +204,7 @@ public class ManagingEmploymentService {
 		}
 		return allLibrarians;
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -226,7 +226,7 @@ public class ManagingEmploymentService {
 		}
 		return allLibrarians;
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -242,7 +242,7 @@ public class ManagingEmploymentService {
 		Optional<Librarian> l = librarianRepository.findById(id);
 		return l;
 	}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -262,7 +262,7 @@ public class ManagingEmploymentService {
 		}
 		else throw new IllegalArgumentException("This librarian does not exist!");
 		}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -281,7 +281,7 @@ public class ManagingEmploymentService {
 		}
 		else throw new IllegalArgumentException("This librarian does not exist!");
 	}
-	else throw new IllegalArgumentException("Must be a head librarian!");
+	else throw new IllegalArgumentException("MMust be a head librarian to proceed.");
 	}
 	
 	/**
@@ -304,7 +304,7 @@ public class ManagingEmploymentService {
 			return ws;
 		}
 	}
-		else throw new IllegalArgumentException("Must be a head librarian!");
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 
 }
