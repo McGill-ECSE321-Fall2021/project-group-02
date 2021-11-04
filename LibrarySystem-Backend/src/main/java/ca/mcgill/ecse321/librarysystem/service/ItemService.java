@@ -44,8 +44,21 @@ public class ItemService {
 	 * 
 	 * @author Sami
 	 */
+	
 	@Transactional
 	public Item borrowItem(int itemId, String itemName, int patronId) {
+		if(itemId<0) {
+			throw new IllegalArgumentException("The id of the item cannot be negative!");
+		}
+		
+		if(itemName==null || itemName.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the item cannot be empty");
+		}
+		
+		if(patronId<0) {
+			throw new IllegalArgumentException("The id of the patron cannot be negative!");
+		}
+		
 		Patron patronOfInterest;
 		if (patronRepository.existsPatronById(patronId)) {
 			patronOfInterest= patronRepository.findPatronById(patronId);
@@ -715,6 +728,14 @@ public class ItemService {
 	 */
 	@Transactional
 	public Album createAlbum(String title, String artist) {
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The title of the album cannot be empty!");
+		}
+		
+		if(artist==null || artist.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the artist of the album cannot be empty!");
+		}
+		
 		Album album = new Album();
 		album.setArtist(artist);
 		album.setTitle(title);
@@ -736,6 +757,19 @@ public class ItemService {
 	 */
 	@Transactional 
 	public Book createBook(String author, String title, Patron patron, boolean isArchived) {
+		
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The title of the book cannot be empty!");
+		}
+		
+		if(author==null || author.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the author of the book cannot be empty!");
+		}
+		
+		if(patron==null) {
+			throw new IllegalArgumentException("The patron cannot be null!");
+		}
+		
 		Item booker = new Book();
 		booker.setIsBorrowed(false);
 		booker.setIsDamaged(false);
@@ -759,6 +793,16 @@ public class ItemService {
 	 */
 	@Transactional
 	public Book getBook(String title, String author) {
+		
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The title of the book cannot be empty!");
+		}
+		
+		if(author==null || author.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the author of the book cannot be empty!");
+		}
+		
+		
 		Book book=bookRepository.findBookByTitleAndAuthor(title, author);
 		return book;
 	}
@@ -786,6 +830,19 @@ public class ItemService {
 	 */
 	@Transactional 
 	public Movie createMovie(String director, String title, Patron patron, boolean isArchived) {
+		
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The title of the movie cannot be empty!");
+		}
+		
+		if(director==null || director.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the director of the movie cannot be empty!");
+		}
+		
+		if(patron==null) {
+			throw new IllegalArgumentException("The patron cannot be null!");
+		}
+		
 		Item mover = new Movie();
 		mover.setIsBorrowed(false);
 		mover.setIsDamaged(false);
@@ -809,6 +866,16 @@ public class ItemService {
 	 */
 	@Transactional
 	public Movie getMovie(String director, String title) {
+		
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The title of the movie cannot be empty!");
+		}
+		
+		if(director==null || director.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the director of the movie cannot be empty!");
+		}
+		
+		
 		Movie movie=movieRepository.findMovieByTitleAndDirector(title, director);
 		return movie;
 	}
@@ -836,6 +903,19 @@ public class ItemService {
 	 */
 	@Transactional 
 	public Album createAlbum(String artist, String title, Patron patron, boolean isArchived) {
+		
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The title of the album cannot be empty!");
+		}
+		
+		if(artist==null || artist.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the artist of the album cannot be empty!");
+		}
+		
+		if(patron==null) {
+			throw new IllegalArgumentException("The patron cannot be null!");
+		}
+		
 		Item albumer = new Album();
 		albumer.setIsBorrowed(false);
 		albumer.setIsDamaged(false);
@@ -856,6 +936,15 @@ public class ItemService {
 	 * @author Sami
 	 */
 	public Album getAlbum(String artist, String title) {
+		
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The title of the album cannot be empty!");
+		}
+		
+		if(artist==null || artist.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the artist of the album cannot be empty!");
+		}
+		
 		
 		Album album=albumRepository.findAlbumByTitleAndArtist(title, artist);
 		return album;
@@ -882,6 +971,15 @@ public class ItemService {
 	 */
 	@Transactional 
 	public Newspaper createNewspaper(String name, Date date) {
+		
+		if(name==null || name.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the newspaper cannot be empty!");
+		}
+		
+		if(date==null) {
+			throw new IllegalArgumentException("The date cannot be null!");
+		}
+		
 		Newspaper newspaper = new Newspaper();
 		newspaper.setName(name);
 		newspaper.setDate(date);
@@ -901,6 +999,15 @@ public class ItemService {
 	@Transactional
 	public Newspaper getNewspaper(String name, Date date) {
 		
+		if(name==null || name.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the newspaper cannot be empty!");
+		}
+		
+		if(date==null) {
+			throw new IllegalArgumentException("The date cannot be null!");
+		}
+		
+		
 		Newspaper newspaper=newspaperRepository.findNewspaperByNameAndDate(name, date);
 		return newspaper;
 	}
@@ -914,6 +1021,11 @@ public class ItemService {
 	 */
 	@Transactional
 	public List<Album> getAlbumsByArtist(String artist) {
+		
+		if(artist==null || artist.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the artist of the album cannot be empty!");
+		}
+		
 		List<Album> albumsByArtist = new ArrayList<>();
 		for (Album a : albumRepository.findAlbumByArtist(artist)) {
 			albumsByArtist.add(a);
@@ -948,6 +1060,11 @@ public class ItemService {
 	 */
 	@Transactional
 	public List<Book> getBooksByAuthor(String author) {
+		
+		if(author==null || author.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the author of the book cannot be empty!");
+		}
+		
 		List<Book> booksByAuthor = new ArrayList<>();
 		for (Book b : bookRepository.findBookByAuthor(author)) {
 			booksByAuthor.add(b);
@@ -981,6 +1098,11 @@ public class ItemService {
 	 */
 	@Transactional
 	public List<Movie> getMoviesByDirector(String director) {
+		
+		if(director==null || director.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the director of the movie cannot be empty!");
+		}
+		
 		List<Movie> moviesByDirector = new ArrayList<>();
 		for (Movie m : movieRepository.findMovieByDirector(director)) {
 			moviesByDirector.add(m);
@@ -997,6 +1119,11 @@ public class ItemService {
 	 */
 	@Transactional
 	public List<Movie> getMoviesByTitle(String title) {
+		
+		if(title==null || title.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the title of the movie cannot be empty!");
+		}
+		
 		List<Movie> moviesByTitle = new ArrayList<>();
 		for (Movie m : movieRepository.findMovieByTitle(title)) {
 			moviesByTitle.add(m);
@@ -1013,6 +1140,11 @@ public class ItemService {
 	 */
 	@Transactional
 	public List<Journal> getJournalsByName(String name) {
+		
+		if(name==null || name.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the journal cannot be empty!");
+		}
+		
 		List<Journal> journalsByName = new ArrayList<>();
 		for (Journal j : journalRepository.findJournalByName(name)) {
 			journalsByName.add(j);
@@ -1045,6 +1177,11 @@ public class ItemService {
 	 */
 	@Transactional
 	public List<Newspaper> getNewspaperByName(String name) {
+		
+		if(name==null || name.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the newspaper cannot be empty!");
+		}
+		
 		List<Newspaper> newspapersByName = new ArrayList<>(); 
 		for (Newspaper n : newspaperRepository.findNewspaperByName(name)) {
 			newspapersByName.add(n);
@@ -1090,6 +1227,15 @@ public class ItemService {
 	 */
 	@Transactional 
 	public Journal createJournal(String name, Date date) {
+		
+		if(name==null || name.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the journal cannot be empty!");
+		}
+		
+		if(date==null) {
+			throw new IllegalArgumentException("The date cannot be null!");
+		}
+		
 		Journal journal=new Journal();
 		journal.setName(name);
 		journal.setDate(date);
@@ -1108,6 +1254,15 @@ public class ItemService {
 	 */
 	@Transactional
 	public Journal getJournal(String name, Date date) {
+		
+		if(name==null || name.trim().length()==0) {
+			throw new IllegalArgumentException("The name of the journal cannot be empty!");
+		}
+		
+		if(date==null) {
+			throw new IllegalArgumentException("The date cannot be null!");
+		}
+		
 		
 		Journal journal=journalRepository.findJournalByNameAndDate(name, date);
 		return journal;

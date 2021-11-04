@@ -57,6 +57,8 @@ public class ItemRestController {
 		return convertToDto(i);
 	}
 	
+	
+	
 	/************************************
           RETURN ITEM SERVICE - JULIE
     ************************************/
@@ -203,6 +205,7 @@ public class ItemRestController {
 
 	@PostMapping(value = {"/createNewspaper/{title}", "/createNewspaper/{title}/"} )
 	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
+		System.out.println("Entered the api method");
 		Newspaper n= itemService.createNewspaper(newspaperTitle, newspaperDate);
 		return convertToDto(n);
 	}
