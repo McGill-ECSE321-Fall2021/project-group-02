@@ -102,7 +102,6 @@ public class TestBorrowItemsService {
 				patron.setCity(testString);
 				patron.setFirstName(testString);
 				patron.setLastName(testString);
-
 				patron.setBorrowedAlbums(album1);
 				patron.setBorrowedMovies(movie1);
 				patron.setBorrowedBooks(book1);
@@ -129,6 +128,16 @@ public class TestBorrowItemsService {
 				patron.setBorrowedBooks(book1);
 				patron.setOnlineAccount(account1);
 				return patron;
+			}
+			else {
+				return null;
+			}
+			
+		});
+		
+		lenient().when(itemDao.findItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
+				
 			}
 			else {
 				return null;

@@ -12,6 +12,5 @@ public interface ItemRepository extends CrudRepository<Item, Integer>{
 	List<Item> findItemByIsArchived(boolean isArchived);
 	List<Item> findItemByIsBorrowed(boolean isBorrowed);
 	List<Item> findItemByIsDamaged(boolean isDamaged);
-
 	boolean existsItemById(Integer id);
 }
