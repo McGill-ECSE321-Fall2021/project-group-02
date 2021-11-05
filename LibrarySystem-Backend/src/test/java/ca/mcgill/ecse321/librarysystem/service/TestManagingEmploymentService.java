@@ -44,7 +44,7 @@ public class TestManagingEmploymentService {
 	private String error;
 
 	
-	private static final int HEADLIBRARIAN_VALIDID = 1;
+	private static int HEADLIBRARIAN_VALIDID;
 	private static final int HEADLIBRARIAN_INVALIDID = 10000;
 	private static final String HEADLIBRARIAN_FIRSTNAME = "HLFirstName";
 	private static final String HEADLIBRARIAN_LASTNAME = "HLLastName";
@@ -55,7 +55,7 @@ public class TestManagingEmploymentService {
 	private static final String HEADLIBRARIAN_PASSWORD = "HLPassword";
 
 	
-	private static final int LIBRARIAN_VALIDID = 3; // Get after creating a librarian
+	private static int LIBRARIAN_VALIDID; // Get after creating a librarian
 	private static final int LIBRARIAN_INVALIDID = 50000;
 	private static final String LIBRARIAN_FIRSTNAME = "lFirstName";
 	private static final String LIBRARIAN_LASTNAME = "lLastName";
@@ -65,7 +65,7 @@ public class TestManagingEmploymentService {
 	private static final String LIBRARIAN_USERNAME = "lUsername";
 	private static final String LIBRARIAN_PASSWORD = "lPassword";
 
-	@BeforeEach
+	@BeforeEach // Modify this
 	public void setMockOutput() {
 	    lenient().when(librarianDao.findLibrarianByAddress(anyString())).thenAnswer( (InvocationOnMock invocation) -> {
 	        if(invocation.getArgument(0).equals(HEADLIBRARIAN_FIRSTNAME)) {
@@ -92,33 +92,29 @@ public class TestManagingEmploymentService {
 		lenient().when(onlineAccountDao.save(any(OnlineAccount.class))).thenAnswer(returnParameterAsAnswer);
 	}
 	
+	// ----------------------------- CreateLibrarian ---------------------------- //
+	
 	@Test
 	public void testCreateLibrarianValidID() {
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
-		assertEquals(0,service.getAllLibrarians(hlid).size());
+		error="";
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
+		assertEquals(0,service.getAllLibrarians(HEADLIBRARIAN_VALIDID).size());
 		Librarian l = null;
 		try {
-			l = service.createLibrarian(hlid, LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY, LIBRARIAN_EMAIL, LIBRARIAN_USERNAME, LIBRARIAN_PASSWORD);
+			l = service.createLibrarian(HEADLIBRARIAN_VALIDID, LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY, LIBRARIAN_EMAIL, LIBRARIAN_USERNAME, LIBRARIAN_PASSWORD);
 		} catch (IllegalArgumentException e){
 			fail();
 		}
-		assertNotNull(l);
-		assertEquals(LIBRARIAN_FIRSTNAME, l.getFirstName());
-		assertEquals(LIBRARIAN_LASTNAME, l.getLastName());
-		assertEquals(LIBRARIAN_ADDRESS, l.getAddress());
-		assertEquals(LIBRARIAN_CITY, l.getCity());
-		assertEquals(LIBRARIAN_EMAIL, l.getOnlineAccount().getEmail());
-		assertEquals(LIBRARIAN_USERNAME, l.getOnlineAccount().getUsername());
-		assertEquals(LIBRARIAN_PASSWORD, l.getOnlineAccount().getPassword());
+		checkLibrarian(l);
 	}
 	
 	@Test
 	public void testCreateLibrarianInvalidID() {
-		int hlid=HEADLIBRARIAN_INVALIDID;
-		assertEquals(0,service.getAllLibrarians(hlid).size());
+		error="";
+		assertEquals(0,service.getAllLibrarians(HEADLIBRARIAN_VALIDID).size());
 		Librarian l = null;
 		try {
-			l = service.createLibrarian(hlid, LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY, LIBRARIAN_EMAIL, LIBRARIAN_USERNAME, LIBRARIAN_PASSWORD);
+			l = service.createLibrarian(HEADLIBRARIAN_INVALIDID, LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY, LIBRARIAN_EMAIL, LIBRARIAN_USERNAME, LIBRARIAN_PASSWORD);
 		} catch (IllegalArgumentException e){
 			 error= e.getMessage();
 		}
@@ -127,53 +123,48 @@ public class TestManagingEmploymentService {
 	
 	@Test
 	public void testCreateLibrarianOnlineAccountValidID() {
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();;
-		assertEquals(0,service.getAllLibrarians(hlid).size());
+		error="";
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();;
+		assertEquals(0,service.getAllLibrarians(HEADLIBRARIAN_VALIDID).size());
 		OnlineAccount oa = new OnlineAccount();
 		oa.setEmail(LIBRARIAN_EMAIL);
 		oa.setUsername(LIBRARIAN_USERNAME);
 		oa.setPassword(LIBRARIAN_PASSWORD);
 		Librarian l = null;
 		try {
-			l = service.createLibrarianOnlineAccount(hlid, oa,LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
+			l = service.createLibrarianOnlineAccount(HEADLIBRARIAN_VALIDID, oa,LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			 fail();
 		}
-		assertNotNull(l);
-		assertEquals(LIBRARIAN_FIRSTNAME, l.getFirstName());
-		assertEquals(LIBRARIAN_LASTNAME, l.getLastName());
-		assertEquals(LIBRARIAN_ADDRESS, l.getAddress());
-		assertEquals(LIBRARIAN_CITY, l.getCity());
-		assertEquals(LIBRARIAN_EMAIL, l.getOnlineAccount().getEmail());
-		assertEquals(LIBRARIAN_USERNAME, l.getOnlineAccount().getUsername());
-		assertEquals(LIBRARIAN_PASSWORD, l.getOnlineAccount().getPassword());
+		checkLibrarian(l);
 	}
 	
 	@Test
 	public void testCreateLibrarianOnlineAccountInvalidID() {
 		error="";
-		int hlid=HEADLIBRARIAN_INVALIDID;
-		assertEquals(0,service.getAllLibrarians(hlid).size());
+		assertEquals(0,service.getAllLibrarians(HEADLIBRARIAN_VALIDID).size());
 		OnlineAccount oa = new OnlineAccount();
 		oa.setEmail(LIBRARIAN_EMAIL);
 		oa.setUsername(LIBRARIAN_USERNAME);
 		oa.setPassword(LIBRARIAN_PASSWORD);
 		Librarian l = null;
 		try {
-			l = service.createLibrarianOnlineAccount(hlid,oa,LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
+			l = service.createLibrarianOnlineAccount(HEADLIBRARIAN_INVALIDID,oa,LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			 error= e.getMessage();
 		}
 		assertNotNull("Must be a head librarian to proceed.",error);	
 	}
 	
+	// ----------------------------- DeleteLibrarian ---------------------------- //
+	
 	@Test
 	public void testDeleteLibrarianValidValidID() {
 		error="";
 		// Create a librarian @ before each and get ID
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
 		try {
-			service.deleteLibrarian(hlid,LIBRARIAN_VALIDID);
+			service.deleteLibrarian(HEADLIBRARIAN_VALIDID,LIBRARIAN_VALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -183,9 +174,9 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testDeleteLibrarianValidInvalidID() {
 		error="";
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
 		try {
-			service.deleteLibrarian(hlid,LIBRARIAN_INVALIDID);
+			service.deleteLibrarian(HEADLIBRARIAN_VALIDID,LIBRARIAN_INVALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -196,9 +187,8 @@ public class TestManagingEmploymentService {
 	public void testDeleteLibrarianInvalidValidID() {
 		error="";
 		// Create a librarian @ before each and get ID
-		int hlid=HEADLIBRARIAN_INVALIDID;
 		try {
-			service.deleteLibrarian(hlid,LIBRARIAN_VALIDID);
+			service.deleteLibrarian(HEADLIBRARIAN_INVALIDID,LIBRARIAN_VALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -208,29 +198,30 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testDeleteLibrarianInvalidInvalidID() {
 		error="";
-		int hlid=HEADLIBRARIAN_INVALIDID;
 		try {
-			service.deleteLibrarian(hlid,LIBRARIAN_INVALIDID);
+			service.deleteLibrarian(HEADLIBRARIAN_INVALIDID,LIBRARIAN_INVALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
 		assertEquals("Must be a head librarian to proceed.",error);
 	}
 	
+	// ----------------------------- IsHired ---------------------------- //
+	
 	@Test
 	public void testLibrarianIsHiredValidValidID() {
 		error="";
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
 		// Create librarian and check if it exists
 	}
 	
 	@Test
 	public void testLibrarianIsHiredValidInvalidID() {
 		error="";
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
 		boolean h = true;
 		try {
-			h=service.librarianIsHired(hlid, LIBRARIAN_INVALIDID);
+			h=service.librarianIsHired(HEADLIBRARIAN_VALIDID, LIBRARIAN_INVALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -240,7 +231,6 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testLibrarianIsHiredInvalidValidID() {
 		error="";
-		int hlid=HEADLIBRARIAN_INVALIDID;
 		// Create librarian and check if it exists
 		assertEquals("Must be a head librarian to proceed.",error);
 	}
@@ -248,23 +238,23 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testLibrarianIsHiredInvalidInvalidID() {
 		error="";
-		int hlid=HEADLIBRARIAN_INVALIDID;
 		try {
-			service.librarianIsHired(hlid, LIBRARIAN_INVALIDID);
+			service.librarianIsHired(HEADLIBRARIAN_INVALIDID, LIBRARIAN_INVALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
 		assertEquals("Must be a head librarian to proceed.",error);
 	}
 	
-
+	// ----------------------------- IsFired ---------------------------- //
+	
 	@Test
 	public void testLibrarianIsFiredValidValidID() {
 		error="";
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
 		boolean t = false;
 		try {
-			t=service.librarianIsFired(hlid, LIBRARIAN_INVALIDID);
+			t=service.librarianIsFired(HEADLIBRARIAN_VALIDID, LIBRARIAN_INVALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -274,11 +264,11 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testLibrarianIsFiredValidInvalidID() {
 		error="";
-		int hlid=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();;
+		HEADLIBRARIAN_VALIDID=headLibrarianDao.findHeadLibrarianByAddress(HEADLIBRARIAN_ADDRESS).get(0).getId();
 		boolean t = true;
 		try {
 			// Get a real valid ID
-			t=service.librarianIsFired(hlid, LIBRARIAN_VALIDID);
+			t=service.librarianIsFired(HEADLIBRARIAN_VALIDID, LIBRARIAN_VALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -288,9 +278,8 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testLibrarianIsFiredInvalidValidID() {
 		error="";
-		int hlid=HEADLIBRARIAN_INVALIDID;
 		try {
-			service.librarianIsFired(hlid, LIBRARIAN_INVALIDID);
+			service.librarianIsFired(HEADLIBRARIAN_INVALIDID, LIBRARIAN_INVALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -299,13 +288,23 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testLibrarianIsFiredInvalidInvalidID() {
 		error="";
-		int hlid=HEADLIBRARIAN_INVALIDID;
 		try {
 			// Get a real ID
-			service.librarianIsFired(hlid, LIBRARIAN_VALIDID);
+			service.librarianIsFired(HEADLIBRARIAN_INVALIDID, LIBRARIAN_VALIDID);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
 		assertEquals("Must be a head librarian to proceed.",error);
+	}
+	
+	private void checkLibrarian(Librarian l) {
+		assertNotNull(l);
+		assertEquals(LIBRARIAN_FIRSTNAME, l.getFirstName());
+		assertEquals(LIBRARIAN_LASTNAME, l.getLastName());
+		assertEquals(LIBRARIAN_ADDRESS, l.getAddress());
+		assertEquals(LIBRARIAN_CITY, l.getCity());
+		assertEquals(LIBRARIAN_EMAIL, l.getOnlineAccount().getEmail());
+		assertEquals(LIBRARIAN_USERNAME, l.getOnlineAccount().getUsername());
+		assertEquals(LIBRARIAN_PASSWORD, l.getOnlineAccount().getPassword());
 	}
 }

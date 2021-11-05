@@ -35,7 +35,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public Librarian createLibrarianOnlineAccount(int h,OnlineAccount oa, String fn, String ln, String ad, String city) {
+	public Librarian createLibrarianOnlineAccount(int h,OnlineAccount oa, String fn, String ln, String ad, String city) throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 			
 			Librarian hired = new Librarian();
@@ -68,7 +68,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public Librarian createLibrarian(int h,String fn, String ln, String ad, String city, String email, String username, String pswd) {
+	public Librarian createLibrarian(int h,String fn, String ln, String ad, String city, String email, String username, String pswd) throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 			OnlineAccount oa = new OnlineAccount();
 			oa.setEmail(email);
@@ -99,7 +99,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public void deleteLibrarian(int h, int id) {
+	public void deleteLibrarian(int h, int id) throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 			if (librarianRepository.existsById(id)) {
 				Librarian fired = librarianRepository.findLibrarianById(id);
@@ -118,7 +118,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public boolean librarianIsHired(int h,int id) {
+	public boolean librarianIsHired(int h,int id) throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 			return librarianRepository.existsById(id);
 		}
@@ -133,7 +133,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public boolean librarianIsFired(int h,int id) {
+	public boolean librarianIsFired(int h,int id) throws IllegalArgumentException {
 		if(headLibrarianRepository.existsById(h)) {
 			return !(librarianRepository.existsById(id));
 		}
@@ -147,7 +147,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrarians(int h){
+	public List<Librarian> getAllLibrarians(int h)throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 	    if(librarianRepository.findAll() instanceof ArrayList) {
 	        return (ArrayList<Librarian>) librarianRepository.findAll();
@@ -173,7 +173,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrariansByFirstName(int h,String firstName){
+	public List<Librarian> getAllLibrariansByFirstName(int h,String firstName)throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : librarianRepository.findAll()) {
@@ -194,7 +194,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrariansByLastName(int h,String lastName){
+	public List<Librarian> getAllLibrariansByLastName(int h,String lastName)throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : librarianRepository.findAll()) {
@@ -216,7 +216,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrariansByFirstAndLastName(int h,String fn,String ln){
+	public List<Librarian> getAllLibrariansByFirstAndLastName(int h,String fn,String ln)throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : librarianRepository.findAll()) {
@@ -237,7 +237,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public Optional<Librarian> getLibrarianByID(int h,int id) {
+	public Optional<Librarian> getLibrarianByID(int h,int id) throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 		Optional<Librarian> l = librarianRepository.findById(id);
 		return l;
@@ -253,7 +253,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public void setWeeklySchedule(int h,WeeklySchedule ws,int id) {
+	public void setWeeklySchedule(int h,WeeklySchedule ws,int id)throws IllegalArgumentException {
 		if(headLibrarianRepository.existsById(h)) {
 		if(librarianRepository.existsById(id)) {
 			Librarian cur = librarianRepository.findLibrarianById(id);
@@ -273,7 +273,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public WeeklySchedule getWeeklySchedule(int h,int id) {
+	public WeeklySchedule getWeeklySchedule(int h,int id)throws IllegalArgumentException {
 		if(headLibrarianRepository.existsById(h)) {
 		if(librarianRepository.existsById(id)) {
 			Librarian cur = librarianRepository.findLibrarianById(id);
@@ -291,7 +291,7 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public List<WeeklySchedule> getAllWeeklySchedule(int h){
+	public List<WeeklySchedule> getAllWeeklySchedule(int h)throws IllegalArgumentException{
 		if(headLibrarianRepository.existsById(h)) {
 		if(weeklyScheduleRepository.findAll() instanceof ArrayList) {
 			return (ArrayList<WeeklySchedule>) weeklyScheduleRepository.findAll();
