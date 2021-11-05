@@ -861,10 +861,6 @@ public class ItemService {
 			throw new IllegalArgumentException("The name of the artist of the album cannot be empty!");
 		}
 		
-		if(patron==null) {
-			throw new IllegalArgumentException("The patron cannot be null!");
-		}
-		
 		Item albumer = new Album();
 		albumer.setIsBorrowed(false);
 		albumer.setIsDamaged(false);

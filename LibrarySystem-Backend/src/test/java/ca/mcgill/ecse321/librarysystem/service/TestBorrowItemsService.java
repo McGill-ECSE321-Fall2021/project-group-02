@@ -51,7 +51,6 @@ public class TestBorrowItemsService {
 				patron.setCity(testString);
 				patron.setFirstName(testString);
 				patron.setLastName(testString);
-				patron.setId(EXISTINGPERSON_ID);
 				return patron;
 			}
 			else {
@@ -68,7 +67,6 @@ public class TestBorrowItemsService {
 				patron.setCity(testString);
 				patron.setFirstName(testString);
 				patron.setLastName(testString);
-				patron.setId(EXISTINGPERSON_ID);
 			
 				return patron;
 			}
@@ -86,7 +84,6 @@ public class TestBorrowItemsService {
 				patron.setCity(testString);
 				patron.setFirstName(testString);
 				patron.setLastName(testString);
-				patron.setId(EXISTINGPERSON_ID);
 			
 				return patron;
 			}
