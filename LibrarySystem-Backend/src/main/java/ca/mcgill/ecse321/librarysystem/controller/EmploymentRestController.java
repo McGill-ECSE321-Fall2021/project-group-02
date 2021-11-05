@@ -45,7 +45,7 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same first and last name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians/{id}/{firstname}/{lastname}", "/librarians/{id}/{firstname}/{lastname}/" })
+	@GetMapping(value = { "/librarians/{id}", "/librarians/{id}/" })
 	public List<LibrarianDto> getAllLibrarians(@PathVariable(name="userID") int id) {
 		return service.getAllLibrarians(id).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
