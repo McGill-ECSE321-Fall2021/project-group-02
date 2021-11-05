@@ -18,9 +18,15 @@ import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import ca.mcgill.ecse321.librarysystem.dao.AlbumRepository;
 import ca.mcgill.ecse321.librarysystem.dao.BookRepository;
+import ca.mcgill.ecse321.librarysystem.dao.HeadLibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ItemRepository;
+import ca.mcgill.ecse321.librarysystem.dao.JournalRepository;
+import ca.mcgill.ecse321.librarysystem.dao.MovieRepository;
+import ca.mcgill.ecse321.librarysystem.dao.NewspaperRepository;
 import ca.mcgill.ecse321.librarysystem.dao.OnlineAccountRepository;
 import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.model.Album;
@@ -36,13 +42,21 @@ import ca.mcgill.ecse321.librarysystem.model.Patron;
 public class TestBorrowItemsService {
 	
 	@Mock
-	private PatronRepository patronDao;
-	
+	ItemRepository itemDao;
 	@Mock
-	private ItemRepository itemDao;
-	
+	AlbumRepository albumDao;
 	@Mock
-	private BookRepository bookDao;
+	BookRepository bookDao;
+	@Mock
+	MovieRepository movieDao;
+	@Mock
+	JournalRepository journalDao;
+	@Mock
+	NewspaperRepository newspaperDao;
+	@Mock
+	HeadLibrarianRepository headLibrarianDao;
+	@Mock
+	PatronRepository patronDao;
 	
 	@Mock
 	private OnlineAccountRepository onlineAccountDao;
@@ -67,6 +81,46 @@ public class TestBorrowItemsService {
 	
 	@BeforeEach
 	public void setMockOutput() {
+		
+		lenient().when(albumDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
+			ArrayList<Album> tempList = new ArrayList<>();
+			Album album = new Album();
+			album.setArtist(testString);
+			album.setIsArchived(bool);
+			album.setIsBorrowed(bool);
+			album.setIsDamaged(bool);
+			album.setTitle(testString);
+			tempList.add(album);
+			return tempList;
+			
+		});
+		
+		lenient().when(bookDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
+			ArrayList<Book> tempList = new ArrayList<>();
+			Book book = new Book();
+			book.setAuthor(testString);
+			book.setIsArchived(bool);
+			book.setIsBorrowed(bool);
+			book.setIsDamaged(bool);
+			book.setTitle(testString);
+			tempList.add(book);
+			return tempList;
+			
+		});
+		
+		lenient().when(movieDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
+			ArrayList<Movie> tempList = new ArrayList<>();
+			Movie movie = new Movie();
+			movie.setDirector(testString);
+			movie.setIsArchived(bool);
+			movie.setIsBorrowed(bool);
+			movie.setIsDamaged(bool);
+			movie.setTitle(testString);
+			tempList.add(movie);
+			return tempList;
+			
+		});
+		
 		lenient().when(patronDao.findPatronById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			//may have to add online account
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
@@ -157,6 +211,12 @@ public class TestBorrowItemsService {
 		lenient().when(patronDao.save(any(Patron.class))).thenAnswer(returnParameterAsAnswer);
 		
 		lenient().when(bookDao.save(any(Book.class))).thenAnswer(returnParameterAsAnswer);
+		
+		
+		lenient().when(albumDao.save(any(Album.class))).thenAnswer(returnParameterAsAnswer);
+		
+		lenient().when(movieDao.save(any(Movie.class))).thenAnswer(returnParameterAsAnswer);
+		
 		
 		lenient().when(onlineAccountDao.save(any(OnlineAccount.class))).thenAnswer(returnParameterAsAnswer);
 		
@@ -295,9 +355,6 @@ public class TestBorrowItemsService {
 		Book book=new Book();
 		book.setAuthor("Jonathan");
 		book.setTitle("The Mockingbird");
-		book.setIsArchived(false);
-		book.setIsBorrowed(false);
-		book.setIsDamaged(false);
 		bookDao.save(book);
 		itemDao.save(book);
 		
