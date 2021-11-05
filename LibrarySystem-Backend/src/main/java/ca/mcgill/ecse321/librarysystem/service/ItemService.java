@@ -36,7 +36,7 @@ public class ItemService {
 	 ************************************/
 	
 	/** 
-	 * DESCRIPTION HERE
+	 * Sets an item as borrowed by a specific patron
 	 * @param itemId
 	 * @param itemName
 	 * @param patronId
@@ -123,7 +123,7 @@ public class ItemService {
 	 ************************************/
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Places an item into the library contents as borrowable and removes from the patron's borrowed list
 	 * @param itemId
 	 * @param patronId
 	 * @return
@@ -190,7 +190,7 @@ public class ItemService {
          ARCHIVE ITEM SERVICE - JOHN
 	 ************************************/
 	/**
-	 * DESCRIPTION HERE
+	 * Sets an item as archived and cannot be borrowed
 	 * @param itemID
 	 * @param itemName
 	 * @return
@@ -240,7 +240,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the archived albums
 	 * @return
 	 * 
 	 * @author John
@@ -257,7 +257,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the archived books
 	 * @return
 	 * 
 	 * @author John
@@ -274,7 +274,7 @@ public class ItemService {
 	}
 	
 	/** 
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the archived movies
 	 * @return
 	 * 
 	 * @author John
@@ -294,8 +294,7 @@ public class ItemService {
 	/******************************************
     	VIEW LIBRARY CONTENTS - JULIE/NIILO
 	 ******************************************/
-
-	// get all items
+	
 	/**
 	 * Find all of the items in the library system
 	 * @return
@@ -623,39 +622,11 @@ public class ItemService {
 	
 	
 	/****************************************************
-           OTHER GENERAL ITEM METHODS - JULIE/JOHN
+           OTHER GENERAL ITEM METHODS - JULIE
 	 ****************************************************/
-
-	/**
-	 * not sure what this is - Julie
-	 * @param item
-	 * @param id
-	 * @throws IllegalArgumentException
-	 * 
-	 * @author John
-	 */
-	@Transactional
-	public void updateItemStatus(Item item, int id) throws IllegalArgumentException {
-		if (item.getIsArchived() == true) {
-				throw new IllegalArgumentException("Item is already archived.");
-		} else {
-			Item itemOfInterest = itemRepository.findItemById(id);
-			itemOfInterest.setIsArchived(true);
-			if (itemOfInterest instanceof Album) {
-				itemRepository.save(itemOfInterest);
-				albumRepository.save((Album) itemOfInterest);
-			} else if (itemOfInterest instanceof Book) {
-				itemRepository.save(itemOfInterest);
-				bookRepository.save((Book) itemOfInterest);
-			} else if (itemOfInterest instanceof Movie) {
-				itemRepository.save(itemOfInterest);
-				movieRepository.save((Movie) itemOfInterest);
-			}
-		}
-	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Sets an item as damaged and cannot be borrowed
 	 * @param itemId
 	 * @param userId
 	 * @return
@@ -672,8 +643,6 @@ public class ItemService {
 			if(itemRepository.existsItemById(itemId)) {
 				specificItem.setIsBorrowed(false);
 				specificItem.setIsDamaged(true);
-				itemRepository.save(specificItem);
-				// bookRepository.save etcetc?
 			} else {
 				throw new IllegalArgumentException("Item ID does not exist.");
 			}
@@ -687,7 +656,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Removes an item from the library software system
 	 * @param itemId
 	 * @param userId
 	 * @return
@@ -696,21 +665,13 @@ public class ItemService {
 	 * @author Julie
 	 */
 	@Transactional
-	public Item discardItem(int itemId, int userId) throws IllegalArgumentException {
+	public void discardItem(int itemId) {
+		Item specificItem = itemRepository.findItemById(itemId); 
 		
-	if (headLibrarianRepository.existsById(userId)) {
-			Item specificItem = itemRepository.findItemById(itemId); 
-			
-			if(itemRepository.existsItemById(itemId)) {
-				itemRepository.delete(specificItem);
-			} else {
-				throw new IllegalArgumentException("Item ID does not exist.");
-			}
-			
-			return specificItem;
-			
+		if(itemRepository.existsItemById(itemId)) {
+			itemRepository.delete(specificItem);
 		} else {
-			throw new IllegalArgumentException("Must be a head librarian to proceed.");
+			throw new IllegalArgumentException("Item ID does not exist.");
 		}
 		
 	}
@@ -719,7 +680,7 @@ public class ItemService {
           SPECIFIC ITEM TYPE METHODS - SAMI/JULIE
 	 ****************************************************/
 	/**
-	 * DESCRIPTION HERE
+	 * Creates an album
 	 * @param title
 	 * @param artist
 	 * @return
@@ -746,17 +707,16 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates a book
 	 * @param author
 	 * @param title
-	 * @param patron
 	 * @param isArchived
 	 * @return
 	 * 
 	 * @author Sami
 	 */
 	@Transactional 
-	public Book createBook(String author, String title, Patron patron, boolean isArchived) {
+	public Book createBook(String author, String title, boolean isArchived) {
 		
 		if(title==null || title.trim().length()==0) {
 			throw new IllegalArgumentException("The title of the book cannot be empty!");
@@ -766,10 +726,6 @@ public class ItemService {
 			throw new IllegalArgumentException("The name of the author of the book cannot be empty!");
 		}
 		
-		if(patron==null) {
-			throw new IllegalArgumentException("The patron cannot be null!");
-		}
-		
 		Item booker = new Book();
 		booker.setIsBorrowed(false);
 		booker.setIsDamaged(false);
@@ -777,14 +733,13 @@ public class ItemService {
 		Book book=(Book)booker;
 		book.setAuthor(author);
 		book.setTitle(title);
-		book.setPatron(patron);
 		itemRepository.save(book);
 		bookRepository.save(book);
 		return book;
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific book by title and author
 	 * @param title
 	 * @param author
 	 * @return
@@ -808,7 +763,7 @@ public class ItemService {
 	}
 		
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the books
 	 * @return
 	 * 
 	 * @author Sami
@@ -819,17 +774,16 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates a movie
 	 * @param director
 	 * @param title
-	 * @param patron
 	 * @param isArchived
 	 * @return
 	 * 
 	 * @author Sami
 	 */
 	@Transactional 
-	public Movie createMovie(String director, String title, Patron patron, boolean isArchived) {
+	public Movie createMovie(String director, String title, boolean isArchived) {
 		
 		if(title==null || title.trim().length()==0) {
 			throw new IllegalArgumentException("The title of the movie cannot be empty!");
@@ -839,9 +793,6 @@ public class ItemService {
 			throw new IllegalArgumentException("The name of the director of the movie cannot be empty!");
 		}
 		
-		if(patron==null) {
-			throw new IllegalArgumentException("The patron cannot be null!");
-		}
 		
 		Item mover = new Movie();
 		mover.setIsBorrowed(false);
@@ -850,14 +801,13 @@ public class ItemService {
 		Movie movie=(Movie)mover;
 		movie.setDirector(title);
 		movie.setTitle(title);
-		movie.setPatron(patron);
 		itemRepository.save(movie);
 		movieRepository.save(movie);
 		return movie;
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific movie by title and director
 	 * @param director
 	 * @param title
 	 * @return
@@ -881,7 +831,7 @@ public class ItemService {
 	}
 		
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the movies
 	 * @return
 	 * 
 	 * @author Sami
@@ -892,17 +842,16 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates an album
 	 * @param artist
 	 * @param title
-	 * @param patron
 	 * @param isArchived
 	 * @return
 	 * 
 	 * @author Sami
 	 */
 	@Transactional 
-	public Album createAlbum(String artist, String title, Patron patron, boolean isArchived) {
+	public Album createAlbum(String artist, String title, boolean isArchived) {
 		
 		if(title==null || title.trim().length()==0) {
 			throw new IllegalArgumentException("The title of the album cannot be empty!");
@@ -923,12 +872,11 @@ public class ItemService {
 		Album album=(Album)albumer;
 		album.setArtist(artist);
 		album.setTitle(title);
-		album.setPatron(patron);
 		return album;
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific album by artist and title
 	 * @param artist
 	 * @param title
 	 * @return
@@ -951,7 +899,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the albums
 	 * @return
 	 * 
 	 * @author Sami
@@ -962,7 +910,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Creates a newspaper
 	 * @param name
 	 * @param date
 	 * @return
@@ -989,7 +937,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific newspaper by name and date
 	 * @param name
 	 * @param date
 	 * @return
@@ -1013,7 +961,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of albums by artist
 	 * @param artist
 	 * @return
 	 * 
@@ -1034,7 +982,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of albums by title
 	 * @param title
 	 * @return
 	 * 
@@ -1052,7 +1000,7 @@ public class ItemService {
 	
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of books by an author
 	 * @param author
 	 * @return
 	 * 
@@ -1073,7 +1021,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of books by title
 	 * @param title
 	 * @return
 	 * 
@@ -1090,7 +1038,7 @@ public class ItemService {
 	
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of movies by a director
 	 * @param director
 	 * @return
 	 * 
@@ -1111,7 +1059,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of movies by title
 	 * @param name
 	 * @return
 	 * 
@@ -1132,7 +1080,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of journals by name
 	 * @param name
 	 * @return
 	 * 
@@ -1153,7 +1101,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of journals by date
 	 * @param date
 	 * @return
 	 * 
@@ -1169,7 +1117,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of newspapers by name
 	 * @param name
 	 * @return
 	 * 
@@ -1190,7 +1138,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of newpapers by date
 	 * @param date
 	 * @return
 	 * 
@@ -1207,7 +1155,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all of the newspapers
 	 * @return
 	 * 
 	 * @author Sami
@@ -1218,7 +1166,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Create a journal
 	 * @param name
 	 * @param date
 	 * @return
@@ -1245,7 +1193,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a specific journal by name and date
 	 * @param name
 	 * @param date
 	 * @return
@@ -1269,7 +1217,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * DESCRIPTION HERE
+	 * Gets a list of all the journals
 	 * @return
 	 * 
 	 * @author Sami

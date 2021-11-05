@@ -7,10 +7,12 @@ import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 
 public interface OnlineAccountRepository extends CrudRepository<OnlineAccount, Integer>{
 	OnlineAccount findOnlineAccountByUsername(String username);
-    OnlineAccount findOnlineAccountByUser(UserEntity userEntity);
+    OnlineAccount findOnlineAccountByUserEntity(UserEntity userEntity);
     OnlineAccount findOnlineAccountByEmail(String email);
+    OnlineAccount findOnlineAccountById(int id);
 
     boolean existsOnlineAccountByUsername(String username);
-    boolean existsOnlineAccountByUser(UserEntity userEntity);
+    boolean existsOnlineAccountByUserEntity(UserEntity userEntity);
     boolean existsOnlineAccountByEmail(String email);
+    boolean existsOnlineAccountById(int id);
 } 

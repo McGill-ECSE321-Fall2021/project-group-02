@@ -5,7 +5,8 @@ import javax.persistence.*;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@DiscriminatorColumn(name = "user_entity")
+@DiscriminatorColumn(name = "user_type")
+@Table(name = "userEntity")
 public abstract class UserEntity
 {
 
@@ -13,8 +14,12 @@ public abstract class UserEntity
   // MEMBER VARIABLES
   //------------------------
 
-  //User Attributes
+  //User Attributes  
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id")
   private int id;
+  
   private String address;
   private String city;
   private String firstName;
@@ -22,8 +27,9 @@ public abstract class UserEntity
   private int balance;
   
   //User Associations
+  @OneToOne(optional = true, cascade = CascadeType.ALL)
   private OnlineAccount onlineAccount;
-
+  
   //------------------------
   // INTERFACE
   //------------------------
@@ -57,11 +63,6 @@ public abstract class UserEntity
   {
     this.balance = b;
   }
-  
-  public void setId(int aId)
-  {
-	  this.id = aId;
-  }
 
   public void setAddress(String aAddress)
   {
@@ -72,8 +73,7 @@ public abstract class UserEntity
   {
     city = aCity;
   }
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+
   public int getId()
   {
     return id;
@@ -89,7 +89,6 @@ public abstract class UserEntity
     return city;
   }
 
-  @OneToOne(optional = true)
   public OnlineAccount getOnlineAccount()
   {
     return onlineAccount;
