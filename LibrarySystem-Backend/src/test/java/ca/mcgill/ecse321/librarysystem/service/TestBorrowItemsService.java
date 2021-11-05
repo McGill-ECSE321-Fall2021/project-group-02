@@ -52,6 +52,8 @@ public class TestBorrowItemsService {
 	
 	private static final OnlineAccount account1=null;
 	
+	private static final boolean bool= false;
+	
 	@BeforeEach
 	public void setMockOutput() {
 		lenient().when(patronDao.findPatronById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
@@ -145,7 +147,11 @@ public class TestBorrowItemsService {
 		
 		lenient().when(itemDao.findItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
-				
+				Item item=new Book();
+				item.setIsArchived(bool);
+				item.setIsBorrowed(bool);
+				item.setIsDamaged(bool);
+				return item;
 			}
 			else {
 				return null;
@@ -153,6 +159,63 @@ public class TestBorrowItemsService {
 			
 		});
 		
+		lenient().when(itemDao.findItemByIsArchived(bool)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(bool)) {
+				Item item=new Book();
+				item.setIsArchived(bool);
+				item.setIsBorrowed(bool);
+				item.setIsDamaged(bool);
+				return item;
+			}
+			else {
+				return null;
+			}
+			
+		});
+		
+		lenient().when(itemDao.findItemByIsBorrowed(bool)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(bool)) {
+				Item item=new Book();
+				item.setIsArchived(bool);
+				item.setIsBorrowed(bool);
+				item.setIsDamaged(bool);
+				return item;
+			}
+			else {
+				return null;
+			}
+			
+		});
+		
+		lenient().when(itemDao.findItemByIsDamaged(bool)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(bool)) {
+				Item item=new Book();
+				item.setIsArchived(bool);
+				item.setIsBorrowed(bool);
+				item.setIsDamaged(bool);
+				return item;
+			}
+			else {
+				return null;
+			}
+			
+		});
+		
+		lenient().when(itemDao.existsItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
+				Item item=new Book();
+				item.setIsArchived(bool);
+				item.setIsBorrowed(bool);
+				item.setIsDamaged(bool);
+				return item!=null;
+			}
+			else {
+				return null;
+			}
+			
+		});
+        
+		lenient().when(itemDao.save(any(Item.class))).thenAnswer(returnParameterAsAnswer);
 		
 		
 	}
