@@ -75,7 +75,7 @@ public class ItemService {
 			Item itemOfInterest=itemRepository.findItemById(itemId); 
 			if (!itemOfInterest.getIsArchived()) {
 				if(!itemOfInterest.getIsBorrowed()) {
-					for(Album a : patronOfInterest.getBorrowedAlbums()) {
+					for(Album a : albumRepository.findAll()) {
 						if(a.getTitle().equals(itemName)) {
 							List<Album> albums=patronOfInterest.getBorrowedAlbums();
 							albums.add(a);
@@ -85,7 +85,7 @@ public class ItemService {
 						}
 					}
 					
-					for (Movie m : patronOfInterest.getBorrowedMovies()) {
+					for (Movie m : movieRepository.findAll()) {
 						if(m.getTitle().equals(itemName)) {
 							List<Movie> movies=patronOfInterest.getBorrowedMovies();
 							movies.add(m);
@@ -95,7 +95,7 @@ public class ItemService {
 						}
 					}
 					
-					for (Book b : patronOfInterest.getBorrowedBooks()) {
+					for (Book b : bookRepository.findAll()) {
 						if(b.getTitle().equals(itemName)) {
 							List<Book> books=patronOfInterest.getBorrowedBooks();
 							books.add(b);

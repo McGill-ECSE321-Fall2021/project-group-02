@@ -1,11 +1,13 @@
 package ca.mcgill.ecse321.librarysystem.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +19,9 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
+import ca.mcgill.ecse321.librarysystem.dao.BookRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ItemRepository;
+import ca.mcgill.ecse321.librarysystem.dao.OnlineAccountRepository;
 import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.model.Album;
 import ca.mcgill.ecse321.librarysystem.model.Book;
@@ -37,8 +41,15 @@ public class TestBorrowItemsService {
 	@Mock
 	private ItemRepository itemDao;
 	
+	@Mock
+	private BookRepository bookDao;
+	
+	@Mock
+	private OnlineAccountRepository onlineAccountDao;
+	
 	@InjectMocks
 	private ItemService service;
+	
 	
 	private static final int EXISTINGPERSON_ID = 0;
 	private static final int NONEXISTINGPERSON_ID = 455;
@@ -46,11 +57,11 @@ public class TestBorrowItemsService {
 	private static final String testString="tester";
 	private static final String wrongString="wrong";
 	
-	private static final List<Album> album1= null;
-	private static final List<Movie> movie1=null;
-	private static final List<Book> book1=null;
+	private static final List<Album> album1= new ArrayList<Album>();
+	private static final List<Movie> movie1=new ArrayList<Movie>();
+	private static final List<Book> book1=new ArrayList<Book>();
 	
-	private static final OnlineAccount account1=null;
+	private static final OnlineAccount account1=new OnlineAccount();
 	
 	private static final boolean bool= false;
 	
@@ -145,6 +156,10 @@ public class TestBorrowItemsService {
         
 		lenient().when(patronDao.save(any(Patron.class))).thenAnswer(returnParameterAsAnswer);
 		
+		lenient().when(bookDao.save(any(Book.class))).thenAnswer(returnParameterAsAnswer);
+		
+		lenient().when(onlineAccountDao.save(any(OnlineAccount.class))).thenAnswer(returnParameterAsAnswer);
+		
 		lenient().when(itemDao.findItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
 				Item item=new Book();
@@ -238,6 +253,86 @@ public class TestBorrowItemsService {
 		assertEquals("The id of the item cannot be negative!",error);
 	}
 	
+	@Test
+	public void testBorrowItemIdTooLarge() {
+		int patronId=0;
+		String itemName="The Mockingbird";
+		int itemId=900;
+		Item item=null;
+		
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("The item you are looking for does not exist.",error);
+	}
+	
+	@Test
+	public void testBorrowpatronIdTooLarge() {
+		int patronId=900;
+		String itemName="The Mockingbird";
+		int itemId=0;
+		Item item=null;
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Patron ID does not exist.",error);
+	}
+	
+	@Test
+	public void testBorrowItemValid() {
+		
+		//setting up the book
+		Book book=new Book();
+		book.setAuthor("Jonathan");
+		book.setTitle("The Mockingbird");
+		book.setIsArchived(false);
+		book.setIsBorrowed(false);
+		book.setIsDamaged(false);
+		bookDao.save(book);
+		itemDao.save(book);
+		
+		//setting up patron with online account
+		OnlineAccount oa=new OnlineAccount();
+		Patron pat = new Patron();
+	
+		oa.setEmail("pat@hotmail.com");
+		oa.setUsername("patib");
+		oa.setPassword("patpassword");
+		
+		pat.setAddress("123 Test W");
+		pat.setCity("Montreal");
+		
+		onlineAccountDao.save(oa);
+		patronDao.save(pat);
+		oa.setUser(pat);
+		pat.setOnlineAccount(oa);
+		onlineAccountDao.save(oa);
+		patronDao.save(pat);
+		
+		int patronId=pat.getId();
+		String itemName="The Mockingbird";
+		int itemId=book.getId();
+		Item item=null;
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Patron ID does not exist.",error);
+	}
 	
 	
 }
