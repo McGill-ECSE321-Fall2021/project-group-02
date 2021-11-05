@@ -5,6 +5,8 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +17,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import ca.mcgill.ecse321.librarysystem.dao.ItemRepository;
 import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
+import ca.mcgill.ecse321.librarysystem.model.Album;
+import ca.mcgill.ecse321.librarysystem.model.Book;
 import ca.mcgill.ecse321.librarysystem.model.Item;
+import ca.mcgill.ecse321.librarysystem.model.Movie;
+import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 
@@ -38,7 +44,11 @@ public class TestBorrowItemsService {
 	private static final String testString="tester";
 	private static final String wrongString="wrong";
 	
-
+	private static final List<Album> album1= null;
+	private static final List<Movie> movie1=null;
+	private static final List<Book> book1=null;
+	
+	private static final OnlineAccount account1=null;
 	
 	@BeforeEach
 	public void setMockOutput() {
@@ -51,6 +61,10 @@ public class TestBorrowItemsService {
 				patron.setCity(testString);
 				patron.setFirstName(testString);
 				patron.setLastName(testString);
+				patron.setBorrowedAlbums(album1);
+				patron.setBorrowedMovies(movie1);
+				patron.setBorrowedBooks(book1);
+				patron.setOnlineAccount(account1);
 				return patron;
 			}
 			else {
@@ -67,7 +81,11 @@ public class TestBorrowItemsService {
 				patron.setCity(testString);
 				patron.setFirstName(testString);
 				patron.setLastName(testString);
-			
+
+				patron.setBorrowedAlbums(album1);
+				patron.setBorrowedMovies(movie1);
+				patron.setBorrowedBooks(book1);
+				patron.setOnlineAccount(account1);
 				return patron;
 			}
 			else {
@@ -76,7 +94,7 @@ public class TestBorrowItemsService {
 			
 		});
 		
-		lenient().when(patronDao.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+		lenient().when(patronDao.existsPatronById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
 				Patron patron= new Patron();
 				patron.setAddress(testString);
@@ -84,7 +102,32 @@ public class TestBorrowItemsService {
 				patron.setCity(testString);
 				patron.setFirstName(testString);
 				patron.setLastName(testString);
+
+				patron.setBorrowedAlbums(album1);
+				patron.setBorrowedMovies(movie1);
+				patron.setBorrowedBooks(book1);
+				patron.setOnlineAccount(account1);
+				return patron;
+			}
+			else {
+				return null;
+			}
 			
+		});
+		
+		lenient().when(patronDao.existsPatronByAddress(anyString())).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(testString)) {
+				Patron patron= new Patron();
+				patron.setAddress(testString);
+				patron.setBalance(EXISTINGPERSON_ID);
+				patron.setCity(testString);
+				patron.setFirstName(testString);
+				patron.setLastName(testString);
+
+				patron.setBorrowedAlbums(album1);
+				patron.setBorrowedMovies(movie1);
+				patron.setBorrowedBooks(book1);
+				patron.setOnlineAccount(account1);
 				return patron;
 			}
 			else {
