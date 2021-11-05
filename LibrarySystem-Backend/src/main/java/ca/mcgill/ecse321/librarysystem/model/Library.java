@@ -1,5 +1,3 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.sql.Time;
@@ -15,11 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.ManyToOne;
 
-// line 106 "model.ump"
-// line 209 "model.ump"
 @Table(name="library")
 @Entity
-
 public class Library
 {  
   @Id
@@ -36,9 +31,6 @@ public class Library
   //Library Attributes
   private Time openingHour;
   private Time closingHour;
-
-  //Library Associations
-//  private LibrarySoftwareSystem librarySoftwareSystem;
 
   //------------------------
   // INTERFACE
@@ -63,15 +55,5 @@ public class Library
   {
     return closingHour;
   }
-
-//  @OneToOne(cascade=CascadeType.ALL)
-//  public LibrarySoftwareSystem getLibrarySoftwareSystem()
-//  {
-//    return librarySoftwareSystem;
-//  }
-//  public void setLibrarySoftwareSystem(LibrarySoftwareSystem a)
-//  {
-//	this.librarySoftwareSystem = a;
-//  }
 
 }

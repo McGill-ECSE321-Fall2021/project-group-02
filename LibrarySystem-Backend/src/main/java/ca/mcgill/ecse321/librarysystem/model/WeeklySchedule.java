@@ -14,16 +14,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class WeeklySchedule
 {
-  private int id;
-  
-  public void setId(int aId) {
-    this.id = aId;
-  }
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  public int getId() {
-    return this.id;
-  }
   //------------------------
   // MEMBER VARIABLES
   //------------------------
@@ -31,7 +21,9 @@ public class WeeklySchedule
   //WeeklySchedule Attributes
   private Date startDate;
   private Date endDate;
-
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id;
   //WeeklySchedule Associations
   @OneToMany
   private List<DailySchedule> days;
@@ -39,7 +31,15 @@ public class WeeklySchedule
   //------------------------
   // INTERFACE
   //------------------------
+  
+  public void setId(int aId) {
+    this.id = aId;
+  }
 
+  public int getId() {
+    return this.id;
+  }
+  
   public void setStartDate(Date aStartDate)
   {
     startDate = aStartDate;

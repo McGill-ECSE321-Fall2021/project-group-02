@@ -22,7 +22,6 @@ public class Librarian extends UserEntity
   // INTERFACE
   //------------------------
 
-
   public WeeklySchedule getWeeklySchedule()
   {
     return weeklySchedule;

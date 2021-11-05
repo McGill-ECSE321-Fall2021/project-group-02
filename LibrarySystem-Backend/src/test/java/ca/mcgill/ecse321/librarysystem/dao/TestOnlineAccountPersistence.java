@@ -35,22 +35,18 @@ public class TestOnlineAccountPersistence {
 	
 	@AfterEach
 	public void clearDatabase() {
-		onlineAccountRepository.deleteAll();
 		librarianRepository.deleteAll();
+		onlineAccountRepository.deleteAll();
 	}
 	
 	@Test
 	public void testPersistAndLoadOnlineAccount() {
-		
-		String firstName = "TestFirstName";
-		String lastName = "TestLastName";	
 		
 		String address = "TestAddress";
 		String city = "TestCity";
 		Librarian librarian = new Librarian();
 		librarian.setAddress(address);
 		librarian.setCity(city);
-		
 		
 		String username = "TestUsername";
 		String email = "TestEmail";
@@ -59,10 +55,13 @@ public class TestOnlineAccountPersistence {
 		onlineAccount.setUsername(username);
 		onlineAccount.setEmail(email);
 		onlineAccount.setPassword(password);
-		onlineAccount.setUser(librarian);
 		
+		librarian.setOnlineAccount(onlineAccount);
 		librarianRepository.save(librarian);
 		onlineAccountRepository.save(onlineAccount);
+		onlineAccount.setUser(librarian);
+		onlineAccountRepository.save(onlineAccount);
+		
 		
 		// Tests
 		

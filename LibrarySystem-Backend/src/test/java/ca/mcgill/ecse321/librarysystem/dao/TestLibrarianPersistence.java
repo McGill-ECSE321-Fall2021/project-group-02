@@ -28,9 +28,9 @@ public class TestLibrarianPersistence {
 	private DailyScheduleRepository dailyScheduleRepository;
 @AfterEach
 public void clearDatabase() {
+	librarianRepository.deleteAll();
 	onlineAccountRepository.deleteAll();
 	weeklyScheduleRepository.deleteAll();
-	librarianRepository.deleteAll();
 	dailyScheduleRepository.deleteAll();
 }
 

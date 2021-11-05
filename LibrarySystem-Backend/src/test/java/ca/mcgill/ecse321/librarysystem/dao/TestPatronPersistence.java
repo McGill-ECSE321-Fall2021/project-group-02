@@ -20,13 +20,11 @@ public class TestPatronPersistence {
 	@Autowired
 	private OnlineAccountRepository onlineAccountRepository;
 	
-	
 	@AfterEach
 	public void clearDatabase() {
 		patronRepository.deleteAll();
 		onlineAccountRepository.deleteAll();
 	}
-	
 	
 	@Test
 	public void testPersistAndLoadPatron() {
@@ -48,7 +46,7 @@ public class TestPatronPersistence {
 		onlineAccountRepository.save(oa);
 		patronRepository.save(pat);
 		
-		//Check online account setting patron??
+		//Check online account setting patron
 		oa = null;
 		oa = onlineAccountRepository.findOnlineAccountByUserEntity(pat);
 		assertNotNull(oa);

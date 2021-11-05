@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@DiscriminatorColumn(name = "user_entity")
+@DiscriminatorColumn(name = "user_type")
 @Table(name = "userEntity")
 public abstract class UserEntity
 {
@@ -29,8 +29,6 @@ public abstract class UserEntity
   //User Associations
   @OneToOne(optional = true, cascade = CascadeType.ALL)
   private OnlineAccount onlineAccount;
-
-  
   
   //------------------------
   // INTERFACE
