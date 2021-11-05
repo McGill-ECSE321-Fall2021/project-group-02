@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
@@ -14,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.ItemRepository;
 import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
@@ -106,7 +108,7 @@ public class TestBorrowItemsService {
 				patron.setBorrowedMovies(movie1);
 				patron.setBorrowedBooks(book1);
 				patron.setOnlineAccount(account1);
-				return patron;
+				return patron!=null;
 			}
 			else {
 				return null;
@@ -127,13 +129,19 @@ public class TestBorrowItemsService {
 				patron.setBorrowedMovies(movie1);
 				patron.setBorrowedBooks(book1);
 				patron.setOnlineAccount(account1);
-				return patron;
+				return patron!=null;
 			}
 			else {
 				return null;
 			}
 			
 		});
+		
+		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
+            return invocation.getArgument(0);
+        };
+        
+		lenient().when(patronDao.save(any(Patron.class))).thenAnswer(returnParameterAsAnswer);
 		
 		lenient().when(itemDao.findItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
