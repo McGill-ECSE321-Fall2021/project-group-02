@@ -447,7 +447,7 @@ public class TestCreateOnlineAccountService {
 	}
 
 	@Test
-	public void TestCreateNewAccountInvalidEmail5() {
+	public void TestCreateNewAccountInvalidEmail4() {
 		String error = "";
 		String firstName = "John";
 		String lastName = "Doe";
@@ -468,7 +468,7 @@ public class TestCreateOnlineAccountService {
 	}
 	
 	@Test
-	public void TestCreateNewAccountInvalidEmail6() {
+	public void TestCreateNewAccountInvalidEmail5() {
 		String error = "";
 		String firstName = "John";
 		String lastName = "Doe";
@@ -620,6 +620,6 @@ public class TestCreateOnlineAccountService {
 		}
 		
 		assertNull(account);
-		assertEquals("ID does not exist.\n", error);
+		assertEquals("User with ID 123 does not exist.\n", error);
 	}
 }

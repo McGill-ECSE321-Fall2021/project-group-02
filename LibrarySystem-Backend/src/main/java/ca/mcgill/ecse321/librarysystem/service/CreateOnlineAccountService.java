@@ -76,7 +76,9 @@ public class CreateOnlineAccountService {
 		// verify ID
 		UserEntity user = findUserById(id);
 		if (user==null) {
-			error += "ID does not exist.\n";
+			error += "User with ID ";
+			error += id;
+			error += " does not exist.\n";
 			throw new IllegalArgumentException(error);
 		}
 		
