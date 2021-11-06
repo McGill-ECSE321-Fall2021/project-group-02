@@ -254,11 +254,11 @@ public class ManagingEmploymentService {
 		if(!(h > -1)) {
 			throw new IllegalArgumentException("IDs have to be positive.");
 		}
-		if(!verifyStringLength(fn)) error += "First name cannot be empty or too long.";
-		if(error.length() > 0) {
-			error += " & last name cannot be empty or too long.";
+		
+		if(!verifyStringLength(fn) || !verifyStringLength(ln)) {
+			error += "First & last name cannot be empty or too long.";
 		}
-		if(!verifyStringLength(ln)) error += "Last name cannot be empty or too long.";
+		
 		if (error.length() > 0) throw new IllegalArgumentException(error);
 		
 		if(headLibrarianRepository.existsHeadLibrarianById(h)) {

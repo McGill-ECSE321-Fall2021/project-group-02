@@ -592,6 +592,54 @@ public class TestManagingEmploymentService {
 		assertEquals(0,l.size());
 	}
 	
+	@Test
+	public void TestGetAllLibrariansByEmptyFirstAndEmptyLastName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "", "");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("First & last name cannot be empty or too long.",error);
+	}
+	
+	@Test
+	public void TestGetAllLibrariansByLongFirstAndLongLastName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hjdfhskjfdslkjfkldsjkldfsjfkldsjkdjklfsdjkljflsjdklfjsljflks", "bzzzkdfjslkfsjlkdsjklfdjlksfjdkljdfskljfdklsjldfsjdfsjdfksjsdkjlkdfsjldjlkjlsk");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("First & last name cannot be empty or too long.",error);
+	}
+	
+	@Test
+	public void TestGetAllLibrariansByFirstAndEmptyLastName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, "");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("First & last name cannot be empty or too long.",error);
+	}
+	
+	@Test
+	public void TestGetAllLibrariansByLongFirstAndLastName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hjdfhskjfdslkjfkldsjkldfsjfkldsjkdjklfsdjkljflsjdklfjsljflks", LIBRARIAN_LASTNAME);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("First & last name cannot be empty or too long.",error);
+	}
+	
 	
 	@Test
 	public void TestGetAllLibrariansByFirstName() {
@@ -643,6 +691,30 @@ public class TestManagingEmploymentService {
 		assertEquals(0,l.size());
 	}
 	
+	@Test
+	public void TestGetAllLibrariansByEmptyFirstName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByFirstName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("First name cannot be empty or too long.",error);
+	}
+	
+	@Test
+	public void TestGetAllLibrariansByLongFirstName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByFirstName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hahjdfksfjkldjskdfsjljldflklkfsdkljslfskda");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("First name cannot be empty or too long.",error);
+	}
+	
 	
 	@Test
 	public void TestGetAllLibrariansByLastName() {
@@ -674,7 +746,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstName(-10, LIBRARIAN_LASTNAME);
+			l = service.getAllLibrariansByLastName(-10, LIBRARIAN_LASTNAME);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -686,11 +758,35 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hehe");
+			l = service.getAllLibrariansByLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hehe");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals(0,l.size());
+	}
+	
+	@Test
+	public void TestGetAllLibrariansByEmptyLastName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Last name cannot be empty or too long.",error);
+	}
+	
+	@Test
+	public void TestGetAllLibrariansByLongLastName() {
+		error="";
+		List<Librarian> l = null;
+		try {
+			l = service.getAllLibrariansByLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hekdkajslkdjskkjfdslkfdjsldkjklakldjklasjdjskaljkldshe");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Last name cannot be empty or too long.",error);
 	}
 	
 	@Test
