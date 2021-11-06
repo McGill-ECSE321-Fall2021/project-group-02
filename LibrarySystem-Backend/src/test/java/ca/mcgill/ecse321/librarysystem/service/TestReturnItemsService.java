@@ -216,7 +216,7 @@ public class TestReturnItemsService {
 	 * Tests that an item was properly set as damaged.
 	 */
 	@Test
-	public void testValidDamageItem() {
+	public void testDamageItemValid() {
 		try {
 			Item damagedItem = itemService.setDamagedItem(BOOK_ID, HEADLIBRARIAN_ID);
 			assertTrue(damagedItem.getIsDamaged());
