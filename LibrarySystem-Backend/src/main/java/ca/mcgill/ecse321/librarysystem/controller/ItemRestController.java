@@ -225,7 +225,7 @@ public class ItemRestController {
 	 * @author Sami
 	 */
 	@PostMapping(value = {"/createBook/{title}", "/createBook/{title}/"} )
-	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "isArchived") boolean isArchived) {
 		Book b= itemService.createBook(authorName, bookTitle, isArchived);
 		return convertToDto(b);
 	}

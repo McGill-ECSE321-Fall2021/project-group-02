@@ -68,16 +68,16 @@ public class TestBorrowItemsService {
 	private static final int EXISTINGPERSON_ID = 0;
 	private static final int NONEXISTINGPERSON_ID = 455;
 	
-	private static final String testString="tester";
-	private static final String wrongString="wrong";
+	private static final String TESTSTRING="tester";
+	private static final String WRONGSTRING="wrong";
 	
-	private static final List<Album> album1= new ArrayList<Album>();
-	private static final List<Movie> movie1=new ArrayList<Movie>();
+	private static final List<Album> ALBUM1= new ArrayList<Album>();
+	private static final List<Movie> MOVIE1=new ArrayList<Movie>();
 	private static final List<Book> book1=new ArrayList<Book>();
 	
-	private static final OnlineAccount account1=new OnlineAccount();
+	private static final OnlineAccount ACCOUNT1=new OnlineAccount();
 	
-	private static final boolean bool= false;
+	private static final boolean BOOL= false;
 	
 	@BeforeEach
 	public void setMockOutput() {
@@ -85,11 +85,11 @@ public class TestBorrowItemsService {
 		lenient().when(albumDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
 			ArrayList<Album> tempList = new ArrayList<>();
 			Album album = new Album();
-			album.setArtist(testString);
-			album.setIsArchived(bool);
-			album.setIsBorrowed(bool);
-			album.setIsDamaged(bool);
-			album.setTitle(testString);
+			album.setArtist(TESTSTRING);
+			album.setIsArchived(BOOL);
+			album.setIsBorrowed(BOOL);
+			album.setIsDamaged(BOOL);
+			album.setTitle(TESTSTRING);
 			tempList.add(album);
 			return tempList;
 			
@@ -98,11 +98,11 @@ public class TestBorrowItemsService {
 		lenient().when(bookDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
 			ArrayList<Book> tempList = new ArrayList<>();
 			Book book = new Book();
-			book.setAuthor(testString);
-			book.setIsArchived(bool);
-			book.setIsBorrowed(bool);
-			book.setIsDamaged(bool);
-			book.setTitle(testString);
+			book.setAuthor(TESTSTRING);
+			book.setIsArchived(BOOL);
+			book.setIsBorrowed(BOOL);
+			book.setIsDamaged(BOOL);
+			book.setTitle(TESTSTRING);
 			tempList.add(book);
 			return tempList;
 			
@@ -111,11 +111,11 @@ public class TestBorrowItemsService {
 		lenient().when(movieDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
 			ArrayList<Movie> tempList = new ArrayList<>();
 			Movie movie = new Movie();
-			movie.setDirector(testString);
-			movie.setIsArchived(bool);
-			movie.setIsBorrowed(bool);
-			movie.setIsDamaged(bool);
-			movie.setTitle(testString);
+			movie.setDirector(TESTSTRING);
+			movie.setIsArchived(BOOL);
+			movie.setIsBorrowed(BOOL);
+			movie.setIsDamaged(BOOL);
+			movie.setTitle(TESTSTRING);
 			tempList.add(movie);
 			return tempList;
 			
@@ -125,15 +125,15 @@ public class TestBorrowItemsService {
 			//may have to add online account
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
 				Patron patron= new Patron();
-				patron.setAddress(testString);
+				patron.setAddress(TESTSTRING);
 				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(testString);
-				patron.setFirstName(testString);
-				patron.setLastName(testString);
-				patron.setBorrowedAlbums(album1);
-				patron.setBorrowedMovies(movie1);
+				patron.setCity(TESTSTRING);
+				patron.setFirstName(TESTSTRING);
+				patron.setLastName(TESTSTRING);
+				patron.setBorrowedAlbums(ALBUM1);
+				patron.setBorrowedMovies(MOVIE1);
 				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(account1);
+				patron.setOnlineAccount(ACCOUNT1);
 				return patron;
 			}
 			else {
@@ -143,18 +143,18 @@ public class TestBorrowItemsService {
 		});
 		
 		lenient().when(patronDao.findPatronByAddress(anyString())).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(testString)) {
+			if(invocation.getArgument(0).equals(TESTSTRING)) {
 				Patron patron= new Patron();
-				patron.setAddress(testString);
+				patron.setAddress(TESTSTRING);
 				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(testString);
-				patron.setFirstName(testString);
-				patron.setLastName(testString);
+				patron.setCity(TESTSTRING);
+				patron.setFirstName(TESTSTRING);
+				patron.setLastName(TESTSTRING);
 
-				patron.setBorrowedAlbums(album1);
-				patron.setBorrowedMovies(movie1);
+				patron.setBorrowedAlbums(ALBUM1);
+				patron.setBorrowedMovies(MOVIE1);
 				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(account1);
+				patron.setOnlineAccount(ACCOUNT1);
 				return patron;
 			}
 			else {
@@ -166,15 +166,15 @@ public class TestBorrowItemsService {
 		lenient().when(patronDao.existsPatronById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
 				Patron patron= new Patron();
-				patron.setAddress(testString);
+				patron.setAddress(TESTSTRING);
 				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(testString);
-				patron.setFirstName(testString);
-				patron.setLastName(testString);
-				patron.setBorrowedAlbums(album1);
-				patron.setBorrowedMovies(movie1);
+				patron.setCity(TESTSTRING);
+				patron.setFirstName(TESTSTRING);
+				patron.setLastName(TESTSTRING);
+				patron.setBorrowedAlbums(ALBUM1);
+				patron.setBorrowedMovies(MOVIE1);
 				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(account1);
+				patron.setOnlineAccount(ACCOUNT1);
 				return patron!=null;
 			}
 			else {
@@ -184,18 +184,18 @@ public class TestBorrowItemsService {
 		});
 		
 		lenient().when(patronDao.existsPatronByAddress(anyString())).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(testString)) {
+			if(invocation.getArgument(0).equals(TESTSTRING)) {
 				Patron patron= new Patron();
-				patron.setAddress(testString);
+				patron.setAddress(TESTSTRING);
 				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(testString);
-				patron.setFirstName(testString);
-				patron.setLastName(testString);
+				patron.setCity(TESTSTRING);
+				patron.setFirstName(TESTSTRING);
+				patron.setLastName(TESTSTRING);
 
-				patron.setBorrowedAlbums(album1);
-				patron.setBorrowedMovies(movie1);
+				patron.setBorrowedAlbums(ALBUM1);
+				patron.setBorrowedMovies(MOVIE1);
 				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(account1);
+				patron.setOnlineAccount(ACCOUNT1);
 				return patron!=null;
 			}
 			else {
@@ -222,10 +222,12 @@ public class TestBorrowItemsService {
 		
 		lenient().when(itemDao.findItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
+				//set item id.
+				//
 				Item item=new Book();
-				item.setIsArchived(bool);
-				item.setIsBorrowed(bool);
-				item.setIsDamaged(bool);
+				item.setIsArchived(BOOL);
+				item.setIsBorrowed(BOOL);
+				item.setIsDamaged(BOOL);
 				return item;
 			}
 			else {
@@ -234,12 +236,12 @@ public class TestBorrowItemsService {
 			
 		});
 		
-		lenient().when(itemDao.findItemByIsArchived(bool)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(bool)) {
+		lenient().when(itemDao.findItemByIsArchived(BOOL)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(BOOL)) {
 				Item item=new Book();
-				item.setIsArchived(bool);
-				item.setIsBorrowed(bool);
-				item.setIsDamaged(bool);
+				item.setIsArchived(BOOL);
+				item.setIsBorrowed(BOOL);
+				item.setIsDamaged(BOOL);
 				return item;
 			}
 			else {
@@ -248,12 +250,12 @@ public class TestBorrowItemsService {
 			
 		});
 		
-		lenient().when(itemDao.findItemByIsBorrowed(bool)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(bool)) {
+		lenient().when(itemDao.findItemByIsBorrowed(BOOL)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(BOOL)) {
 				Item item=new Book();
-				item.setIsArchived(bool);
-				item.setIsBorrowed(bool);
-				item.setIsDamaged(bool);
+				item.setIsArchived(BOOL);
+				item.setIsBorrowed(BOOL);
+				item.setIsDamaged(BOOL);
 				return item;
 			}
 			else {
@@ -262,12 +264,12 @@ public class TestBorrowItemsService {
 			
 		});
 		
-		lenient().when(itemDao.findItemByIsDamaged(bool)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(bool)) {
+		lenient().when(itemDao.findItemByIsDamaged(BOOL)).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(BOOL)) {
 				Item item=new Book();
-				item.setIsArchived(bool);
-				item.setIsBorrowed(bool);
-				item.setIsDamaged(bool);
+				item.setIsArchived(BOOL);
+				item.setIsBorrowed(BOOL);
+				item.setIsDamaged(BOOL);
 				return item;
 			}
 			else {
@@ -279,9 +281,9 @@ public class TestBorrowItemsService {
 		lenient().when(itemDao.existsItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
 			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
 				Item item=new Book();
-				item.setIsArchived(bool);
-				item.setIsBorrowed(bool);
-				item.setIsDamaged(bool);
+				item.setIsArchived(BOOL);
+				item.setIsBorrowed(BOOL);
+				item.setIsDamaged(BOOL);
 				return item!=null;
 			}
 			else {
@@ -382,6 +384,7 @@ public class TestBorrowItemsService {
 		Item item=null;
 		String error=null;
 		try {
+			//replce by immutable
 			item=service.borrowItem(itemId, itemName, patronId);
 		}
 		catch(IllegalArgumentException e) {
