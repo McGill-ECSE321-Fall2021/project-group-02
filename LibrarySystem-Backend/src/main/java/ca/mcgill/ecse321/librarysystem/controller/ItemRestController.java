@@ -71,8 +71,8 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@PostMapping(value = { "/retur/{name}", "/return/{name}/"})
-	public ItemDto returnItem(@PathVariable("name") String itemName,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
+	@PostMapping(value = { "/return/{itemId}", "/return/{itemId}/"})
+	public ItemDto returnItem(@PathVariable("itemId") int itemId,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
 		Item i = itemService.returnItem(itemDto.getID(), patronDto.getId());
 		return convertToDto(i);
 	}
