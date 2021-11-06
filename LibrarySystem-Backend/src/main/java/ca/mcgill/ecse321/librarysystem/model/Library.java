@@ -24,6 +24,11 @@ public class Library
   public int getId() {
     return this.id;
   }
+  
+  public void setId(int id) {
+	  this.id = id;
+  }
+  
   //------------------------
   // MEMBER VARIABLES
   //------------------------
