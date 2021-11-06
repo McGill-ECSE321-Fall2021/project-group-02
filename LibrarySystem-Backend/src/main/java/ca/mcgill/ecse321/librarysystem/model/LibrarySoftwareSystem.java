@@ -67,6 +67,10 @@ public class LibrarySoftwareSystem
   
   //----------------------------------------------SETTERS
   
+  public void setId(int id) {
+	  this.id = id;
+  }
+  
   public void setItem(List<Item> i)
   {
     this.items = i;
