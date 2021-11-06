@@ -1,7 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.dao;
 
 import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
-import ca.mcgill.ecse321.librarysystem.model.UserEntity;
+
 
 import org.springframework.data.repository.CrudRepository;
 

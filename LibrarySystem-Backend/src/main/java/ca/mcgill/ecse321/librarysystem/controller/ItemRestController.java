@@ -29,7 +29,6 @@ import java.sql.Date;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/returnItem")
 public class ItemRestController {
 	
 	@Autowired
