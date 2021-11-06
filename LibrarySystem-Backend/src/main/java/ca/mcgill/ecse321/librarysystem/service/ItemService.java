@@ -36,11 +36,12 @@ public class ItemService {
 	 ************************************/
 	
 	/** 
-	 * Sets an item as borrowed by a specific patron
+	 * Allows a patron to borrow an item.
 	 * @param itemId
 	 * @param itemName
 	 * @param patronId
-	 * @return
+	 * @return Item if input is correct and item not borrowed or in the archives
+	 * @return throws IllegalArgumentException if input is incorrect or if the item is borrowed or in the archives.
 	 * 
 	 * @author Sami
 	 */
@@ -66,6 +67,7 @@ public class ItemService {
 		else {
 			throw new IllegalArgumentException("Patron ID does not exist.");
 		}
+		
 		
 		if(patronOfInterest.getBorrowedAlbums().size()+patronOfInterest.getBorrowedMovies().size()+patronOfInterest.getBorrowedBooks().size()>=5) {
 			throw new IllegalArgumentException("Maximum number of borrowed items (5) has been reached.");
@@ -683,7 +685,7 @@ public class ItemService {
 	 * Creates an album
 	 * @param title
 	 * @param artist
-	 * @return
+	 * @return Album
 	 * 
 	 * @author Sami
 	 */
@@ -711,7 +713,7 @@ public class ItemService {
 	 * @param author
 	 * @param title
 	 * @param isArchived
-	 * @return
+	 * @return Book
 	 * 
 	 * @author Sami
 	 */
@@ -742,7 +744,7 @@ public class ItemService {
 	 * Gets a specific book by title and author
 	 * @param title
 	 * @param author
-	 * @return
+	 * @return Book
 	 * 
 	 * @author Sami
 	 */
@@ -764,7 +766,7 @@ public class ItemService {
 		
 	/**
 	 * Gets a list of all of the books
-	 * @return
+	 * @return List<Book>
 	 * 
 	 * @author Sami
 	 */
@@ -778,7 +780,7 @@ public class ItemService {
 	 * @param director
 	 * @param title
 	 * @param isArchived
-	 * @return
+	 * @return Movie
 	 * 
 	 * @author Sami
 	 */
@@ -810,7 +812,7 @@ public class ItemService {
 	 * Gets a specific movie by title and director
 	 * @param director
 	 * @param title
-	 * @return
+	 * @return Movie
 	 * 
 	 * @author Sami
 	 */
@@ -832,7 +834,7 @@ public class ItemService {
 		
 	/**
 	 * Gets a list of all of the movies
-	 * @return
+	 * @return List<Movie>
 	 * 
 	 * @author Sami
 	 */
@@ -846,7 +848,7 @@ public class ItemService {
 	 * @param artist
 	 * @param title
 	 * @param isArchived
-	 * @return
+	 * @return Album
 	 * 
 	 * @author Sami
 	 */
@@ -875,7 +877,7 @@ public class ItemService {
 	 * Gets a specific album by artist and title
 	 * @param artist
 	 * @param title
-	 * @return
+	 * @return Album
 	 * 
 	 * @author Sami
 	 */
@@ -896,7 +898,7 @@ public class ItemService {
 	
 	/**
 	 * Gets a list of all of the albums
-	 * @return
+	 * @return List<Album>
 	 * 
 	 * @author Sami
 	 */
@@ -909,7 +911,7 @@ public class ItemService {
 	 * Creates a newspaper
 	 * @param name
 	 * @param date
-	 * @return
+	 * @return Newspaper
 	 * 
 	 * @author Sami
 	 */
@@ -936,7 +938,7 @@ public class ItemService {
 	 * Gets a specific newspaper by name and date
 	 * @param name
 	 * @param date
-	 * @return
+	 * @return Newspaper
 	 * 
 	 * @author Sami
 	 */
@@ -959,7 +961,7 @@ public class ItemService {
 	/**
 	 * Gets a list of albums by artist
 	 * @param artist
-	 * @return
+	 * @return List<Newspaper>
 	 * 
 	 * @author Sami
 	 */
@@ -998,7 +1000,7 @@ public class ItemService {
 	/**
 	 * Gets a list of books by an author
 	 * @param author
-	 * @return
+	 * @return List<Book>
 	 * 
 	 * @author Sami
 	 */
@@ -1036,7 +1038,7 @@ public class ItemService {
 	/**
 	 * Gets a list of movies by a director
 	 * @param director
-	 * @return
+	 * @return List<Movie>
 	 * 
 	 * @author Sami
 	 */
@@ -1057,7 +1059,7 @@ public class ItemService {
 	/**
 	 * Gets a list of movies by title
 	 * @param name
-	 * @return
+	 * @return List<Movie>
 	 * 
 	 * @author Sami
 	 */
@@ -1078,7 +1080,7 @@ public class ItemService {
 	/**
 	 * Gets a list of journals by name
 	 * @param name
-	 * @return
+	 * @return List<Journal>
 	 * 
 	 * @author Sami
 	 */
@@ -1115,7 +1117,7 @@ public class ItemService {
 	/**
 	 * Gets a list of newspapers by name
 	 * @param name
-	 * @return
+	 * @return List<Newspaper>
 	 * 
 	 * @author Sami
 	 */
@@ -1152,7 +1154,7 @@ public class ItemService {
 	
 	/**
 	 * Gets a list of all of the newspapers
-	 * @return
+	 * @return List<Newsapaper>
 	 * 
 	 * @author Sami
 	 */
@@ -1165,7 +1167,7 @@ public class ItemService {
 	 * Create a journal
 	 * @param name
 	 * @param date
-	 * @return
+	 * @return Journal
 	 * 
 	 * @author Sami
 	 */
@@ -1192,7 +1194,7 @@ public class ItemService {
 	 * Gets a specific journal by name and date
 	 * @param name
 	 * @param date
-	 * @return
+	 * @return Journal
 	 * 
 	 * @author Sami
 	 */
@@ -1214,7 +1216,7 @@ public class ItemService {
 	
 	/**
 	 * Gets a list of all the journals
-	 * @return
+	 * @return List<Journal>
 	 * 
 	 * @author Sami
 	 */

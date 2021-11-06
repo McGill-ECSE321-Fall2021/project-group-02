@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import ca.mcgill.ecse321.librarysystem.dao.AlbumRepository;
 import ca.mcgill.ecse321.librarysystem.dao.BookRepository;
@@ -65,22 +63,36 @@ public class TestBorrowItemsService {
 	private ItemService service;
 	
 	
-	private static final int EXISTINGPERSON_ID = 0;
-	private static final int NONEXISTINGPERSON_ID = 455;
+	private static final int EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID = 0;
+	private static final int EXISTINGBOOK_ARCHIVED_ID = 1;
+	private static final int NONEXISTINGBOOK_ID = 455;
+	private static final int EXISTINGBOOK_NONARCHIVED_BORROWED_ID = 2;
+	
+	private static final int EXISTINGPATRON_ID=0;
+	private static final int NONEXISTINGPATRON_ID = 455;
+	
+	private static final String EXISTINGBOOK_TITLE="Mockingbird";
+	private static final String NONEXISTINGBOOK_TITLE="lala";
 	
 	private static final String TESTSTRING="tester";
-	private static final String WRONGSTRING="wrong";
 	
 	private static final List<Album> ALBUM1= new ArrayList<Album>();
 	private static final List<Movie> MOVIE1=new ArrayList<Movie>();
-	private static final List<Book> book1=new ArrayList<Book>();
+	private static final List<Book> BOOK1=new ArrayList<Book>();
 	
-	private static final OnlineAccount ACCOUNT1=new OnlineAccount();
 	
 	private static final boolean BOOL= false;
 	
+	/**
+	 * Creates mock functions to prevent our tests from accessing the database.
+	 * We only test books in findItemById() and existsItemById
+	 * @author Sami
+	 * 
+	 * @return void
+	 */
 	@BeforeEach
 	public void setMockOutput() {
+		
 		
 		lenient().when(albumDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
 			ArrayList<Album> tempList = new ArrayList<>();
@@ -98,11 +110,7 @@ public class TestBorrowItemsService {
 		lenient().when(bookDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
 			ArrayList<Book> tempList = new ArrayList<>();
 			Book book = new Book();
-			book.setAuthor(TESTSTRING);
-			book.setIsArchived(BOOL);
-			book.setIsBorrowed(BOOL);
-			book.setIsDamaged(BOOL);
-			book.setTitle(TESTSTRING);
+			book.setTitle(EXISTINGBOOK_TITLE);
 			tempList.add(book);
 			return tempList;
 			
@@ -122,18 +130,13 @@ public class TestBorrowItemsService {
 		});
 		
 		lenient().when(patronDao.findPatronById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
-			//may have to add online account
-			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
+			
+			if(invocation.getArgument(0).equals(EXISTINGPATRON_ID)) {
 				Patron patron= new Patron();
-				patron.setAddress(TESTSTRING);
-				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(TESTSTRING);
-				patron.setFirstName(TESTSTRING);
-				patron.setLastName(TESTSTRING);
+				patron.setId(EXISTINGPATRON_ID);
 				patron.setBorrowedAlbums(ALBUM1);
+				patron.setBorrowedBooks(BOOK1);
 				patron.setBorrowedMovies(MOVIE1);
-				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(ACCOUNT1);
 				return patron;
 			}
 			else {
@@ -142,40 +145,13 @@ public class TestBorrowItemsService {
 			
 		});
 		
-		lenient().when(patronDao.findPatronByAddress(anyString())).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(TESTSTRING)) {
-				Patron patron= new Patron();
-				patron.setAddress(TESTSTRING);
-				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(TESTSTRING);
-				patron.setFirstName(TESTSTRING);
-				patron.setLastName(TESTSTRING);
-
-				patron.setBorrowedAlbums(ALBUM1);
-				patron.setBorrowedMovies(MOVIE1);
-				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(ACCOUNT1);
-				return patron;
-			}
-			else {
-				return null;
-			}
-			
-		});
 		
 		lenient().when(patronDao.existsPatronById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
-				Patron patron= new Patron();
-				patron.setAddress(TESTSTRING);
-				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(TESTSTRING);
-				patron.setFirstName(TESTSTRING);
-				patron.setLastName(TESTSTRING);
-				patron.setBorrowedAlbums(ALBUM1);
-				patron.setBorrowedMovies(MOVIE1);
-				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(ACCOUNT1);
-				return patron!=null;
+			if(invocation.getArgument(0).equals(EXISTINGPATRON_ID)) {
+				return true;
+			}
+			if(invocation.getArgument(0).equals(NONEXISTINGPATRON_ID)) {
+				return false;
 			}
 			else {
 				return null;
@@ -183,26 +159,7 @@ public class TestBorrowItemsService {
 			
 		});
 		
-		lenient().when(patronDao.existsPatronByAddress(anyString())).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(TESTSTRING)) {
-				Patron patron= new Patron();
-				patron.setAddress(TESTSTRING);
-				patron.setBalance(EXISTINGPERSON_ID);
-				patron.setCity(TESTSTRING);
-				patron.setFirstName(TESTSTRING);
-				patron.setLastName(TESTSTRING);
-
-				patron.setBorrowedAlbums(ALBUM1);
-				patron.setBorrowedMovies(MOVIE1);
-				patron.setBorrowedBooks(book1);
-				patron.setOnlineAccount(ACCOUNT1);
-				return patron!=null;
-			}
-			else {
-				return null;
-			}
-			
-		});
+		
 		
 		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
             return invocation.getArgument(0);
@@ -220,71 +177,47 @@ public class TestBorrowItemsService {
 		
 		lenient().when(onlineAccountDao.save(any(OnlineAccount.class))).thenAnswer(returnParameterAsAnswer);
 		
-		lenient().when(itemDao.findItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
-				//set item id.
-				//
-				Item item=new Book();
-				item.setIsArchived(BOOL);
-				item.setIsBorrowed(BOOL);
-				item.setIsDamaged(BOOL);
-				return item;
+		lenient().when(itemDao.findItemById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID)) {
+				Book book = new Book();
+				book.setId(EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID);
+				book.setTitle(EXISTINGBOOK_TITLE);
+				return book;
 			}
+			if(invocation.getArgument(0).equals(EXISTINGBOOK_ARCHIVED_ID)) {
+				Book book = new Book();
+				book.setId(EXISTINGBOOK_ARCHIVED_ID);
+				book.setTitle(EXISTINGBOOK_TITLE);
+				book.setIsArchived(true);
+				return book;
+			}
+			if(invocation.getArgument(0).equals(EXISTINGBOOK_NONARCHIVED_BORROWED_ID)) {
+				Book book = new Book();
+				book.setId(EXISTINGBOOK_NONARCHIVED_BORROWED_ID);
+				book.setTitle(EXISTINGBOOK_TITLE);
+				book.setIsBorrowed(true);
+				return book;
+			}
+			
 			else {
 				return null;
 			}
 			
 		});
 		
-		lenient().when(itemDao.findItemByIsArchived(BOOL)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(BOOL)) {
-				Item item=new Book();
-				item.setIsArchived(BOOL);
-				item.setIsBorrowed(BOOL);
-				item.setIsDamaged(BOOL);
-				return item;
-			}
-			else {
-				return null;
-			}
-			
-		});
 		
-		lenient().when(itemDao.findItemByIsBorrowed(BOOL)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(BOOL)) {
-				Item item=new Book();
-				item.setIsArchived(BOOL);
-				item.setIsBorrowed(BOOL);
-				item.setIsDamaged(BOOL);
-				return item;
+		lenient().when(itemDao.existsItemById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			if(invocation.getArgument(0).equals(EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID)) {
+				return true;
 			}
-			else {
-				return null;
+			if(invocation.getArgument(0).equals(EXISTINGBOOK_ARCHIVED_ID)) {
+				return true;
 			}
-			
-		});
-		
-		lenient().when(itemDao.findItemByIsDamaged(BOOL)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(BOOL)) {
-				Item item=new Book();
-				item.setIsArchived(BOOL);
-				item.setIsBorrowed(BOOL);
-				item.setIsDamaged(BOOL);
-				return item;
+			if(invocation.getArgument(0).equals(EXISTINGBOOK_NONARCHIVED_BORROWED_ID)) {
+				return true;
 			}
-			else {
-				return null;
-			}
-			
-		});
-		
-		lenient().when(itemDao.existsItemById(EXISTINGPERSON_ID)).thenAnswer((InvocationOnMock invocation) -> {
-			if(invocation.getArgument(0).equals(EXISTINGPERSON_ID)) {
-				Item item=new Book();
-				item.setIsArchived(BOOL);
-				item.setIsBorrowed(BOOL);
-				item.setIsDamaged(BOOL);
-				return item!=null;
+			if(invocation.getArgument(0).equals(NONEXISTINGBOOK_ID)) {
+				return false;
 			}
 			else {
 				return null;
@@ -297,29 +230,39 @@ public class TestBorrowItemsService {
 		
 	}
 	
+	/**
+	 * In this section we test our business method borrowItem in the ItemService class.
+	 * 
+	 * We first make sure that the method works with valid inputs.
+	 * We then enter an invalid itemId, patronId, and bookTitle respectively in the next three test methods.
+	 * In the last 2 test methods, we just make sure that the archivedItem and alreadyBorrowedItem errors are raised.
+	 * @author Sami
+	 */
+	
 	@Test
-	public void testBorrowItemNegativeId() {
-		int patronId=0;
-		String itemName="The Mockingbird";
-		int itemId=-2;
-		Item item=null;
+	public void testBorrowItemsValid() {
 		
+		int itemId=EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID;
+		String itemName= EXISTINGBOOK_TITLE;
+		int patronId=EXISTINGPATRON_ID;
+		Item item=null;
 		String error=null;
 		try {
+			
 			item=service.borrowItem(itemId, itemName, patronId);
 		}
 		catch(IllegalArgumentException e) {
 			error=e.getMessage();
 		}
-		assertNull(item);
-		assertEquals("The id of the item cannot be negative!",error);
+		assertNotNull(item);
+		assertNull(error);
 	}
 	
 	@Test
-	public void testBorrowItemIdTooLarge() {
-		int patronId=0;
-		String itemName="The Mockingbird";
-		int itemId=900;
+	public void testBorrowItemsInvalidItemId() {
+		int patronId=EXISTINGPATRON_ID;
+		String itemName=EXISTINGBOOK_TITLE;
+		int itemId=NONEXISTINGBOOK_ID;
 		Item item=null;
 		
 		String error=null;
@@ -334,10 +277,10 @@ public class TestBorrowItemsService {
 	}
 	
 	@Test
-	public void testBorrowpatronIdTooLarge() {
-		int patronId=900;
-		String itemName="The Mockingbird";
-		int itemId=0;
+	public void testBorrowItemsInvalidpatronId() {
+		int patronId=NONEXISTINGPATRON_ID;
+		String itemName=EXISTINGBOOK_TITLE;
+		int itemId=EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID;
 		Item item=null;
 		String error=null;
 		try {
@@ -351,49 +294,55 @@ public class TestBorrowItemsService {
 	}
 	
 	@Test
-	public void testBorrowItemValid() {
-		
-		//setting up the book
-		Book book=new Book();
-		book.setAuthor("Jonathan");
-		book.setTitle("The Mockingbird");
-		bookDao.save(book);
-		itemDao.save(book);
-		
-		//setting up patron with online account
-		OnlineAccount oa=new OnlineAccount();
-		Patron pat = new Patron();
-	
-		oa.setEmail("pat@hotmail.com");
-		oa.setUsername("patib");
-		oa.setPassword("patpassword");
-		
-		pat.setAddress("123 Test W");
-		pat.setCity("Montreal");
-		
-		onlineAccountDao.save(oa);
-		patronDao.save(pat);
-		oa.setUser(pat);
-		pat.setOnlineAccount(oa);
-		onlineAccountDao.save(oa);
-		patronDao.save(pat);
-		
-		int patronId=pat.getId();
-		String itemName="The Mockingbird";
-		int itemId=book.getId();
+	public void testBorrowItemsInvalidBookTitle() {
+		int patronId=EXISTINGPATRON_ID;
+		String itemName=NONEXISTINGBOOK_TITLE;
+		int itemId=EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID;
 		Item item=null;
 		String error=null;
 		try {
-			//replce by immutable
 			item=service.borrowItem(itemId, itemName, patronId);
 		}
 		catch(IllegalArgumentException e) {
 			error=e.getMessage();
 		}
 		assertNull(item);
-		assertEquals("Patron ID does not exist.",error);
+		assertEquals("The item you are looking for does not exist.",error);
 	}
 	
+	@Test
+	public void testBorrowItemsArchived() {
+		int patronId=EXISTINGPATRON_ID;
+		String itemName=EXISTINGBOOK_TITLE;
+		int itemId=EXISTINGBOOK_ARCHIVED_ID;
+		Item item=null;
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("The item you are looking for is in the archives",error);
+	}
+	
+	@Test
+	public void testBorrowItemsAlreadyBorrowedItem() {
+		int patronId=EXISTINGPATRON_ID;
+		String itemName=EXISTINGBOOK_TITLE;
+		int itemId=EXISTINGBOOK_NONARCHIVED_BORROWED_ID;
+		Item item=null;
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("The item you are looking for has already been borrowed.",error);
+	}
 	
 }
 
