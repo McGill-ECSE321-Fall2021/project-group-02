@@ -67,12 +67,15 @@ public class TestBorrowItemsService {
 	private static final int EXISTINGBOOK_ARCHIVED_ID = 1;
 	private static final int NONEXISTINGBOOK_ID = 455;
 	private static final int EXISTINGBOOK_NONARCHIVED_BORROWED_ID = 2;
+	private static final int NONEXISTINGBOOK_NEGATIVE_ID = -1;
 	
 	private static final int EXISTINGPATRON_ID=0;
-	private static final int NONEXISTINGPATRON_ID = 455;
+	private static final int NONEXISTINGPATRON_LARGE_ID = 455;
+	private static final int NONEXISTINGPATRON_NEGATIVE_ID = -1;
 	
 	private static final String EXISTINGBOOK_TITLE="Mockingbird";
 	private static final String NONEXISTINGBOOK_TITLE="lala";
+	private static final String NULLBOOK_TITLE=null;
 	
 	private static final String TESTSTRING="tester";
 	
@@ -150,7 +153,7 @@ public class TestBorrowItemsService {
 			if(invocation.getArgument(0).equals(EXISTINGPATRON_ID)) {
 				return true;
 			}
-			if(invocation.getArgument(0).equals(NONEXISTINGPATRON_ID)) {
+			if(invocation.getArgument(0).equals(NONEXISTINGPATRON_LARGE_ID)) {
 				return false;
 			}
 			else {
@@ -277,8 +280,26 @@ public class TestBorrowItemsService {
 	}
 	
 	@Test
-	public void testBorrowItemsInvalidpatronId() {
-		int patronId=NONEXISTINGPATRON_ID;
+	public void testBorrowItemsNegativeItemId() {
+		int patronId=EXISTINGPATRON_ID;
+		String itemName=EXISTINGBOOK_TITLE;
+		int itemId=NONEXISTINGBOOK_NEGATIVE_ID;
+		Item item=null;
+		
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("The id of the item cannot be negative!",error);
+	}
+	
+	@Test
+	public void testBorrowItemsInvalidPatronId() {
+		int patronId=NONEXISTINGPATRON_LARGE_ID;
 		String itemName=EXISTINGBOOK_TITLE;
 		int itemId=EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID;
 		Item item=null;
@@ -291,6 +312,23 @@ public class TestBorrowItemsService {
 		}
 		assertNull(item);
 		assertEquals("Patron ID does not exist.",error);
+	}
+	
+	@Test
+	public void testBorrowItemsNegativePatronId() {
+		int patronId=NONEXISTINGPATRON_NEGATIVE_ID;
+		String itemName=EXISTINGBOOK_TITLE;
+		int itemId=EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID;
+		Item item=null;
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("The id of the patron cannot be negative!",error);
 	}
 	
 	@Test
@@ -308,6 +346,23 @@ public class TestBorrowItemsService {
 		}
 		assertNull(item);
 		assertEquals("The item you are looking for does not exist.",error);
+	}
+	
+	@Test
+	public void testBorrowItemsNullBookTitle() {
+		int patronId=EXISTINGPATRON_ID;
+		String itemName=NULLBOOK_TITLE;
+		int itemId=EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID;
+		Item item=null;
+		String error=null;
+		try {
+			item=service.borrowItem(itemId, itemName, patronId);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("The name of the item cannot be empty",error);
 	}
 	
 	@Test
@@ -345,23 +400,4 @@ public class TestBorrowItemsService {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
