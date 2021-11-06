@@ -17,9 +17,10 @@ public class Book extends Item
   private String title;
   private String author;
 
-  //Book Associations
-  private Patron patron;
-
+  //------------------------
+  // INTERFACE
+  //------------------------
+  
   public void setTitle(String aTitle)
   {
     title = aTitle;
@@ -38,16 +39,5 @@ public class Book extends Item
   public String getAuthor()
   {
     return author;
-  }
-
-  @ManyToOne(optional = true)
-  public Patron getPatron()
-  {
-    return patron;
-  }
-
-  public void setPatron(Patron aPatron)
-  { 
-    patron = aPatron;
   }
 }

@@ -13,42 +13,41 @@ public class Patron extends UserEntity
   //------------------------
 
   //Patron Associations
+  @OneToMany
   private List<Album> borrowedAlbums;
+  @OneToMany
   private List<Book> borrowedBooks;
+  @OneToMany
   private List<Movie> borrowedMovies;
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  @OneToMany
-  public List<Album> getBorrowedAlbum()
+  public List<Album> getBorrowedAlbums()
   {
     return this.borrowedAlbums;
   }
   
-  @OneToMany
-  public List<Book> getBorrowedBook()
+  public List<Book> getBorrowedBooks()
   {
     return this.borrowedBooks;
   }
   
-  @OneToMany
-  public List<Movie> getBorrowedMovie()
+  public List<Movie> getBorrowedMovies()
   {
     return this.borrowedMovies;
   }
   
-
-  public void setBorrowedAlbum(List<Album> a) {
+  public void setBorrowedAlbums(List<Album> a) {
 	  this.borrowedAlbums = a;
   }
   
-  public void setBorrowedBook(List<Book> b) {
+  public void setBorrowedBooks(List<Book> b) {
 	  this.borrowedBooks = b;
   }
   
-  public void setBorrowedMovie(List<Movie> m) {
+  public void setBorrowedMovies(List<Movie> m) {
 	  this.borrowedMovies = m;
   }
   

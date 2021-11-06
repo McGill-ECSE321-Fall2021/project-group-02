@@ -20,27 +20,18 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestJournalPersistence {
 	@Autowired
 	private JournalRepository journalRepository;
-	@Autowired
-	private LibraryRepository libraryRepository;
+
 	@AfterEach
 	public void clearDatabase() {
 		journalRepository.deleteAll();
-		libraryRepository.deleteAll();
 	}
 	@Test
 	public void testPersistAndLoadJournal() {
-		Library l = new Library();
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(8, 00));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(17, 00));
-		l.setOpeningHour(startTime);
-		l.setClosingHour(endTime);
-//		l.setLibrarySoftwareSystem(ls);
 		Journal j = new Journal();
 		String name = "testJournal";
 		Date date = java.sql.Date.valueOf(LocalDate.of(2021, 10, 16));
 		j.setDate(date);
 		j.setName(name);
-		libraryRepository.save(l);
 		journalRepository.save(j);
 		int id = j.getId();
 		
