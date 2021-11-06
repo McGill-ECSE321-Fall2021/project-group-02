@@ -26,3 +26,6 @@ jobs:
       working-directory: LibrarySystem-Backend
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Create book REST-API
+      run: curl -s -X POST http://localhost:8080/createBook/Mary?authorName=Larry&isArchived=false
+      working-directory: LibrarySystem-Backend
