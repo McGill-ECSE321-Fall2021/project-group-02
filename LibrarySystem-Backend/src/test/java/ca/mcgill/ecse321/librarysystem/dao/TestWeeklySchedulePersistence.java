@@ -20,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.model.DailySchedule;
+import ca.mcgill.ecse321.librarysystem.model.DailySchedule.WeekDay;
 import ca.mcgill.ecse321.librarysystem.model.WeeklySchedule;
 import ca.mcgill.ecse321.librarysystem.model.Library;
 import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
@@ -39,6 +40,7 @@ public class TestWeeklySchedulePersistence {
 	@AfterEach
 	public void clearDatabase() {
 		weeklyScheduleRepository.deleteAll();
+		dailyScheduleRepository.deleteAll();
 	}
 	
 	@Test
@@ -53,6 +55,9 @@ public class TestWeeklySchedulePersistence {
 		schedule.setStartDate(startDate);
 		List<DailySchedule> ls = new ArrayList<DailySchedule>();
 		DailySchedule d = new DailySchedule();
+		d.setEndTime(endTime);
+		d.setStartTime(startTime);
+		d.setDay(WeekDay.Monday);
 		
 		ls.add(d);
 		schedule.setDay(ls);

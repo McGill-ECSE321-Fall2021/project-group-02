@@ -17,16 +17,18 @@ public class DailySchedule
   //------------------------
 
   public enum WeekDay { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
-  private int id;
-  
-  public void setId(int aId) {
-    this.id = aId;
-  }
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id;
+  
+  public void setId(int id) {
+	  this.id = id;
+  }
+  
   public int getId() {
     return this.id;
   }
+  
   //------------------------
   // MEMBER VARIABLES
   //------------------------
@@ -35,16 +37,8 @@ public class DailySchedule
   private WeekDay day;
   private Time startTime;
   private Time endTime;
-
-  //DailySchedule Associations
-//  private WeeklySchedule weeklySchedule;
   
 //----------------------------------------------GETTERS
-  
-//  @ManyToOne(optional = true)
-//  public WeeklySchedule getWeeklySchedule() {
-//	  return this.weeklySchedule;
-//  }
   
   public WeekDay getDay() {
 	  return this.day;
@@ -59,10 +53,6 @@ public class DailySchedule
   }
     
 //----------------------------------------------SETTERS
-  
-//  public void setWeeklySchedule(WeeklySchedule w) {
-//	  this.weeklySchedule = w;
-//  }
   
   public void setDay(WeekDay d) {
 	  this.day = d;
