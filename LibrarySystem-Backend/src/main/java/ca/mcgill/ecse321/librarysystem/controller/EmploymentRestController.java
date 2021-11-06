@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import ca.mcgill.ecse321.librarysystem.service.ManagingEmploymentService;
 import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
+import ca.mcgill.ecse321.librarysystem.dao.HeadLibrarianRepository;
+import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
+import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.model.Librarian;
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 
@@ -89,34 +92,37 @@ public class EmploymentRestController {
 	 * @throws IllegalArgumentException
 	 * @author vy-khahuynh
 	 */
-	@PostMapping(value = { "/librarians/{id}/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}", "/librarians/{id}/{firstname}/{lastname}/{address}/{city}/{email}/{username}/{password}/" })
+	@PostMapping(value = { "/librarians/{id}/{firstname}/{lastname}/{address}/{city}", "/librarians/{id}/{firstname}/{lastname}/{address}/{city}/" })
 	public LibrarianDto createLibrarian(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
 			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
 			@PathVariable(name="username") String username,
 			@PathVariable(name="password") String password) throws IllegalArgumentException {
-		Librarian l = service.createLibrarian(id, firstname, lastname, address, city, email, username, password);
+		Librarian l = service.createLibrarian(id, firstname, lastname, address, city);
 		return convertToDto(l);
 	}
 	
 	/**
-	 * 
-	 * @param id id of the user
-	 * @param oa online account of the librarian
-	 * @param firstname first name of the librarian 
-	 * @param lastname last name of the librarian
-	 * @param address address of librarian
-	 * @param city city of residence of the librarian
-	 * @return new librarian with the inputs as attributes
-	 * @throws IllegalArgumentException
 	 * @author vy-khahuynh
+	 * @param id
+	 * @param firstname
+	 * @param lastname
+	 * @param address
+	 * @param city
+	 * @param email
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws IllegalArgumentException
 	 */
-	@PostMapping(value = { "/librarians/{id}/{onlineaccount}/{firstname}/{lastname}/{address}/{city}", "/{id}/librarians/{onlineaccount}/{firstname}/{lastname}/{address}/{city}/" })
-	public LibrarianDto createLibrarianOnlineAccount(@PathVariable(name="userID")int id,@PathVariable(name="onlineaccount") OnlineAccount oa,@PathVariable(name="firstname") String firstname,
+	@PostMapping(value = { "/headlibrarian/{id}/{firstname}/{lastname}/{address}/{city}", "/headlibrarian/{id}/{firstname}/{lastname}/{address}/{city}/" })
+	public HeadLibrarianDto createHeadLibrarian(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
-			@PathVariable(name="city") String city) throws IllegalArgumentException {
-		Librarian l = service.createLibrarianOnlineAccount(id, oa, firstname, lastname, address, city);
-		return convertToDto(l);
+			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
+			@PathVariable(name="username") String username,
+			@PathVariable(name="password") String password) throws IllegalArgumentException {
+		HeadLibrarian hl = service.createHeadLibrarian(id, firstname, lastname, address, city);
+		return convertToDto(hl);
 	}
 	
 	/**
@@ -130,5 +136,18 @@ public class EmploymentRestController {
 		}
 		LibrarianDto lDto = new LibrarianDto(l.getOnlineAccount(),l.getFirstName(),l.getLastName(),l.getAddress(),l.getCity(),l.getBalance(),l.getWeeklySchedule());
 		return lDto;	
+	}
+	
+	/**
+	 * 
+	 * @param l librarian object to be converted to librarianDto
+	 * @return librarianDto object of librarian l
+	 */
+	private HeadLibrarianDto convertToDto(HeadLibrarian hl) {
+		if (hl == null) {
+			throw new IllegalArgumentException("There is no such Librarian!");
+		}
+		HeadLibrarianDto hlDto = new HeadLibrarianDto(hl.getOnlineAccount(),hl.getFirstName(),hl.getLastName(),hl.getAddress(),hl.getCity(),hl.getBalance(),hl.getWeeklySchedule());
+		return hlDto;	
 	}
 }
