@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @DiscriminatorColumn(name = "user_entity")
+@Table(name = "userEntity")
 public abstract class UserEntity
 {
 
@@ -74,6 +75,7 @@ public abstract class UserEntity
   }
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id")
   public int getId()
   {
     return id;
@@ -89,7 +91,8 @@ public abstract class UserEntity
     return city;
   }
 
-  @OneToOne(optional = true)
+  @OneToOne(optional = true, cascade = CascadeType.ALL)
+  @JoinColumn(name = "onlineAccount_id", referencedColumnName = "id")
   public OnlineAccount getOnlineAccount()
   {
     return onlineAccount;

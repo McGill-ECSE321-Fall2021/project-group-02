@@ -3,15 +3,19 @@
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 
 // line 91 "model.ump"
 // line 198 "model.ump"
 @Entity
+@Table(name = "onlineAccount")
 public class OnlineAccount
 {
 
@@ -45,6 +49,7 @@ public class OnlineAccount
     password = aPassword;
   }
   @Id
+  @Column(name = "id")
   public String getUsername()
   {
     return username;
@@ -58,7 +63,7 @@ public class OnlineAccount
     return password;
   }
 
-  @OneToOne
+  @OneToOne(mappedBy = "onlineAccount")
   public UserEntity getUser()
   {
     return userEntity;

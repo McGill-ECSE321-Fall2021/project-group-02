@@ -27,6 +27,12 @@ public class CreateOnlineAccountService {
 		String error = "";
 		
 		// create online account
+		// verify empty strings
+		if(!verifyStringLength(firstName)) error += "First name cannot be empty or too long.\n";
+		if(!verifyStringLength(lastName)) error += "Last name cannot be empty or too long.\n";
+		if(!verifyStringLength(address)) error += "Address cannot be empty or too long.\n";
+		if(!verifyStringLength(city)) error += "City cannot be empty or too long.\n";
+		if(!verifyStringLength(username)) error += "Username cannot be empty or too long.\n";
 		// verify username, email exists
 		if(!verifyUsernameExists(username)) error += "Username is already used.\n";
 		if(!verifyEmailExists(email)) error += "Email is already used.\n";
@@ -64,6 +70,7 @@ public class CreateOnlineAccountService {
 		
 		return account;
 	}
+	
 	public OnlineAccount createOnlineAccountExistingUser(int id, String username, String password, String email) throws IllegalArgumentException {
 		String error = "";
 		// verify ID
@@ -80,6 +87,8 @@ public class CreateOnlineAccountService {
 		}
 		
 		// create online account
+		// verify empty strings
+		if(!verifyStringLength(username)) error += "Username cannot be empty or too long.\n";
 		// verify username, email exists
 		if(!verifyUsernameExists(username)) error += "Username is already used.\n";
 		if(!verifyEmailExists(email)) error += "Email is already used.\n";
@@ -92,6 +101,7 @@ public class CreateOnlineAccountService {
 		OnlineAccount account = new OnlineAccount();
 		account.setEmail(email);
 		account.setPassword(password);
+		account.setUsername(username);
 		account.setUser(user);
 		onlineAccountRepository.save(account);
 		user.setOnlineAccount(account);
@@ -118,6 +128,13 @@ public class CreateOnlineAccountService {
 	      valid = false;
 	    }
 	    return valid;
+	}
+	
+	private boolean verifyStringLength(String s) {
+		if (s==null || s.trim().length()==0 || s.length() > 40) {
+			return false;
+		}
+		return true;
 	}
 	
 	private boolean verifyUsernameExists(String username) {
@@ -148,7 +165,7 @@ public class CreateOnlineAccountService {
 	}
 	
 	public OnlineAccount findAccountByEmail(String email) {
-		return onlineAccountRepository.findOnlineAccountByUsername(email);
+		return onlineAccountRepository.findOnlineAccountByEmail(email);
 	}
 	
 	public UserEntity findUserById(int id) {
