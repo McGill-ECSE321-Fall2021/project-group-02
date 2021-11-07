@@ -1,5 +1,3 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.model;
 
 import java.util.*;
@@ -13,71 +11,65 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 
-// line 9 "model.ump"
-// line 128 "model.ump"
 @Entity
 public class LibrarySoftwareSystem
 {
-  private int id;
-  
-  public void setId(int aId) {
-    this.id = aId;
-  }
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  public int getId() {
-    return this.id;
-  }
+  @GeneratedValue(strategy = GenerationType.AUTO) 
+  private int id;
+
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
   //LibrarySoftwareSystem Associations
+  @OneToMany(cascade=CascadeType.ALL)
   private List<Item> items;
+  @OneToOne(cascade=CascadeType.ALL)
   private Library openingHours;
+  @OneToMany(cascade=CascadeType.ALL)
   private List<OnlineAccount> accounts;
+  @OneToMany(cascade=CascadeType.ALL)
   private List<UserEntity> userEntities;
+  @OneToMany(cascade=CascadeType.ALL)
   private List<WeeklySchedule> weeklySchedules;
 
 //----------------------------------------------GETTERS
   
-  @OneToMany(cascade=CascadeType.ALL)
+  public int getId() {
+    return this.id;
+  }
+  
   public List<Item> getItem()
   {
     return this.items;
   }
 
-  @OneToOne(cascade=CascadeType.ALL)
   public Library getOpeningHours()
   {
     return this.openingHours;
   }
 
-  @OneToMany(cascade=CascadeType.ALL)
   public List<OnlineAccount> getAccount()
   {
     return this.accounts;
   }
 
-  @OneToMany(cascade=CascadeType.ALL)
   public List<UserEntity> getUserEntity()
   {
     return this.userEntities;
   }
 
-  @OneToMany(cascade=CascadeType.ALL)
   public List<WeeklySchedule> getWeeklySchedule()
   {
     return this.weeklySchedules;
   }
-
-//  @OneToMany(cascade=CascadeType.ALL)
-//  public List<DailySchedule> getDailySchedule()
-//  {
-//    return this.dailySchedules;
-//  }
   
   //----------------------------------------------SETTERS
+  
+  public void setId(int id) {
+	  this.id = id;
+  }
   
   public void setItem(List<Item> i)
   {
@@ -103,11 +95,5 @@ public class LibrarySoftwareSystem
   {
     this.weeklySchedules = w;
   }
-
-//  public void setDailySchedule(List<DailySchedule> d)
-//  {
-//    this.dailySchedules = d;
-//  }
-
 
 }

@@ -38,14 +38,11 @@ public class TestBookPersistence {
 	private BookRepository bookRepository;
 	@Autowired
 	private ItemRepository itemRepository;
-	@Autowired
-	private PatronRepository patronRepository;
 	
 	@AfterEach
 	public void clearDatabase() {
 		bookRepository.deleteAll();
 		itemRepository.deleteAll();
-		patronRepository.deleteAll();
 	}
 	
 	@Test
@@ -54,16 +51,10 @@ public class TestBookPersistence {
 		String title = "TestTitle";
 		String author = "TestAuthor";
 		Book testBook = new Book();
-		Patron patron = new Patron();
 		
-		
-		testBook.setPatron(patron);
 		testBook.setAuthor(author);
 		testBook.setTitle(title);
-		List<UserEntity> patrons = new ArrayList<UserEntity>();
-		patrons.add(patron);
 		
-		patronRepository.save(patron);
 		bookRepository.save(testBook);
 		itemRepository.save(testBook);
 		int id = testBook.getId();
