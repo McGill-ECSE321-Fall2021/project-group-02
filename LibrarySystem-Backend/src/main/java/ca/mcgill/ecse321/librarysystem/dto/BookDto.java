@@ -6,14 +6,20 @@ public class BookDto {
 	
 	private String title;
 	private String author;
+	private int id;
 	
 	public BookDto() {
 		
 	}
 	
-	public BookDto(String title, String author) {
+	public BookDto(String title, String author, int id) {
 		this.title=title;
 		this.author=author;
+		this.id=id;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getTitle() {

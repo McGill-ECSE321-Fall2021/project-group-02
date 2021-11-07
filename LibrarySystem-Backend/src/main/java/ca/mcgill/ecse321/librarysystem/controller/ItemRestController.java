@@ -53,8 +53,8 @@ public class ItemRestController {
 	 * @author Sami
 	 */
 	@PostMapping(value = {"/borrow/{name}", "/borrow/{name}/"} )
-	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemID") ItemDto itemDto, @RequestParam(name= "patronId") PatronDto patronDto) {
-		Item i= itemService.borrowItem(itemDto.getID(), itemName, patronDto.getId());
+	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemId") int itemId, @RequestParam(name= "patronId") int patronId) {
+		Item i= itemService.borrowItem(itemId, itemName, patronId);
 		return convertToDto(i);
 	}
 	
@@ -213,6 +213,19 @@ public class ItemRestController {
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI
 	 ****************************************************/
+	
+	/**
+	 * Creates a patron
+	 * @author Sami
+	 * @return Patron
+	 */
+	@PostMapping(value= {"/createPatron/{address}","/createPatron/{address}/"})
+	public PatronDto createPatron(@PathVariable("address") String address, @RequestParam(name="city") String city, @RequestParam(name="balance") int balance, @RequestParam(name="firstName") String firstName, @RequestParam(name="lastName") String lastName) {
+		Patron p=itemService.createPatron(address, balance, city, firstName, lastName);
+		return convertToDto(p);
+	}
+	
+	
 	/**
 	 * Adds a new book to the library software system
 	 * @param bookTitle
@@ -395,7 +408,15 @@ public class ItemRestController {
 		if (b == null) {
 			throw new IllegalArgumentException("There is no such Book!");
 		}
-		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor());
+		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(), b.getId());
 		return bookDto;
+	}
+	
+	private PatronDto convertToDto(Patron p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Patron!");
+		}
+		PatronDto patronDto = new PatronDto(p.getId(),p.getAddress(),p.getCity(),p.getFirstName(),p.getLastName(),p.getBalance());
+		return patronDto;
 	}
 }

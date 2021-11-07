@@ -709,6 +709,26 @@ public class ItemService {
 	}
 	
 	/**
+	 * Creates a patron
+	 * @return Patron
+	 * @author Sami
+	 */
+	@Transactional
+	public Patron createPatron(String address, int balance, String city, String firstName, String lastName) {
+		Patron patron=new Patron();
+		patron.setAddress(address);
+		patron.setBalance(balance);
+		patron.setCity(city);
+		patron.setFirstName(firstName);
+		patron.setLastName(lastName);
+		patron.setBorrowedAlbums(new ArrayList<Album>());
+		patron.setBorrowedBooks(new ArrayList<Book>());
+		patron.setBorrowedMovies(new ArrayList<Movie>());
+		patronRepository.save(patron);
+		return patron;
+	}
+	
+	/**
 	 * Creates a book
 	 * @param author
 	 * @param title
