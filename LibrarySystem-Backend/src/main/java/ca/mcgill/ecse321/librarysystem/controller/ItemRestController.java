@@ -29,7 +29,6 @@ import java.sql.Date;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/returnItem")
 public class ItemRestController {
 	
 	@Autowired
@@ -59,6 +58,8 @@ public class ItemRestController {
 		return convertToDto(i);
 	}
 	
+	
+	
 	/************************************
           RETURN ITEM SERVICE - JULIE
     ************************************/
@@ -71,8 +72,8 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@PostMapping(value = { "/retur/{name}", "/return/{name}/"})
-	public ItemDto returnItem(@PathVariable("name") String itemName,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
+	@PostMapping(value = { "/return/{itemId}", "/return/{itemId}/"})
+	public ItemDto returnItem(@PathVariable("itemId") int itemId,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
 		Item i = itemService.returnItem(itemDto.getID(), patronDto.getId());
 		return convertToDto(i);
 	}
@@ -223,7 +224,7 @@ public class ItemRestController {
 	 * @author Sami
 	 */
 	@PostMapping(value = {"/createBook/{title}", "/createBook/{title}/"} )
-	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "isArchived") boolean isArchived) {
 		Book b= itemService.createBook(authorName, bookTitle, isArchived);
 		return convertToDto(b);
 	}
@@ -270,6 +271,7 @@ public class ItemRestController {
 	 */
 	@PostMapping(value = {"/createNewspaper/{title}", "/createNewspaper/{title}/"} )
 	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
+		System.out.println("Entered the api method");
 		Newspaper n= itemService.createNewspaper(newspaperTitle, newspaperDate);
 		return convertToDto(n);
 	}
