@@ -26,3 +26,6 @@ jobs:
       working-directory: LibrarySystem-Backend
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Test creating a Book
+      run: curl -s http://localhost:8080/items/books
+      working-directory: LibrarySystem-Backend
