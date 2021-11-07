@@ -34,7 +34,6 @@ public class ManagingEmploymentService {
 	 * @param ad the user's address of residence
 	 * @param city the user's city of residence
 	 * @return the hired librarian
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public Librarian createLibrarian(int h,String fn, String ln, String ad, String city) throws IllegalArgumentException{
@@ -66,16 +65,14 @@ public class ManagingEmploymentService {
 	
 	/**
 	 * 
-	 * @param h id of the user
-	 * @param fn the user's first name
-	 * @param ln the user's last name
-	 * @param ad the user's address of residence
-	 * @param city the suer's city of residence
-	 * @param email the user's email address
-	 * @param username the user's username
-	 * @param pswd the user's password
-	 * @return the hired librarian
 	 * @author vy-khahuynh
+	 * @param h current head librarian id
+	 * @param fn user's first name
+	 * @param ln user's last name
+	 * @param ad user's address of residence
+	 * @param city user's city
+	 * @return new head librarian
+	 * @throws IllegalArgumentException
 	 */
 	@Transactional
 	public HeadLibrarian createHeadLibrarian(int h,String fn, String ln, String ad, String city) throws IllegalArgumentException{
@@ -106,10 +103,9 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param id the id of the librarian to be fired
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public void deleteLibrarian(int h, int id) throws IllegalArgumentException{
@@ -132,11 +128,10 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param id the id of the hired librarian  
 	 * @return if the hired librarian exists in the system
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public boolean librarianIsHired(int h,int id) throws IllegalArgumentException{
@@ -150,11 +145,10 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param id the id of the fired librarian
 	 * @return if the fired librarian does not exist in the system
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public boolean librarianIsFired(int h,int id) throws IllegalArgumentException {
@@ -168,10 +162,9 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param  id of the user
 	 * @return list of all the librarians
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrarians(int h)throws IllegalArgumentException{
@@ -185,11 +178,10 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param firstName first name of the librarians
 	 * @return list of librarians with the same first name
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByFirstName(int h,String firstName)throws IllegalArgumentException{
@@ -216,11 +208,10 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param lastName last name of the librarians
 	 * @return list of librarians with the same last name
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByLastName(int h,String lastName)throws IllegalArgumentException{
@@ -247,12 +238,11 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param fn first name of the librarians
 	 * @param ln last name of the librarians
 	 * @return list of librarians with same first and last name
-	 * @author vy-khahuynh
 	 */
 	@Transactional
 	public List<Librarian> getAllLibrariansByFirstAndLastName(int h,String fn,String ln)throws IllegalArgumentException{
@@ -283,11 +273,10 @@ public class ManagingEmploymentService {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param id id of the desired librarian
-	 * @return the librarian with that id if they exist
-	 * @author vy-khahuynh
+	 * @return the librarian with that id if they exist	
 	 */
 	@Transactional
 	public Librarian getLibrarianByID(int h,int id) throws IllegalArgumentException{
@@ -377,6 +366,11 @@ public class ManagingEmploymentService {
 //		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 //	}
 	
+	/**
+	 * @author stevencho
+	 * @param s String to be analyzed
+	 * @return if the string is valid
+	 */
 	private boolean verifyStringLength(String s) {
 		if (s==null || s.trim().length()==0 || s.length() > 40) {
 			return false;
@@ -384,6 +378,12 @@ public class ManagingEmploymentService {
 		return true;
 	}
 	
+	/**
+	 * @author ItemService
+	 * @param <T>
+	 * @param iterable
+	 * @return
+	 */
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {
