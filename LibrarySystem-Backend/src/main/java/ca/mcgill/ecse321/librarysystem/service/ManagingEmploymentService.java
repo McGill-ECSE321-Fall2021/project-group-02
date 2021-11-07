@@ -206,8 +206,11 @@ public class ManagingEmploymentService {
 			if(l.getFirstName().equals(firstName)) {
 				allLibrarians.add(l);
 			}
+		}			
+		if(allLibrarians.size() == 0) {
+			throw new IllegalArgumentException("No librarians with such first name.");
 		}
-		return allLibrarians;
+		else return allLibrarians;
 		}
 		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
@@ -235,7 +238,10 @@ public class ManagingEmploymentService {
 				allLibrarians.add(l);
 			}
 		}
-		return allLibrarians;
+			if(allLibrarians.size() == 0) {
+				throw new IllegalArgumentException("No librarians with such last name.");
+			}
+			else return allLibrarians;
 		}
 		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
@@ -268,7 +274,10 @@ public class ManagingEmploymentService {
 				allLibrarians.add(l);
 			}
 		}
-		return allLibrarians;
+		if(allLibrarians.size() == 0) {
+			throw new IllegalArgumentException("No librarians with such first and last name.");
+		}
+		else return allLibrarians;
 		}
 		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
@@ -281,87 +290,92 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public Optional<Librarian> getLibrarianByID(int h,int id) throws IllegalArgumentException{
+	public Librarian getLibrarianByID(int h,int id) throws IllegalArgumentException{
 		if(!(h > -1 && id > -1)) {
 			throw new IllegalArgumentException("IDs have to be positive.");
 		}
 		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
-		Optional<Librarian> l = librarianRepository.findById(id);
-		return l;
-	}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
-	}
-	
-	/**
-	 * 
-	 * @param h id of the user
-	 * @param ws the weekly schedule assigned to the librarian
-	 * @param id the id of the librarian
-	 * @author vy-khahuynh
-	 */
-	@Transactional
-	public void setWeeklySchedule(int h,WeeklySchedule ws,int id)throws IllegalArgumentException {
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
-		if(librarianRepository.existsById(id)) {
-			Librarian cur = librarianRepository.findLibrarianById(id);
-			weeklyScheduleRepository.save(ws);
-			cur.setWeeklySchedule(ws);
-		}
-		else throw new IllegalArgumentException("This librarian does not exist!");
-		}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
-	}
-	
-	/**
-	 * 
-	 * @param h id of the user
-	 * @param id the id of the librarian
-	 * @return the weekly schedule of the librarian with the id input
-	 * @author vy-khahuynh
-	 */
-	@Transactional
-	public WeeklySchedule getWeeklySchedule(int h,int id)throws IllegalArgumentException {
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
-		if(librarianRepository.existsById(id)) {
-			Librarian cur = librarianRepository.findLibrarianById(id);
-			return cur.getWeeklySchedule();
-		}
-		else throw new IllegalArgumentException("This librarian does not exist!");
-	}
-	else throw new IllegalArgumentException("Must be a head librarian to proceed.");
-	}
-	
-	/**
-	 * 
-	 * @param h id of the user
-	 * @return list of every weekly schedule assigned to an employee
-	 * @author vy-khahuynh
-	 */
-	@Transactional
-	public List<WeeklySchedule> getAllWeeklySchedule(int h)throws IllegalArgumentException{
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
-		if(weeklyScheduleRepository.findAll() instanceof ArrayList) {
-			return (ArrayList<WeeklySchedule>) weeklyScheduleRepository.findAll();
-		}
-		else {
-			List<WeeklySchedule> ws = new ArrayList<WeeklySchedule>();
-			for(WeeklySchedule w : weeklyScheduleRepository.findAll()) {
-				ws.add(w);
+			Librarian l = librarianRepository.findLibrarianById(id);
+			if (l == null) {
+				throw new IllegalArgumentException("No librarians with ID: " + id);
 			}
-			return ws;
-		}
+			else return l;
 	}
 		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
+	
+	
+	//  NOT PART OF USE CASE, KEEP JUST IN CASE
+//	/**
+//	 * 
+//	 * @param h id of the user
+//	 * @param ws the weekly schedule assigned to the librarian
+//	 * @param id the id of the librarian
+//	 * @author vy-khahuynh
+//	 */
+//	@Transactional
+//	public void setWeeklySchedule(int h,WeeklySchedule ws,int id)throws IllegalArgumentException {
+//		if(!(h > -1)) {
+//			throw new IllegalArgumentException("IDs have to be positive.");
+//		}
+//		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+//		if(librarianRepository.existsById(id)) {
+//			Librarian cur = librarianRepository.findLibrarianById(id);
+//			weeklyScheduleRepository.save(ws);
+//			cur.setWeeklySchedule(ws);
+//		}
+//		else throw new IllegalArgumentException("This librarian does not exist!");
+//		}
+//		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param h id of the user
+//	 * @param id the id of the librarian
+//	 * @return the weekly schedule of the librarian with the id input
+//	 * @author vy-khahuynh
+//	 */
+//	@Transactional
+//	public WeeklySchedule getWeeklySchedule(int h,int id)throws IllegalArgumentException {
+//		if(!(h > -1)) {
+//			throw new IllegalArgumentException("IDs have to be positive.");
+//		}
+//		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+//		if(librarianRepository.existsById(id)) {
+//			Librarian cur = librarianRepository.findLibrarianById(id);
+//			return cur.getWeeklySchedule();
+//		}
+//		else throw new IllegalArgumentException("This librarian does not exist!");
+//	}
+//	else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param h id of the user
+//	 * @return list of every weekly schedule assigned to an employee
+//	 * @author vy-khahuynh
+//	 */
+//	@Transactional
+//	public List<WeeklySchedule> getAllWeeklySchedule(int h)throws IllegalArgumentException{
+//		if(!(h > -1)) {
+//			throw new IllegalArgumentException("IDs have to be positive.");
+//		}
+//		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+//		if(weeklyScheduleRepository.findAll() instanceof ArrayList) {
+//			return (ArrayList<WeeklySchedule>) weeklyScheduleRepository.findAll();
+//		}
+//		else {
+//			List<WeeklySchedule> ws = new ArrayList<WeeklySchedule>();
+//			for(WeeklySchedule w : weeklyScheduleRepository.findAll()) {
+//				ws.add(w);
+//			}
+//			return ws;
+//		}
+//	}
+//		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+//	}
 	
 	private boolean verifyStringLength(String s) {
 		if (s==null || s.trim().length()==0 || s.length() > 40) {
