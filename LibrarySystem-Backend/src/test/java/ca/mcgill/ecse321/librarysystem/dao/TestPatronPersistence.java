@@ -15,46 +15,52 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class TestPatronPersistence {
-@Autowired
-private PatronRepository patronRepository;
-@Autowired 
-private LibraryRepository libraryRepository;
-@Autowired
-private OnlineAccountRepository onlineAccountRepository;
-@AfterEach
-public void clearDatabse() {
-	patronRepository.deleteAll();
-	libraryRepository.deleteAll();
-	onlineAccountRepository.deleteAll();
-}
-@Test
-public void testPersistAndLoadPatron() {
-	Library l = new Library ();
-	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
-	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
-	LibrarySoftwareSystem ls = new LibrarySoftwareSystem();
-
-	OnlineAccount oa=new OnlineAccount();
-	Patron pat = new Patron();
-
-	oa.setEmail("pat@hotmail.com");
-	oa.setUsername("patib");
-	oa.setPassword("patpassword");
-
-	pat.setAddress("123 Test W");
-	pat.setCity("Montreal");
-	pat.setOnlineAccount(oa);
-
-	onlineAccountRepository.save(oa);
-	libraryRepository.save(l);
-	patronRepository.save(pat);
-	int id = pat.getId();
+	@Autowired
+	private PatronRepository patronRepository;
+	@Autowired
+	private OnlineAccountRepository onlineAccountRepository;
 	
-	pat = patronRepository.findPatronById(id);
-	assertNotNull(pat);
-	assertEquals(id, pat.getId());
-	assertEquals("123 Test W", pat.getAddress());
-	assertEquals("Montreal", pat.getCity());
-	assertEquals("pat@hotmail.com",pat.getOnlineAccount().getEmail());
-}
+	@AfterEach
+	public void clearDatabase() {
+		patronRepository.deleteAll();
+		onlineAccountRepository.deleteAll();
+	}
+	
+	@Test
+	public void testPersistAndLoadPatron() {
+	
+		OnlineAccount oa=new OnlineAccount();
+		Patron pat = new Patron();
+	
+		oa.setEmail("pat@hotmail.com");
+		oa.setUsername("patib");
+		oa.setPassword("patpassword");
+		
+		pat.setAddress("123 Test W");
+		pat.setCity("Montreal");
+		
+		onlineAccountRepository.save(oa);
+		patronRepository.save(pat);
+		oa.setUser(pat);
+		pat.setOnlineAccount(oa);
+		onlineAccountRepository.save(oa);
+		patronRepository.save(pat);
+		
+		//Check online account setting patron
+		oa = null;
+		oa = onlineAccountRepository.findOnlineAccountByUserEntity(pat);
+		assertNotNull(oa);
+		assertNotNull(oa.getUser());
+		
+		
+		// Check finding patron by ID
+		int id = pat.getId();
+		
+		pat = patronRepository.findPatronById(id);
+		assertNotNull(pat);
+		assertEquals(id, pat.getId());
+		assertEquals("123 Test W", pat.getAddress());
+		assertEquals("Montreal", pat.getCity());
+		assertEquals("pat@hotmail.com",pat.getOnlineAccount().getEmail());
+	}
 }

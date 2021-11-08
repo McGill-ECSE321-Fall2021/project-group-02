@@ -17,9 +17,10 @@ public class Album extends Item
   private String title;
   private String artist;
 
-  //Album Associations
-  private Patron patron;
-
+  //------------------------
+  // INTERFACE
+  //------------------------
+  
   public void setTitle(String aTitle)
   {
     title = aTitle;
@@ -38,17 +39,6 @@ public class Album extends Item
   public String getArtist()
   {
     return artist;
-  }
-
-  @ManyToOne(optional = true)
-  public Patron getPatron()
-  {
-    return patron;
-  }
-
-  public void setPatron(Patron aPatron)
-  { 
-    patron = aPatron;
   }
 
 }
