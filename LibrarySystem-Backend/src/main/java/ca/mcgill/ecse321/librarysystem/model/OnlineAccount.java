@@ -58,6 +58,7 @@ public class OnlineAccount
     password = aPassword;
   }
 
+
   public String getUsername()
   {
     return username;

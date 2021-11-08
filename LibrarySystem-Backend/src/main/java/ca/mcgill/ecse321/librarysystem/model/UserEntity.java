@@ -74,6 +74,7 @@ public abstract class UserEntity
     city = aCity;
   }
 
+
   public int getId()
   {
     return id;
