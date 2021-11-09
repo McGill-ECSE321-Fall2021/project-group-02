@@ -11,11 +11,12 @@ public class LibrarianDto {
 	private String city;
 	private WeeklySchedule weeklySchedule;
 	private int balance;
+	private int id;
 	
 	public LibrarianDto() {	
 	}
 	
-	public LibrarianDto(OnlineAccount onlineAccount,String firstName,String lastName,String address,String city,int balance,WeeklySchedule weeklySchedule) {
+	public LibrarianDto(OnlineAccount onlineAccount,String firstName,String lastName,String address,String city,int balance,WeeklySchedule weeklySchedule,int id) {
 		this.onlineAccount=onlineAccount;
 		this.firstName=firstName;
 		this.lastName=lastName;
@@ -23,6 +24,7 @@ public class LibrarianDto {
 		this.city=city;
 		this.balance=balance;
 		this.weeklySchedule=weeklySchedule;
+		this.id=id;
 	}
 
 	public OnlineAccount getOnlineAccount() {
@@ -51,5 +53,9 @@ public class LibrarianDto {
 	
 	public WeeklySchedule getWeeklySchedule() {
 		return weeklySchedule;
+	}
+	
+	public int getID() {
+		return id;
 	}
 }

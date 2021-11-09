@@ -134,7 +134,7 @@ public class EmploymentRestController {
 		if (l == null) {
 			throw new IllegalArgumentException("There is no such Librarian!");
 		}
-		LibrarianDto lDto = new LibrarianDto(l.getOnlineAccount(),l.getFirstName(),l.getLastName(),l.getAddress(),l.getCity(),l.getBalance(),l.getWeeklySchedule());
+		LibrarianDto lDto = new LibrarianDto(l.getOnlineAccount(),l.getFirstName(),l.getLastName(),l.getAddress(),l.getCity(),l.getBalance(),l.getWeeklySchedule(),l.getId());
 		return lDto;	
 	}
 	
@@ -147,7 +147,7 @@ public class EmploymentRestController {
 		if (hl == null) {
 			throw new IllegalArgumentException("There is no such Librarian!");
 		}
-		HeadLibrarianDto hlDto = new HeadLibrarianDto(hl.getOnlineAccount(),hl.getFirstName(),hl.getLastName(),hl.getAddress(),hl.getCity(),hl.getBalance(),hl.getWeeklySchedule());
+		HeadLibrarianDto hlDto = new HeadLibrarianDto(hl.getOnlineAccount(),hl.getFirstName(),hl.getLastName(),hl.getAddress(),hl.getCity(),hl.getBalance(),hl.getWeeklySchedule(),hl.getId());
 		return hlDto;	
 	}
 }
