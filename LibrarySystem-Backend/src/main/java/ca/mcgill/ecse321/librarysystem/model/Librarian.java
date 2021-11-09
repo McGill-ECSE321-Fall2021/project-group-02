@@ -13,15 +13,15 @@ public class Librarian extends UserEntity
   //------------------------
   // MEMBER VARIABLES
   //------------------------
-
-  //Librarian Associations
+	
+  //Librarian Associations 
+  @OneToOne
   private WeeklySchedule weeklySchedule;
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  @OneToOne
   public WeeklySchedule getWeeklySchedule()
   {
     return weeklySchedule;

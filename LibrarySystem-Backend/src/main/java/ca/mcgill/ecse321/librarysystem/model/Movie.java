@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "movie")
 public class Movie extends Item
 {
+	
   //------------------------
   // MEMBER VARIABLES
   //------------------------
@@ -15,9 +16,6 @@ public class Movie extends Item
   //Movie Attributes
   private String title;
   private String director;
-
-  //Movie Associations
-  private Patron patron;
 
   //------------------------
   // INTERFACE
@@ -43,14 +41,4 @@ public class Movie extends Item
     return director;
   }
 
-  @ManyToOne(optional = true)
-  public Patron getPatron()
-  {
-    return patron;
-  }
-
-  public void setPatron(Patron aPatron)
-  {
-	this.patron = aPatron;
-  }
 }

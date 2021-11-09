@@ -19,8 +19,6 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestHeadLibrarianPersistence {
 	@Autowired
 	private HeadLibrarianRepository headLibrarianRepository;
-	@Autowired 
-	private LibraryRepository libraryRepository;
 	@Autowired
 	private OnlineAccountRepository onlineAccountRepository;
 	@Autowired
@@ -28,23 +26,19 @@ public class TestHeadLibrarianPersistence {
 @AfterEach
 public void clearDatabase() {
 	headLibrarianRepository.deleteAll();
-	libraryRepository.deleteAll();
 	onlineAccountRepository.deleteAll();
 	weeklyScheduleRepository.deleteAll();
 }
 @Test
 public void testPersistAndLoadHeadLibrarian() {
-	Library l = new Library ();
-	l.setClosingHour(java.sql.Time.valueOf(LocalTime.of(17, 00)));
-	l.setOpeningHour(java.sql.Time.valueOf(LocalTime.of(8, 00)));
-	libraryRepository.save(l);
 	OnlineAccount oa=new OnlineAccount();
 	HeadLibrarian hl = new HeadLibrarian();
 	WeeklySchedule ws=new WeeklySchedule();
 	oa.setEmail("hlib@hotmail.com");
 	oa.setUsername("hlib");
 	oa.setPassword("hlibpassword");
-	//oa.setUser(hl);
+	
+
 	ws.setStartDate(java.sql.Date.valueOf(LocalDate.of(2021, 10, 18)));
 	ws.setEndDate(java.sql.Date.valueOf(LocalDate.of(2021, 10, 22)));
 	hl.setOnlineAccount(oa);
@@ -52,12 +46,11 @@ public void testPersistAndLoadHeadLibrarian() {
 	hl.setCity("Montreal");
 	hl.setWeeklySchedule(ws);
 	weeklyScheduleRepository.save(ws);
-	
-	onlineAccountRepository.save(oa);
 	headLibrarianRepository.save(hl);
-	
-	
-	
+	onlineAccountRepository.save(oa);
+	oa.setUser(hl);
+	onlineAccountRepository.save(oa);
+	int idOA = oa.getId();
 	int id = hl.getId();
 	
 	hl = null;
@@ -69,5 +62,9 @@ public void testPersistAndLoadHeadLibrarian() {
 	assertEquals("hlib@hotmail.com",hl.getOnlineAccount().getEmail());
 	assertEquals(java.sql.Date.valueOf(LocalDate.of(2021, 10, 18)),hl.getWeeklySchedule().getStartDate());
 	
+	oa = null;
+	oa = onlineAccountRepository.findOnlineAccountById(idOA);
+	assertNotNull(oa);
+	assertEquals(idOA, oa.getId());
 }
 }

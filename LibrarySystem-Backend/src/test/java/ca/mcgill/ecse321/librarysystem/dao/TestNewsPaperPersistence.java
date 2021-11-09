@@ -21,12 +21,10 @@ import ca.mcgill.ecse321.librarysystem.model.*;
 public class TestNewsPaperPersistence {
 	@Autowired
 	private NewspaperRepository newspaperRepository;
-	@Autowired 
-	private LibraryRepository libraryRepository;
+
 	@AfterEach
 	public void clearDatabase() {
 		newspaperRepository.deleteAll();
-		libraryRepository.deleteAll();
 	}
 	@Test
 	public void testPersistAndLoadNewspaper() {
