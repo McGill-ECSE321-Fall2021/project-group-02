@@ -26,4 +26,7 @@ jobs:
       working-directory: LibrarySystem-Backend
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Get all items
+      run: curl -s http://localhost:8080/items
+      
 
