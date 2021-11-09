@@ -92,7 +92,7 @@ public class EmploymentRestController {
 	 * @throws IllegalArgumentException
 	 * @author vy-khahuynh
 	 */
-	@PostMapping(value = { "/librarians/{id}/{firstname}/{lastname}/{address}/{city}", "/librarians/{id}/{firstname}/{lastname}/{address}/{city}/" })
+	@PostMapping(value = { "/createLibrarian/{id}/{firstname}/{lastname}/{address}/{city}", "/createLibrarian/{id}/{firstname}/{lastname}/{address}/{city}/" })
 	public LibrarianDto createLibrarian(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
 			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
@@ -115,7 +115,7 @@ public class EmploymentRestController {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	@PostMapping(value = { "/headlibrarian/{id}/{firstname}/{lastname}/{address}/{city}", "/headlibrarian/{id}/{firstname}/{lastname}/{address}/{city}/" })
+	@PostMapping(value = { "/createHeadLibrarian/{id}/{firstname}/{lastname}/{address}/{city}", "/createHeadLibrarian/{id}/{firstname}/{lastname}/{address}/{city}/" })
 	public HeadLibrarianDto createHeadLibrarian(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
 			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
