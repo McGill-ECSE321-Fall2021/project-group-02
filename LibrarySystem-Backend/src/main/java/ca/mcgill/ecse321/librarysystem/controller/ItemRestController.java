@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -236,13 +235,16 @@ public class ItemRestController {
 		return convertToDto(p);
 	}
 	
-	/*
-	@PostMapping(value= {"/createPatron/{address}","/createPatron/{address}/"})
-	public void deletePatron(@PathVariable("address") String address, @RequestParam(name="city") String city, @RequestParam(name="balance") int balance, @RequestParam(name="firstName") String firstName, @RequestParam(name="lastName") String lastName) {
-		Patron p=itemService.delete
-		return convertToDto(p);
+	/**
+	 * Deletes a patron
+	 * @author Sami
+	 * @return Patron
+	 */
+	@PostMapping(value= {"/deletePatron/{address}","/deletePatron/{address}/"})
+	public void deletePatron(@PathVariable("address") String address) {
+		itemService.deletePatron(address);
 	}
-	*/
+	
 	
 	/**
 	 * Adds a new book to the library software system
@@ -260,7 +262,19 @@ public class ItemRestController {
 		return convertToDto(b);
 	}
 	
-	
+	/**
+	 * Deletes a book
+	 * @param bookTitle
+	 * @param authorName
+	 * @param patron
+	 * @return
+	 * 
+	 * @author Sami
+	 */
+	@PostMapping(value = {"/deleteBook/{title}", "/deleteBook/{title}/"} )
+	public void deleteBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName) {
+		itemService.deleteBook(authorName,bookTitle);
+	}
 	
 	/**
 	 * Adds a new album to the library software system
@@ -279,6 +293,20 @@ public class ItemRestController {
 	}
 	
 	/**
+	 * Deletes a album
+	 * @param albumTitle
+	 * @param artistName
+	 * @return
+	 * 
+	 * @author Sami
+	 */
+	@PostMapping(value = {"/deleteAlbum/{title}", "/deleteAlbum/{title}/"} )
+	public void deleteAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName) {
+		itemService.deleteAlbum(artistName,albumTitle);
+	}
+	
+	
+	/**
 	 * Adds a new movie to the library software system
 	 * @param movieTitle
 	 * @param directorName
@@ -295,6 +323,19 @@ public class ItemRestController {
 	}
 	
 	/**
+	 * Deletes movie
+	 * @param movieTitle
+	 * @param directorName
+	 * @return
+	 * 
+	 * @author Sami
+	 */
+	@PostMapping(value = {"/deleteMovie/{title}", "/deleteMovie/{title}/"} )
+	public void deleteMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName) {
+		itemService.deleteMovie(directorName, movieTitle);
+	}
+	
+	/**
 	 * Adds a new newspaper to the library software system
 	 * @param newspaperTitle
 	 * @param newspaperDate
@@ -304,9 +345,21 @@ public class ItemRestController {
 	 */
 	@PostMapping(value = {"/createNewspaper/{title}", "/createNewspaper/{title}/"} )
 	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
-		System.out.println("Entered the api method");
 		Newspaper n= itemService.createNewspaper(newspaperTitle, newspaperDate);
 		return convertToDto(n);
+	}
+	
+	/**
+	 * Deletes newspaper
+	 * @param newspaperTitle
+	 * @param newspaperDate
+	 * @return
+	 * 
+	 * @author Sami
+	 */
+	@PostMapping(value = {"/deleteNewspaper/{title}", "/deleteNewspaper/{title}/"} )
+	public void deleteNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
+		itemService.deleteNewspaper(newspaperTitle, newspaperDate);
 	}
 	
 	/**
@@ -321,6 +374,19 @@ public class ItemRestController {
 	public JournalDto createJournal(@PathVariable("title") String journalTitle, @RequestParam(name="journalDate") Date journalDate) {
 		Journal j= itemService.createJournal(journalTitle, journalDate);
 		return convertToDto(j);
+	}
+	
+	/**
+	 * Deletes journal
+	 * @param journalTitle
+	 * @param journalDate
+	 * @return
+	 * 
+	 * @author Sami
+	 */
+	@PostMapping(value = {"/deleteJournal/{title}", "/deleteJournal/{title}/"} )
+	public void deleteJournal(@PathVariable("title") String journalTitle, @RequestParam(name="journalDate") Date journalDate) {
+		itemService.deleteNewspaper(journalTitle, journalDate);
 	}
 	
 	/**

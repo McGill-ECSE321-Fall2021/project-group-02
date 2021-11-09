@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +9,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.service.ManagingEmploymentService;
 import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dao.HeadLibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
 import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.model.Librarian;
-import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 
 @CrossOrigin(origins = "*")
 @RestController
