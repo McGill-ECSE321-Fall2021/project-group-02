@@ -202,22 +202,38 @@ public class ItemService {
 	/**
 	 * Sets an item as archived and cannot be borrowed
 	 * @param itemID
-	 * @param itemName
-	 * @return
+	 * @param headLibrarianID
+	 * @return archived item
+	 * @throws illegalArgumentException
 	 * 
 	 * @author John
 	 */
 	@Transactional
-	public Item archiveItem(int itemID, String itemName) {
-		// need to add head librarian if statement
+	public Item archiveItem(int itemID, int headLibrarianID) throws IllegalArgumentException {
+		// To archive an item, need approval of head librarian. If there is a head librarian ID associated with it, then it has been approved for the archives.
+		HeadLibrarian specificHeadLibrarian;
+		if(headLibrarianRepository.existsById(headLibrarianID)) {
+			specificHeadLibrarian = headLibrarianRepository.findHeadLibrarianById(headLibrarianID);
+		} else {
+			throw new IllegalArgumentException("Head Librarian does not approve.");
+		}
+		
 		if(itemRepository.existsItemById(itemID)) {
 			Item itemOfInterest = itemRepository.findItemById(itemID);
-			if(!(itemOfInterest.getIsArchived())) {
-				itemOfInterest.setIsArchived(true);
-				itemRepository.save(itemOfInterest);
+			if(itemOfInterest.getIsBorrowed() == false) {
+				if(itemOfInterest.getIsArchived() == false) {
+					itemOfInterest.setIsArchived(true);
+					itemRepository.save(itemOfInterest);
+					return itemOfInterest;
+				} else {
+					throw new IllegalArgumentException("Item is already in the archives.");
+				}
+			} else {
+				throw new IllegalArgumentException("Cannot archive a borrowed item.");
 			}
+		} else {
+			throw new IllegalArgumentException("Item ID does not exist.");
 		}
-		return null;
 	}
 	
 	/**

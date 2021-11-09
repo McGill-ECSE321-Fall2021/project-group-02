@@ -81,8 +81,19 @@ public class ItemRestController {
 	/************************************
           ARCHIVE ITEM SERVICE - JOHN
 	 ************************************/
-	
-	// add code
+	/**
+	 * Places an item into the archived library section
+	 * @param itemDto
+	 * @param 
+	 * @return archived item
+	 * 
+	 * @author John
+	 */
+	@PostMapping(value = { "/archive/{name}", "/archive/{name}/"})
+	public ItemDto archiveItem(@PathVariable("name") String itemName, @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "headLibrarianID") HeadLibrarianDto headLibrarianDto) {
+		Item i = itemService.archiveItem(itemDto.getID(), headLibrarianDto.getID());
+		return convertToDto(i);
+	}
 	
 	/******************************************
 	    VIEW LIBRARY CONTENTS - JULIE/NIILO
