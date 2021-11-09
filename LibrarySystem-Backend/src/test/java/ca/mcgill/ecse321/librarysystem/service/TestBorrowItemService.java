@@ -37,7 +37,7 @@ import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 
 @ExtendWith(MockitoExtension.class)
-public class TestBorrowItemsService {
+public class TestBorrowItemService {
 	
 	@Mock
 	ItemRepository itemDao;
