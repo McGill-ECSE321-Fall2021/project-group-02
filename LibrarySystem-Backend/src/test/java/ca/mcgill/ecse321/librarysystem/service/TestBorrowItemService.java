@@ -77,6 +77,9 @@ public class TestBorrowItemService {
 	private static final String NONEXISTINGBOOK_TITLE="lala";
 	private static final String NULLBOOK_TITLE=null;
 	
+	private static final String EXISTINGAUTHOR="Jonathan";
+	private static final String NULLAUTHOR=null;
+	
 	private static final String TESTSTRING="tester";
 	
 	private static final List<Album> ALBUM1= new ArrayList<Album>();
@@ -397,6 +400,84 @@ public class TestBorrowItemService {
 		}
 		assertNull(item);
 		assertEquals("The item you are looking for has already been borrowed.",error);
+	}
+	
+	@Test
+	public void testCreateBookValid() {
+		String author=EXISTINGAUTHOR;
+		String bookTitle=NONEXISTINGBOOK_TITLE;
+		boolean isArchived=BOOL;
+		Book book=null;
+		String error=null;
+		try {
+			book=service.createBook(author, bookTitle, isArchived);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNotNull(book);
+	}
+	
+	@Test
+	public void testCreateBookNullAuthorName() {
+		String author=NULLAUTHOR;
+		String bookTitle=NONEXISTINGBOOK_TITLE;
+		boolean isArchived=BOOL;
+		Book book=null;
+		String error=null;
+		try {
+			book=service.createBook(author, bookTitle, isArchived);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(book);
+		assertEquals("The name of the author of the book cannot be empty!",error);
+	}
+	
+	@Test
+	public void testCreateBookEmptyBookTitle() {
+		String author=EXISTINGAUTHOR;
+		String bookTitle=NULLBOOK_TITLE;
+		boolean isArchived=BOOL;
+		Book book=null;
+		String error=null;
+		try {
+			book=service.createBook(author, bookTitle, isArchived);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(book);
+		assertEquals("The title of the book cannot be empty!",error);
+	}
+	
+	@Test
+	public void testDeleteBookEmptyBookTitle() {
+		String author=EXISTINGAUTHOR;
+		String bookTitle=NULLBOOK_TITLE;
+		String error=null;
+		try {
+			service.deleteBook(author, bookTitle);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertEquals("The title of the book cannot be empty!",error);
+	}
+	
+	@Test
+	public void testDeleteBookNullAuthorName() {
+		String author=NULLAUTHOR;
+		String bookTitle=NONEXISTINGBOOK_TITLE;
+		String error=null;
+		try {
+			service.deleteBook(author, bookTitle);
+		}
+		catch(IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertEquals("The name of the author of the book cannot be empty!",error);
 	}
 	
 }
