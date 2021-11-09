@@ -65,9 +65,12 @@ public class TestReturnItemsService {
 	
 	private static final int PATRON_ID = 123456;
 	private static final int NOTAPATRON_ID = 234567;
+	private static final int NEGATIVEPATRON_ID = -2;
 	private static final int HEADLIBRARIAN_ID = 101010;
+	private static final int NEGATIVEHEADLIBRARIAN_ID = -3;
 	private static final int BOOK_ID = 101;
 	private static final int NOTABOOK_ID = 102;
+	private static final int NEGATIVEBOOK_ID = -1;
 	
 	@BeforeEach
 	public void setMockOutput() { 
@@ -159,8 +162,10 @@ public class TestReturnItemsService {
 	 */
 	public void testReturnItemValid() {
 		try {
+			Patron specificPatron = patronDao.findPatronById(PATRON_ID);
 			Item returnedItem = itemService.returnItem(BOOK_ID, PATRON_ID);
 			assertFalse(returnedItem.getIsBorrowed());
+			assertFalse(specificPatron.getBorrowedBooks().contains(returnedItem));
 		} catch (Exception e){
 			fail(e.getMessage());
 		}
@@ -183,6 +188,21 @@ public class TestReturnItemsService {
 	}
 	
 	/**
+	 * Tests an item with an negative ID and valid patronID that is returned but throws an error.
+	 * The item is still set as borrowed.
+	 */
+	@Test
+	public void testReturnItemNegativeItemID() {
+		try {
+			itemService.returnItem(NEGATIVEBOOK_ID, PATRON_ID);
+		} catch (Exception e){
+			String error = e.getMessage();
+			assertEquals(error, "Item ID cannot be negative.");
+			assertFalse(itemDao.existsById(NEGATIVEBOOK_ID));
+		}
+	}
+	
+	/**
 	 * Tests an item with an invalid ID and invalid patronID that is returned but throws an error that the patron ID does not exist.
 	 * The item is still set as borrowed.
 	 */
@@ -194,6 +214,21 @@ public class TestReturnItemsService {
 			String error = e.getMessage();
 			assertEquals(error, "Patron ID does not exist.");
 			assertTrue(itemDao.findItemById(BOOK_ID).getIsBorrowed());
+		}
+	}
+	
+	/**
+	 * Tests an item with an valid ID and negative patronID that is returned but throws an error.
+	 * The item is still set as borrowed.
+	 */
+	@Test
+	public void testReturnItemNegativePatronID() {
+		try {
+			itemService.returnItem(BOOK_ID, NEGATIVEPATRON_ID);
+		} catch (Exception e){
+			String error = e.getMessage();
+			assertEquals(error, "Patron ID cannot be negative.");
+			assertFalse(patronDao.existsById(NEGATIVEPATRON_ID));
 		}
 	}
 	
@@ -241,6 +276,21 @@ public class TestReturnItemsService {
 	}
 	
 	/**
+	 * Tests an item with a valid ID and negative head librarian ID that throws an error.
+	 * The item is still set as borrowed.
+	 */
+	@Test
+	public void testDamageItemNegativeHeadLibrarianID() {
+		try {
+			itemService.setDamagedItem(BOOK_ID, NEGATIVEHEADLIBRARIAN_ID);
+		} catch (Exception e){
+			String error = e.getMessage();
+			assertEquals(error, "User ID cannot be negative.");
+			assertFalse(headLibrarianDao.existsById(NEGATIVEHEADLIBRARIAN_ID));
+		}
+	}
+	
+	/**
 	 * Tests that an item with a non-existing itemID attempted to be set as damaged by a head librarian throws an error.
 	 */
 	@Test
@@ -253,6 +303,22 @@ public class TestReturnItemsService {
 			assertFalse(itemDao.findItemById(BOOK_ID).getIsDamaged());
 		}
 	}
+	
+	/**
+	 * Tests an item with an negative ID and valid head librarian ID that throws an error.
+	 * The item is still set as borrowed.
+	 */
+	@Test
+	public void testDamageItemNegativeItemID() {
+		try {
+			itemService.setDamagedItem(NEGATIVEBOOK_ID, HEADLIBRARIAN_ID);
+		} catch (Exception e){
+			String error = e.getMessage();
+			assertEquals(error, "Item ID cannot be negative.");
+			assertFalse(itemDao.existsById(NEGATIVEBOOK_ID));
+		}
+	}
+	
 	/**
 	 * Tests that an item was properly deleted from the library's item repository.
 	 */
@@ -276,6 +342,21 @@ public class TestReturnItemsService {
 		} catch (Exception e){
 			String error = e.getMessage();
 			assertEquals(error, "Item ID does not exist.");
+		}
+	}
+	
+	/**
+	 * Tests an item with an negative ID that throws an error.
+	 * The item is still set as borrowed.
+	 */
+	@Test
+	public void testDiscardItemNegativeItemID() {
+		try {
+			itemService.discardItem(NEGATIVEBOOK_ID);
+		} catch (Exception e){
+			String error = e.getMessage();
+			assertEquals(error, "Item ID cannot be negative.");
+			assertFalse(itemDao.existsById(NEGATIVEBOOK_ID));
 		}
 	}
 }

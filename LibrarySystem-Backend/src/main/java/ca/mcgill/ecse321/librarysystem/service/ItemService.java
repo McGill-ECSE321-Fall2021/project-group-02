@@ -136,19 +136,27 @@ public class ItemService {
 	@Transactional
 	public Item returnItem(int itemId, int patronId) throws IllegalArgumentException {
 		
-		// Identify the specific patron
+		// Identify the specific patron returning the item
 		Patron specificPatron;
-		if (patronRepository.existsById(patronId)) {
+		if (patronId < 0){
+			throw new IllegalArgumentException("Patron ID cannot be negative.");
+			
+		} else if (patronRepository.existsById(patronId)) {
 			specificPatron = patronRepository.findPatronById(patronId);
 		}
 		else {
 			throw new IllegalArgumentException("Patron ID does not exist."); 
 		}
-
-		if(itemRepository.existsItemById(itemId)) {
+		
+		// Identify the specific item being returned
+		if (itemId < 0) {
+			throw new IllegalArgumentException("Item ID cannot be negative.");
+		}
+		else if(itemRepository.existsItemById(itemId)) {
 			Item specificItem = itemRepository.findItemById(itemId); 
 			
 			// Remove item from patron's borrowed list by making a copy without the returned item
+			// CRUD methods require the type (class) of the item to be identified
 			if (specificItem.getClass() == Album.class) {
 				List<Album> copyList = new ArrayList<Album>();
 				for (Album a : specificPatron.getBorrowedAlbums()) {
@@ -179,9 +187,9 @@ public class ItemService {
 				specificPatron.setBorrowedMovies(copyList);
 				patronRepository.save(specificPatron);
 			}
+			// Make the item available to be borrowed 
 			specificItem.setIsBorrowed(false);
 			itemRepository.save(specificItem);
-			// .save() for the classes too?
 			return specificItem;
 			
 		} else {
@@ -638,11 +646,14 @@ public class ItemService {
 	 */
 	@Transactional
 	public Item setDamagedItem(int itemId, int userId) throws IllegalArgumentException {
-		
-		if (headLibrarianRepository.existsById(userId)) {
+		if (userId < 0) {
+			throw new IllegalArgumentException("User ID cannot be negative.");
+		} else if (headLibrarianRepository.existsById(userId)) {
 			
-			Item specificItem = itemRepository.findItemById(itemId); 
-			if(itemRepository.existsItemById(itemId)) {
+			Item specificItem = itemRepository.findItemById(itemId);
+			if (itemId < 0) {
+				throw new IllegalArgumentException("Item ID cannot be negative.");
+			} else if(itemRepository.existsItemById(itemId)) {
 				specificItem.setIsBorrowed(false);
 				specificItem.setIsDamaged(true);
 			} else {
@@ -669,8 +680,9 @@ public class ItemService {
 	@Transactional
 	public void discardItem(int itemId) {
 		Item specificItem = itemRepository.findItemById(itemId); 
-		
-		if(itemRepository.existsItemById(itemId)) {
+		if (itemId < 0) {
+			throw new IllegalArgumentException("Item ID cannot be negative.");
+		} else if(itemRepository.existsItemById(itemId)) {
 			itemRepository.delete(specificItem);
 		} else {
 			throw new IllegalArgumentException("Item ID does not exist.");
@@ -706,6 +718,26 @@ public class ItemService {
 		itemRepository.save(album);
 		albumRepository.save(album);
 		return album;
+	}
+	
+	/**
+	 * Creates a patron
+	 * @return Patron
+	 * @author Sami
+	 */
+	@Transactional
+	public Patron createPatron(String address, int balance, String city, String firstName, String lastName) {
+		Patron patron=new Patron();
+		patron.setAddress(address);
+		patron.setBalance(balance);
+		patron.setCity(city);
+		patron.setFirstName(firstName);
+		patron.setLastName(lastName);
+		patron.setBorrowedAlbums(new ArrayList<Album>());
+		patron.setBorrowedBooks(new ArrayList<Book>());
+		patron.setBorrowedMovies(new ArrayList<Movie>());
+		patronRepository.save(patron);
+		return patron;
 	}
 	
 	/**
