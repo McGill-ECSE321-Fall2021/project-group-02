@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.librarysystem.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -230,7 +231,7 @@ public class TestBorrowItemService {
 			}
 			
 		});
-        
+		
 		lenient().when(itemDao.save(any(Item.class))).thenAnswer(returnParameterAsAnswer);
 		
 		
@@ -416,6 +417,7 @@ public class TestBorrowItemService {
 			error=e.getMessage();
 		}
 		assertNotNull(book);
+		assertNull(error);
 	}
 	
 	@Test
@@ -451,6 +453,7 @@ public class TestBorrowItemService {
 		assertNull(book);
 		assertEquals("The title of the book cannot be empty!",error);
 	}
+	
 	
 	@Test
 	public void testDeleteBookEmptyBookTitle() {
