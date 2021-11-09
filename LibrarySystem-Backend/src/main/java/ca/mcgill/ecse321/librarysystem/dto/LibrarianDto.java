@@ -3,7 +3,7 @@ package ca.mcgill.ecse321.librarysystem.dto;
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.WeeklySchedule;
 
-public class HeadLibrarianDto {
+public class LibrarianDto {
 	private OnlineAccount onlineAccount;
 	private String firstName;
 	private String lastName;
@@ -13,11 +13,10 @@ public class HeadLibrarianDto {
 	private int balance;
 	private int id;
 	
-	public HeadLibrarianDto() {	
+	public LibrarianDto() {	
 	}
 	
-
-	public HeadLibrarianDto(OnlineAccount onlineAccount,String firstName,String lastName,String address,String city,int balance,WeeklySchedule weeklySchedule,int id) {
+	public LibrarianDto(OnlineAccount onlineAccount,String firstName,String lastName,String address,String city,int balance,WeeklySchedule weeklySchedule,int id) {
 		this.onlineAccount=onlineAccount;
 		this.firstName=firstName;
 		this.lastName=lastName;
@@ -60,4 +59,3 @@ public class HeadLibrarianDto {
 		return id;
 	}
 }
-
