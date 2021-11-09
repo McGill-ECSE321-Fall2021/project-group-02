@@ -236,6 +236,13 @@ public class ItemRestController {
 		return convertToDto(p);
 	}
 	
+	/*
+	@PostMapping(value= {"/createPatron/{address}","/createPatron/{address}/"})
+	public void deletePatron(@PathVariable("address") String address, @RequestParam(name="city") String city, @RequestParam(name="balance") int balance, @RequestParam(name="firstName") String firstName, @RequestParam(name="lastName") String lastName) {
+		Patron p=itemService.delete
+		return convertToDto(p);
+	}
+	*/
 	
 	/**
 	 * Adds a new book to the library software system
@@ -252,6 +259,8 @@ public class ItemRestController {
 		Book b= itemService.createBook(authorName, bookTitle, isArchived);
 		return convertToDto(b);
 	}
+	
+	
 	
 	/**
 	 * Adds a new album to the library software system
