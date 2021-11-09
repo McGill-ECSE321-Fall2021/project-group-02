@@ -29,7 +29,6 @@ import java.sql.Date;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/returnItem")
 public class ItemRestController {
 	
 	@Autowired
@@ -54,10 +53,12 @@ public class ItemRestController {
 	 * @author Sami
 	 */
 	@PostMapping(value = {"/borrow/{name}", "/borrow/{name}/"} )
-	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemID") ItemDto itemDto, @RequestParam(name= "patronId") PatronDto patronDto) {
-		Item i= itemService.borrowItem(itemDto.getID(), itemName, patronDto.getId());
+	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemId") int itemId, @RequestParam(name= "patronId") int patronId) {
+		Item i= itemService.borrowItem(itemId, itemName, patronId);
 		return convertToDto(i);
 	}
+	
+	
 	
 	/************************************
           RETURN ITEM SERVICE - JULIE
@@ -71,8 +72,8 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@PostMapping(value = { "/retur/{name}", "/return/{name}/"})
-	public ItemDto returnItem(@PathVariable("name") String itemName,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
+	@PostMapping(value = { "/return/{itemId}", "/return/{itemId}/"})
+	public ItemDto returnItem(@PathVariable("itemId") int itemId,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
 		Item i = itemService.returnItem(itemDto.getID(), patronDto.getId());
 		return convertToDto(i);
 	}
@@ -80,8 +81,19 @@ public class ItemRestController {
 	/************************************
           ARCHIVE ITEM SERVICE - JOHN
 	 ************************************/
-	
-	// add code
+	/**
+	 * Places an item into the archived library section
+	 * @param itemDto
+	 * @param 
+	 * @return archived item
+	 * 
+	 * @author John
+	 */
+	@PostMapping(value = { "/archive/{name}", "/archive/{name}/"})
+	public ItemDto archiveItem(@PathVariable("name") String itemName, @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "headLibrarianID") HeadLibrarianDto headLibrarianDto) {
+		Item i = itemService.archiveItem(itemDto.getID(), headLibrarianDto.getID());
+		return convertToDto(i);
+	}
 	
 	/******************************************
 	    VIEW LIBRARY CONTENTS - JULIE/NIILO
@@ -212,6 +224,19 @@ public class ItemRestController {
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI
 	 ****************************************************/
+	
+	/**
+	 * Creates a patron
+	 * @author Sami
+	 * @return Patron
+	 */
+	@PostMapping(value= {"/createPatron/{address}","/createPatron/{address}/"})
+	public PatronDto createPatron(@PathVariable("address") String address, @RequestParam(name="city") String city, @RequestParam(name="balance") int balance, @RequestParam(name="firstName") String firstName, @RequestParam(name="lastName") String lastName) {
+		Patron p=itemService.createPatron(address, balance, city, firstName, lastName);
+		return convertToDto(p);
+	}
+	
+	
 	/**
 	 * Adds a new book to the library software system
 	 * @param bookTitle
@@ -223,7 +248,7 @@ public class ItemRestController {
 	 * @author Sami
 	 */
 	@PostMapping(value = {"/createBook/{title}", "/createBook/{title}/"} )
-	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "isArchived") boolean isArchived) {
 		Book b= itemService.createBook(authorName, bookTitle, isArchived);
 		return convertToDto(b);
 	}
@@ -270,6 +295,7 @@ public class ItemRestController {
 	 */
 	@PostMapping(value = {"/createNewspaper/{title}", "/createNewspaper/{title}/"} )
 	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
+		System.out.println("Entered the api method");
 		Newspaper n= itemService.createNewspaper(newspaperTitle, newspaperDate);
 		return convertToDto(n);
 	}
@@ -393,7 +419,15 @@ public class ItemRestController {
 		if (b == null) {
 			throw new IllegalArgumentException("There is no such Book!");
 		}
-		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor());
+		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(), b.getId());
 		return bookDto;
+	}
+	
+	private PatronDto convertToDto(Patron p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Patron!");
+		}
+		PatronDto patronDto = new PatronDto(p.getId(),p.getAddress(),p.getCity(),p.getFirstName(),p.getLastName(),p.getBalance());
+		return patronDto;
 	}
 }

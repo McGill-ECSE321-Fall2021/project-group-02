@@ -12,21 +12,37 @@ repositories {
 	mavenCentral()
 }
 
+
+task integrationTest(type:Exec) {
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createPatron/22RueDesTimoniers', '-d', 'city=Montreal', '-d', 'balance=0', '-d', 'firstName=Sami', '-d', 'lastName=Larieux'
+	
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createBook/Mara', '-d', 'authorName=Sam', '-d', 'isArchived=false'
+	
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/borrow/Mara', '-d', 'itemId=2', '-d', 'patronId=1'
+	
+	standardOutput = new ByteArrayOutputStream()
+	  
+	 ext.output = {
+    	return standardOutput.toString()
+  	}
+	
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-
+git a
 	runtimeOnly 'org.postgresql:postgresql'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'	
 	testImplementation 'org.mockito:mockito-core:2.+'
 	testImplementation 'org.mockito:mockito-junit-jupiter:2.18.3'
-	//testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
 	testImplementation 'org.junit.platform:junit-platform-launcher:1.4.1'
-
 }
 
 test {
