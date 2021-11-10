@@ -117,8 +117,8 @@ public class CreateOnlineAccountService {
 		OnlineAccount account = findAccountByUsername(username);
 		if (account == null) throw new IllegalArgumentException("Could not delete account. Online account does not exist.");
 		if (!verifyPassword(account, password)) throw new IllegalArgumentException("Wrong password!");
-		int id = account.getId();
-		UserEntity user = findUserById(id);
+		UserEntity user = account.getUser();
+		if (user == null) throw new IllegalArgumentException("Could not delete account. User does not exist.");
 		user.setOnlineAccount(null);
 		account.setEmail(null);
 		account.setPassword(null);
@@ -131,8 +131,8 @@ public class CreateOnlineAccountService {
 		OnlineAccount account = findAccountByEmail(email);
 		if (account == null) throw new IllegalArgumentException("Could not delete account. Online account does not exist.");
 		if (!verifyPassword(account, password)) throw new IllegalArgumentException("Wrong password!");
-		int id = account.getId();
-		UserEntity user = findUserById(id);
+		UserEntity user = account.getUser();
+		if (user == null) throw new IllegalArgumentException("Could not delete account. User does not exist.");
 		user.setOnlineAccount(null);
 		account.setEmail(null);
 		account.setPassword(null);
@@ -144,7 +144,9 @@ public class CreateOnlineAccountService {
 	public OnlineAccount changePassword(String username, String password, String newPassword) throws IllegalArgumentException {
 		OnlineAccount account = findAccountByUsername(username);
 		if (account == null) throw new IllegalArgumentException("Online account does not exist.");
-		if (!verifyPassword(account, password)) throw new IllegalArgumentException("Wrong password!");
+		if (!verifyPassword(account, password)) {
+			throw new IllegalArgumentException("Wrong password!");
+		}
 		if(!checkPassword(newPassword)) throw new IllegalArgumentException("Password too short or too long.");
 		account.setPassword(newPassword);
 		onlineAccountRepository.save(account);
@@ -212,7 +214,7 @@ public class CreateOnlineAccountService {
 	}
 	
 	private boolean verifyPassword(OnlineAccount acc, String password) {
-		return acc.getPassword()==password;
+		return acc.getPassword().equals(password);
 	}
 	
 	public OnlineAccount findAccountByUsername(String username) {

@@ -54,7 +54,7 @@ public class CreateOnlineAccountController {
 	@PutMapping(value = {"/changeEmail", "/changeEmail/"})
 	public OnlineAccountDto changeEmail(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password, 
 			@RequestParam(name = "newEmail") String newEmail) throws IllegalArgumentException {
-		OnlineAccount account = service.changePassword(username, password, newEmail);
+		OnlineAccount account = service.changeEmail(username, password, newEmail);
 		return convertToDto(account);
 	}
 	
