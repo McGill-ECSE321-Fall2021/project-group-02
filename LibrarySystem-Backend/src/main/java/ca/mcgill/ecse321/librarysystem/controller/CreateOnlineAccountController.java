@@ -2,8 +2,11 @@ package ca.mcgill.ecse321.librarysystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.dto.OnlineAccountDto;
@@ -31,26 +34,26 @@ public class CreateOnlineAccountController {
 		return convertToDto(account);
 	}
 	
-	@PostMapping(value = {"/onlineAccountExisting/{username}/{password}", "/onlineAccountExisting/{username}/{password}/"})
-	public void deleteOnlineAccountUsername(@PathVariable (name = "username") String username, @PathVariable (name = "password") String password) throws IllegalArgumentException {
+	@DeleteMapping(value = {"/deleteOnlineAccountUsername", "/deleteOnlineAccountUsername/"})
+	public void deleteOnlineAccountUsername(@RequestParam (name = "username") String username, @RequestParam (name = "password") String password) throws IllegalArgumentException {
 		service.deleteOnlineAccountUsername(username, password);
 	}
 	
-	@PostMapping(value = {"/onlineAccountExisting/{email}/{password}", "/onlineAccountExisting/{email}/{password}/"})
-	public void deleteOnlineAccountEmail(@PathVariable (name = "email") String email, @PathVariable (name = "password") String password) throws IllegalArgumentException {
+	@DeleteMapping(value = {"/deleteOnlineAccountEmail", "/deleteOnlineAccountEmail/"})
+	public void deleteOnlineAccountEmail(@RequestParam (name = "email") String email, @RequestParam (name = "password") String password) throws IllegalArgumentException {
 		service.deleteOnlineAccountUsername(email, password);
 	}
 	
-	@PostMapping(value = {"/onlineAccountExisting/{username}/{password}/{newPassword}", "/onlineAccountExisting/{username}/{password}/{newPassword}/"})
-	public OnlineAccountDto changePassword(@PathVariable(name = "username") String username, @PathVariable(name = "password") String password, 
-			@PathVariable(name = "newPassword") String newPassword) throws IllegalArgumentException {
+	@PutMapping(value = {"/changePassword", "/changePassword/"})
+	public OnlineAccountDto changePassword(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password, 
+			@RequestParam(name = "newPassword") String newPassword) throws IllegalArgumentException {
 		OnlineAccount account = service.changePassword(username, password, newPassword);
 		return convertToDto(account);
 	}
 	
-	@PostMapping(value = {"/onlineAccountExisting/{username}/{password}/{newEmail}", "/onlineAccountExisting/{username}/{password}/{newEmail}/"})
-	public OnlineAccountDto changeEmail(@PathVariable(name = "username") String username, @PathVariable(name = "password") String password, 
-			@PathVariable(name = "newEmail") String newEmail) throws IllegalArgumentException {
+	@PutMapping(value = {"/changeEmail", "/changeEmail/"})
+	public OnlineAccountDto changeEmail(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password, 
+			@RequestParam(name = "newEmail") String newEmail) throws IllegalArgumentException {
 		OnlineAccount account = service.changePassword(username, password, newEmail);
 		return convertToDto(account);
 	}
