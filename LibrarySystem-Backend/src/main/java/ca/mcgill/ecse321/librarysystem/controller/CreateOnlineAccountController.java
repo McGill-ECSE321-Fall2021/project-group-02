@@ -32,6 +32,30 @@ public class CreateOnlineAccountController {
 		return convertToDto(account);
 	}
 	
+	@PostMapping(value = {"/onlineAccountExisting/{username}/{password}", "/onlineAccountExisting/{username}/{password}/"})
+	public void deleteOnlineAccountUsername(@PathVariable (name = "username") String username, @PathVariable (name = "password") String password) throws IllegalArgumentException {
+		service.deleteOnlineAccountUsername(username, password);
+	}
+	
+	@PostMapping(value = {"/onlineAccountExisting/{email}/{password}", "/onlineAccountExisting/{email}/{password}/"})
+	public void deleteOnlineAccountEmail(@PathVariable (name = "email") String email, @PathVariable (name = "password") String password) throws IllegalArgumentException {
+		service.deleteOnlineAccountUsername(email, password);
+	}
+	
+	@PostMapping(value = {"/onlineAccountExisting/{username}/{password}/{newPassword}", "/onlineAccountExisting/{username}/{password}/{newPassword}/"})
+	public OnlineAccountDto changePassword(@PathVariable(name = "username") String username, @PathVariable(name = "password") String password, 
+			@PathVariable(name = "newPassword") String newPassword) throws IllegalArgumentException {
+		OnlineAccount account = service.changePassword(username, password, newPassword);
+		return convertToDto(account);
+	}
+	
+	@PostMapping(value = {"/onlineAccountExisting/{username}/{password}/{newEmail}", "/onlineAccountExisting/{username}/{password}/{newEmail}/"})
+	public OnlineAccountDto changeEmail(@PathVariable(name = "username") String username, @PathVariable(name = "password") String password, 
+			@PathVariable(name = "newEmail") String newEmail) throws IllegalArgumentException {
+		OnlineAccount account = service.changePassword(username, password, newEmail);
+		return convertToDto(account);
+	}
+	
 	private OnlineAccountDto convertToDto(OnlineAccount acc) {
 		if (acc==null) {
 			throw new IllegalArgumentException("There is no such account!");
