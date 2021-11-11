@@ -18,7 +18,7 @@ John Park is a third year (U3) student in Software Engineering <br />
 | --- | --- | --- | --- | --- | --- |
 | Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h |  |  |
 | Julie Chen | Documentation Lead | 12h |  |  |  |
-| Hyunbum Cho | Software Developer | 12h |  |  |  |
+| Hyunbum Cho | Software Developer | 12h | 20h |  |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h |  |  |
 | Niilo Vuokila | Software Developer | 20h | 20h |  |  |
 | John Park | Software Developer | 12h |  |  |  |
@@ -42,7 +42,7 @@ John Park is a third year (U3) student in Software Engineering <br />
 | --- | --- | --- |
 | Sami Ait Ouahmane | Implementation of business method "borrowItem" and other service methods, exposed them to RestAP, wrote tests for them, and updated the Software Quality Assurance Plan and Report | 22h |
 | Julie Chen | Implementation of business method "returnItem" and other related service methods ("setDamagedItem", "discardItem"), exposed them to RestAPI, wrote unit tests for them, and outlined the test coverage in the Software Quality Assurance Plan and Report. Created and updated the project report for deliverable 2 and maintained other wiki-related tasks for deliverable 2. | 20h |
-| Hyunbum Cho |  |  |
+| Hyunbum Cho | Implementation of busisness method for creating online account, unit tests and RestAPI. | 20h |
 | Vy-Kha Huynh | Implementation of business method "createLibrarian", "createHeadLibrarian", "deleteLibrarian" and other service methods ("getAllLibrarians", "getLibrariansByFirstAndLastName", "getLibrarianByFirstName" , "getLibrarianByLastName", "getLibrarianByID"), expoed them to RestAPI, wrote unit tests for them, and updated Software Quality Assurance Plan and Report | 20h |
 | Niilo Vuokila | Implementated controller methods and unit tests for "view library contents", Fixed deliverable 1 database (JPA) and persistence layer unit test issues. Integration tests for "view library contents" and "return items" use cases. | 20h |
 | John Park |  |  |
