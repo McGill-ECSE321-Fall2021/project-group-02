@@ -442,6 +442,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Item> getItemsBorrowedByPatron(int patronID) throws IllegalArgumentException{
@@ -462,6 +463,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Book> getBooksBorrowedByPatron(int patronID) throws IllegalArgumentException{
@@ -480,6 +482,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Album> getAlbumsBorrowedByPatron(int patronID) throws IllegalArgumentException{
@@ -498,6 +501,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Movie> getMoviesBorrowedByPatron(int patronID) throws IllegalArgumentException{
