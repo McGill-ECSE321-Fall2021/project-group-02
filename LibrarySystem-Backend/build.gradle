@@ -33,7 +33,6 @@ task integrationTest(type:Exec) {
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/deleteOnlineAccountEmail', '-d', 'email=John@gmail.com', '-d', 'password=newpass1234'
 	
-	
 	standardOutput = new ByteArrayOutputStream()
 	  
 	 ext.output = {
