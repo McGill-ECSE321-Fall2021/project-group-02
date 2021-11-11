@@ -28,8 +28,8 @@ John Park is a third year (U3) student in Software Engineering <br />
  
  | Name | Contributions | Hours |
 | --- | --- | --- |
-| Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed the reutnr items use case. | 25h |
-| Julie Chen | Requirements, wiki and project report updates, and detailed use case for the borrow items use case | 12h |
+| Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed the return items use case. | 25h |
+| Julie Chen | Requirements, wiki and project report updates, success spectrum, and detailed use case for the borrow items use case | 12h |
 | Hyunbum Cho |  | 12h |
 | Vy-Kha Huynh | Set up PersistenceLayerTesting, Domain model, and detailed use cases  | 12h |
 | Niilo Vuokila | Create Diagrams for models, Write JPA annotations and detailed use cases | 20h |
