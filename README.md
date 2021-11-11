@@ -41,7 +41,7 @@ John Park is a third year (U3) student in Software Engineering <br />
  | Name | Contributions | Hours |
 | --- | --- | --- |
 | Sami Ait Ouahmane | Implementation of business method "borrowItem" and other service methods, exposed them to RestAP, wrote tests for them, and updated the Software Quality Assurance Plan and Report | 22h |
-| Julie Chen | Implementation of business method "returnItem" and other related service methods ("setDamagedItem", "discardItem"), exposed them to RestAPI, wrote unit tests for them, and outlined the test coverage in the Software Quality Assurance Plan and Report. Created and updated the project report for deliverable 2 and maintined other wiki-related tasks for deliverable 2. | 20h |
+| Julie Chen | Implementation of business method "returnItem" and other related service methods ("setDamagedItem", "discardItem"), exposed them to RestAPI, wrote unit tests for them, and outlined the test coverage in the Software Quality Assurance Plan and Report. Created and updated the project report for deliverable 2 and maintained other wiki-related tasks for deliverable 2. | 20h |
 | Hyunbum Cho |  |  |
 | Vy-Kha Huynh | Implementation of business method "createLibrarian", "createHeadLibrarian", "deleteLibrarian" and other service methods ("getAllLibrarians", "getLibrariansByFirstAndLastName", "getLibrarianByFirstName" , "getLibrarianByLastName", "getLibrarianByID"), expoed them to RestAPI, wrote unit tests for them, and updated Software Quality Assurance Plan and Report | 20h |
 | Niilo Vuokila |  |  |
