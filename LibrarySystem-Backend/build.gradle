@@ -14,6 +14,7 @@ repositories {
 
 
 task integrationTest(type:Exec) {
+	//borrow Item
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createPatron/22RueDesTimoniers', '-d', 'city=Montreal', '-d', 'balance=0', '-d', 'firstName=Sami', '-d', 'lastName=Larieux'
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createBook/Mara', '-d', 'authorName=Sam', '-d', 'isArchived=false'
