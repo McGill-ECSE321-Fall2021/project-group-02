@@ -72,6 +72,17 @@ public class EmploymentRestController {
 		return service.getAllLibrariansByLastName(0, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
+	/**
+	 * @author vy-khahuynh
+	 * @param hlid id of headlibrarian
+	 * @param libid id of librarian to be searched
+	 * @return librarian dto object
+	 */
+	@GetMapping(value= {"/librarians/{userID}/{LibID}" , "/librarians/{userID}/{LibID}/"})
+	public LibrarianDto getLibrarianByID(@PathVariable(name="userID") int hlid,@RequestParam(name="LibID") int libid) {
+		Librarian l = service.getLibrarianByID(hlid, libid);
+		return convertToDto(l);
+	}
 	
 	/**
 	 * 
