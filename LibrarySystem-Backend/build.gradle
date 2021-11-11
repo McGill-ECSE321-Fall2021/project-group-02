@@ -36,9 +36,9 @@ task integrationTest(type:Exec) {
 	// managing employment
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createHeadLibrarian/1/Head/Librarian/345 street C/Montreal'
 	
-	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createLibrarian/1/Lib/Rarian/123 street B/Montreal'
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createLibrarian/2/Lib/Rarian/123 street B/Montreal'
 	
-	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/deleteLibrarian' , '-d' , 'userID = 1' , '-d' , 'LibID = 2'  
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/deleteLibrarian' , '-d' , 'userID = 2' , '-d' , 'LibID = 3'  
 	
 	
 	standardOutput = new ByteArrayOutputStream()
