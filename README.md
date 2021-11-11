@@ -30,7 +30,7 @@ John Park is a third year (U3) student in Software Engineering <br />
 | --- | --- | --- |
 | Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed use cases. | 25h |
 | Julie Chen |  | 12h |
-| Hyunbum Cho |  | 12h |
+| Hyunbum Cho | Domain model, Requirment, issues for requirements, detailed use case | 12h |
 | Vy-Kha Huynh | Set up PersistenceLayerTesting, Domain model, and detailed use cases  | 12h |
 | Niilo Vuokila | Create Diagrams for models, Write JPA annotations and detailed use cases | 20h |
 | John Park |  | 12h |
