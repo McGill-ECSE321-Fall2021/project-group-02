@@ -29,7 +29,7 @@ John Park is a third year (U3) student in Software Engineering <br />
  | Name | Contributions | Hours |
 | --- | --- | --- |
 | Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed the return items use case. | 25h |
-| Julie Chen | Requirements, wiki and project report updates, success spectrum, and detailed use case for the borrow items use case | 12h |
+| Julie Chen | Requirements, wiki and project report updates, success spectrum, and detailed use case for the borrow items use case. GitHub issues assignment and management. | 12h |
 | Hyunbum Cho |  | 12h |
 | Vy-Kha Huynh | Set up PersistenceLayerTesting, Domain model, and detailed use cases  | 12h |
 | Niilo Vuokila | Create Diagrams for models, Write JPA annotations and detailed use cases | 20h |
@@ -41,7 +41,7 @@ John Park is a third year (U3) student in Software Engineering <br />
  | Name | Contributions | Hours |
 | --- | --- | --- |
 | Sami Ait Ouahmane | Implementation of business method "borrowItem" and other service methods, exposed them to RestAPI, wrote tests for them, and updated the Software Quality Assurance Plan and Report | 22h |
-| Julie Chen | Implementation of business method "returnItem" and other related service methods ("setDamagedItem", "discardItem"), exposed them to RestAPI, wrote unit tests for them, and outlined the test coverage in the Software Quality Assurance Plan and Report. Created and updated the project report for deliverable 2 and maintained other wiki-related tasks for deliverable 2. | 20h |
+| Julie Chen | Implementation of business method "returnItem" and other related service methods ("setDamagedItem", "discardItem"), exposed them to RestAPI, wrote unit tests for them, and outlined the test coverage in the Software Quality Assurance Plan and Report. Created and updated the project report for deliverable 2 and maintained other wiki-related tasks for deliverable 2. GitHub issues assignment and management. | 20h |
 | Hyunbum Cho | Implementation of busisness method for creating online account, unit tests and RestAPI. | 20h |
 | Vy-Kha Huynh | Implementation of business method "createLibrarian", "createHeadLibrarian", "deleteLibrarian" and other service methods ("getAllLibrarians", "getLibrariansByFirstAndLastName", "getLibrarianByFirstName" , "getLibrarianByLastName", "getLibrarianByID"), expoed them to RestAPI, wrote unit tests for them, and updated Software Quality Assurance Plan and Report | 20h |
 | Niilo Vuokila | Implementated controller methods and unit tests for "view library contents", Fixed deliverable 1 database (JPA) and persistence layer unit test issues. Integration tests for "view library contents" and "return items" use cases. | 20h |
