@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,15 +13,12 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.HeadLibrarianRepository;
@@ -564,7 +562,7 @@ public class TestCreateOnlineAccountService {
 		try {
 			account = service.createOnlineAccountExistingUser(ID_KEY_HEAD_LIB_WITH_ONLINE_ACC, username, password, email);
 		} catch(IllegalArgumentException e) {
-			error = e.getMessage();;
+			error = e.getMessage();
 		}
 		
 		assertNull(account);
@@ -581,7 +579,7 @@ public class TestCreateOnlineAccountService {
 		try {
 			account = service.createOnlineAccountExistingUser(ID_KEY_LIB_WITH_ONLINE_ACC, username, password, email);
 		} catch(IllegalArgumentException e) {
-			error = e.getMessage();;
+			error = e.getMessage();
 		}
 		
 		assertNull(account);
@@ -598,7 +596,7 @@ public class TestCreateOnlineAccountService {
 		try {
 			account = service.createOnlineAccountExistingUser(ID_KEY_PATRON_WITH_ONLINE_ACC, username, password, email);
 		} catch(IllegalArgumentException e) {
-			error = e.getMessage();;
+			error = e.getMessage();
 		}
 		
 		assertNull(account);
@@ -616,10 +614,184 @@ public class TestCreateOnlineAccountService {
 		try {
 			account = service.createOnlineAccountExistingUser(id, username, password, email);
 		} catch(IllegalArgumentException e) {
-			error = e.getMessage();;
+			error = e.getMessage();
 		}
 		
 		assertNull(account);
 		assertEquals("User with ID 123 does not exist.\n", error);
 	}
+	
+	// -----------------------------------------------
+	// cannot test delete or update because of Mockito
+	/*
+	private OnlineAccount createOnlineAccount() {
+		String firstName = "John";
+		String lastName = "Doe";
+		String address = "1234 McGill street";
+		String city = "Montreal";
+		String username = "John123";
+		String password = "pass1234";
+		String email = "John123@gmail.com";
+		OnlineAccount account = service.createOnlineAccountNewUser(firstName, lastName, address, city, username, password, email);
+		return account;
+	}
+	
+	@Test
+	public void TestDeleteAccountvalidUsername() {
+		String username = "John123";
+		String password = "pass1234";
+		OnlineAccount account = createOnlineAccount();
+		UserEntity user = account.getUser();
+		try {
+			service.deleteOnlineAccountUsername(username, password);
+		} catch(IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			fail();
+		}
+		assertNull(user.getOnlineAccount());
+		assertNull(account.getUsername());
+		assertNull(account.getPassword());
+		assertNull(account.getEmail());
+	}
+	
+	@Test
+	public void TestDeleteAccountvalidEmail() {
+		String password = "pass1234";
+		String email = "John123@gmail.com";
+		OnlineAccount account = createOnlineAccount();
+		UserEntity user = account.getUser();
+		try {
+			service.deleteOnlineAccountEmail(email, password);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNull(user.getOnlineAccount());
+		assertNull(account.getUsername());
+		assertNull(account.getPassword());
+		assertNull(account.getEmail());
+	}
+	
+	@Test
+	public void TestDeleteAccountInvalidUsername() {
+		String error = "";
+		String password = "pass1234";
+		String usernameInvalid = "Mike123";
+		OnlineAccount account = createOnlineAccount();
+		UserEntity user = account.getUser();
+		try {
+			service.deleteOnlineAccountUsername(usernameInvalid, password);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNotNull(user.getOnlineAccount());
+		assertEquals("Could not delete account. Online account does not exist.", error);
+	}
+	
+	@Test
+	public void TestDeleteAccountInvalidEmail() {
+		String error = "";
+		String password = "pass1234";
+		String invalidEmail = "Mike123@gmail.com";
+		OnlineAccount account = createOnlineAccount();
+		UserEntity user = account.getUser();
+		try {
+			service.deleteOnlineAccountEmail(invalidEmail, password);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNotNull(user.getOnlineAccount());
+		assertEquals("Could not delete account. Online account does not exist.", error);
+	}
+	
+	@Test
+	public void TestDeleteAccountInvalidPassword1() {
+		String error = "";
+		String username = "John123";
+		String invalidPassword = "wrongPassword";
+		OnlineAccount account = createOnlineAccount();
+		UserEntity user = account.getUser();
+		try {
+			service.deleteOnlineAccountUsername(username, invalidPassword);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNotNull(user.getOnlineAccount());
+		assertEquals("Wrong password!", error);
+	}
+	
+	@Test
+	public void TestDeleteAccountInvalidPassword2() {
+		String error = "";
+		String email = "John123@gmail.com";
+		String invalidPassword = "wrongPassword";
+		OnlineAccount account = createOnlineAccount();
+		UserEntity user = account.getUser();
+		try {
+			service.deleteOnlineAccountEmail(email, invalidPassword);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNotNull(user.getOnlineAccount());
+		assertEquals("Wrong password!", error);
+	}
+	
+	@Test
+	public void TestChangePasswordValid() {
+		String username = "John123";
+		String password = "pass1234";
+		String newPassword = "newPassword";
+		OnlineAccount account = createOnlineAccount();
+		try {
+			service.changePassword(username, password, newPassword);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertEquals(newPassword, account.getPassword());
+	}
+	
+	@Test
+	public void TestChangePasswordInValidWrongUsername() {
+		String error = "";
+		String password = "pass1234";
+		String newPassword = "newPassword";
+		String invalidUsername = "wrong username";
+		OnlineAccount account = createOnlineAccount();
+		try {
+			service.changePassword(invalidUsername, password, newPassword);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Online account does not exist.", error);
+	}
+	
+	@Test
+	public void TestChangePasswordInValidWrongPassword() {
+		String error = "";
+		String username = "John123";
+		String newPassword = "newPassword";
+		String invalidPassword = "pass1235";
+		OnlineAccount account = createOnlineAccount();
+		try {
+			service.changePassword(username, invalidPassword, newPassword);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Wrong password!", error);
+	}
+	
+	@Test
+	public void TestChangePasswordInValidPasswordTooShort() {
+		String error = "";
+		String username = "John123";
+		String newPassword = "newPassword";
+		String invalidPassword = "pass123";
+		OnlineAccount account = createOnlineAccount();
+		try {
+			service.changePassword(username, invalidPassword, newPassword);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Password too short or too long.", error);
+	}
+	*/
 }
