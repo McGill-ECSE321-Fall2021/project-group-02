@@ -113,6 +113,57 @@ public class CreateOnlineAccountService {
 		return account;
 	}
 	
+	public void deleteOnlineAccountUsername(String username, String password) throws IllegalArgumentException {
+		OnlineAccount account = findAccountByUsername(username);
+		if (account == null) throw new IllegalArgumentException("Could not delete account. Online account does not exist.");
+		if (!verifyPassword(account, password)) throw new IllegalArgumentException("Wrong password!");
+		UserEntity user = account.getUser();
+		if (user == null) throw new IllegalArgumentException("Could not delete account. User does not exist.");
+		user.setOnlineAccount(null);
+		account.setEmail(null);
+		account.setPassword(null);
+		account.setUsername(null);
+		onlineAccountRepository.save(account);
+		userEntityRepository.save(user);
+	}
+	
+	public void deleteOnlineAccountEmail(String email, String password) throws IllegalArgumentException {
+		OnlineAccount account = findAccountByEmail(email);
+		if (account == null) throw new IllegalArgumentException("Could not delete account. Online account does not exist.");
+		if (!verifyPassword(account, password)) throw new IllegalArgumentException("Wrong password!");
+		UserEntity user = account.getUser();
+		if (user == null) throw new IllegalArgumentException("Could not delete account. User does not exist.");
+		user.setOnlineAccount(null);
+		account.setEmail(null);
+		account.setPassword(null);
+		account.setUsername(null);
+		onlineAccountRepository.save(account);
+		userEntityRepository.save(user);
+	}
+	
+	public OnlineAccount changePassword(String username, String password, String newPassword) throws IllegalArgumentException {
+		OnlineAccount account = findAccountByUsername(username);
+		if (account == null) throw new IllegalArgumentException("Online account does not exist.");
+		if (!verifyPassword(account, password)) {
+			throw new IllegalArgumentException("Wrong password!");
+		}
+		if(!checkPassword(newPassword)) throw new IllegalArgumentException("Password too short or too long.");
+		account.setPassword(newPassword);
+		onlineAccountRepository.save(account);
+		return account;
+	}
+	
+	public OnlineAccount changeEmail(String username, String password, String newEmail) throws IllegalArgumentException {
+		OnlineAccount account = findAccountByUsername(username);
+		if (account == null) throw new IllegalArgumentException("Online account does not exist.");
+		if (!verifyPassword(account, password)) throw new IllegalArgumentException("Wrong password!");
+		if (!verifyEmailExists(newEmail)) throw new IllegalArgumentException("Email is already used.");
+		if (!verifyEmail(newEmail)) throw new IllegalArgumentException("Invalid email address.");
+		account.setEmail(newEmail);
+		onlineAccountRepository.save(account);
+		return account;
+	}
+	
 	private boolean verifyEmail(String email) {
 		boolean valid = true;
 	    if(!email.contains("@")) {
@@ -162,6 +213,10 @@ public class CreateOnlineAccountService {
 		return valid;
 	}
 	
+	private boolean verifyPassword(OnlineAccount acc, String password) {
+		return acc.getPassword().equals(password);
+	}
+	
 	public OnlineAccount findAccountByUsername(String username) {
 		return onlineAccountRepository.findOnlineAccountByUsername(username);
 	}
@@ -173,4 +228,5 @@ public class CreateOnlineAccountService {
 	public UserEntity findUserById(int id) {
 		return userEntityRepository.findUserEntityById(id);
 	}
+	
 }

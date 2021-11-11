@@ -16,18 +16,34 @@ John Park is a third year (U3) student in Software Engineering <br />
 ## Contributions
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
 | --- | --- | --- | --- | --- | --- |
-| Sami Ait Ouahmane | Project Manager, Software Developer | 25h |  |  |  |
+| Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h |  |  |
 | Julie Chen | Documentation Lead | 12h |  |  |  |
 | Hyunbum Cho | Software Developer | 12h |  |  |  |
 | Vy-Kha Huynh | Testing Lead  | 12h |  |  |  |
 | Niilo Vuokila | Software Developer | 20h |  |  |  |
 | John Park | Software Developer | 12h |  |  |  |
-
- 
- ## Project Reports
- 
-Here is the SPRING_DATASOURCE_URL used for the test run configurations: jdbc:postgresql://ec2-52-203-164-61.compute-1.amazonaws.com:5432/d22ml9eg292mqg?password=04dbb2d6d24cbc9cab458bc993e188dcb6a76fdb673c68e1489b11a3c61dad48&sslmode=require&user=xogspfvmnnfvvo
  
  ### Deliverable 1
  The project report for deliverable 1 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report---Deliverable-1)
+ 
+ | Name | Contributions | Hours |
+| --- | --- | --- |
+| Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed use cases. | 25h |
+| Julie Chen |  | 12h |
+| Hyunbum Cho |  | 12h |
+| Vy-Kha Huynh |   | 12h |
+| Niilo Vuokila |  | 20h |
+| John Park |  | 12h |
+
+ ### Deliverable 2
+ The project report for deliverable 2 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report-Deliverable-2)
+ 
+ | Name | Contributions | Hours |
+| --- | --- | --- |
+| Sami Ait Ouahmane | Implementation of business method "borrowItem" and other service methods. Exposed them to RestAPI. Wrote tests for them. Software Quality Assurance Plan and Report | 22h |
+| Julie Chen |  |  |
+| Hyunbum Cho |  |  |
+| Vy-Kha Huynh |   |  |
+| Niilo Vuokila |  |  |
+| John Park |  |  |
  

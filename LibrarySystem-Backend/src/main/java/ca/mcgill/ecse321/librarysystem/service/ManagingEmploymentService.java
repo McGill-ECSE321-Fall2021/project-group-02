@@ -126,39 +126,39 @@ public class ManagingEmploymentService {
 		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
-	/**
-	 * @author vy-khahuynh
-	 * @param h id of the user
-	 * @param id the id of the hired librarian  
-	 * @return if the hired librarian exists in the system
-	 */
-	@Transactional
-	public boolean librarianIsHired(int h,int id) throws IllegalArgumentException{
-		if(!(h > -1 && id > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
-			return librarianRepository.existsLibrarianById(id);
-		}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
-	}
-	
-	/**
-	 * @author vy-khahuynh
-	 * @param h id of the user
-	 * @param id the id of the fired librarian
-	 * @return if the fired librarian does not exist in the system
-	 */
-	@Transactional
-	public boolean librarianIsFired(int h,int id) throws IllegalArgumentException {
-		if(!(h > -1 && id > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
-			return !(librarianRepository.existsLibrarianById(id));
-		}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
-	}
+//	/**
+//	 * @author vy-khahuynh
+//	 * @param h id of the user
+//	 * @param id the id of the hired librarian  
+//	 * @return if the hired librarian exists in the system
+//	 */
+//	@Transactional
+//	public boolean librarianIsHired(int h,int id) throws IllegalArgumentException{
+//		if(!(h > -1 && id > -1)) {
+//			throw new IllegalArgumentException("IDs have to be positive.");
+//		}
+//		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+//			return librarianRepository.existsLibrarianById(id);
+//		}
+//		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+//	}
+//	
+//	/**
+//	 * @author vy-khahuynh
+//	 * @param h id of the user
+//	 * @param id the id of the fired librarian
+//	 * @return if the fired librarian does not exist in the system
+//	 */
+//	@Transactional
+//	public boolean librarianIsFired(int h,int id) throws IllegalArgumentException {
+//		if(!(h > -1 && id > -1)) {
+//			throw new IllegalArgumentException("IDs have to be positive.");
+//		}
+//		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+//			return !(librarianRepository.existsLibrarianById(id));
+//		}
+//		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+//	}
 	
 	/**
 	 * @author vy-khahuynh
