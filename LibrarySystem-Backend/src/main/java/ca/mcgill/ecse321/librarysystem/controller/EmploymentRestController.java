@@ -31,7 +31,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{firstname}/{lastname}", "/librarians/{userID}/{firstname}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@RequestParam(name="firstname") String fn,@RequestParam(name="lastname") String ln) {
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn,@RequestParam(name="lastname") String ln) {
 		return service.getAllLibrariansByFirstAndLastName(id, fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -55,7 +55,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{firstname}", "//librarians/{userID}/{firstname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@RequestParam(name="firstname") String fn) {
+	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn) {
 		return service.getAllLibrariansByFirstName(id, fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -67,7 +67,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{lastname}", "/librarians/{userID}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="userID")int id,@RequestParam(name="lastname") String ln) {
+	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="userID")int id,@RequestParam (name="lastname") String ln) {
 		return service.getAllLibrariansByLastName(0, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -87,12 +87,10 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@PostMapping(value = { "/createLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}", "/createLibrarian/{id}/{firstname}/{lastname}/{address}/{city}/" })
-	public LibrarianDto createLibrarian(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String firstname,
+	public LibrarianDto createLibrarian(@PathVariable(name="userID")int userID,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
-			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
-			@PathVariable(name="username") String username,
-			@PathVariable(name="password") String password) throws IllegalArgumentException {
-		Librarian l = service.createLibrarian(id, firstname, lastname, address, city);
+			@PathVariable(name="city") String city) throws IllegalArgumentException {
+		Librarian l = service.createLibrarian(userID, firstname, lastname, address, city);
 		return convertToDto(l);
 	}
 	
@@ -110,12 +108,10 @@ public class EmploymentRestController {
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/createHeadLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}", "/createHeadLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}/" })
-	public HeadLibrarianDto createHeadLibrarian(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String firstname,
+	public HeadLibrarianDto createHeadLibrarian(@PathVariable(name="userID")int userID,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
-			@PathVariable(name="city") String city,@PathVariable(name="email") String email,
-			@PathVariable(name="username") String username,
-			@PathVariable(name="password") String password) throws IllegalArgumentException {
-		HeadLibrarian hl = service.createHeadLibrarian(id, firstname, lastname, address, city);
+			@PathVariable(name="city") String city) throws IllegalArgumentException {
+		HeadLibrarian hl = service.createHeadLibrarian(userID, firstname, lastname, address, city);
 		return convertToDto(hl);
 	}
 	
@@ -125,7 +121,7 @@ public class EmploymentRestController {
 	 * @param libid id of librarian to be deleted
 	 */
 	@DeleteMapping(value = {"/deleteLibrarian/{userID}/{LibID}","/deleteLibrarian/{userID}/{LibID}/"})
-	public void deleteLibrarian(@RequestParam(name="userID")int hlid,@RequestParam(name="LibID") int libid) {
+	public void deleteLibrarian(@RequestParam(name="userID") int hlid,@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
 		service.deleteLibrarian(hlid, libid);
 	}
 	
