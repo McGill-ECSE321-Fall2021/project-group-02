@@ -17,7 +17,7 @@ John Park is a third year (U3) student in Software Engineering <br />
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
 | --- | --- | --- | --- | --- | --- |
 | Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h |  |  |
-| Julie Chen | Documentation Lead | 12h |  |  |  |
+| Julie Chen | Documentation Lead | 12h | 20h |  |  |
 | Hyunbum Cho | Software Developer | 12h | 20h |  |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h |  |  |
 | Niilo Vuokila | Software Developer | 20h | 20h |  |  |
@@ -28,9 +28,9 @@ John Park is a third year (U3) student in Software Engineering <br />
  
  | Name | Contributions | Hours |
 | --- | --- | --- |
-| Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed use cases. | 25h |
-| Julie Chen |  | 12h |
-| Hyunbum Cho | Domain model, Requirment, issues for requirements, detailed use case | 12h |
+| Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed the reutnr items use case. | 25h |
+| Julie Chen | Requirements, wiki and project report updates, and detailed use case for the borrow items use case | 12h |
+| Hyunbum Cho |  | 12h |
 | Vy-Kha Huynh | Set up PersistenceLayerTesting, Domain model, and detailed use cases  | 12h |
 | Niilo Vuokila | Create Diagrams for models, Write JPA annotations and detailed use cases | 20h |
 | John Park |  | 12h |
