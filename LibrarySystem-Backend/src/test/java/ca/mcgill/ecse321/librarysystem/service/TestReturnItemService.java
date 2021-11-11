@@ -41,7 +41,7 @@ import ca.mcgill.ecse321.librarysystem.model.Patron;
  */
 
 @ExtendWith(MockitoExtension.class)
-public class TestReturnItemsService {
+public class TestReturnItemService {
 	@Mock
 	private PatronRepository patronDao;
 	

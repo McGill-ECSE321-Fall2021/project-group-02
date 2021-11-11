@@ -1449,6 +1449,4 @@ public class ItemService {
 		}
 		return resultList;
 	}
-	
-
 }
