@@ -19,7 +19,7 @@ task integrationTest(type:Exec) {
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createBook/Mara', '-d', 'authorName=Sam', '-d', 'isArchived=false'
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/borrow/Mara', '-d', 'itemId=2', '-d', 'patronId=1'
-	
+	 
 	standardOutput = new ByteArrayOutputStream()
 	  
 	 ext.output = {
