@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 
 import java.util.ArrayList;
@@ -79,6 +80,11 @@ public class TestViewLibraryContentsService {
 	private static final int NONEXISTING_ID1 = -1;
 	private static final int NONEXISTING_ID2 = 6;
 	private static final int NONEXISTING_ID3 = 1000;
+	
+	private static final String NONEXISTING_BOOK_TITLE = "b0";
+	private static final String NONEXISTING_ALBUM_TITLE = "a0";
+	private static final String NONEXISTING_MOVIE_TITLE = "m0";
+	private static final String NONEXISTING_TEST_STRING = "not a tester";
 	
 	private static final boolean BOOL = false;
 	
@@ -183,17 +189,278 @@ public class TestViewLibraryContentsService {
 			}
 			
 		});
-
+		
+		lenient().when(bookDao.findBookById(anyInt())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(BOOK_ID)) {
+				Book book = new Book();
+				book.setAuthor(TEST_STRING);
+				book.setId(BOOK_ID);
+				book.setIsArchived(BOOL);
+				book.setIsBorrowed(BOOL);
+				book.setIsDamaged(BOOL);
+				book.setTitle(TEST_BOOK_TITLE);
+				return book;
+			} else {
+				return null;
+			}
+		});
+		
+		lenient().when(bookDao.findBookByTitle(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_BOOK_TITLE)) {
+				Book book = new Book();
+				book.setAuthor(TEST_STRING);
+				book.setId(BOOK_ID);
+				book.setIsArchived(BOOL);
+				book.setIsBorrowed(BOOL);
+				book.setIsDamaged(BOOL);
+				book.setTitle(TEST_BOOK_TITLE);
+				ArrayList<Book> a = new ArrayList<>();
+				a.add(book);
+				return a;
+			} else {
+				return new ArrayList<Book>();
+			}
+		});
+		
+		lenient().when(bookDao.findBookByAuthor(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_STRING)) {
+				Book book = new Book();
+				book.setAuthor(TEST_STRING);
+				book.setId(BOOK_ID);
+				book.setIsArchived(BOOL);
+				book.setIsBorrowed(BOOL);
+				book.setIsDamaged(BOOL);
+				book.setTitle(TEST_BOOK_TITLE);
+				ArrayList<Book> a = new ArrayList<>();
+				a.add(book);
+				return a;
+			} else {
+				return new ArrayList<Book>();
+			}
+		});
+		
+		lenient().when(albumDao.findAlbumById(anyInt())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(ALBUM_ID)) {
+				Album album = new Album();
+				album.setArtist(TEST_STRING);
+				album.setId(ALBUM_ID);
+				album.setIsArchived(BOOL);
+				album.setIsBorrowed(BOOL);
+				album.setIsDamaged(BOOL);
+				album.setTitle(TEST_ALBUM_TITLE);
+				return album;
+			} else {
+				return null;
+			}
+		});
+		
+		lenient().when(albumDao.findAlbumByTitle(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_ALBUM_TITLE)) {
+				Album album = new Album();
+				album.setArtist(TEST_STRING);
+				album.setId(ALBUM_ID);
+				album.setIsArchived(BOOL);
+				album.setIsBorrowed(BOOL);
+				album.setIsDamaged(BOOL);
+				album.setTitle(TEST_ALBUM_TITLE);
+				ArrayList<Album> a = new ArrayList<>();
+				a.add(album);
+				return a;
+			} else {
+				return new ArrayList<Album>();
+			}
+		});
+		
+		lenient().when(albumDao.findAlbumByArtist(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_STRING)) {
+				Album album = new Album();
+				album.setArtist(TEST_STRING);
+				album.setId(ALBUM_ID);
+				album.setIsArchived(BOOL);
+				album.setIsBorrowed(BOOL);
+				album.setIsDamaged(BOOL);
+				album.setTitle(TEST_ALBUM_TITLE);
+				ArrayList<Album> a = new ArrayList<>();
+				a.add(album);
+				return a;
+			} else {
+				return new ArrayList<Album>();
+			}
+		});
+		
+		lenient().when(movieDao.findMovieById(anyInt())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(MOVIE_ID)) {
+				Movie movie = new Movie();
+				movie.setDirector(TEST_STRING);
+				movie.setId(MOVIE_ID);
+				movie.setIsArchived(BOOL);
+				movie.setIsBorrowed(BOOL);
+				movie.setIsDamaged(BOOL);
+				movie.setTitle(TEST_MOVIE_TITLE);
+				return movie;
+			} else {
+				return null;
+			}
+		});
+		
+		lenient().when(movieDao.findMovieByTitle(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_MOVIE_TITLE)) {
+				Movie movie = new Movie();
+				movie.setDirector(TEST_STRING);
+				movie.setId(MOVIE_ID);
+				movie.setIsArchived(BOOL);
+				movie.setIsBorrowed(BOOL);
+				movie.setIsDamaged(BOOL);
+				movie.setTitle(TEST_MOVIE_TITLE);
+				ArrayList<Movie> a = new ArrayList<>();
+				a.add(movie);
+				return a;
+			} else {
+				return new ArrayList<Movie>();
+			}
+		});
+		
+		lenient().when(movieDao.findMovieByDirector(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_STRING)) {
+				Movie movie = new Movie();
+				movie.setDirector(TEST_STRING);
+				movie.setId(MOVIE_ID);
+				movie.setIsArchived(BOOL);
+				movie.setIsBorrowed(BOOL);
+				movie.setIsDamaged(BOOL);
+				movie.setTitle(TEST_MOVIE_TITLE);
+				ArrayList<Movie> a = new ArrayList<>();
+				a.add(movie);
+				return a;
+			} else {
+				return new ArrayList<Movie>();
+			}
+		});
+		
+		lenient().when(newspaperDao.findNewspaperById(anyInt())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(NEWSPAPER_ID)) {
+				Newspaper newspaper = new Newspaper();
+				newspaper.setId(NEWSPAPER_ID);
+				newspaper.setIsArchived(BOOL);
+				newspaper.setIsBorrowed(BOOL);
+				newspaper.setIsDamaged(BOOL);
+				newspaper.setName(TEST_NEWSPAPER_TITLE);
+				return newspaper;
+			} else {
+				return null;
+			}
+		});
+		
+		lenient().when(newspaperDao.findNewspaperByName(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_NEWSPAPER_TITLE)) {
+				Newspaper newspaper = new Newspaper();
+				newspaper.setId(NEWSPAPER_ID);
+				newspaper.setIsArchived(BOOL);
+				newspaper.setIsBorrowed(BOOL);
+				newspaper.setIsDamaged(BOOL);
+				newspaper.setName(TEST_NEWSPAPER_TITLE);
+				ArrayList<Newspaper> a = new ArrayList<>();
+				a.add(newspaper);
+				return a;
+			} else {
+				return new ArrayList<Newspaper>();
+			}
+		});
+		
 	}
 	
-	// UNIT TESTS FOR VIEW LIBRARY CONTENTS METHODS
+	/* UNIT TESTS FOR VIEW LIBRARY CONTENTS METHODS */
 	
+	// Books Repository:
+	@Test
+	public void testGetBookByTitleValid() {
+		ArrayList<Book> b = (ArrayList<Book>) service.getBooksByTitle(TEST_BOOK_TITLE);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_BOOK_TITLE, b.get(0).getTitle());
+	}
+	@Test
+	public void testGetBookByTitleInvalid() {
+		ArrayList<Book> b = (ArrayList<Book>) service.getBooksByTitle(NONEXISTING_BOOK_TITLE);
+		
+		assertEquals(b.size(), 0);
+	}
+	@Test
+	public void testGetBookByAuthorValid() {
+		ArrayList<Book> b = (ArrayList<Book>) service.getBooksByAuthor(TEST_STRING);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_STRING, b.get(0).getAuthor());
+	}
+	@Test
+	public void testGetBookByAuthorInvalid() {
+		ArrayList<Book> b = (ArrayList<Book>) service.getBooksByAuthor(NONEXISTING_TEST_STRING);
+		
+		assertEquals(b.size(), 0);
+	}
+	
+	// Albums Repository:
+	@Test
+	public void testGetAlbumByTitleValid() {
+		ArrayList<Album> b = (ArrayList<Album>) service.getAlbumsByTitle(TEST_ALBUM_TITLE);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_ALBUM_TITLE, b.get(0).getTitle());
+	}
+	@Test
+	public void testGetAlbumByTitleInvalid() {
+		ArrayList<Album> b = (ArrayList<Album>) service.getAlbumsByTitle(NONEXISTING_ALBUM_TITLE);
+		
+		assertEquals(b.size(), 0);
+	}
+	@Test
+	public void testGetAlbumByArtistValid() {
+		ArrayList<Album> b = (ArrayList<Album>) service.getAlbumsByArtist(TEST_STRING);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_STRING, b.get(0).getArtist());
+	}
+	@Test
+	public void testGetAlbumByArtistInvalid() {
+		ArrayList<Album> b = (ArrayList<Album>) service.getAlbumsByArtist(NONEXISTING_TEST_STRING);
+		
+		assertEquals(b.size(), 0);
+	}
+	
+	// Movies Repository:
+	@Test
+	public void testGetMovieByTitleValid() {
+		ArrayList<Movie> b = (ArrayList<Movie>) service.getMoviesByTitle(TEST_MOVIE_TITLE);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_MOVIE_TITLE, b.get(0).getTitle());
+	}
+	@Test
+	public void testGetMovieByTitleInvalid() {
+		ArrayList<Movie> b = (ArrayList<Movie>) service.getMoviesByTitle(NONEXISTING_MOVIE_TITLE);
+		
+		assertEquals(b.size(), 0);
+	}
+	@Test
+	public void testGetMovieByDirectorValid() {
+		ArrayList<Movie> b = (ArrayList<Movie>) service.getMoviesByDirector(TEST_STRING);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_STRING, b.get(0).getDirector());
+	}
+	@Test
+	public void testGetMovieByDirectorInvalid() {
+		ArrayList<Movie> b = (ArrayList<Movie>) service.getMoviesByDirector(NONEXISTING_TEST_STRING);
+		
+		assertEquals(b.size(), 0);
+	}
+	
+	// Items Repository:
 	@Test
 	public void testGetAllItems() {
 		ArrayList<Item> l = (ArrayList<Item>) service.getAllItems();
 		assertNotNull(l);
 	}
-	
 	@Test
 	public void testGetItemByIdInvalid() {
 		Item i = service.getItemByID(NONEXISTING_ID1);
