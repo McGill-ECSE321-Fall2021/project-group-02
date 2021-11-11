@@ -55,9 +55,7 @@ public class TestManagingEmploymentService {
 	private static final String HEADLIBRARIAN_LASTNAME = "HLLastName";
 	private static final String HEADLIBRARIAN_ADDRESS = "HLAddress";
 	private static final String HEADLIBRARIAN_CITY = "HLCity";
-	private static final String HEADLIBRARIAN_EMAIL = "HLEmail";
-	private static final String HEADLIBRARIAN_USERNAME = "HLUsername";
-	private static final String HEADLIBRARIAN_PASSWORD = "HLPassword";
+
 	
 
 	
@@ -68,9 +66,7 @@ public class TestManagingEmploymentService {
 	private static final String LIBRARIAN_LASTNAME = "lLastName";
 	private static final String LIBRARIAN_ADDRESS = "lAddress";
 	private static final String LIBRARIAN_CITY = "lCity";
-	private static final String LIBRARIAN_EMAIL = "lEmail";
-	private static final String LIBRARIAN_USERNAME = "lUsername";
-	private static final String LIBRARIAN_PASSWORD = "lPassword";
+
 
 	@BeforeEach 
 	public void setMockOutput() {

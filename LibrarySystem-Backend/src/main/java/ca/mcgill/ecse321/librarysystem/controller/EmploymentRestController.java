@@ -37,7 +37,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{id}/{firstname}/{lastname}", "/librarians/{id}/{firstname}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String fn,@PathVariable(name="lastname") String ln) {
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@RequestParam(name="userID")int id,@RequestParam(name="firstname") String fn,@RequestParam(name="lastname") String ln) {
 		return service.getAllLibrariansByFirstAndLastName(id, fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -49,7 +49,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{id}", "/librarians/{id}/" })
-	public List<LibrarianDto> getAllLibrarians(@PathVariable(name="userID") int id) {
+	public List<LibrarianDto> getAllLibrarians(@RequestParam(name="userID") int id) {
 		return service.getAllLibrarians(id).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -61,7 +61,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{id}/{firstname}", "//librarians/{id}/{firstname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@PathVariable(name="firstname") String fn) {
+	public List<LibrarianDto> getAllLibrariansByFirstName(@RequestParam(name="userID")int id,@RequestParam(name="firstname") String fn) {
 		return service.getAllLibrariansByFirstName(id, fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -73,7 +73,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{id}/{lastname}", "/librarians/{id}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="lastname") String ln) {
+	public List<LibrarianDto> getAllLibrariansByLastName(@RequestParam(name="lastname") String ln) {
 		return service.getAllLibrariansByLastName(0, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
