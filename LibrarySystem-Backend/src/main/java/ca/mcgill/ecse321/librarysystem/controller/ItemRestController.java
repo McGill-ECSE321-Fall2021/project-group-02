@@ -240,7 +240,7 @@ public class ItemRestController {
 	 * @author Sami
 	 * @return Patron
 	 */
-	@PostMapping(value= {"/deletePatron/{address}","/deletePatron/{address}/"})
+	@DeleteMapping(value= {"/deletePatron/{address}","/deletePatron/{address}/"})
 	public void deletePatron(@PathVariable("address") String address) {
 		itemService.deletePatron(address);
 	}
@@ -271,7 +271,7 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/deleteBook/{title}", "/deleteBook/{title}/"} )
+	@DeleteMapping(value = {"/deleteBook/{title}", "/deleteBook/{title}/"} )
 	public void deleteBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName) {
 		itemService.deleteBook(authorName,bookTitle);
 	}
@@ -300,7 +300,7 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/deleteAlbum/{title}", "/deleteAlbum/{title}/"} )
+	@DeleteMapping(value = {"/deleteAlbum/{title}", "/deleteAlbum/{title}/"} )
 	public void deleteAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName) {
 		itemService.deleteAlbum(artistName,albumTitle);
 	}
@@ -330,7 +330,7 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/deleteMovie/{title}", "/deleteMovie/{title}/"} )
+	@DeleteMapping(value = {"/deleteMovie/{title}", "/deleteMovie/{title}/"} )
 	public void deleteMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName) {
 		itemService.deleteMovie(directorName, movieTitle);
 	}
@@ -357,7 +357,7 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/deleteNewspaper/{title}", "/deleteNewspaper/{title}/"} )
+	@DeleteMapping(value = {"/deleteNewspaper/{title}", "/deleteNewspaper/{title}/"} )
 	public void deleteNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
 		itemService.deleteNewspaper(newspaperTitle, newspaperDate);
 	}
@@ -384,7 +384,7 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/deleteJournal/{title}", "/deleteJournal/{title}/"} )
+	@DeleteMapping(value = {"/deleteJournal/{title}", "/deleteJournal/{title}/"} )
 	public void deleteJournal(@PathVariable("title") String journalTitle, @RequestParam(name="journalDate") Date journalDate) {
 		itemService.deleteNewspaper(journalTitle, journalDate);
 	}
