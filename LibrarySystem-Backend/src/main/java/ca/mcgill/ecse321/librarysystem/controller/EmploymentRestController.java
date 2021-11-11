@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,23 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.service.ManagingEmploymentService;
-import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dao.HeadLibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
 import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.model.Librarian;
-import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class EmploymentRestController {
 	@Autowired
 	ManagingEmploymentService service;
-	
-	@Autowired
-	LibrarianRepository librarians;
-	
 	
 	/**
 	 * 
@@ -123,6 +117,16 @@ public class EmploymentRestController {
 			@PathVariable(name="password") String password) throws IllegalArgumentException {
 		HeadLibrarian hl = service.createHeadLibrarian(id, firstname, lastname, address, city);
 		return convertToDto(hl);
+	}
+	
+	/**
+	 * @author vy-khahuynh
+	 * @param hlid head librarian id attempting to delete the librarian
+	 * @param libid id of librarian to be deleted
+	 */
+	@DeleteMapping(value = {"/deleteLibrarian","/deleteLibrarian"})
+	public void deleteLibrarian(@RequestParam(name="HeadLibID")int hlid,@RequestParam(name="LibID") int libid) {
+		service.deleteLibrarian(hlid, libid);
 	}
 	
 	/**

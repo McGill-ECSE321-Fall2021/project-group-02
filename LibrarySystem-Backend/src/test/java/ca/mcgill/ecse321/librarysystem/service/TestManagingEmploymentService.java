@@ -331,8 +331,10 @@ public class TestManagingEmploymentService {
 	
 	// -------------------------- CreateHeadLibrarian--------------------------- //
 	
+	@Test
 	public void testCreateHeadLibrarianValidID() {
 		error="";
+		System.out.println("huh");
 		HeadLibrarian hl = null;
 		try {
 			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), HEADLIBRARIAN_FIRSTNAME, HEADLIBRARIAN_LASTNAME, HEADLIBRARIAN_ADDRESS, HEADLIBRARIAN_CITY);
@@ -342,6 +344,7 @@ public class TestManagingEmploymentService {
 		checkHeadLibrarian(hl);
 	}
 	
+	@Test
 	public void testCreateHeadLibrarianInvalidID() {
 		error="";
 		HeadLibrarian hl = null;
