@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.librarysystem.dto;
 
-import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 public class BookDto {
 	

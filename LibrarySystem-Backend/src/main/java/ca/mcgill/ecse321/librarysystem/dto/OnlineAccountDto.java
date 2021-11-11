@@ -26,6 +26,9 @@ public class OnlineAccountDto {
 	public String getEmail() {
 		return this.email;
 	}
+	public String getUser() {
+		return this.user.getFirstName();
+	}
 	
 	public void setEmail(String email) {
 		this.email = email;

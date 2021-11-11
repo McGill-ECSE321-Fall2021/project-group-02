@@ -1,12 +1,10 @@
 package ca.mcgill.ecse321.librarysystem.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
-
-import java.sql.Time;
-import java.time.LocalTime;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -16,10 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
-import ca.mcgill.ecse321.librarysystem.model.UserEntity;
 import ca.mcgill.ecse321.librarysystem.model.Librarian;
-import ca.mcgill.ecse321.librarysystem.model.Library;
-import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -22,8 +23,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ca.mcgill.ecse321.librarysystem.model.DailySchedule;
 import ca.mcgill.ecse321.librarysystem.model.DailySchedule.WeekDay;
 import ca.mcgill.ecse321.librarysystem.model.WeeklySchedule;
-import ca.mcgill.ecse321.librarysystem.model.Library;
-import ca.mcgill.ecse321.librarysystem.model.LibrarySoftwareSystem;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
