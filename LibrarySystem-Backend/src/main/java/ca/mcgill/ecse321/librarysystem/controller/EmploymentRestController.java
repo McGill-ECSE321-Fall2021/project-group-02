@@ -32,7 +32,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{firstname}/{lastname}", "/librarians/{userID}/{firstname}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn,@RequestParam(name="lastname") String ln) throws IllegalArgumentException{
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@PathVariable (name="firstname") String fn,@PathVariable(name="lastname") String ln) throws IllegalArgumentException{
 		return service.getAllLibrariansByFirstAndLastName(id, fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -55,8 +55,8 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same first name
 	 * 
 	 */
-	@GetMapping(value = { "/librarians/{userID}/{firstname}", "//librarians/{userID}/{firstname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn) throws IllegalArgumentException{
+	@GetMapping(value = { "/librarians/{userID}{firstname}", "/librarians/{userID}{firstname}/" })
+	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@PathVariable (name="firstname") String fn) throws IllegalArgumentException{
 		return service.getAllLibrariansByFirstName(id, fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -67,7 +67,7 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same last name
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{lastname}", "/librarians/{userID}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="userID")int id,@RequestParam (name="lastname") String ln) throws IllegalArgumentException{
+	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="userID")int id,@PathVariable (name="lastname") String ln) throws IllegalArgumentException{
 		return service.getAllLibrariansByLastName(0, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -78,7 +78,7 @@ public class EmploymentRestController {
 	 * @return librarian dto object
 	 */
 	@GetMapping(value= {"/librarians/{userID}/{LibID}" , "/librarians/{userID}/{LibID}/"})
-	public LibrarianDto getLibrarianByID(@PathVariable(name="userID") int hlid,@RequestParam(name="LibID") int libid) throws IllegalArgumentException{
+	public LibrarianDto getLibrarianByID(@PathVariable(name="userID") int hlid,@PathVariable(name="LibID") int libid) throws IllegalArgumentException{
 		Librarian l = service.getLibrarianByID(hlid, libid);
 		return convertToDto(l);
 	}
@@ -117,11 +117,11 @@ public class EmploymentRestController {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	@PostMapping(value = { "/createHeadLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}", "/createHeadLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}/" })
-	public HeadLibrarianDto createHeadLibrarian(@PathVariable(name="userID")int userID,@PathVariable(name="firstname") String firstname,
+	@PostMapping(value = { "/createHeadLibrarian/{firstname}/{lastname}/{address}/{city}", "/createHeadLibrarian/{firstname}/{lastname}/{address}/{city}/" })
+	public HeadLibrarianDto createHeadLibrarian(@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
 			@PathVariable(name="city") String city) throws IllegalArgumentException {
-		HeadLibrarian hl = service.createHeadLibrarian(userID, firstname, lastname, address, city);
+		HeadLibrarian hl = service.createHeadLibrarian(firstname, lastname, address, city);
 		return convertToDto(hl);
 	}
 	
@@ -130,8 +130,8 @@ public class EmploymentRestController {
 	 * @param hlid head librarian id attempting to delete the librarian
 	 * @param libid id of librarian to be deleted
 	 */
-	@DeleteMapping(value = {"/deleteLibrarian/{userID}/{LibID}","/deleteLibrarian/{userID}/{LibID}/"})
-	public void deleteLibrarian(@RequestParam(name="userID") int hlid,@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
+	@DeleteMapping(value = {"/deleteLibrarian/{userID}","/deleteLibrarian/{userID}/"})
+	public void deleteLibrarian(@PathVariable(name="userID") int hlid,@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
 		service.deleteLibrarian(hlid, libid);
 	}
 	
