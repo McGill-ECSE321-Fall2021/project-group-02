@@ -16,8 +16,8 @@ repositories {
 task integrationTest(type:Exec) {
 	//Integration Test: borrow Item
 	//coded by Sami Ait Ouahamne
-	//IMPORTANT NOTE: The following tests get executed and work on the command line but do not work when executed from this build.gradle file for 
-	//an unknown reason.
+	//IMPORTANT NOTE: The following tests get executed and work on the command line but do not work when 
+	//executed from this build.gradle file for an unknown reason.
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createPatron/22RueDesTimoniers', '-d', 'city=Montreal', '-d', 'balance=0', '-d', 'firstName=Sami', '-d', 'lastName=Larieux'
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createBook/Mara', '-d', 'authorName=Sam', '-d', 'isArchived=false'
@@ -46,7 +46,19 @@ task integrationTest(type:Exec) {
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/deleteLibrarian' , '-d' , 'userID = 2' , '-d' , 'LibID = 3'  
 	
+	// Integration test: return item
+	// Author: Niilo Vuokila
+	/*
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createPatron/12RueDulude', '-d', 'city=Montreal', '-d', 'balance=0', '-d' 'firstName=Tilly'
 	
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createBook/Dictionary', '-d', 'authorName=Niilo', '-d', 'isArchived=false'
+	
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/borrow/Dictionary', '-d', 'itemId=3', '-d', 'patronId=4'
+	
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/return/2' '-d', 'itemID=3', '-d', 'patronID=4'
+	
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/items/Dictionary' '-d' 'itemId=3'
+	*/
 	standardOutput = new ByteArrayOutputStream()
 	  
 	 ext.output = {
