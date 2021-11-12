@@ -24,6 +24,7 @@ task integrationTest(type:Exec) {
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/borrow/Mara', '-d', 'itemId=2', '-d', 'patronId=1'
 	
+	//Author: Steven Cho
 	// online account
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/onlineAccountNew/John/Doe/1234 street A/Montreal/JDoe/pass1234/John@gmail.com'
 	
