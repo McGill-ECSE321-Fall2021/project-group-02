@@ -269,6 +269,21 @@ public class TestArchiveItemService {
 		assertEquals("Head Librarian does not approve.", error);
 	}
 	
+	@Test
+	public void testArchiveItemNegativeHeadLibrarianID() {
+		int headLibrarianID = NEGATIVEHEADLIBRARIAN_ID;
+		int itemID = EXISTINGBOOK_NONARCHIVED_NONBORROWED_ID;
+		Item item = null;
+		String error = null;
+		
+		try {
+			item = service.archiveItem(itemID, headLibrarianID);
+ 		} catch(IllegalArgumentException e) {
+ 			error = e.getMessage();
+ 		}
+		assertNull(item);
+		assertEquals("Head Librarian ID cannot be negative.", error);
+	}
 	
 	@Test
 	public void testArchiveItemInvalidItemId() {
@@ -284,6 +299,22 @@ public class TestArchiveItemService {
 		}
 		assertNull(item);
 		assertEquals("Item ID does not exist.", error);
+	}
+	
+	@Test
+	public void testArchiveItemNegativeItemID() {
+		int headLibrarianID = EXISTINGHEADLIBRARIAN_ID;
+		int itemID = NEGATIVEBOOK_ID;
+		Item item = null;
+		String error = null;
+		
+		try {
+			item = service.archiveItem(itemID, headLibrarianID);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Item ID cannot be negative.", error);
 	}
 	
 	@Test
