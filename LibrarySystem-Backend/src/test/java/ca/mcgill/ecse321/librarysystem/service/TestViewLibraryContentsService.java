@@ -367,6 +367,36 @@ public class TestViewLibraryContentsService {
 			}
 		});
 		
+		lenient().when(journalDao.findJournalById(anyInt())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(JOURNAL_ID)) {
+				Journal journal = new Journal();
+				journal.setId(JOURNAL_ID);
+				journal.setIsArchived(BOOL);
+				journal.setIsBorrowed(BOOL);
+				journal.setIsDamaged(BOOL);
+				journal.setName(TEST_JOURNAL_TITLE);
+				return journal;
+			} else {
+				return null;
+			}
+		});
+		
+		lenient().when(journalDao.findJournalByName(anyString())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(TEST_JOURNAL_TITLE)) {
+				Journal journal = new Journal();
+				journal.setId(JOURNAL_ID);
+				journal.setIsArchived(BOOL);
+				journal.setIsBorrowed(BOOL);
+				journal.setIsDamaged(BOOL);
+				journal.setName(TEST_JOURNAL_TITLE);
+				ArrayList<Journal> a = new ArrayList<>();
+				a.add(journal);
+				return a;
+			} else {
+				return new ArrayList<Journal>();
+			}
+		});
+		
 	}
 	
 	/* UNIT TESTS FOR VIEW LIBRARY CONTENTS METHODS */
