@@ -324,45 +324,22 @@ public class TestManagingEmploymentService {
 	@Test
 	public void testCreateHeadLibrarianValidID() {
 		error="";
-		System.out.println("huh");
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), HEADLIBRARIAN_FIRSTNAME, HEADLIBRARIAN_LASTNAME, HEADLIBRARIAN_ADDRESS, HEADLIBRARIAN_CITY);
+			hl = service.createHeadLibrarian( HEADLIBRARIAN_FIRSTNAME, HEADLIBRARIAN_LASTNAME, HEADLIBRARIAN_ADDRESS, HEADLIBRARIAN_CITY);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		checkHeadLibrarian(hl);
 	}
 	
-	@Test
-	public void testCreateHeadLibrarianInvalidID() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian(HEADLIBRARIAN_INVALIDID, HEADLIBRARIAN_FIRSTNAME, HEADLIBRARIAN_LASTNAME, HEADLIBRARIAN_ADDRESS, HEADLIBRARIAN_CITY);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();		}
-		assertEquals("Must be a head librarian to proceed.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianNegativeID() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian(-10, LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("IDs have to be positive.",error);
-	}
 	
 	@Test
 	public void testCreateHeadLibrarianEmptyFirstName() {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "", LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
+			hl = service.createHeadLibrarian("", LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -374,7 +351,7 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, "",LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
+			hl = service.createHeadLibrarian( LIBRARIAN_FIRSTNAME, "",LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -386,7 +363,7 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,"",LIBRARIAN_CITY);
+			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,"",LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -398,7 +375,7 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,"");
+			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,"");
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -410,7 +387,7 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj", LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
+			hl = service.createHeadLibrarian("jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj", LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -422,7 +399,7 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, "jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj",LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
+			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, "jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj",LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -434,7 +411,7 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,"jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj",LIBRARIAN_CITY);
+			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,"jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj",LIBRARIAN_CITY);
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -446,7 +423,7 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,"jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj");
+			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,"jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj");
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
