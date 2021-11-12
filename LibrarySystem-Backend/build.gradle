@@ -24,7 +24,6 @@ task integrationTest(type:Exec) {
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/borrow/Mara', '-d', 'itemId=2', '-d', 'patronId=1'
 	
-	
 	// online account
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/onlineAccountNew/John/Doe/1234 street A/Montreal/JDoe/pass1234/John@gmail.com'
 	
@@ -59,6 +58,10 @@ task integrationTest(type:Exec) {
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/items/Dictionary' '-d' 'itemId=3'
 	*/
+	
+	// Archive Item
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http:localhost:8080/archive/2', '-d', 'headLibrarianID=1'
+	
 	standardOutput = new ByteArrayOutputStream()
 	  
 	 ext.output = {
