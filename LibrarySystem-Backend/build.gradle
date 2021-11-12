@@ -16,8 +16,8 @@ repositories {
 task integrationTest(type:Exec) {
 	//Integration Test: borrow Item
 	//coded by Sami Ait Ouahamne
-	//IMPORTANT NOTE: The following tests get executed and work on the command line but do not work when 
-	//executed from this build.gradle file for an unknown reason.
+	//***IMPORTANT NOTE: The following tests get executed and work on the command line but do not work when 
+	//executed from this build.gradle file for an unknown reason.***
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createPatron/22RueDesTimoniers', '-d', 'city=Montreal', '-d', 'balance=0', '-d', 'firstName=Sami', '-d', 'lastName=Larieux'
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createBook/Mara', '-d', 'authorName=Sam', '-d', 'isArchived=false'
@@ -40,7 +40,7 @@ task integrationTest(type:Exec) {
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/deleteOnlineAccountEmail', '-d', 'email=John@gmail.com', '-d', 'password=newpass1234'
 	
 	// Author: Vy-Kha Huynh
-	// ***NOTE: ASSUMING HEAD LIBRARIAN HAS ID 1 WITH TO CREATE DROP (first ever user in the database)***
+	// ***IMPORTANT NOTE: ASSUMING HEAD LIBRARIAN HAS ID 1 using CREATE-DROP (first ever user in the database)***
 	// managing employment
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createHeadLibrarian/Head/Librarian/345 street C/Montreal'
 	
