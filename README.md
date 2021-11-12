@@ -35,7 +35,7 @@ There are six team members in Group 02:
 | --- | --- | --- |
 | Sami Ait Ouahmane | Requirements, Spring and Heroku Setup, Wiki, Domain model, and detailed the return items use case. | 25h |
 | Julie Chen | Requirements, wiki and project report updates, success spectrum, and detailed use case for the borrow items use case. GitHub issues assignment and management. | 12h |
-| Hyunbum Cho |  | 12h |
+| Hyunbum Cho | Domain model, deatiled use case, issues for use cases | 12h |
 | Vy-Kha Huynh | Set up PersistenceLayerTesting, Domain model, and detailed use cases  | 12h |
 | Niilo Vuokila | Create Diagrams for models, Write JPA annotations and detailed use cases | 20h |
 | John Park |  | 12h |
