@@ -25,7 +25,7 @@ public class ManagingEmploymentService {
 	WeeklyScheduleRepository weeklyScheduleRepository;
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param oa the user's online account
 	 * @param fn the user's first name
