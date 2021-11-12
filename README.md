@@ -26,7 +26,7 @@ There are six team members in Group 02:
 | Hyunbum Cho | Software Developer | 12h | 20h |  |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h |  |  |
 | Niilo Vuokila | Software Developer | 20h | 20h |  |  |
-| John Park | Software Developer | 12h |  |  |  |
+| John Park | Software Developer | 12h | 18h |  |  |
  
  ### Deliverable 1
  The project report for deliverable 1 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report---Deliverable-1)
@@ -38,7 +38,7 @@ There are six team members in Group 02:
 | Hyunbum Cho | Domain model, deatiled use case, issues for use cases | 12h |
 | Vy-Kha Huynh | Set up PersistenceLayerTesting, Domain model, and detailed use cases  | 12h |
 | Niilo Vuokila | Create Diagrams for models, Write JPA annotations and detailed use cases | 20h |
-| John Park |  | 12h |
+| John Park | Set up PersistenceLayerTesting, Domain model, and detailed use cases | 12h |
 
  ### Deliverable 2
  The project report for deliverable 2 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report-Deliverable-2)
@@ -50,5 +50,5 @@ There are six team members in Group 02:
 | Hyunbum Cho | Implementation of busisness method for creating online account, unit tests and RestAPI. | 20h |
 | Vy-Kha Huynh | Implementation of business method "createLibrarian", "createHeadLibrarian", "deleteLibrarian" and other service methods ("getAllLibrarians", "getLibrariansByFirstAndLastName", "getLibrarianByFirstName" , "getLibrarianByLastName", "getLibrarianByID"), expoed them to RestAPI, wrote unit tests for them, and updated Software Quality Assurance Plan and Report | 20h |
 | Niilo Vuokila | Implementated controller methods and unit tests for "view library contents", Fixed deliverable 1 database (JPA) and persistence layer unit test issues. Integration tests for "view library contents" and "return items" use cases. | 20h |
-| John Park |  |  |
+| John Park | Implementation of business method "archiveItem" and other service methods, exposed them to RestAPI, wrote unit tests for them, and updated the Software Quality Assurance Plan and Report | 18h |
  
