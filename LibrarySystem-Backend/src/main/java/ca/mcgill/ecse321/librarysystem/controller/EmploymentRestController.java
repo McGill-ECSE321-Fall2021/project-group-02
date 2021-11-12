@@ -26,19 +26,19 @@ public class EmploymentRestController {
 	ManagingEmploymentService service;
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param id id of the user
 	 * @return list of all librarians sharing the same first and last name
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{firstname}/{lastname}", "/librarians/{userID}/{firstname}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn,@RequestParam(name="lastname") String ln) {
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn,@RequestParam(name="lastname") String ln) throws IllegalArgumentException{
 		return service.getAllLibrariansByFirstAndLastName(id, fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
 
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param id id of the user
 	 * @return list of all librarians sharing the same first and last name
 	 * @author vy-khahuynh
@@ -49,26 +49,25 @@ public class EmploymentRestController {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param id id of the user
 	 * @param fn first name to be searched
 	 * @return list of all librarians sharing the same first name
-	 * @author vy-khahuynh
+	 * 
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{firstname}", "//librarians/{userID}/{firstname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn) {
+	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable(name="userID")int id,@RequestParam (name="firstname") String fn) throws IllegalArgumentException{
 		return service.getAllLibrariansByFirstName(id, fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param id id of the user
 	 * @param ln last name to be searched
 	 * @return list of all librarians sharing the same last name
-	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{lastname}", "/librarians/{userID}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="userID")int id,@RequestParam (name="lastname") String ln) {
+	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable(name="userID")int id,@RequestParam (name="lastname") String ln) throws IllegalArgumentException{
 		return service.getAllLibrariansByLastName(0, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -79,13 +78,13 @@ public class EmploymentRestController {
 	 * @return librarian dto object
 	 */
 	@GetMapping(value= {"/librarians/{userID}/{LibID}" , "/librarians/{userID}/{LibID}/"})
-	public LibrarianDto getLibrarianByID(@PathVariable(name="userID") int hlid,@RequestParam(name="LibID") int libid) {
+	public LibrarianDto getLibrarianByID(@PathVariable(name="userID") int hlid,@RequestParam(name="LibID") int libid) throws IllegalArgumentException{
 		Librarian l = service.getLibrarianByID(hlid, libid);
 		return convertToDto(l);
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param id id of the user
 	 * @param firstname first name of the librarian 
 	 * @param lastname last name of the librarian
@@ -96,9 +95,8 @@ public class EmploymentRestController {
 	 * @param password password o be associated with the online account
 	 * @return new librarian with the inputs as attributes
 	 * @throws IllegalArgumentException
-	 * @author vy-khahuynh
 	 */
-	@PostMapping(value = { "/createLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}", "/createLibrarian/{id}/{firstname}/{lastname}/{address}/{city}/" })
+	@PostMapping(value = { "/createLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}", "/createLibrarian/{userID}/{firstname}/{lastname}/{address}/{city}/" })
 	public LibrarianDto createLibrarian(@PathVariable(name="userID")int userID,@PathVariable(name="firstname") String firstname,
 			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
 			@PathVariable(name="city") String city) throws IllegalArgumentException {
@@ -138,7 +136,7 @@ public class EmploymentRestController {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param l librarian object to be converted to librarianDto
 	 * @return librarianDto object of librarian l
 	 */
@@ -151,7 +149,7 @@ public class EmploymentRestController {
 	}
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param l librarian object to be converted to librarianDto
 	 * @return librarianDto object of librarian l
 	 */
