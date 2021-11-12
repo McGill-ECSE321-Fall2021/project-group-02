@@ -32,7 +32,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians/{userID}/{firstname}/{lastname}", "/librarians/{userID}/{firstname}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@PathVariable (name="firstname") String fn,@PathVariable(name="lastname") String ln) throws IllegalArgumentException{
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable(name="userID")int id,@PathVariable (name="firstname") String fn,@PathVariable (name="lastname") String ln) throws IllegalArgumentException{
 		return service.getAllLibrariansByFirstAndLastName(id, fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
