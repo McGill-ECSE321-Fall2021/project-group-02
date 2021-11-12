@@ -420,6 +420,83 @@ public class TestViewLibraryContentsService {
 	
 	/* UNIT TESTS FOR VIEW LIBRARY CONTENTS METHODS */
 	
+	// Items Repository:
+	@Test
+	public void testGetAllItems() {
+		ArrayList<Item> l = (ArrayList<Item>) service.getAllItems();
+		assertNotNull(l);
+		assertEquals(l.size(), 5);
+	}
+	@Test
+	public void testGetItemByIdInvalid() {
+		Item item = null;
+		String error = null;
+
+		try {
+			item = service.getItemByID(NONEXISTING_ID1);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Item ID cannot be negative.", error);
+		
+		try {
+			item = service.getItemByID(NONEXISTING_ID2);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Item ID does not exist.", error);
+		
+		try {
+			item = service.getItemByID(NONEXISTING_ID3);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Item ID does not exist.", error);
+	}
+	@Test
+	public void testGetItemByIdValid() {
+		Item i = service.getItemByID(ALBUM_ID);
+		assertNotNull(i);
+		assertEquals(i.getClass(), Album.class);
+		
+		i = service.getItemByID(BOOK_ID);
+		assertNotNull(i);
+		assertEquals(i.getClass(), Book.class);
+		
+		i = service.getItemByID(MOVIE_ID);
+		assertNotNull(i);
+		assertEquals(i.getClass(), Movie.class);
+		
+		i = service.getItemByID(NEWSPAPER_ID);
+		assertNotNull(i);
+		assertEquals(i.getClass(), Newspaper.class);
+		
+		i = service.getItemByID(JOURNAL_ID);
+		assertNotNull(i);
+		assertEquals(i.getClass(), Journal.class);
+	}
+	@Test
+	public void testGetItemByCreatorInvalid() {
+		ArrayList<Item> l = new ArrayList<>();
+		String error = null;
+		try {
+			service.getItemByCreator(NONEXISTING_TEST_STRING);
+		} catch(Exception e) {
+			error = e.getMessage();
+		}
+		assertEquals(l.size(), 0);
+		assertEquals("No items exist under that creator", error);
+	}
+	@Test
+	public void testGetItemByCreatorValid() {
+		ArrayList<Item> l = new ArrayList<>();
+		l = (ArrayList<Item>) service.getItemByCreator(TEST_STRING);
+		assertEquals(3, l.size());
+	}
+	
 	// Books Repository:
 	@Test
 	public void testGetBookByTitleValid() {
@@ -532,65 +609,6 @@ public class TestViewLibraryContentsService {
 		ArrayList<Journal> b = (ArrayList<Journal>) service.getJournalsByName(NONEXISTING_JOURNAL_TITLE);
 		
 		assertEquals(b.size(), 0);
-	}
-	
-	// Items Repository:
-	@Test
-	public void testGetAllItems() {
-		ArrayList<Item> l = (ArrayList<Item>) service.getAllItems();
-		assertNotNull(l);
-	}
-	@Test
-	public void testGetItemByIdInvalid() {
-		Item item = null;
-		String error = null;
-
-		try {
-			item = service.getItemByID(NONEXISTING_ID1);
-		} catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertNull(item);
-		assertEquals("Item ID cannot be negative.", error);
-		
-		try {
-			item = service.getItemByID(NONEXISTING_ID2);
-		} catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertNull(item);
-		assertEquals("Item ID does not exist.", error);
-		
-		try {
-			item = service.getItemByID(NONEXISTING_ID3);
-		} catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertNull(item);
-		assertEquals("Item ID does not exist.", error);
-	}
-	
-	@Test
-	public void testGetItemByIdValid() {
-		Item i = service.getItemByID(ALBUM_ID);
-		assertNotNull(i);
-		assertEquals(i.getClass(), Album.class);
-		
-		i = service.getItemByID(BOOK_ID);
-		assertNotNull(i);
-		assertEquals(i.getClass(), Book.class);
-		
-		i = service.getItemByID(MOVIE_ID);
-		assertNotNull(i);
-		assertEquals(i.getClass(), Movie.class);
-		
-		i = service.getItemByID(NEWSPAPER_ID);
-		assertNotNull(i);
-		assertEquals(i.getClass(), Newspaper.class);
-		
-		i = service.getItemByID(JOURNAL_ID);
-		assertNotNull(i);
-		assertEquals(i.getClass(), Journal.class);
 	}
 
 }
