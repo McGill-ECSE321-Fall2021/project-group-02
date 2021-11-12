@@ -72,7 +72,7 @@ public class ItemRestController {
 	 * @author Julie
 	 */
 	@PostMapping(value = { "/return", "/return/"})
-	public ItemDto returnItem(@RequestParam(name = "itemID") int itemId, @RequestParam(name = "patronID") int patronId) {
+	public ItemDto returnItem(@RequestParam(name = "itemId") int itemId, @RequestParam(name = "patronId") int patronId) {
 		Item i = itemService.returnItem(itemId, patronId);
 		return convertToDto(i);
 	}

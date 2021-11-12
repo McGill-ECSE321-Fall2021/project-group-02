@@ -55,7 +55,7 @@ task integrationTest(type:Exec) {
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/borrow/Dictionary', '-d', 'itemId=2', '-d', 'patronId=1'
 	
-	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/return' '-d', 'itemID=2', '-d', 'patronID=1'
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/return', '-d', 'itemId=2', '-d', 'patronId=1'
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/items/discard', '-d', 'itemId=2'
 	
