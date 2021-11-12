@@ -71,9 +71,9 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@PostMapping(value = { "/return/{itemId}", "/return/{itemId}/"})
-	public ItemDto returnItem(@PathVariable("itemId") int itemId,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
-		Item i = itemService.returnItem(itemDto.getID(), patronDto.getId());
+	@PostMapping(value = { "/return", "/return/"})
+	public ItemDto returnItem(@RequestParam(name = "itemID") int itemId, @RequestParam(name = "patronID") int patronId) {
+		Item i = itemService.returnItem(itemId, patronId);
 		return convertToDto(i);
 	}
 	
@@ -214,9 +214,9 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@DeleteMapping(value = {"/items/{name}", "/items/{name}"})
-	public void discardItem(@PathVariable("name") String itemName,  @RequestParam(name = "itemID") ItemDto itemDto) {
-		itemService.discardItem(itemDto.getID());
+	@DeleteMapping(value = {"/items/discard", "/items/discard/"})
+	public void discardItem(@RequestParam(name = "itemId") int itemId) {
+		itemService.discardItem(itemId);
 	}
 	
 	
