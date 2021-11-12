@@ -67,12 +67,14 @@ public class TestArchiveItemService {
 	private static final int EXISTINGBOOK_ARCHIVED_ID = 1;
 	private static final int NONEXISTINGBOOK_ID = 455;
 	private static final int EXISTINGBOOK_NONARCHIVED_BORROWED_ID = 2;
+	private static final int NEGATIVEBOOK_ID = -1;
 	
 	private static final int EXISTINGPATRON_ID=0;
 	private static final int NONEXISTINGPATRON_ID = 455;
 	
 	private static final int EXISTINGHEADLIBRARIAN_ID = 0;
 	private static final int NONEXISTINGHEADLIBRARIAN_ID = 455;
+	private static final int NEGATIVEHEADLIBRARIAN_ID = -1;
 	
 	private static final String EXISTINGBOOK_TITLE="Mockingbird";
 	private static final String NONEXISTINGBOOK_TITLE="lala";
