@@ -47,7 +47,7 @@ task integrationTest(type:Exec) {
 	
 	// Integration test: return item
 	// Author: Niilo Vuokila
-	
+	/*
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createPatron/12RueDulude', '-d', 'city=Montreal', '-d', 'balance=0', '-d' 'firstName=Tilly'
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createBook/Dictionary', '-d', 'authorName=Niilo', '-d', 'isArchived=false'
@@ -57,6 +57,7 @@ task integrationTest(type:Exec) {
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/return/2' '-d', 'itemID=3', '-d', 'patronID=4'
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/items/Dictionary' '-d' 'itemId=3'
+	*/
 	
 	//Author: John Park
 	// Archive Item
