@@ -212,10 +212,19 @@ public class ItemService {
 	public Item archiveItem(int itemID, int headLibrarianID) throws IllegalArgumentException {
 		// To archive an item, need approval of head librarian. If there is a head librarian ID associated with it, then it has been approved for the archives.
 		HeadLibrarian specificHeadLibrarian;
+		
+		if(headLibrarianID < 0) {
+			throw new IllegalArgumentException("Head Librarian ID cannot be negative.");
+		}
+		
 		if(headLibrarianRepository.existsById(headLibrarianID)) {
 			specificHeadLibrarian = headLibrarianRepository.findHeadLibrarianById(headLibrarianID);
 		} else {
 			throw new IllegalArgumentException("Head Librarian does not approve.");
+		}
+		
+		if(itemID < 0) {
+			throw new IllegalArgumentException("Item ID cannot be negative.");
 		}
 		
 		if(itemRepository.existsItemById(itemID)) {
