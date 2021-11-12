@@ -1,17 +1,22 @@
 ## Project Overview
-The goal of this project is to design a multi-tier software solution to implement a library management system and develop a release pipeline to automate the software delivery process. <br />
-<br />
+The goal of this project is to design a multi-tier software solution to implement a library management system and develop a release pipeline to automate the software delivery process. We are developing a website that will facilitate basic library processes for both patrons and employees of the library, such as item management (returning/borrowing books, archiving books, managing inventory, etc.), managing employee schedules, and registering new library members.
 
-## About us
+This system will be implemented by a team of 6 individuals and involved the use of requirements engineering, software development and design, system validation, and automatic software delivery.
 
-There are six team members in Group 02: <br />
-<br />
-Sami Ait Ouahmane is a third year (U2) student in Software Engineering <br />
-Julie Chen is a fourth year (U3) student in Bioengineering, with a minor in Software Engineering <br />
-Hyunbum Cho is a fourth year (U3) student in Software Engineering <br />
-Vy-Kha Huynh is a second year (U2) student in Software Engineering <br />
-Niilo Vuokila is a third year (U3) student in Computer Engineering <br />
-John Park is a third year (U3) student in Software Engineering <br />
+## Running the Project
+The backend of this project can be run locally by cloning this GitHub repository using the URL: https://github.com/McGill-ECSE321-Fall2021/project-group-02.git <br />
+The `LibrarySystem-Backend` repository can then be run as a Spring Boot App. The application will be hosted at http://localhost:8080/ and can be tested using the Postman application.
+
+## About Us
+There are six team members in Group 02: 
+| Name | Team Role | Major | Year |
+| --- | --- | --- | --- |
+| Sami Ait Ouahmane | Software Developer | Software Engineering | U2 | 
+| Julie Chen | Documentation Lead | Bioengineering | U3 |
+| Hyunbum (Steven) Cho | Software Developer | Software Engineering | U3 |
+| Vy-Kha Huynh | Testing Lead  | Software Engineering | U2 |
+| Niilo Vuokila | Software Developer | Computer Engineering | U3 |
+| John Park | Software Developer | Software Engineering | U3 |
 
 ## Contributions
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
