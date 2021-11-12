@@ -46,7 +46,7 @@ task integrationTest(type:Exec) {
 	
 	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'POST', 'http://localhost:8080/createLibrarian/1/Lib/Rarian/123 street B/Montreal'
 	
-	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/deleteLibrarian/1', '-d' , 'LibID = 2'  
+	commandLine 'cmd', '/c', 'curl', '-s', '-X', 'DELETE', 'http://localhost:8080/deleteLibrarian/1', '-d' , 'LibID=2'  
 	
 	// Integration test: return item
 	// Author: Niilo Vuokila
