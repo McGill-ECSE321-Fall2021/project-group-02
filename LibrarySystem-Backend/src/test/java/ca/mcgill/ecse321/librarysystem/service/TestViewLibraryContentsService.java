@@ -84,6 +84,8 @@ public class TestViewLibraryContentsService {
 	private static final String NONEXISTING_BOOK_TITLE = "b0";
 	private static final String NONEXISTING_ALBUM_TITLE = "a0";
 	private static final String NONEXISTING_MOVIE_TITLE = "m0";
+	private static final String NONEXISTING_NEWSPAPER_TITLE = "n0";
+	private static final String NONEXISTING_JOURNAL_TITLE = "j0";
 	private static final String NONEXISTING_TEST_STRING = "not a tester";
 	
 	private static final boolean BOOL = false;
@@ -186,6 +188,23 @@ public class TestViewLibraryContentsService {
 				return journal;
 			} else {
 				return null;
+			}
+			
+		});
+		
+		lenient().when(itemDao.existsById(anyInt())).thenAnswer((InvocationOnMock invocation) ->{
+			if(invocation.getArgument(0).equals(BOOK_ID)) {
+				return true;
+			} else if(invocation.getArgument(0).equals(ALBUM_ID)) {
+				return true;
+			} else if(invocation.getArgument(0).equals(MOVIE_ID)) {
+				return true;
+			} else if(invocation.getArgument(0).equals(NEWSPAPER_ID)) {
+				return true;
+			} else if(invocation.getArgument(0).equals(JOURNAL_ID)) {
+				return true;
+			} else {
+				return false;
 			}
 			
 		});
@@ -485,6 +504,36 @@ public class TestViewLibraryContentsService {
 		assertEquals(b.size(), 0);
 	}
 	
+	// Newspapers repository:
+	@Test
+	public void testGetNewspaperByNameValid() {
+		ArrayList<Newspaper> b = (ArrayList<Newspaper>) service.getNewspaperByName(TEST_NEWSPAPER_TITLE);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_NEWSPAPER_TITLE, b.get(0).getName());
+	}
+	@Test
+	public void testGetNewspaperByNameInvalid() {
+		ArrayList<Newspaper> b = (ArrayList<Newspaper>) service.getNewspaperByName(NONEXISTING_NEWSPAPER_TITLE);
+		
+		assertEquals(b.size(), 0);
+	}
+	
+	// Journals repository:
+	@Test
+	public void testGetJournalByNameValid() {
+		ArrayList<Journal> b = (ArrayList<Journal>) service.getJournalsByName(TEST_JOURNAL_TITLE);
+		
+		assertNotNull(b.get(0));
+		assertEquals(TEST_JOURNAL_TITLE, b.get(0).getName());
+	}
+	@Test
+	public void testGetJournalByNameInvalid() {
+		ArrayList<Journal> b = (ArrayList<Journal>) service.getJournalsByName(NONEXISTING_JOURNAL_TITLE);
+		
+		assertEquals(b.size(), 0);
+	}
+	
 	// Items Repository:
 	@Test
 	public void testGetAllItems() {
@@ -493,14 +542,32 @@ public class TestViewLibraryContentsService {
 	}
 	@Test
 	public void testGetItemByIdInvalid() {
-		Item i = service.getItemByID(NONEXISTING_ID1);
-		assertNull(i);
+		Item item = null;
+		String error = null;
+
+		try {
+			item = service.getItemByID(NONEXISTING_ID1);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Item ID cannot be negative.", error);
 		
-		i = service.getItemByID(NONEXISTING_ID2);
-		assertNull(i);
+		try {
+			item = service.getItemByID(NONEXISTING_ID2);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Item ID does not exist.", error);
 		
-		i = service.getItemByID(NONEXISTING_ID3);
-		assertNull(i);
+		try {
+			item = service.getItemByID(NONEXISTING_ID3);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(item);
+		assertEquals("Item ID does not exist.", error);
 	}
 	
 	@Test
