@@ -212,10 +212,19 @@ public class ItemService {
 	public Item archiveItem(int itemID, int headLibrarianID) throws IllegalArgumentException {
 		// To archive an item, need approval of head librarian. If there is a head librarian ID associated with it, then it has been approved for the archives.
 		HeadLibrarian specificHeadLibrarian;
+		
+		if(headLibrarianID < 0) {
+			throw new IllegalArgumentException("Head Librarian ID cannot be negative.");
+		}
+		
 		if(headLibrarianRepository.existsById(headLibrarianID)) {
 			specificHeadLibrarian = headLibrarianRepository.findHeadLibrarianById(headLibrarianID);
 		} else {
 			throw new IllegalArgumentException("Head Librarian does not approve.");
+		}
+		
+		if(itemID < 0) {
+			throw new IllegalArgumentException("Item ID cannot be negative.");
 		}
 		
 		if(itemRepository.existsItemById(itemID)) {
@@ -341,7 +350,17 @@ public class ItemService {
 	 */
 	@Transactional
 	public Item getItemByID(int id) {
-		Item item = itemRepository.findItemById(id);
+		Item item = null;
+		if (id < 0){
+			throw new IllegalArgumentException("Item ID cannot be negative.");
+			
+		} else if (itemRepository.existsById(id)) {
+			item = itemRepository.findItemById(id);
+		}
+		else {
+			throw new IllegalArgumentException("Item ID does not exist."); 
+		}
+		
 		return item;
 	}
 	
@@ -361,6 +380,10 @@ public class ItemService {
 		items.addAll(getNewspaperByName(name));
 		items.addAll(getJournalsByName(name));
 		
+		if(items.size() == 0) {
+			throw new IllegalArgumentException("No items exist under that name");
+		}
+		
 		return items;
 	}
 	
@@ -379,6 +402,10 @@ public class ItemService {
 		items.addAll(getMoviesByDirector(creator));
 		items.addAll(getAlbumsByArtist(creator));
 		
+		if(items.size() == 0) {
+			throw new IllegalArgumentException("No items exist under that creator");
+		}
+		
 		return items;
 	}
 	
@@ -393,6 +420,10 @@ public class ItemService {
 		List<Item> items = new ArrayList<Item>();
 		items.addAll(getNewspaperByDate(date));
 		items.addAll(getJournalsByDate(date));
+		
+		if(items.size() == 0) {
+			throw new IllegalArgumentException("No items exist under that date");
+		}
 		
 		return items;
 	}
@@ -420,6 +451,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Item> getItemsBorrowedByPatron(int patronID) throws IllegalArgumentException{
@@ -440,6 +472,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Book> getBooksBorrowedByPatron(int patronID) throws IllegalArgumentException{
@@ -458,6 +491,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Album> getAlbumsBorrowedByPatron(int patronID) throws IllegalArgumentException{
@@ -476,6 +510,7 @@ public class ItemService {
 	 * @param patronID
 	 * @return
 	 * @throws IllegalArgumentException
+	 * @author Sami
 	 */
 	@Transactional
 	public List<Movie> getMoviesBorrowedByPatron(int patronID) throws IllegalArgumentException{
@@ -1423,6 +1458,4 @@ public class ItemService {
 		}
 		return resultList;
 	}
-	
-
 }

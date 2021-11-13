@@ -71,9 +71,9 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@PostMapping(value = { "/return/{itemId}", "/return/{itemId}/"})
-	public ItemDto returnItem(@PathVariable("itemId") int itemId,  @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "patronID") PatronDto patronDto) {
-		Item i = itemService.returnItem(itemDto.getID(), patronDto.getId());
+	@PostMapping(value = { "/return", "/return/"})
+	public ItemDto returnItem(@RequestParam(name = "itemId") int itemId, @RequestParam(name = "patronId") int patronId) {
+		Item i = itemService.returnItem(itemId, patronId);
 		return convertToDto(i);
 	}
 	
@@ -88,9 +88,9 @@ public class ItemRestController {
 	 * 
 	 * @author John
 	 */
-	@PostMapping(value = { "/archive/{name}", "/archive/{name}/"})
-	public ItemDto archiveItem(@PathVariable("name") String itemName, @RequestParam(name = "itemID") ItemDto itemDto, @RequestParam(name = "headLibrarianID") HeadLibrarianDto headLibrarianDto) {
-		Item i = itemService.archiveItem(itemDto.getID(), headLibrarianDto.getID());
+	@PostMapping(value = { "/archive/{itemId}", "/archive/{itemId}/"})
+	public ItemDto archiveItem(@PathVariable("itemID") int itemId, @RequestParam(name = "headLibrarianID") HeadLibrarianDto headLibrarianDto) {
+		Item i = itemService.archiveItem(itemId, headLibrarianDto.getID());
 		return convertToDto(i);
 	}
 	
@@ -214,9 +214,9 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@DeleteMapping(value = {"/items/{name}", "/items/{name}"})
-	public void discardItem(@PathVariable("name") String itemName,  @RequestParam(name = "itemID") ItemDto itemDto) {
-		itemService.discardItem(itemDto.getID());
+	@DeleteMapping(value = {"/items/discard", "/items/discard/"})
+	public void discardItem(@RequestParam(name = "itemId") int itemId) {
+		itemService.discardItem(itemId);
 	}
 	
 	

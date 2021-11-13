@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,18 +13,15 @@ import static org.mockito.ArgumentMatchers.anyInt;
 
 
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.BookRepository;
@@ -34,7 +32,6 @@ import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.model.Book;
 import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.model.Item;
-import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 
 /**
@@ -44,7 +41,7 @@ import ca.mcgill.ecse321.librarysystem.model.Patron;
  */
 
 @ExtendWith(MockitoExtension.class)
-public class TestReturnItemsService {
+public class TestReturnItemService {
 	@Mock
 	private PatronRepository patronDao;
 	

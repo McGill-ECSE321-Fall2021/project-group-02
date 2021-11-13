@@ -22,7 +22,14 @@ public class CreateOnlineAccountService {
 	@Autowired
 	UserEntityRepository userEntityRepository;
 	@Transactional
-
+	
+	/**
+	 * Creates a new patron and an online account associated with them.
+	 * @param firstName, lastName, address, city, username, password, email
+	 * @return Online account for the new user
+	 * @throws throws IllegalArgumentException if inputs are empty, username or email is already in use or email or password is invalid.
+	 * @author Hyunbum Cho
+	 */
 	public OnlineAccount createOnlineAccountNewUser(String firstName, String lastName, String address, String city, String username, String password, String email) throws IllegalArgumentException {
 		String error = "";
 		
@@ -71,6 +78,13 @@ public class CreateOnlineAccountService {
 		return account;
 	}
 	
+	/**
+	 * Creates an online account for an existing user.
+	 * @param id, username, password, email
+	 * @return Online account for an existing user
+	 * @throws throws IllegalArgumentException if inputs are empty, username or email is already in use, email or password is invalid, id is invalid or user already has an online account.
+	 * @author Hyunbum Cho
+	 */
 	public OnlineAccount createOnlineAccountExistingUser(int id, String username, String password, String email) throws IllegalArgumentException {
 		String error = "";
 		// verify ID
@@ -113,6 +127,12 @@ public class CreateOnlineAccountService {
 		return account;
 	}
 	
+	/**
+	 * Deletes an online account given a username.
+	 * @param username, password
+	 * @throws throws IllegalArgumentException if inputs are empty, password is wrong or online account does not exist.
+	 * @author Hyunbum Cho
+	 */
 	public void deleteOnlineAccountUsername(String username, String password) throws IllegalArgumentException {
 		OnlineAccount account = findAccountByUsername(username);
 		if (account == null) throw new IllegalArgumentException("Could not delete account. Online account does not exist.");
@@ -127,6 +147,12 @@ public class CreateOnlineAccountService {
 		userEntityRepository.save(user);
 	}
 	
+	/**
+	 * Deletes an online account given an email.
+	 * @param email, password
+	 * @throws throws IllegalArgumentException if inputs are empty, password is wrong or online account does not exist.
+	 * @author Hyunbum Cho
+	 */
 	public void deleteOnlineAccountEmail(String email, String password) throws IllegalArgumentException {
 		OnlineAccount account = findAccountByEmail(email);
 		if (account == null) throw new IllegalArgumentException("Could not delete account. Online account does not exist.");
@@ -141,6 +167,12 @@ public class CreateOnlineAccountService {
 		userEntityRepository.save(user);
 	}
 	
+	/**
+	 * Changes password for an online account.
+	 * @param username, password, newPassword
+	 * @throws throws IllegalArgumentException if inputs are empty, password is wrong, online account does not exist or new password does not meet criteria.
+	 * @author Hyunbum Cho
+	 */
 	public OnlineAccount changePassword(String username, String password, String newPassword) throws IllegalArgumentException {
 		OnlineAccount account = findAccountByUsername(username);
 		if (account == null) throw new IllegalArgumentException("Online account does not exist.");
@@ -153,6 +185,12 @@ public class CreateOnlineAccountService {
 		return account;
 	}
 	
+	/**
+	 * Changes email for an online account.
+	 * @param username, password, newEmail
+	 * @throws throws IllegalArgumentException if inputs are empty, password is wrong, online account does not exist, email is already in use or new email does not meet criteria.
+	 * @author Hyunbum Cho
+	 */
 	public OnlineAccount changeEmail(String username, String password, String newEmail) throws IllegalArgumentException {
 		OnlineAccount account = findAccountByUsername(username);
 		if (account == null) throw new IllegalArgumentException("Online account does not exist.");

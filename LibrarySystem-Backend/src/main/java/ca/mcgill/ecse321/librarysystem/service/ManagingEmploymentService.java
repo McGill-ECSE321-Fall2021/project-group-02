@@ -25,7 +25,7 @@ public class ManagingEmploymentService {
 	WeeklyScheduleRepository weeklyScheduleRepository;
 	
 	/**
-	 * 
+	 * @author vy-khahuynh
 	 * @param h id of the user
 	 * @param oa the user's online account
 	 * @param fn the user's first name
@@ -74,18 +74,15 @@ public class ManagingEmploymentService {
 	 * @throws IllegalArgumentException
 	 */
 	@Transactional
-	public HeadLibrarian createHeadLibrarian(int h,String fn, String ln, String ad, String city) throws IllegalArgumentException{
+	public HeadLibrarian createHeadLibrarian(String fn, String ln, String ad, String city) throws IllegalArgumentException{
 		error = "";
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
 		if(!verifyStringLength(fn)) error += "First name cannot be empty or too long.";
 		if(!verifyStringLength(ln)) error += "Last name cannot be empty or too long.";
 		if(!verifyStringLength(ad)) error += "Address cannot be empty or too long.";
 		if(!verifyStringLength(city)) error += "City cannot be empty or too long.";
 		if (error.length() > 0) throw new IllegalArgumentException(error);
 		
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+		
 			HeadLibrarian newHL = new HeadLibrarian();
 			newHL.setFirstName(fn);
 			newHL.setLastName(ln);
@@ -93,12 +90,14 @@ public class ManagingEmploymentService {
 			newHL.setCity(city);
 			newHL.setBalance(0);
 			
-			headLibrarianRepository.deleteById(h);
 			headLibrarianRepository.save(newHL);
+			for(HeadLibrarian hl : headLibrarianRepository.findAll()) {
+				if(hl.getId()!=newHL.getId()) {
+					headLibrarianRepository.delete(hl);
+				}
+			}
 			
 			return newHL;
-		}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
