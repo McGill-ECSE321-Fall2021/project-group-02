@@ -1,48 +1,66 @@
 <template>
   <div class="welcomepage">
+    <h1>Welcome To The Montreal Library Website!</h1>
     
-    <h1>Welcome to the Library Management System</h1>
-      <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#login">Log In</a>
-        <a href="#signup">Sign Up</a>
-        <a href="#iteminfo">Library Items</a>
-      </div>
-  </div>
+    <a href="#" class="btn">Home</a>
+    <a href="#" class="btn">Sign Up</a>
+    <a href="#" class="btn">Log In</a>
+    <a href="#" class="btn">Items Information</a>
+    
+</div>
 </template>
+
+
 <script>
 </script>
+
+
 <style>
-.welcomepage {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    color: #2c3e50;
-    background: #f2ece8;
-  }
-  /* Add a black background color to the top navigation */
-.topnav {
-  background-color: #333;
-  overflow: hidden;
+* {
+	-webkit-transition-property: all;
+	-webkit-transition-duration: .2s;
+  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+	-moz-transition-property: all;
+  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
 }
 
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: center;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 21px;
+body{
+  background: #ADD8E6;
+  padding:75px;
+  text-align:center;
+  font-family: "Courier", sans-serif;
 }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+h1{
+  color:white;
+  font-weight:100;
 }
 
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+.btn{
+  color:white;
+  background:rgba(0, 0, 0, 0.5);
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.btn:hover{
+  background:#fff;
+}
+
+.footer{
+  font-size:8px;
+  color:#fff;
+  clear:both;
+  display:block;
+  letter-spacing:5px;
+  border:1px solid #fff;
+  padding:5px;
+  text-decoration:none;
+  width:210px;
+  margin:auto;
+  margin-top:400px;
 }
 </style>
