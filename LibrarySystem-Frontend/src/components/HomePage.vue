@@ -2,10 +2,9 @@
   <div class="welcomepage">
     <h1>Welcome To The Montreal Library Website!</h1>
     
-    <a href="#" class="btn">Home</a>
-    <a href="#" class="btn">Sign Up</a>
-    <a href="#" class="btn">Log In</a>
-    <a href="#" class="btn">Items Information</a>
+    <a class="btn"><router-link to="/">Home</router-link></a>
+    <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
+    <a class="btn">Items Information</a>
     
 </div>
 </template>
@@ -25,18 +24,24 @@
 }
 
 body{
-  background: #ADD8E6;
   padding:75px;
   text-align:center;
   font-family: "Courier", sans-serif;
+  background-image: url("../assets/library.jpg");
 }
 
 h1{
   color:white;
   font-weight:100;
+  width: 900px;
+  margin: 0 auto;
+  background:rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+
 }
 
 .btn{
+  margin: 20px 0px;
   color:white;
   background:rgba(0, 0, 0, 0.5);
   padding:10px 20px;
