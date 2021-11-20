@@ -4,7 +4,7 @@
     
     <a class="btn"><router-link to="/">Home</router-link></a>
     <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
-    <a class="btn">Items Information</a>
+    <a class="btn"><router-link to="/items">Items Information</router-link></a>
     
 </div>
 </template>
@@ -37,7 +37,6 @@ h1{
   margin: 0 auto;
   background:rgba(0, 0, 0, 0.6);
   padding: 10px 20px;
-
 }
 
 .btn{
