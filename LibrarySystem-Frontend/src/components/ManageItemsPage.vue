@@ -1,15 +1,14 @@
 <template>
-  <div class="welcomepage">
-    <h1>Welcome To The Montreal Library Website!</h1>
+  <div class="manageitemspage">
+    <h1>Manage Items</h1>
     
     <a class="btn"><router-link to="/">Home</router-link></a>
     <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
     <a class="btn">Items Information</a>
-    <a class="btn"><router-link to="/manageitems">Manage Items</router-link></a>
-
+    <a class="btn">Manage Items</a>
+    
 </div>
 </template>
-
 
 <script>
 </script>
@@ -70,3 +69,4 @@ h1{
   margin-top:400px;
 }
 </style>
+
