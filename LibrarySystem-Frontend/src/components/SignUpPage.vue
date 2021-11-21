@@ -1,10 +1,6 @@
 <template>
     <div class="signuppage">
-        <head>
-	<title>Slide Navbar</title>
-	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-</head>
+        
 <body>
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
@@ -56,7 +52,7 @@ body{
 	justify-content: center;
 	align-items: left;
 	min-height: 100vh;
-	font-family: 'Jost', sans-serif;
+	font-family: "Courier", sans-serif;
 	background-image: url("../assets/library.jpg");
 }
 .main{
