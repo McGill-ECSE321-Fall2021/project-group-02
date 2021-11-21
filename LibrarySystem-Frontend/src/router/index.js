@@ -25,7 +25,8 @@ export default new Router({
       path: '/manageitems',
       name: 'ManageItemsPage',
       component: ManageItemsPage
-    }
+    },
+    {
       path: '/userProfile',
       name: 'user-profile',
       component: UserProfilePage
