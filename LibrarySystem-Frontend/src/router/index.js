@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
 import SignUpPage from '@/components/SignUpPage'
+import UserProfilePage from '@/components/UserProfilePage'
+import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 
 Vue.use(Router)
 
@@ -19,6 +21,16 @@ export default new Router({
       path: '/signup',
       name: 'SignUpPage',
       component: SignUpPage
+    },
+    {
+      path: '/userProfile',
+      name: 'user-profile',
+      component: UserProfilePage
+    },
+    {
+      path: '/userProfile/borrowedItems',
+      name: 'borrowed-items',
+      component: BorrowedItemsPage
     },
   ]
 })
