@@ -4,10 +4,10 @@ import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
 import SignUpPage from '@/components/SignUpPage'
 import ManageItemsPage from '@/components/ManageItemsPage'
+import UserProfilePage from '@/components/UserProfilePage'
+import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 
 Vue.use(Router)
-
-
 
 export default new Router({
   routes: [
@@ -25,6 +25,15 @@ export default new Router({
       path: '/manageitems',
       name: 'ManageItemsPage',
       component: ManageItemsPage
+    }
+      path: '/userProfile',
+      name: 'user-profile',
+      component: UserProfilePage
+    },
+    {
+      path: '/userProfile/borrowedItems',
+      name: 'borrowed-items',
+      component: BorrowedItemsPage
     },
   ]
 })
