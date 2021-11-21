@@ -119,7 +119,7 @@ th:nth-child(4) {
 	margin-bottom: 150px;
 	width: 1000px;
 	height: 1500px;
-	background:rgba(0, 0, 0, 0.8);
+	background:rgba(0, 0, 0, 0.65);
 	overflow: none;
 	border-radius: 10px;
 	/*box-shadow: 5px 20px 50px #000;*/
