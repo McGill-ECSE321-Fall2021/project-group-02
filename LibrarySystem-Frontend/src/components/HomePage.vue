@@ -1,14 +1,14 @@
 <template>
   <div class="welcomepage">
       <div class="header">
-				  <h2>Montreal Library</h2>
+				  <h2><router-link to="/">Montreal Library</router-link></h2>
+        <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
+        <a class="btn"><router-link to="/items">Items Information</router-link></a>
+        <a class="btn"><router-link to="/">Home</router-link></a>
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>
     
-    <a class="btn"><router-link to="/">Home</router-link></a>
-    <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
-    <a class="btn"><router-link to="/items">Items Information</router-link></a>
     
 </div>
 </template>
@@ -72,15 +72,18 @@ h1{
 }
 
 .btn{
-  margin: 20px 0px;
+  float:right;
+  margin: 45px 5px;
   color:white;
-  background:rgba(0, 0, 0, 0.65);
+  background:rgba(0, 0, 0, 0.8);
   padding:10px 20px;
   font-size:12px;
   text-decoration:none;
   letter-spacing:2px;
   text-transform:uppercase;
 }
+
+
 
 .btn:hover{
   background:#fff;
