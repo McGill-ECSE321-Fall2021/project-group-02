@@ -11,8 +11,8 @@
             <img src="../pictures/user_profile/blank_profile_pic.png" class="rounded-circle" width="150" alt="not Found" onerror="../pictures/user_profile/blank_profile_pic.png">
             <div class="subpages">
               <h3>Template Name</h3>
-              <a href="">Profile</a>
-              <a href="">Borrowed Items</a>
+              <a><router-link to="/userProfile">Profile</router-link></a>
+              <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
               <a href="">Sign out</a>
             </div>
           </div>
