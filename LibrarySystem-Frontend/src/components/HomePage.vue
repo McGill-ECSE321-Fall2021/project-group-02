@@ -8,10 +8,6 @@
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>
-    
-    <a class="btn"><router-link to="/">Home</router-link></a>
-    <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
-    <a class="btn"><router-link to="/items">Items Information</router-link></a>
 </div>
 </template>
 
