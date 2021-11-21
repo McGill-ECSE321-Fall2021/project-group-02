@@ -6,9 +6,30 @@
     <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
     <a class="btn">Items Information</a>
     <a class="btn">Manage Items</a>
-    
-</div>
+
+<body>
+
+  <div class="itemID">
+    <form>
+      <input type="text" name="itemID" placeholder="Enter Item ID" required="">
+      <button>Enter</button>
+    </form>
+  </div>
+<!--
+  <div class="itemInfo">
+    <h1>Item Information</h1>
+    <button>Borrow Item</button>
+    <button>Return Item</button>
+    <button>Archive Item</button>
+    <button>Damage Item</button>
+    <button>Add New Item</button>
+    <button>Delete Item</button>
+  </div>
+-->
+</body>
+  </div>
 </template>
+
 
 <script>
 </script>
@@ -68,5 +89,28 @@ h1{
   margin:auto;
   margin-top:400px;
 }
+
+.itemID{
+  width: 500px;
+	height: 800px;
+	background: rgb(255, 255, 255);
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
+}
+/*
+.itemInfo{
+  width: 500px;
+	height: 500px;
+	background: rgb(190, 190, 190);
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
+
+  transform: translateY(-180px);
+	transition: .8s ease-in-out;
+}
+*/
+
 </style>
 
