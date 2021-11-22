@@ -6,28 +6,27 @@
             <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
             <a class="btn"><router-link to="/items">Items Information</router-link></a>
             <a class="btn"><router-link to="/">Home</router-link></a>
-		  </div>
-      
-      <div class="enterItem">
-        <form>
-					<label for="chk" aria-hidden="true">Manage Item</label>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-          <button>Enter</button>
-        </form>
-      </div>
-
+		</div>
       <div class="manageItem">
-        <div class="itemInfo">
-          <!-- input the ID, name, and author -->
-          <p>Put item info here</p>
-        </div>
-        <div class="itemButtons">
-          <button>Borrow Item</button>
-          <button>Return Item</button>
-          <button>Archive Item</button>
-          <button>Damage Item</button>
-          <button>Add a New Item</button>
-          <button>Discard Item</button>
+		<h2> Manage Items </h2>
+        <div id="borrowItem">
+          <button type="button" class="button" @click="showModal">Borrow Item</button>
+		  <Modal v-show="isModalVisible" @close="closeModal">
+		    <template v-slot:header>
+				Borrow Item
+			</template>
+
+			<template v-slot:body>
+				<form>
+					<input type="text" name="itemID" placeholder="Enter item ID" required="">
+					<input type="text" name="patronID" placeholder="Enter patron ID" required="">
+					<button >Enter</button>
+				</form>
+			</template>
+
+			<template v-slot:footer>
+			</template>
+		  </Modal>
         </div>  
       </div>
     </body>
@@ -36,6 +35,27 @@
 
 
 <script>
+  import Modal from './Modal.vue';
+
+  export default {
+    name: 'ManageItemsPage',
+    components: {
+      Modal,
+    },
+    data() {
+      return {
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    }
+  };
 </script>
 
 
@@ -51,7 +71,7 @@
 body{
 	padding: 0;
 	display: flex;
-  flex-direction: column;
+    flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
@@ -84,6 +104,17 @@ h1{
 	padding: 10px 10px;
 }
 
+h2{
+	color:white;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	text-align: center;
+	font-weight:350;
+	height: 70px;
+	width: 400px;
+	background:rgb(112, 1, 1);
+	padding: 10px 10px;
+}
+
 .btn{
   float:right;
   margin: 45px 5px;
@@ -99,51 +130,24 @@ h1{
   background:#fff;
 }
 
-.enterItem{
-	position: relative;
-  bottom: 100px;
-	width:100%;
-	height: 100%;
-	background:rgba(0, 0, 0, 0.65);
-	overflow: none;
-	border-radius: 10px;
-	background-image: none;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.enterItem label{
-	font-size: 2em;
-	margin: 20px 140px;
-	width: 400px;
-  height: 50px;
-}
-
-label{
-  background: rgb(112, 1, 1);
-	text-align:center;
-	color: #fff;
-	justify-content: center;
-	display: flex;
-}
-
 input{
 	background: white;
 	padding: 10px;
 	border: none;
 	outline: none;
 	border-radius: 5px;
-  margin-left: 30%;
-  margin-bottom: 3%;
 }
 
 .manageItem {
 	background:rgba(0, 0, 0, 0.65);
 	border-radius: 10px;
 	background-image: none;
-  padding: 5px;
-  height: 150px;
+	padding: 5px;
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
 }
 
 p {
@@ -157,7 +161,7 @@ button{
 	background: white;
 	font-size: 1em;
 	font-weight: bold;
-  margin-left: 0;
+    margin-left: 0;
 	outline: none;
 	border: none;
 	border-radius: 5px;

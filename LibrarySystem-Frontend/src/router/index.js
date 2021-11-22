@@ -7,6 +7,7 @@ import ManageItemsPage from '@/components/ManageItemsPage'
 import ViewItemsPage from '@/components/ViewItemsPage'
 import UserProfilePage from '@/components/UserProfilePage'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
+import Modal from '@/components/Modal'
 
 
 Vue.use(Router)
@@ -26,7 +27,13 @@ export default new Router({
     {
       path: '/manageitems',
       name: 'ManageItemsPage',
-      component: ManageItemsPage
+      component: ManageItemsPage,
+      children: [
+        {
+          path: 'borrowItem',
+          component: Modal
+        },
+      ]
     },
     {
       path: '/items',
