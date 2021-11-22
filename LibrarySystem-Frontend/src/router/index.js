@@ -6,6 +6,7 @@ import SignUpPage from '@/components/SignUpPage'
 import ViewItemsPage from '@/components/ViewItemsPage'
 import UserProfilePage from '@/components/UserProfilePage'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
+import ManageLibrariansPage from '@/components/ManageLibrariansPage'
 
 
 Vue.use(Router)
@@ -33,6 +34,11 @@ export default new Router({
       path: '/userProfile',
       name: 'user-profile',
       component: UserProfilePage
+    },
+    {
+      path: '/librarians',
+      name: 'ManageLibrariansPage',
+      component: ManageLibrariansPage
     },
     {
       path: '/userProfile/borrowedItems',
