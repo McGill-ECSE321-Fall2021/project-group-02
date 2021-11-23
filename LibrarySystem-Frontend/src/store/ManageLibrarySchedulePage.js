@@ -20,6 +20,17 @@ function LibrarianDto (onlineAccount, firstName, lastName, address, city, weekly
   
 }
 
+function OnlineAccountDto (username, password, email, user) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.user = user;
+}
+
+function WeeklyScheduleDto () {
+
+}
+
 export default {
     name: 'librarian',
     data () {
@@ -41,7 +52,8 @@ export default {
     
     created: function () {
       //TEST ITEMS ADDED TO LISTS; DOES NOT TEST BACKEND INTEGRATION
-      const l1 = new LibrarianDto(new OnlineAccount, "TEST_FIRSTNAME", "TEST_LASTNAME", "TEST_ADDRESS", "TEST_CITY", new WeeklySchedule, 0, 1)
+
+      const l1 = new LibrarianDto(any, "TEST_FIRSTNAME", "TEST_LASTNAME", "TEST_ADDRESS", "TEST_CITY", any, 0, 1)
       this.librarians = [l1]
       
       
