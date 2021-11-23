@@ -13,10 +13,18 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
+    "@fullcalendar/core": "^5.10.1",
+    "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/interaction": "^5.10.1",
+    "@fullcalendar/list": "^5.10.1",
+    "@fullcalendar/timegrid": "^5.10.1",
+    "@fullcalendar/vue": "^5.10.1",
+    "@syncfusion/ej2-vue-schedule": "^19.3.53",
     "axios": "^0.24.0",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-vue": "latest",
     "jquery": "^3.6.0",
+    "jqwidgets-scripts": "^13.1.0",
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
@@ -31,7 +39,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "chai": "^3.5.0",
-    "chalk": "^2.0.1",
+    "chalk": "^2.4.2",
     "chromedriver": "^2.27.2",
     "connect-history-api-fallback": "^1.3.0",
     "copy-webpack-plugin": "^4.0.1",

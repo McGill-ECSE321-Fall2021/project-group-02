@@ -5,6 +5,8 @@
     <a class="btn"><router-link to="/">Home</router-link></a>
     <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
     <a class="btn">Items Information</a>
+    <a class="btn"><router-link to="/manageLibrarySchedule">Manage Library Schedule</router-link></a>
+    <a class="btn"><router-link to="/createPatron">Create Patron</router-link></a>
     
 </div>
 </template>

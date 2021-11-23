@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
 import SignUpPage from '@/components/SignUpPage'
+import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
+import CreatePatron from '@/components/CreatePatron'
 
 Vue.use(Router)
 
@@ -20,5 +22,15 @@ export default new Router({
       name: 'SignUpPage',
       component: SignUpPage
     },
+    {
+      path: '/manageLibrarySchedule',
+      name: 'ManageLibrarySchedule',
+      component: ManageLibrarySchedule
+    },
+    {
+      path: '/createPatron',
+      name: 'CreatePatronPage',
+      component: CreatePatron
+    }
   ]
 })
