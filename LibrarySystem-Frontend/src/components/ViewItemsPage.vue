@@ -27,7 +27,7 @@
 						<table>
 							<template v-if="($route.name).includes('books') || ($route.name).includes('items')">
 								<tr></tr>
-								<tr><th colspan="10">BOOKS</th></tr>
+								<tr><th colspan="10">Books</th></tr>
 								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">Title</th>
@@ -41,7 +41,7 @@
 							</template>
 							<template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
 								<tr></tr>
-								<tr><th colspan="10">ALBUMS</th></tr>
+								<tr><th colspan="10">Albums</th></tr>
 								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">Title</th>
@@ -55,7 +55,7 @@
 							</template>
 							<template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
 								<tr></tr>
-								<tr><th colspan="10">MOVIES</th></tr>
+								<tr><th colspan="10">Movies</th></tr>
 								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">Title</th>
@@ -69,7 +69,7 @@
 							</template>
 							<template v-if="($route.name).includes('newspapers') || ($route.name).includes('items')">
 								<tr></tr>
-								<tr><th colspan="10">NEWSPAPERS</th></tr>
+								<tr><th colspan="10">Newspapers</th></tr>
 								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">Name</th>
@@ -83,7 +83,7 @@
 							</template>
 							<template v-if="($route.name).includes('journals') || ($route.name).includes('items')">
 								<tr></tr>
-								<tr><th colspan="10">JOURNALS</th></tr>
+								<tr><th colspan="10">Journals</th></tr>
 								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">Name</th>
@@ -115,6 +115,7 @@ body{
 	align-items: center;
 	text-align: left;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 350;
 	background-image: url("../assets/library.jpg");
 }
 .header{
@@ -161,6 +162,9 @@ table {
 td{
 	height: 10px;
 	overflow: hidden;
+}
+th{
+	font-weight: 500;
 }
 th:nth-child(1) {
 	width: 10%;
