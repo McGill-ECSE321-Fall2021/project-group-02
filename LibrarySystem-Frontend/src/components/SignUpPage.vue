@@ -13,14 +13,14 @@
 			<div class="signup1">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As A Nonexisting User</label>
-					<input type="text" name="firstName" placeholder="First Name" required="">
-					<input type="text" name="lastName" placeholder="Last Name" required="">	
-                    <input type="text" name="address" placeholder="Address" required="">
-					<input type="text" name="city" placeholder="City" required="">
-					<input type="text" name="username" placeholder="Username" required="">
-                    <input type="password" name="password" placeholder="Password" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<button>Sign up</button>
+					<input type="text" name="firstName" v-model="firstName" placeholder="First Name" required="">
+					<input type="text" name="lastName" v-model="lastName" placeholder="Last Name" required="">	
+                    <input type="text" name="address" v-model="address" placeholder="Address" required="">
+					<input type="text" name="city" v-model="city" placeholder="City" required="">
+					<input type="text" name="username" v-model="username" placeholder="Username" required="">
+                    <input type="password" name="password" v-model="password" placeholder="Password" required="">
+					<input type="email" name="email" v-model="email" placeholder="Email" required="">
+					<button @click="createAccountNewUser(newPerson(firstName, lastName, address, city, username, password, email))">Sign up</button>
 				</form>
 			</div>
 
@@ -47,8 +47,10 @@
 </body>
     </div>
 </template>
-<script>
+
+<script src="../store/signupexisting.js">
 </script>
+
 <style>
 .header{
 	width:100%;
