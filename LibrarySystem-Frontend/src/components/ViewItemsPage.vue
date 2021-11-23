@@ -2,7 +2,10 @@
 	<body>
 		<div class="viewitemspage">
 			<div class="header">
-				<h2>Montreal Library</h2>
+				<router-link to="/"><h2>Montreal Library</h2></router-link>
+				<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+        		<router-link to="/items"><a class="btn">Items Information</a></router-link>
+        		<router-link to="/"><a class="btn">Home</a></router-link>
 			</div>
 			<body>
 				<div class=items>
@@ -239,24 +242,43 @@ input{
   box-shadow: 0px 8px 16px 0px rgb(104, 104, 104);
   z-index: 1;
 }
-
 .dropdown-content a {
   color: black;
   padding: 5px 10px;
   text-decoration: none;
   display: block;
 }
-
 .dropdown-content a:hover {
 	background-color: #ddd;
 }
-
 .dropdown:hover .dropdown-content {
 	display: block;
 }
-
 .dropdown:hover .dropdownbutton {
 	background-color: rgb(87, 1, 1);
+}
+
+.header a{
+	color: white;
+}
+.header a:hover{
+	color: black;
+}
+
+.btn{
+  float:right;
+  margin: 45px 5px;
+  color:white;
+  background:rgba(0, 0, 0, 0.6);
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.btn:hover{
+  background: white;
+  color:white;
 }
 
 </style>
