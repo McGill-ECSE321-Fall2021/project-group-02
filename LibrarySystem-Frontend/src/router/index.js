@@ -32,6 +32,11 @@ export default new Router({
       component: ManageLibrarySchedule
     },
     {
+      path: '/manageLibrarySchedule/librarians',
+      name: 'librarians',
+      component: ManageLibrarySchedule
+    },
+    {
       path: '/createPatron',
       name: 'CreatePatronPage',
       component: CreatePatron
