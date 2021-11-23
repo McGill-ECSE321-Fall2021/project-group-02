@@ -42,23 +42,36 @@ export default {
 
   created: function () {
     // Test data
-    const l1 = new LibrarianDto('John','Doe','123 Bro Street','Montreal',2)
-    const l2 = new LibrarianDto('Jill','Valentine','345 Bruh Street','Montreal',3)
-    // Sample initial content
-    this.librarians = [l1, l2]
+    AXIOS.get('/librarians/'.concat(id))
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.librarians = response.data
+      this.errorLibrarian = ''
+    })
+    .catch(e => {
+      this.errorLibrarian = e
+    })
   },
 
   methods: {
     createLibrarian: function (fn,ln,ad,city,id) {
-      // Create a new person and add it to the list of people
-      var l = new LibrarianDto(fn,ln,ad,city,id)
-      this.librarians.push(l)
-      // Reset the name field for new people
-      this.firstName = ''
-      this.lastName = ''
-      this.address = ''
-      this.city = ''
-      this.id = ''
+	AXIOS.post('/createLibrarian/'.concat(id/fn/ln/ad/city))
+        .then(response => {
+        // JSON responses are automatically parsed.
+          this.librarians.push(response.data)
+          this.errorLibrarian = ''
+          this.firstName = ''
+          this.lastName = ''
+          this.address= ''
+          this.city = ''
+          this.id = ''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorLibrarian = errorMsg
+        })
+
     }
   }
 }

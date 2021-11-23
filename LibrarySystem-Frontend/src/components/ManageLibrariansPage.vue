@@ -44,7 +44,7 @@
 						</tr>
 						</table>
 						<p>
-						<span v-if="errorLibrarian" style="color:red">Error: {{errorLibrarian}} </span>
+						<span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span>
 						</p>
 					</div>				
 					</form>
