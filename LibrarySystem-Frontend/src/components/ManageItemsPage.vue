@@ -2,16 +2,16 @@
   <div class="manageitemspage">
     <body>
       <div class="header">
-              <h1><router-link to="/">Montreal Library</router-link></h1>
-            <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
-            <a class="btn"><router-link to="/items">Items Information</router-link></a>
-            <a class="btn"><router-link to="/">Home</router-link></a>
+			<router-link to="/"><h1>Montreal Library</h1></router-link>
+			<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+			<router-link to="/items"><a class="btn">Items Information</a></router-link>
+			<router-link to="/"><a class="btn">Home</a></router-link>
 		</div>
       <div class="manageItem">
 		<h2> Manage Items </h2>
         <div id="borrowItem">
-          <button type="button" class="button" @click="showModal">Borrow Item</button>
-		  <Modal v-show="isModalVisible" @close="closeModal">
+          <button type="button" class="button" @click="showBorrowModal">Borrow Item</button>
+		  <Modal v-show="isBorrowModalVisible" @close="closeModal">
 		    <template v-slot:header>
 				Borrow Item
 			</template>
@@ -28,6 +28,97 @@
 			</template>
 		  </Modal>
         </div>  
+
+		<div id="returnItem">
+          <button type="button" class="button" @click="showReturnModal">Return Item</button>
+		  <Modal v-show="isReturnModalVisible" @close="closeModal">
+		    <template v-slot:header>
+				 Return Item
+			</template>
+			<template v-slot:body>
+				<form>
+					<input type="text" name="itemID" placeholder="Enter item ID" required="">
+					<input type="text" name="patronID" placeholder="Enter patron ID" required="">
+					<button >Enter</button>
+				</form>
+			</template>
+			<template v-slot:footer>
+			</template>
+		  </Modal>
+        </div>  
+
+		<div id="archiveItem">
+          <button type="button" class="button" @click="showArchiveModal">Archive Item</button>
+		  <Modal v-show="isArchiveModalVisible" @close="closeModal">
+		    <template v-slot:header>
+				 Archive Item
+			</template>
+			<template v-slot:body>
+				<form>
+					<input type="text" name="itemID" placeholder="Enter item ID" required="">
+					<input type="text" name="userID" placeholder="Enter user ID" required="">
+					<button >Enter</button>
+				</form>
+			</template>
+			<template v-slot:footer>
+			</template>
+		  </Modal>
+        </div>  
+
+		<div id="damageItem">
+          <button type="button" class="button" @click="showDamageModal">Damage Item</button>
+		  <Modal v-show="isDamageModalVisible" @close="closeModal">
+		    <template v-slot:header>
+				 Damage Item
+			</template>
+			<template v-slot:body>
+				<form>
+					<input type="text" name="itemID" placeholder="Enter item ID" required="">
+					<input type="text" name="userID" placeholder="Enter user ID" required="">
+					<button >Enter</button>
+				</form>
+			</template>
+			<template v-slot:footer>
+			</template>
+		  </Modal>
+        </div>  
+
+		<div id="addItem">
+          <button type="button" class="button" @click="showAddModal">Add a New Item</button>
+		  <Modal v-show="isAddModalVisible" @close="closeModal">
+		    <template v-slot:header>
+				 Add a New Item
+			</template>
+			<template v-slot:body>
+				<form>
+					<input type="text" name="itemID" placeholder="Enter item ID" required="">
+					<input type="text" name="userID" placeholder="Enter user ID" required="">
+					<button >Enter</button>
+				</form>
+			</template>
+			<template v-slot:footer>
+			</template>
+		  </Modal>
+        </div>  
+
+		<div id="deleteItem">
+          <button type="button" class="button" @click="showDeleteModal">Delete Item</button>
+		  <Modal v-show="isDeleteModalVisible" @close="closeModal">
+		    <template v-slot:header>
+				 Delete Item
+			</template>
+			<template v-slot:body>
+				<form>
+					<input type="text" name="itemID" placeholder="Enter item ID" required="">
+					<input type="text" name="userID" placeholder="Enter user ID" required="">
+					<button >Enter</button>
+				</form>
+			</template>
+			<template v-slot:footer>
+			</template>
+		  </Modal>
+        </div>  
+
       </div>
     </body>
   </div>
@@ -44,15 +135,70 @@
     },
     data() {
       return {
-        isModalVisible: false,
+        isBorrowModalVisible: false,
+        isReturnModalVisible: false,
+		isArchiveModalVisible: false,
+		isDamageModalVisible: false,
+		isAddModalVisible: false,
+		isDeleteModalVisible: false,
       };
     },
     methods: {
-      showModal() {
-        this.isModalVisible = true;
+      showBorrowModal() {
+        this.isBorrowModalVisible = true;
+        this.isReturnModalVisible = false;
+		this.isArchiveModalVisible = false,
+		this.isDamageModalVisible = false;
+		this.isAddModalVisible = false;
+		this.isDeleteModalVisible = false;
       },
+	  showReturnModal() {
+        this.isBorrowModalVisible = false;
+        this.isReturnModalVisible = true;
+		this.isArchiveModalVisible = false,
+		this.isDamageModalVisible = false;
+		this.isAddModalVisible = false;
+		this.isDeleteModalVisible = false;
+      },
+	  showArchiveModal() {
+		this.isBorrowModalVisible = false;
+        this.isReturnModalVisible = false;
+		this.isArchiveModalVisible = true,
+		this.isDamageModalVisible = false;
+		this.isAddModalVisible = false;
+		this.isDeleteModalVisible = false;
+	  },
+	  showDamageModal() {
+		this.isBorrowModalVisible = false;
+        this.isReturnModalVisible = false;
+		this.isArchiveModalVisible = false,
+		this.isDamageModalVisible = true;
+		this.isAddModalVisible = false;
+		this.isDeleteModalVisible = false;
+	  },
+	  showAddModal() {
+		this.isBorrowModalVisible = false;
+        this.isReturnModalVisible = false;
+		this.isArchiveModalVisible = false,
+		this.isDamageModalVisible = false;
+		this.isAddModalVisible = true;
+		this.isDeleteModalVisible = false;
+	  },
+	  showDeleteModal() {
+		this.isBorrowModalVisible = false;
+        this.isReturnModalVisible = false;
+		this.isArchiveModalVisible = false,
+		this.isDamageModalVisible = false;
+		this.isAddModalVisible = false;
+		this.isDeleteModalVisible = true;
+	  },
       closeModal() {
-        this.isModalVisible = false;
+        this.isBorrowModalVisible = false;
+        this.isReturnModalVisible = false;
+		this.isArchiveModalVisible = false,
+		this.isDamageModalVisible = false;
+		this.isAddModalVisible = false;
+		this.isDeleteModalVisible = false;
       }
     }
   };
@@ -89,6 +235,9 @@ body{
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
 }
+.header a:hover{
+ 	color: black;
+ }
 
 h1{
 	text-align: left;
@@ -142,8 +291,8 @@ input{
 	background:rgba(0, 0, 0, 0.65);
 	border-radius: 10px;
 	background-image: none;
-	padding: 5px;
-	height: 150px;
+	padding: 10px;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -174,4 +323,3 @@ button:hover{
 }
 
 </style>
-

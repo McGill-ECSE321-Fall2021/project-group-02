@@ -56,7 +56,7 @@
     width: 550px;
     height: 500px;
     margin-top: 10%;
-    margin-left: 34%;
+    margin-left: 24%;
     padding: 20px 30px;
     background-color: rgb(0, 0, 0);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);

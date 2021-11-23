@@ -28,12 +28,6 @@ export default new Router({
       path: '/manageitems',
       name: 'ManageItemsPage',
       component: ManageItemsPage,
-      children: [
-        {
-          path: 'borrowItem',
-          component: Modal
-        },
-      ]
     },
     {
       path: '/items',
