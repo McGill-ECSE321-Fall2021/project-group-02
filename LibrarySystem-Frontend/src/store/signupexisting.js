@@ -8,3 +8,23 @@ var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
+
+function OnlineAccountDto(username, password, email, user) {
+  this.username = username;
+  this.password = password;
+  this.email = email;
+  this.user = user;
+}
+
+export default {
+  name: 'accountcreation',
+  data () {
+    return {
+      onlineAccount: [],
+      response: []
+    }
+  },
+  created: function () {
+
+  },
+}
