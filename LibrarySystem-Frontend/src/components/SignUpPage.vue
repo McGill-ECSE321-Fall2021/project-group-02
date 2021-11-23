@@ -15,22 +15,22 @@
 					<label for="chk" aria-hidden="true">Sign Up As A Nonexisting User</label>
 					<input type="text" name="firstName" placeholder="First Name" required="">
 					<input type="text" name="lastName" placeholder="Last Name" required="">	
-                    <input type="text" name="username" placeholder="Username" required="">
-                    <input type="text" name="city" placeholder="City" required="">
                     <input type="text" name="address" placeholder="Address" required="">
-                    <input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
+					<input type="text" name="city" placeholder="City" required="">
+					<input type="text" name="username" placeholder="Username" required="">
+                    <input type="password" name="password" placeholder="Password" required="">
+					<input type="email" name="email" placeholder="Email" required="">
 					<button>Sign up</button>
 				</form>
-				
 			</div>
 
 			<div class="signup2">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As An Existing User</label>
-                    <input type="text" name="username" placeholder="Username" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<input type="text" name="userId" placeholder="UserId" required="">
+                    <input type="text" name="id" placeholder="id" required="">
+					<input type="text" name="username" placeholder="Username" required="">
+					<input type="password" name="password" placeholder="Password" required="">
+					<input type="email" name="email" placeholder="Email" required="">
 					<button>Sign up</button>
 				</form>
 			</div>
@@ -193,7 +193,7 @@ button{
 }
 
 .signup2 button{
-	margin-top: 180px;
+	margin-top: 138px;
 }
 
 .login button{

@@ -9,22 +9,31 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function OnlineAccountDto(username, password, email, user) {
+function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance) {
   this.username = username;
   this.password = password;
   this.email = email;
-  this.user = user;
+  this.userId = userId;
+  this.address=address;
+	this.firstName=firstName;
+	this.lastName=lastName;
+	this.balance=balance;
 }
+
+
 
 export default {
   name: 'accountcreation',
   data () {
     return {
-      onlineAccount: [],
+      onlineAccounts: [],
       response: []
     }
   },
   created: function () {
-
+    //Test creating an online account
+    //const oA1= new OnlineAccountDto('sam270','man','sam@larieux.com',3,'2700 rue Des Timonier','Sami','Binks',0)
+    //this.onlineAccounts = [oA1]
+    
   },
 }
