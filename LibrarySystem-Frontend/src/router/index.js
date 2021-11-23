@@ -26,7 +26,32 @@ export default new Router({
     },
     {
       path: '/items',
-      name: 'ViewItemsPage',
+      name: 'items',
+      component: ViewItemsPage
+    },
+    {
+      path: '/items/books',
+      name: 'books',
+      component: ViewItemsPage
+    },
+    {
+      path: '/items/albums',
+      name: 'albums',
+      component: ViewItemsPage
+    },
+    {
+      path: '/items/movies',
+      name: 'movies',
+      component: ViewItemsPage
+    },
+    {
+      path: '/items/journals',
+      name: 'journals',
+      component: ViewItemsPage
+    },
+    {
+      path: '/items/newspapers',
+      name: 'newspapers',
       component: ViewItemsPage
     },
     {
