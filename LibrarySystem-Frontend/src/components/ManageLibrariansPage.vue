@@ -36,7 +36,7 @@
 							
 								<input class="text" v-model="city" placeholder="City">
 
-								<input class="userid" v-model="id" placeholder="Validation ID">
+								<input class="userid" v-model="id" placeholder="Validation Token">
 							</td>
 							<td>
       							  <button v-bind:disabled="!firstName || !lastName || !address || !city || !id" @click="createLibrarian(firstName,lastName,address,city,id)">Create librarian</button>

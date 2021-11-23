@@ -31,8 +31,8 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same first and last name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarians/{firstname}/{lastname}", "/librarians/{firstname}/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@PathVariable (name="firstname") String fn,@PathVariable (name="lastname") String ln) throws IllegalArgumentException{
+	@GetMapping(value = { "/librariansfnln", "/librariansfnln/" })
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@RequestParam (name="firstname") String fn,@RequestParam	 (name="lastname") String ln) throws IllegalArgumentException{
 		return service.getAllLibrariansByFirstAndLastName(fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -55,8 +55,8 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same first name
 	 * 
 	 */
-	@GetMapping(value = { "/librarians/{firstname}", "/librarians/{firstname}/" })
-	public List<LibrarianDto> getAllLibrariansByFirstName(@PathVariable (name="firstname") String fn) throws IllegalArgumentException{
+	@GetMapping(value = { "/librariansfn", "/librariansfn/" })
+	public List<LibrarianDto> getAllLibrariansByFirstName(@RequestParam (name="firstname") String fn) throws IllegalArgumentException{
 		return service.getAllLibrariansByFirstName(fn).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -66,8 +66,8 @@ public class EmploymentRestController {
 	 * @param ln last name to be searched
 	 * @return list of all librarians sharing the same last name
 	 */
-	@GetMapping(value = { "/librarians/{lastname}", "/librarians/{lastname}/" })
-	public List<LibrarianDto> getAllLibrariansByLastName(@PathVariable (name="lastname") String ln) throws IllegalArgumentException{
+	@GetMapping(value = { "/librariansln", "/librariansln/" })
+	public List<LibrarianDto> getAllLibrariansByLastName(@RequestParam (name="lastname") String ln) throws IllegalArgumentException{
 		return service.getAllLibrariansByLastName(ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
@@ -77,8 +77,8 @@ public class EmploymentRestController {
 	 * @param libid id of librarian to be searched
 	 * @return librarian dto object
 	 */
-	@GetMapping(value= {"/librarians/{LibID}" , "/librarians/{LibID}/"})
-	public LibrarianDto getLibrarianByID(@PathVariable(name="LibID") int libid) throws IllegalArgumentException{
+	@GetMapping(value= {"/librariansid" , "/librariansid/"})
+	public LibrarianDto getLibrarianByID(@RequestParam(name="LibID") int libid) throws IllegalArgumentException{
 		Librarian l = service.getLibrarianByID(libid);
 		return convertToDto(l);
 	}

@@ -42,7 +42,7 @@ export default {
 
   created: function () {
     // Test data
-    AXIOS.get('/librarians/'.concat(id))
+    AXIOS.get('/librarians')
     .then(response => {
       // JSON responses are automatically parsed.
       this.librarians = response.data
@@ -55,7 +55,7 @@ export default {
 
   methods: {
     createLibrarian: function (fn,ln,ad,city,id) {
-	AXIOS.post('/createLibrarian/'.concat(id/fn/ln/ad/city))
+	AXIOS.post('/createLibrarian/'.concat(id,'/',fn,'/',ln,'/',ad,'/',city))
         .then(response => {
         // JSON responses are automatically parsed.
           this.librarians.push(response.data)
@@ -71,7 +71,19 @@ export default {
           console.log(errorMsg)
           this.errorLibrarian = errorMsg
         })
-
+    },
+    deleteLibrarian: function(userid,validationid){
+     AXIOS.delete('/deleteLibrarian'.concat(validationid),{userid}).then(response => {
+       this.librarians.push(response.data)
+       this.errorLibrarian = ''
+       this.userid = ''
+       this.validationid = ''
+     })
+     .catch(e => {
+       var errorMsg = e.response.data.message
+       console.log(errorMsg)
+       this.errorLibrarian = errorMsg
+     })   
     }
   }
 }
