@@ -3,16 +3,15 @@
 		<div class="viewlibrarianspage">
 			<div class="header">
 				 <h2><router-link to="/">Montreal Library</router-link></h2>
-	<a class="btn"><router-link to="/signup">Log Out</router-link></a>
-        <a class="btn"><router-link to="/items">Items Information</router-link></a>
-        <a class="btn"><router-link to="/">Home</router-link></a>
+	             <a class="btn"><router-link to="/signup">Log Out</router-link></a>
+        		 <a class="btn"><router-link to="/items">Items Information</router-link></a>
+         		 <a class="btn"><router-link to="/">Home</router-link></a>
 			</div>
 			<body>
-				<div class=items>
+				<div class=librarians>
 					<h3>List of Librarians</h3>
-					
 					<form>
-						<input type="search" name="srch" placeholder="Search librarian">
+						<input class="search" name="srch" placeholder="Search librarian">
 						<div class="dropdown">
 						<button class="dropdownbutton">Sort By</button>
 							<div class="dropdown-content">
@@ -24,14 +23,46 @@
 								<a href="#">ID (High to Low)</a>
 							</div>
 						</div>
+						<div id="newlibrarian">
+						<table>
+						<tr>
+							<td>
+								<td>
+								<input class="text" v-model="firstName" placeholder="First Name">
+															
+								<input class="text" v-model="lastName" placeholder="Last Name">
+							
+								<input class="address" v-model="address" placeholder="Address">
+							
+								<input class="text" v-model="city" placeholder="City">
+
+								<input class="userid" v-model="id" placeholder="Validation ID">
+							</td>
+							<td>
+      							  <button v-bind:disabled="!firstName || !lastName || !address || !city || !id" @click="createLibrarian(firstName,lastName,address,city,id)">Create librarian</button>
+							</td>
+						</tr>
+						</table>
+						<p>
+						<span v-if="errorLibrarian" style="color:red">Error: {{errorLibrarian}} </span>
+						</p>
+					</div>				
 					</form>
-					
 					<div class=lst>
 						<table>
 							<tr>
 								<th>First Name</th>
 								<th>Last Name</th>
+								<th>Address</th>
+								<th>City</th>
 								<th>ID</th>
+							</tr>
+							<tr v-for="librarian in librarians" :key="librarian.city">
+								 <td>{{ librarian.firstName }}</td>
+					            <td>{{ librarian.lastName }}</td>
+								<td>{{ librarian.address }}</td>
+								<td>{{ librarian.city }}</td>
+								<td>{{ librarian.id }}</td>
 							</tr>
 						</table>
 					</div>
@@ -40,7 +71,7 @@
 		</div>
 	</body>
 </template>
-<script>
+<script src="./ManageLibrarians.js">
 
 </script>
 <style>
@@ -63,6 +94,12 @@ body{
 	background:rgb(112, 1, 1);
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
+}
+.header a{
+	color: white;
+}
+.header a:hover{
+	color: black;
 }
 h2{
 	text-align: left;
@@ -95,27 +132,31 @@ table {
 	
 }
 th:nth-child(1) {
-	width: 55%;
+	width: 25%;
 	background: #ddd;
 	padding-left: 5px;
 }
 th:nth-child(2) {
-	width: 20%;
+	width: 25%;
 	background: #ddd;
 	padding-left: 5px;
 }
 th:nth-child(3) {
-	width: 15%;
+	width: 25%;
 	background: #ddd;
 	padding-left: 5px;
 }
 th:nth-child(4) {
+	width: 15%;
+	background: #ddd;
+	padding-left: 5px;
+}
+th:nth-child(5) {
 	width: 10%;
 	background: #ddd;
 	padding-left: 5px;
 }
-
-.items{
+.librarians{
 	padding: 25px;
 	position: static;
 	margin-top: 150px;
@@ -143,7 +184,7 @@ th:nth-child(4) {
 	background-image: none;
 }
 
-input{
+.search{
 	width: 350px;
 	height: 20px;
 	background: white;
@@ -151,7 +192,30 @@ input{
 	padding: 10px;
 	border-radius: 5px;
 }
-
+.text{
+	width: 150px;
+	height: 20px;
+	background: white;
+	margin: 20px auto;
+	padding: 10px;
+	border-radius: 5px;
+}
+.address{
+	width: 200px;
+	height: 20px;
+	background: white;
+	margin: 20px auto;
+	padding: 10px;
+	border-radius: 5px;
+}
+.userid{
+	width: 120px;
+	height: 20px;
+	background: white;
+	margin: 20px auto;
+	padding: 10px;
+	border-radius: 5px;
+}
 .dropdownbutton {
   background-color: rgb(133, 1, 1);
   color: white;
@@ -172,24 +236,23 @@ input{
   box-shadow: 0px 8px 16px 0px rgb(104, 104, 104);
   z-index: 1;
 }
-
 .dropdown-content a {
   color: black;
   padding: 5px 10px;
   text-decoration: none;
   display: block;
 }
-
 .dropdown-content a:hover {
 	background-color: #ddd;
 }
-
 .dropdown:hover .dropdown-content {
 	display: block;
 }
-
 .dropdown:hover .dropdownbutton {
 	background-color: rgb(87, 1, 1);
 }
-
+.button { 
+height: 50px; 
+width: 175px; 
+} 
 </style>

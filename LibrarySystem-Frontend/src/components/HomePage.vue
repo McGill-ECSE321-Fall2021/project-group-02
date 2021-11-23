@@ -4,6 +4,7 @@
 				  <h2><router-link to="/">Montreal Library</router-link></h2>
         <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
         <a class="btn"><router-link to="/items">Items Information</router-link></a>
+        <a class="btn"><router-link to="/librarians">Librarian Information</router-link></a>
         <a class="btn"><router-link to="/">Home</router-link></a>
 		  </div>
     
