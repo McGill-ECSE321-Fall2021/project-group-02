@@ -1,3 +1,4 @@
+/*
 import axios from 'axois'
 
 var config = require(../../config)
@@ -85,3 +86,4 @@ methods: {
       this.newPerson = ''
     }
   }
+  */
