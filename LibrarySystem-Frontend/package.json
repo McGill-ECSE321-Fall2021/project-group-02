@@ -13,12 +13,20 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
+    "@fullcalendar/core": "^5.10.1",
+    "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/interaction": "^5.10.1",
+    "@fullcalendar/list": "^5.10.1",
+    "@fullcalendar/timegrid": "^5.10.1",
+    "@fullcalendar/vue": "^5.10.1",
+    "@syncfusion/ej2-vue-schedule": "^19.3.53",
     "axios": "^0.24.0",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-vue": "latest",
     "each-async": "^2.0.0",
     "indent-string": "^5.0.0",
     "jquery": "^3.6.0",
+    "jqwidgets-scripts": "^13.1.0",
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
