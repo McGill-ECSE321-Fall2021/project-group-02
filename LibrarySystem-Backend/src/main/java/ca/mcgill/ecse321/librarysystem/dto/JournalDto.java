@@ -6,15 +6,21 @@ import java.util.Date;
 public class JournalDto {
 	private String name;
 	private Date date;
+	private int id;
 	
 	public JournalDto() {
 		
 	}
 
 	
-	public JournalDto(String name, Date date) {
+	public JournalDto(String name, Date date, int id) {
 		this.name=name;
 		this.date=date;
+		this.id=id;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getName() {
