@@ -484,7 +484,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME);
+			l = service.getAllLibrariansByFirstAndLastName(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -500,24 +500,13 @@ public class TestManagingEmploymentService {
 		assertEquals(LIBRARIAN_CITY,l.get(1).getCity());
 	}
 	
-	@Test
-	public void TestGetAllLibrariansByFirstAndLastNameNegativeID() {
-		error="";
-		List<Librarian> l = null;
-		try {
-			l = service.getAllLibrariansByFirstAndLastName(-10, LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertEquals("IDs have to be positive.",error);
-	}
 	
 	@Test
 	public void TestGetAllLibrariansByInvalidFirstAndInvalidLastName() {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "test", "haha");
+			l = service.getAllLibrariansByFirstAndLastName("test", "haha");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -529,7 +518,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "test", LIBRARIAN_LASTNAME);
+			l = service.getAllLibrariansByFirstAndLastName("test", LIBRARIAN_LASTNAME);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -541,7 +530,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, "bzzz");
+			l = service.getAllLibrariansByFirstAndLastName(LIBRARIAN_FIRSTNAME, "bzzz");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -553,7 +542,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "", "");
+			l = service.getAllLibrariansByFirstAndLastName("", "");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -565,7 +554,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hjdfhskjfdslkjfkldsjkldfsjfkldsjkdjklfsdjkljflsjdklfjsljflks", "bzzzkdfjslkfsjlkdsjklfdjlksfjdkljdfskljfdklsjldfsjdfsjdfksjsdkjlkdfsjldjlkjlsk");
+			l = service.getAllLibrariansByFirstAndLastName("hjdfhskjfdslkjfkldsjkldfsjfkldsjkdjklfsdjkljflsjdklfjsljflks", "bzzzkdfjslkfsjlkdsjklfdjlksfjdkljdfskljfdklsjldfsjdfsjdfksjsdkjlkdfsjldjlkjlsk");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -577,7 +566,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME, "");
+			l = service.getAllLibrariansByFirstAndLastName(LIBRARIAN_FIRSTNAME, "");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -589,7 +578,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstAndLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hjdfhskjfdslkjfkldsjkldfsjfkldsjkdjklfsdjkljflsjdklfjsljflks", LIBRARIAN_LASTNAME);
+			l = service.getAllLibrariansByFirstAndLastName("hjdfhskjfdslkjfkldsjkldfsjfkldsjkdjklfsdjkljflsjdklfjsljflks", LIBRARIAN_LASTNAME);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -602,7 +591,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_FIRSTNAME);
+			l = service.getAllLibrariansByFirstName( LIBRARIAN_FIRSTNAME);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -623,24 +612,13 @@ public class TestManagingEmploymentService {
 		assertEquals(LIBRARIAN_CITY,l.get(2).getCity());
 	}
 	
-	@Test
-	public void TestGetAllLibrariansByFirstNameNegativeID() {
-		error="";
-		List<Librarian> l = null;
-		try {
-			l = service.getAllLibrariansByFirstName(-10, LIBRARIAN_FIRSTNAME);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertEquals("IDs have to be positive.",error);
-	}
 	
 	@Test
 	public void TestGetAllLibrariansByInvalidFirstName() {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "haha");
+			l = service.getAllLibrariansByFirstName("haha");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -652,7 +630,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "");
+			l = service.getAllLibrariansByFirstName("");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -664,7 +642,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByFirstName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hahjdfksfjkldjskdfsjljldflklkfsdkljslfskda");
+			l = service.getAllLibrariansByFirstName("hahjdfksfjkldjskdfsjljldflklkfsdkljslfskda");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -677,7 +655,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_LASTNAME);
+			l = service.getAllLibrariansByLastName(LIBRARIAN_LASTNAME);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -697,24 +675,13 @@ public class TestManagingEmploymentService {
 		assertEquals(LIBRARIAN_CITY,l.get(2).getCity());
 	}
 	
-	@Test
-	public void TestGetAllLibrariansByLastNameNegativeID() {
-		error="";
-		List<Librarian> l = null;
-		try {
-			l = service.getAllLibrariansByLastName(-10, LIBRARIAN_LASTNAME);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertEquals("IDs have to be positive.",error);
-	}
 	
 	@Test
 	public void TestGetAllLibrariansByInvalidLastName() {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hehe");
+			l = service.getAllLibrariansByLastName("hehe");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -726,7 +693,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "");
+			l = service.getAllLibrariansByLastName("");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -738,7 +705,7 @@ public class TestManagingEmploymentService {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrariansByLastName(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), "hekdkajslkdjskkjfdslkfdjsldkjklakldjklasjdjskaljkldshe");
+			l = service.getAllLibrariansByLastName("hekdkajslkdjskkjfdslkfdjsldkjklakldjklasjdjskaljkldshe");
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -750,7 +717,7 @@ public class TestManagingEmploymentService {
 		error="";
 		Librarian l = null;
 		try {
-		l=service.getLibrarianByID(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_VALIDID2);
+		l=service.getLibrarianByID(LIBRARIAN_VALIDID2);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -762,48 +729,26 @@ public class TestManagingEmploymentService {
 		error="";
 		Librarian l = null;
 		try {
-		l=service.getLibrarianByID(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId(), LIBRARIAN_INVALIDID);
+		l=service.getLibrarianByID(LIBRARIAN_INVALIDID);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No librarians with ID: "+LIBRARIAN_INVALIDID,error);
 	}
 	
-	@Test
-	public void TestGetLibrarianByIdInvalidValid() {
-		error="";
-		Librarian l = null;
-		try {
-		l=service.getLibrarianByID(HEADLIBRARIAN_INVALIDID, LIBRARIAN_VALIDID2);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertEquals("Must be a head librarian to proceed.",error);
-	}
 	
 	@Test
 	public void TestGetAllLibrarians() {
 		error="";
 		List<Librarian> l = null;
 		try {
-			l = service.getAllLibrarians(headLibrarianDao.findHeadLibrarianById(HEADLIBRARIAN_VALIDID).getId());
+			l = service.getAllLibrarians();
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		checkLibrarians(l);
 	}
 	
-	@Test
-	public void TestGetAllLibrariansNegativeID() {
-		error="";
-		List<Librarian> l = null;
-		try {
-			l = service.getAllLibrarians(-10);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertEquals("IDs have to be positive.",error);
-	}
 	
 	// -------------------- Helper methods -------------------- //
 	

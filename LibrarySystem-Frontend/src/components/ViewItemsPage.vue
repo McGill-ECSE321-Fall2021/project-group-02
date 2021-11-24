@@ -2,7 +2,10 @@
 	<body>
 		<div class="viewitemspage">
 			<div class="header">
-				<h2>Montreal Library</h2>
+				<router-link to="/"><h2>Montreal Library</h2></router-link>
+				<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+        		<router-link to="/items"><a class="btn">Items Information</a></router-link>
+        		<router-link to="/"><a class="btn">Home</a></router-link>
 			</div>
 			<body>
 				<div class=items>
@@ -11,25 +14,90 @@
 					<form>
 						<input type="search" name="srch" placeholder="Search library contents">
 						<div class="dropdown">
-						<button class="dropdownbutton">Category</button>
+							<button class="dropdownbutton">Category</button>
 							<div class="dropdown-content">
-								<a href="#">Albums</a>
-								<a href="#">Books</a>
-								<a href="#">Movies</a>
-								<a href="#">Newspapers</a>
-								<a href="#">Journals</a>
+								<a href="#/items">All</a>
+								<a href="#/items/albums">Albums</a>
+								<a href="#/items/books">Books</a>
+								<a href="#/items/movies">Movies</a>
+								<a href="#/items/newspapers">Newspapers</a>
+								<a href="#/items/journals">Journals</a>
 							</div>
 						</div>
 					</form>
 					
 					<div class=lst>
 						<table>
-							<tr>
-								<th>Name</th>
-								<th>Author</th>
-								<th>Availability</th>
-								<th>ID</th>
-							</tr>
+							<template v-if="($route.name).includes('books') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Books</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Title</th>
+									<th scope="col">Author</th>
+								</tr>
+								<tr v-for="book in books" :key="book.id">
+									<td>{{ book.id }}</td>
+									<td>{{ book.title }}</td>
+									<td>{{ book.author }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Albums</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Title</th>
+									<th scope="col">Artist</th>
+								</tr>
+								<tr v-for="album in albums" :key="album.id">
+									<td>{{ album.id }}</td>
+									<td>{{ album.title }}</td>
+									<td>{{ album.artist }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Movies</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Title</th>
+									<th scope="col">Director</th>
+								</tr>
+								<tr v-for="movie in movies" :key="movie.id">
+									<td>{{ movie.id }}</td>
+									<td>{{ movie.title }}</td>
+									<td>{{ movie.director }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('newspapers') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Newspapers</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Name</th>
+									<th scope="col">Date</th>
+								</tr>
+								<tr v-for="newspaper in newspapers" :key="newspaper.id">
+									<td>{{ newspaper.id }}</td>
+									<td>{{ newspaper.name }}</td>
+									<td>{{ newspaper.date }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('journals') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Journals</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Name</th>
+									<th scope="col">Date</th>
+								</tr>
+								<tr v-for="journal in journals" :key="journal.id">
+									<td>{{ journal.id }}</td>
+									<td>{{ journal.name }}</td>
+									<td>{{ journal.date }}</td>
+								</tr>
+							</template>
 						</table>
 					</div>
 				</div>
@@ -37,9 +105,10 @@
 		</div>
 	</body>
 </template>
-<script>
 
+<script src="../store/ViewItemsPage.js">
 </script>
+
 <style>
 body{
 	margin: 0;
@@ -49,6 +118,7 @@ body{
 	align-items: center;
 	text-align: left;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 350;
 	background-image: url("../assets/library.jpg");
 }
 .header{
@@ -61,6 +131,7 @@ body{
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
 }
+
 h2{
 	text-align: left;
 	color:white;
@@ -91,23 +162,25 @@ table {
 	border-radius: 5px;
 	
 }
+td{
+	height: 10px;
+	overflow: hidden;
+}
+th{
+	font-weight: 500;
+}
 th:nth-child(1) {
-	width: 55%;
+	width: 10%;
 	background: #ddd;
 	padding-left: 5px;
 }
 th:nth-child(2) {
-	width: 20%;
+	width: 50%;
 	background: #ddd;
 	padding-left: 5px;
 }
 th:nth-child(3) {
-	width: 15%;
-	background: #ddd;
-	padding-left: 5px;
-}
-th:nth-child(4) {
-	width: 10%;
+	width: 40%;
 	background: #ddd;
 	padding-left: 5px;
 }
@@ -169,24 +242,43 @@ input{
   box-shadow: 0px 8px 16px 0px rgb(104, 104, 104);
   z-index: 1;
 }
-
 .dropdown-content a {
   color: black;
   padding: 5px 10px;
   text-decoration: none;
   display: block;
 }
-
 .dropdown-content a:hover {
 	background-color: #ddd;
 }
-
 .dropdown:hover .dropdown-content {
 	display: block;
 }
-
 .dropdown:hover .dropdownbutton {
 	background-color: rgb(87, 1, 1);
+}
+
+.header a{
+	color: white;
+}
+.header a:hover{
+	color: black;
+}
+
+.btn{
+  float:right;
+  margin: 45px 5px;
+  color:white;
+  background:rgba(0, 0, 0, 0.6);
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.btn:hover{
+  background: white;
+  color:white;
 }
 
 </style>
