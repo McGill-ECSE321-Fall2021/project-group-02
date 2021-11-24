@@ -461,7 +461,7 @@ public class ItemRestController {
 		if (m == null) {
 			throw new IllegalArgumentException("There is no such Movie!");
 		}
-		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector());
+		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector(), m.getId());
 		return movieDto;
 	}
 	
@@ -469,7 +469,7 @@ public class ItemRestController {
 		if (n == null) {
 			throw new IllegalArgumentException("There is no such Newspaper!");
 		}
-		NewspaperDto newspaperDto = new NewspaperDto(n.getName(),n.getDate());
+		NewspaperDto newspaperDto = new NewspaperDto(n.getName(),n.getDate(), n.getId());
 		return newspaperDto;
 	}
 	
@@ -478,7 +478,7 @@ public class ItemRestController {
 		if (j == null) {
 			throw new IllegalArgumentException("There is no such Journal!");
 		}
-		JournalDto journalDto = new JournalDto(j.getName(),j.getDate());
+		JournalDto journalDto = new JournalDto(j.getName(),j.getDate(), j.getId());
 		return journalDto;
 	}
 	
@@ -486,7 +486,7 @@ public class ItemRestController {
 		if (a == null) {
 			throw new IllegalArgumentException("There is no such Album!");
 		}
-		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist());
+		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist(), a.getId());
 		return albumDto;
 	}
 	
