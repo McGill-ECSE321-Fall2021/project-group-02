@@ -1,10 +1,10 @@
 <template>
     <div class="signuppage">
         <div class="header">
-		<h2><router-link to="/">Montreal Library</router-link></h2>
-        <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
-        <a class="btn"><router-link to="/items">Items Information</router-link></a>
-        <a class="btn"><router-link to="/">Home</router-link></a>
+		<router-link to="/"><h2>Montreal Library</h2></router-link>
+				<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+        		<router-link to="/items"><a class="btn">Items Information</a></router-link>
+        		<router-link to="/"><a class="btn">Home</a></router-link>
 		  </div>
 <body>
 	<div class="main">  	
@@ -13,24 +13,24 @@
 			<div class="signup1">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As A Nonexisting User</label>
-					<input type="text" name="firstName" placeholder="First Name" required="">
-					<input type="text" name="lastName" placeholder="Last Name" required="">	
-                    <input type="text" name="username" placeholder="Username" required="">
-                    <input type="text" name="city" placeholder="City" required="">
-                    <input type="text" name="address" placeholder="Address" required="">
-                    <input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Sign up</button>
+					<input type="text" name="firstName" v-model="firstName" placeholder="First Name" required="">
+					<input type="text" name="lastName" v-model="lastName" placeholder="Last Name" required="">	
+                    <input type="text" name="address" v-model="address" placeholder="Address" required="">
+					<input type="text" name="city" v-model="city" placeholder="City" required="">
+					<input type="text" name="username" v-model="username" placeholder="Username" required="">
+                    <input type="password" name="password" v-model="password" placeholder="Password" required="">
+					<input type="email" name="email" v-model="email" placeholder="Email" required="">
+					<button @click="createAccountNewUser(newPerson(firstName, lastName, address, city, username, password, email))">Sign up</button>
 				</form>
-				
 			</div>
 
 			<div class="signup2">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As An Existing User</label>
-                    <input type="text" name="username" placeholder="Username" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<input type="text" name="userId" placeholder="UserId" required="">
+                    <input type="text" name="id" placeholder="id" required="">
+					<input type="text" name="username" placeholder="Username" required="">
+					<input type="password" name="password" placeholder="Password" required="">
+					<input type="email" name="email" placeholder="Email" required="">
 					<button>Sign up</button>
 				</form>
 			</div>
@@ -47,8 +47,10 @@
 </body>
     </div>
 </template>
-<script>
+
+<script src="../store/signupexisting.js">
 </script>
+
 <style>
 .header{
 	width:100%;
@@ -59,6 +61,13 @@
 	background:rgb(112, 1, 1);
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
+}
+
+.header a{
+	color: white;
+}
+.header a:hover{
+	color: black;
 }
 
 h2{
@@ -186,7 +195,7 @@ button{
 }
 
 .signup2 button{
-	margin-top: 180px;
+	margin-top: 138px;
 }
 
 .login button{
