@@ -1,19 +1,14 @@
 <template>
   <div class="welcomepage">
       <div class="header">
-				  <h2><router-link to="/">Montreal Library</router-link></h2>
-        <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
-        <a class="btn"><router-link to="/items">Items Information</router-link></a>
-        <a class="btn"><router-link to="/">Home</router-link></a>
+				 <router-link to="/"><h2>Montreal Library</h2></router-link>
+				<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+        		<router-link to="/items"><a class="btn">Items Information</a></router-link>
+        		<router-link to="/"><a class="btn">Home</a></router-link>
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>
     
-    <a class="btn"><router-link to="/">Home</router-link></a>
-    <a class="btn"><router-link to="/signup">Sign Up/Log In</router-link></a>
-    <a class="btn">Items Information</a>
-    <a class="btn"><router-link to="/manageLibrarySchedule">Manage Library Schedule</router-link></a>
-    <a class="btn"><router-link to="/createPatron">Create Patron</router-link></a>
     
 </div>
 </template>
@@ -31,7 +26,6 @@
 	-moz-transition-property: all;
   -moz-transition-timing-function: cubic-bezier(100,50,21,6);
 }
-
 body{
   padding:75px;
   text-align: center;
@@ -39,7 +33,6 @@ body{
   
   background-image: url("../assets/library.jpg");
 }
-
 .header{
 	width:100%;
 	height: 100px;
@@ -50,7 +43,12 @@ body{
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
 }
-
+.header a{
+	color: white;
+}
+.header a:hover{
+	color: black;
+}
 h2{
 	text-align: left;
 	color:white;
@@ -64,7 +62,6 @@ h2{
 	background:rgb(112, 1, 1);
 	padding: 10px 10px;
 }
-
 h1{
   color:white;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -75,7 +72,6 @@ h1{
   background:rgb(112, 1, 1);
   padding: 10px 20px;
 }
-
 .btn{
   float:right;
   margin: 45px 5px;
@@ -87,13 +83,9 @@ h1{
   letter-spacing:2px;
   text-transform:uppercase;
 }
-
-
-
 .btn:hover{
   background:#fff;
 }
-
 .footer{
   font-size:8px;
   color:#fff;
