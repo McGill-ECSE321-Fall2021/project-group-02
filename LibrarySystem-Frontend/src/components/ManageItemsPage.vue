@@ -57,7 +57,8 @@
 				<form>
 					<input type="text" name="itemID" placeholder="Enter item ID" required="">
 					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Enter</button>
+					<button >Movie to Archived</button>
+					<button >Remove from Archived</button>
 				</form>
 			</template>
 			<template v-slot:footer>
@@ -75,7 +76,8 @@
 				<form>
 					<input type="text" name="itemID" placeholder="Enter item ID" required="">
 					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Enter</button>
+					<button >Move to Damaged</button>
+					<button >Remove from Damaged</button>
 				</form>
 			</template>
 			<template v-slot:footer>
@@ -92,6 +94,9 @@
 			<template v-slot:body>
 				<form>
 					<input type="text" name="itemID" placeholder="Enter item ID" required="">
+					<input type="text" name="itemType" placeholder="Enter type of item" required="">
+					<input type="text" name="itemName" placeholder="Enter item name" required="">
+					<input type="text" name="itemAuthor" placeholder="Enter item author" required="">
 					<input type="text" name="userID" placeholder="Enter user ID" required="">
 					<button >Enter</button>
 				</form>
