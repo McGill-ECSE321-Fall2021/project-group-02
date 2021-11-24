@@ -32,7 +32,7 @@ function WeeklyScheduleDto () {
 }
 
 export default {
-    name: 'librarian',
+    name: 'manageLibrarySchedule',
     data () {
         const now = new Date()
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
@@ -46,20 +46,21 @@ export default {
         min: minDate,
         max: maxDate,
         librarians: [],
-        response: []
+        response: [],
+        errorLibrarian: ''
       }
     },
-    
-    created: function () {
-      //TEST ITEMS ADDED TO LISTS; DOES NOT TEST BACKEND INTEGRATION
 
-      const l1 = new LibrarianDto(any, "TEST_FIRSTNAME", "TEST_LASTNAME", "TEST_ADDRESS", "TEST_CITY", any, 0, 1)
-      this.librarians = [l1]
-      
-      
-      AXIOS.get('/manageLibrarySchedule')
-      .then(response => {
-        this.librarians = response.data
-      })
+    methods: {
+      getAllLibrarians: function () {
+        AXIOS.get('/librarians')
+        .then(response =>{
+          this.librarians = response.data
+        })
+        .catch(e =>{
+          this.errorLibrarian = e
+        })
+      }
     }
+    
 }
