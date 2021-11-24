@@ -58,13 +58,13 @@
 		  <div class="content">
 			  <div class="new-username form">
           <h3>new username: </h3>
-          <input type="text" required>
+          <input type="text" v-model="newUsername" required>
         </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="password" required>
         </div>
-          <button class="button">confirm</button>
+          <button class="button" @click="changeUsername(password, newUsername)">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -75,13 +75,13 @@
 		  <div class="content">
 			  <div class="new-email form">
           <h3>new email: </h3>
-          <input type="text" required>
+          <input type="text" v-model="newEmail" required>
         </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="password" required>
         </div>
-          <button class="button">confirm</button>
+          <button class="button" @click="changeEmail(password, newEmail)">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -92,13 +92,13 @@
 		  <div class="content">
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="password" required>
         </div>
 			  <div class="new-password form">
           <h3>new password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="newPassword"  required>
         </div>
-          <button class="button">confirm</button>
+          <button class="button" @click="changePassword(password, newPassword)">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -107,16 +107,25 @@
 	      <h2>Delete account</h2>
 		    <a class="close" href="#">&times;</a>
 		  <div class="content">
+        <div class="email-username form">
+          <h3>email/username: </h3>
+          <input type="text" v-model="emailUsername" required>
+        </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="password" required>
         </div>
-          <button class="button">confirm</button>
+          <button class="button" @click="deleteAccount(emailUsername, password)">confirm</button>
 		    </div>
 	    </div>
     </div>
   </body>
 </template>
+
+
+<script src="/userProfile.js">
+</script>
+
 
 <style>
   body{

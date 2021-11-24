@@ -22,7 +22,7 @@
               <h1>Borrowed Items</h1>
             </div>
             
-            <div class="item">
+            <div class="item" v-for="item in items" :key="item.id">
               <div class="image">
                 <img src="../pictures/user_profile/book_example.jpg" width="150" alt="not Found" onerror="../pictures/user_profile/blank_book.png">
               </div>
@@ -35,67 +35,7 @@
                   Author/Artist
                 </div>
                 <div class="itemid">
-                  1234
-                </div>
-                <div class="item-type">
-                  Item type: 
-                  <div class="type">
-                    book
-                  </div>
-                </div>
-                <div class="return-date">
-                  Return by: 
-                  <div class="date">
-                    12/10/2021
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="image">
-                <img src="../pictures/user_profile/book_example.jpg" width="150" alt="not Found" onerror="../pictures/user_profile/blank_book.png">
-              </div>
-
-              <div class="text">
-                <div class="title">
-                  Title/Name
-                </div>
-                <div class="author">
-                  Author/Artist
-                </div>
-                <div class="itemid">
-                  1234
-                </div>
-                <div class="item-type">
-                  Item type: 
-                  <div class="type">
-                    book
-                  </div>
-                </div>
-                <div class="return-date">
-                  Return by: 
-                  <div class="date">
-                    12/10/2021
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="image">
-                <img src="../pictures/user_profile/book_example.jpg" width="150" alt="not Found" onerror="../pictures/user_profile/blank_book.png">
-              </div>
-
-              <div class="text">
-                <div class="title">
-                  Title/Name
-                </div>
-                <div class="author">
-                  Author/Artist
-                </div>
-                <div class="itemid">
-                  1234
+                  {{item.id}}
                 </div>
                 <div class="item-type">
                   Item type: 
