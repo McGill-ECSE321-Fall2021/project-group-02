@@ -72,8 +72,23 @@ export default {
           this.errorLibrarian = errorMsg
         })
     },
+    searchLibrarian: function (librarianName) {
+      AXIOS.post('/librariansfn/'.concat('?firstname=',librarianName))
+            .then(response => {
+            // JSON responses are automatically parsed.
+              this.librarians.push(response.data)
+              this.errorLibrarian = ''
+              this.librarianName = ''
+            })
+            .catch(e => {
+              var errorMsg = e.response.data.message
+              console.log(errorMsg)
+              this.errorLibrarian = errorMsg
+            })
+        },
     deleteLibrarian: function(userid,validationid){
-     AXIOS.delete('/deleteLibrarian'.concat(validationid),{userid}).then(response => {
+     AXIOS.delete('/deleteLibrarian/'.concat(validationid,'?LibID=',userid))
+    .then(response => {
        this.librarians.push(response.data)
        this.errorLibrarian = ''
        this.userid = ''

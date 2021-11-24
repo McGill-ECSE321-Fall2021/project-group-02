@@ -11,7 +11,7 @@
 				<div class=librarians>
 					<h3>List of Librarians</h3>
 					<form>
-						<input class="search" name="srch" placeholder="Search librarian">
+						<input class="search" name="srch" v-model="librarianName" placeholder="Search librarian">
 						<div class="dropdown">
 						<button class="dropdownbutton">Sort By</button>
 							<div class="dropdown-content">
@@ -43,6 +43,19 @@
 							</td>
 						</tr>
 						</table>
+						<table>
+						<tr>
+							<td>
+								<td>
+								<input class="userid" v-model="lid" placeholder="Librarian ID">
+
+								<input class="userid" v-model="hlid" placeholder="Validation Token">
+							</td>
+							<td>
+      							  <button v-bind:disabled="!lid || !hlid" @click="deleteLibrarian(lid,hlid)">Delete librarian</button>
+							</td>
+						</tr>
+						</table>
 						<p>
 						<span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span>
 						</p>
@@ -71,9 +84,11 @@
 		</div>
 	</body>
 </template>
+
 <script src="./ManageLibrarians.js">
 
 </script>
+
 <style>
 body{
 	margin: 0;
@@ -209,7 +224,7 @@ th:nth-child(5) {
 	border-radius: 5px;
 }
 .userid{
-	width: 120px;
+	width: 140px;
 	height: 20px;
 	background: white;
 	margin: 20px auto;
