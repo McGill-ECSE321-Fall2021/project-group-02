@@ -8,8 +8,6 @@
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>
-    
-    
 </div>
 </template>
 
