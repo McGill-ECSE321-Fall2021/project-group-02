@@ -165,14 +165,8 @@ public class ManagingEmploymentService {
 	 * @return list of all the librarians
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrarians(int h)throws IllegalArgumentException{
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+	public List<Librarian> getAllLibrarians()throws IllegalArgumentException{
 	      return toList(librarianRepository.findAll());
-	    }
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -182,15 +176,12 @@ public class ManagingEmploymentService {
 	 * @return list of librarians with the same first name
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrariansByFirstName(int h,String firstName)throws IllegalArgumentException{
+	public List<Librarian> getAllLibrariansByFirstName(String firstName)throws IllegalArgumentException{
 		error = "";
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
 		if(!verifyStringLength(firstName)) error += "First name cannot be empty or too long.";
 		if (error.length() > 0) throw new IllegalArgumentException(error);
 		
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+		
 		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : librarianRepository.findAll()) {
 			if(l.getFirstName().equals(firstName)) {
@@ -201,8 +192,6 @@ public class ManagingEmploymentService {
 			throw new IllegalArgumentException("No librarians with such first name.");
 		}
 		else return allLibrarians;
-		}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -212,15 +201,11 @@ public class ManagingEmploymentService {
 	 * @return list of librarians with the same last name
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrariansByLastName(int h,String lastName)throws IllegalArgumentException{
+	public List<Librarian> getAllLibrariansByLastName(String lastName)throws IllegalArgumentException{
 		error="";
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
 		if(!verifyStringLength(lastName)) error += "Last name cannot be empty or too long.";
 		if (error.length() > 0) throw new IllegalArgumentException(error);
 		
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
 		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : librarianRepository.findAll()) {
 			if(l.getLastName().equals(lastName)) {
@@ -232,8 +217,6 @@ public class ManagingEmploymentService {
 			}
 			else return allLibrarians;
 		}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
-	}
 	
 	/**
 	 * @author vy-khahuynh
@@ -243,19 +226,14 @@ public class ManagingEmploymentService {
 	 * @return list of librarians with same first and last name
 	 */
 	@Transactional
-	public List<Librarian> getAllLibrariansByFirstAndLastName(int h,String fn,String ln)throws IllegalArgumentException{
+	public List<Librarian> getAllLibrariansByFirstAndLastName(String fn,String ln)throws IllegalArgumentException{
 		error="";
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		
 		if(!verifyStringLength(fn) || !verifyStringLength(ln)) {
 			error += "First & last name cannot be empty or too long.";
 		}
 		
 		if (error.length() > 0) throw new IllegalArgumentException(error);
 		
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
 		List<Librarian> allLibrarians = new ArrayList<Librarian>();
 		for(Librarian l : librarianRepository.findAll()) {
 			if(l.getLastName().equals(ln) && l.getFirstName().equals(fn)) {
@@ -266,8 +244,6 @@ public class ManagingEmploymentService {
 			throw new IllegalArgumentException("No librarians with such first and last name.");
 		}
 		else return allLibrarians;
-		}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	/**
@@ -277,18 +253,12 @@ public class ManagingEmploymentService {
 	 * @return the librarian with that id if they exist	
 	 */
 	@Transactional
-	public Librarian getLibrarianByID(int h,int id) throws IllegalArgumentException{
-		if(!(h > -1 && id > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+	public Librarian getLibrarianByID(int id) throws IllegalArgumentException{
 			Librarian l = librarianRepository.findLibrarianById(id);
 			if (l == null) {
 				throw new IllegalArgumentException("No librarians with ID: " + id);
 			}
 			else return l;
-	}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 	}
 	
 	

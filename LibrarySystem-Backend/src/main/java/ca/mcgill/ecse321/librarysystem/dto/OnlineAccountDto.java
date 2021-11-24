@@ -6,17 +6,25 @@ public class OnlineAccountDto {
 	private String username;
 	private String password;
 	private String email;
-	private UserEntity user;
+	private int userId;
+	private String address;
+	private String firstName;
+	private String lastName;
+	private int balance;
 	
 	public OnlineAccountDto() {
 		
 	}
 	
-	public OnlineAccountDto(String username, String password, String email, UserEntity user) {
+	public OnlineAccountDto(String username, String password, String email, int userId, String address, String firstName, String lastName, int balance) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.user = user;
+		this.userId=userId;
+		this.address=address;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.balance=balance;
 	}
 	
 	public String getUsername() {
@@ -26,8 +34,25 @@ public class OnlineAccountDto {
 	public String getEmail() {
 		return this.email;
 	}
-	public String getUser() {
-		return this.user.getFirstName();
+	
+	public int getUserId() {
+		return this.userId;
+	}
+	
+	public String getAddress() {
+		return this.address;
+	}
+	
+	public String getFirstName() {
+		return this.firstName;
+	}
+	
+	public String getLastName() {
+		return this.lastName;
+	}
+	
+	public int getBalance() {
+		return this.balance;
 	}
 	
 	public void setEmail(String email) {
