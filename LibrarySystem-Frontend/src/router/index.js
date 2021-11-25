@@ -10,7 +10,7 @@ import CreatePatron from '@/components/CreatePatron'
 import ManageItemsPage from '@/components/ManageItemsPage'
 
 import ViewItemsPage from '@/components/ViewItemsPage'
-//import UserProfilePage from '@/components/UserProfilePage'
+import UserProfilePage from '@/components/UserProfilePage'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 import Modal from '@/components/Modal'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
@@ -85,13 +85,13 @@ export default new Router({
       name: 'newspapers',
       component: ViewItemsPage
     },
-    /*
+    
     {
       path: '/userProfile',
       name: 'user-profile',
       component: UserProfilePage
     },
-    */
+    
     {
       path: '/librarians',
       name: 'ManageLibrariansPage',

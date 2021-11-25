@@ -123,7 +123,7 @@
 </template>
 
 
-<script src="/userProfile.js">
+<script>
 </script>
 
 

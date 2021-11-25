@@ -54,13 +54,6 @@ export default {
         {
           this.onlineAccounts.push(response.data)
           this.errorOnlineAccount= ''
-          this.username = ''
-          this.password = ''
-          this.email = ''
-          this.address= ''
-          this.firstName= ''
-          this.lastName= ''
-          this.city= ''
         })
         .catch(e => {
           var errorMsg = e.response.data.message
@@ -73,18 +66,9 @@ export default {
         AXIOS.post('/logIn/'.concat(username, '/', password)).then(response => 
           {
             this.onlineAccounts.push(response.data);
-            this.errorOnlineAccount= '';
-            this.usernameLogin = '';
-            this.passwordLogin = '';
-            this.email = '';
-            this.userId = '';
-            this.address= '';
-            this.firstName= '';
-            this.lastName= '';
-            this.balance= '';
-            this.city= '';
+            this.errorOnlineAccount= 'Sami';
             //Needs to be linked to the user profile page
-            this.$router.push("/");
+            //this.$router.push("/userProfile");
           })
           .catch(e => {
             var errorMsg = e.response.data.message;
@@ -99,15 +83,6 @@ export default {
           {
             this.onlineAccounts.push(response.data)
             this.errorOnlineAccount= ''
-            this.usernameExisting = ''
-            this.passwordExisting = ''
-            this.emailExisting = ''
-            this.userId = ''
-            this.address= ''
-            this.firstName= ''
-            this.lastName= ''
-            this.balance= ''
-            this.city= ''
           })
           .catch(e => {
             var errorMsg = e.response.data.message

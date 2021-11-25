@@ -21,7 +21,7 @@
 					<input type="email" v-model="email" placeholder="Email" required="">
 					<button @click="createAccountNewUser(username, password, email, address, city, firstName, lastName)">Sign up</button>
 					<p>
-					<span v-if="errorOnlineAccount" style="color:red; margin-left: 140px;"> Error: </span>
+					<span v-if="errorOnlineAccount" style="color:red; margin-left: -160px;"> Error: {{errorOnlineAccount}}</span>
 					</p>
 				</form>
 			</div>
@@ -45,7 +45,7 @@
 					<input type="password" placeholder="Password" v-model="passwordLogin" required="">
 					<button @click="logInUser(usernameLogin, passwordLogin)">Login</button>
 					<p>
-					<span v-if="errorOnlineAccount" style="color:red; margin-left: 140px;"> Error:{{errorOnlineAccount}} </span>
+					<span v-if="errorOnlineAccount" style="color:red; margin-left: -160px;"> Error:{{errorOnlineAccount}} </span>
 					</p>
 				</form>
 			</div>
