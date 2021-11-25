@@ -22,6 +22,19 @@ deleted: function() {
 
 
 function OnlineAccountDto(username, password, email, user) {
+created: function() {
+    // Initializing persons from backend
+    AXIOS.delete('/deleteOnlineAccountUsername')
+    .then(response => {
+      
+    })
+    .catch(e => {
+      
+    })
+  }
+
+
+function OnlineAccountDto(username, password, email, user){
   this.username = username;
   this.password = password;
   this.email = email;

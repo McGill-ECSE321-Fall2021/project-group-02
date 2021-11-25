@@ -112,51 +112,6 @@
   .btn:hover{
     background:#fff;
   }
-.header{
-    width:100%;
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background:rgb(112, 1, 1);
-    box-shadow: 5px 20px 50px #000;
-    z-index: 2;
-  }
-
-  .header a{
-    color: white;
-    text-decoration: none;
-  }
-  .header a:hover{
-    color: black;
-  }
-    .btn{
-    float:right;
-    margin-right: 5px;
-    color:white;
-    background:rgba(0, 0, 0, 0.8);
-    padding:10px 20px;
-    font-size:12px;
-    text-decoration:none;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  }
-  .header-h2{
-    text-align: left;
-    color:white;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight:350;
-    position: fixed;
-    top: 0;
-    left: 0;
-    
-    width: 250px;
-    background:rgb(112, 1, 1);
-    padding: 10px 10px;
-  }
-  .btn:hover{
-    background:#fff;
-  }
   body{
     background-image: url("../assets/library.jpg");
   }
