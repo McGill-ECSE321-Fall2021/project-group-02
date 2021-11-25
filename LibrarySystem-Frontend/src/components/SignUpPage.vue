@@ -20,19 +20,21 @@
                     <input type="password" v-model="password" placeholder="Password" required="">
 					<input type="email" v-model="email" placeholder="Email" required="">
 					<button @click="createAccountNewUser(username, password, email, address, city, firstName, lastName)">Sign up</button>
-					<p><span v-if="errorOnlineAccount"> {{errorOnlineAccount}} </span></p>
+					<p>
+					<span v-if="errorOnlineAccount" style="color:red; margin-left: 140px;"> Error: </span>
+					</p>
 				</form>
 			</div>
 
 			<div class="signup2">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As An Existing User</label>
-                    <input type="text" placeholder="id" v-model="id" required="">
-					<input type="text" placeholder="Username" v-model="username2" required="">
-					<input type="password" placeholder="Password" v-model="password2" required="">
-					<input type="email" placeholder="Email" v-model="email2" required="">
-					<button @click="createAccountExistingUser(username2, password2, email2, id)">Sign up</button>
-					<p><span v-if="errorOnlineAccount"> {{errorOnlineAccount}} </span></p>
+                    <input type="text" placeholder="userId" v-model="userId" required="">
+					<input type="text" placeholder="Username" v-model="usernameExisting" required="">
+					<input type="password" placeholder="Password" v-model="passwordExisting" required="">
+					<input type="email" placeholder="Email" v-model="emailExisting" required="">
+					<button @click="createAccountExistingUser(usernameExisting, passwordExisting, emailExisting, userId)">Sign up</button>
+					<p><span v-if="errorOnlineAccount" style="color:red; margin-left: 140px;"> Error: {{errorOnlineAccount}} </span></p>
 				</form>
 			</div>
 
@@ -42,7 +44,9 @@
 					<input type="txt" placeholder="Username" v-model="usernameLogin" required="">
 					<input type="password" placeholder="Password" v-model="passwordLogin" required="">
 					<button @click="logInUser(usernameLogin, passwordLogin)">Login</button>
-					<p><span v-if="errorOnlineAccount"> {{errorOnlineAccount}} </span></p>
+					<p>
+					<span v-if="errorOnlineAccount" style="color:red; margin-left: 140px;"> Error:{{errorOnlineAccount}} </span>
+					</p>
 				</form>
 			</div>
 
@@ -97,11 +101,6 @@ h2{
   text-decoration:none;
   letter-spacing:2px;
   text-transform:uppercase;
-}
-
-p{
-	margin-left: 140px;
-	color: red;
 }
 
 

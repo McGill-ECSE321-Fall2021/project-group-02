@@ -56,9 +56,7 @@
 							</td>
 						</tr>
 						</table>
-						<p>
-						<span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span>
-						</p>
+						<p><span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span></p>
 					</div>				
 					</form>
 					<div class=lst>

@@ -30,6 +30,11 @@ export default {
       onlineAccounts: [],
       username: '',
       password: '',
+      usernameLogin: '',
+      passwordLogin: '',
+      usernameExisting: '',
+      passwordExisting: '',
+      emailExisting: '',
       email: '',
       userId: '',
       address: '',
@@ -52,11 +57,9 @@ export default {
           this.username = ''
           this.password = ''
           this.email = ''
-          this.userId = ''
           this.address= ''
           this.firstName= ''
           this.lastName= ''
-          this.balance= ''
           this.city= ''
         })
         .catch(e => {
@@ -71,8 +74,8 @@ export default {
           {
             this.onlineAccounts.push(response.data)
             this.errorOnlineAccount= ''
-            this.username = ''
-            this.password = ''
+            this.usernameLogin = ''
+            this.passwordLogin = ''
             this.email = ''
             this.userId = ''
             this.address= ''
@@ -89,14 +92,14 @@ export default {
         },
       
 
-      createAccountExistingUser: function(username, password, email, id) {
-        AXIOS.post('/onlineAccountExisting/'.concat(id, '/', username, '/', password, '/', email)).then(response => 
+      createAccountExistingUser: function(username, password, email, userId) {
+        AXIOS.post('/onlineAccountExisting/'.concat(userId, '/', username, '/', password, '/', email)).then(response => 
           {
             this.onlineAccounts.push(response.data)
             this.errorOnlineAccount= ''
-            this.username = ''
-            this.password = ''
-            this.email = ''
+            this.usernameExisting = ''
+            this.passwordExisting = ''
+            this.emailExisting = ''
             this.userId = ''
             this.address= ''
             this.firstName= ''
