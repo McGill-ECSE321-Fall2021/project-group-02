@@ -9,26 +9,26 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-created: function() {
-    // Initializing persons from backend
-    AXIOS.delete('/deleteOnlineAccountUsername')
+deleted: function() {
+  // Initializing persons from backend
+  AXIOS.delete('/deleteOnlineAccountUsername', {}, { params: {} })
     .then(response => {
-      
+
     })
     .catch(e => {
-      
+
     })
-  }
+}
 
 
-function OnlineAccountDto(username, password, email, user){
+function OnlineAccountDto(username, password, email, user) {
   this.username = username;
   this.password = password;
   this.email = email;
   this.user = user;
 }
 
-function PatronDto(id, address, city, firstName, lastName, balance){
+function PatronDto(id, address, city, firstName, lastName, balance) {
   this.id = id;
   this.address = address;
   this.city = city;
@@ -37,23 +37,23 @@ function PatronDto(id, address, city, firstName, lastName, balance){
   this.balance = balance;
 }
 
-function HeadLibrarianDto(onlineAccount,firstName, lastName, address, city, balance, weeklySchedule, id){
+function HeadLibrarianDto(onlineAccount, firstName, lastName, address, city, balance, weeklySchedule, id) {
   this.onlineAccount = onlineAccount;
   this.firstName = firstName;
   this.lastName = lastName;
   this.address = address;
-  this.city = city; 
+  this.city = city;
   this.balance = balance;
   this.weeklySchedule = weeklySchedule;
   this.id = id;
 }
 
-function LibrarianDto(onlineAccount,firstName, lastName, address, city, balance, weeklySchedule, id){
+function LibrarianDto(onlineAccount, firstName, lastName, address, city, balance, weeklySchedule, id) {
   this.onlineAccount = onlineAccount;
   this.firstName = firstName;
   this.lastName = lastName;
   this.address = address;
-  this.city = city; 
+  this.city = city;
   this.balance = balance;
   this.weeklySchedule = weeklySchedule;
   this.id = id;
@@ -61,11 +61,11 @@ function LibrarianDto(onlineAccount,firstName, lastName, address, city, balance,
 
 export default {
   name: 'userprofile',
-  data () {
+  data() {
     return {
-      newUsername:'',
-      newPassword:'',
-      newEmail:'',
+      newUsername: '',
+      newPassword: '',
+      newEmail: '',
       response: [],
       email: '',
       password: '',
@@ -77,11 +77,11 @@ export default {
 }
 
 methods: {
-    createPerson: function (personName) {
-      // Create a new person and add it to the list of people
-      var p = new PersonDto(personName)
-      this.persons.push(p)
-      // Reset the name field for new people
-      this.newPerson = ''
-    }
+  createPerson: function (personName) {
+    // Create a new person and add it to the list of people
+    var p = new PersonDto(personName)
+    this.persons.push(p)
+    // Reset the name field for new people
+    this.newPerson = ''
   }
+}
