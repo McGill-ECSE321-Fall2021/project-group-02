@@ -27,6 +27,13 @@ public class CreateOnlineAccountController {
 		return convertToDto(account);
 	}
 	
+	@PostMapping(value = {"/logIn/{username}/{password}", "/logIn/{username}/{password}/"})
+	public OnlineAccountDto logIn(@PathVariable(name = "username") String username, 
+			@PathVariable(name = "password") String password) throws IllegalArgumentException {
+		OnlineAccount account = service.logIn(username, password);
+		return convertToDto(account);
+	}
+	
 	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})
 	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id, @PathVariable(name = "username") String username, 
 			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {

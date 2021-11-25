@@ -12,36 +12,40 @@
 			<div class="signup1">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As A Nonexisting User</label>
-					<input type="text" name="firstName" v-model="firstName" placeholder="First Name">
-					<input type="text" name="lastName" v-model="lastName" placeholder="Last Name">	
-                    <input type="text" name="address" v-model="address" placeholder="Address">
-					<input type="text" name="city" v-model="city" placeholder="City">
-					<input type="text" name="username" v-model="username" placeholder="Username">
-                    <input type="password" name="password" v-model="password" placeholder="Password">
-					<input type="email" name="email" v-model="email" placeholder="Email">
-					<button v-bind:disabled="!firstName || !lastName || !address || !city || !username || !password || !email" @click="createAccountNewUser(username, password, email, address, city, firstName, lastName)">Sign up</button>
+					<input type="text" v-model="firstName" placeholder="First Name" required="">
+					<input type="text" v-model="lastName" placeholder="Last Name" required="">	
+                    <input type="text" v-model="address" placeholder="Address" required="">
+					<input type="text" v-model="city" placeholder="City" required="">
+					<input type="text" v-model="username" placeholder="Username" required="">
+                    <input type="password" v-model="password" placeholder="Password" required="">
+					<input type="email" v-model="email" placeholder="Email" required="">
+					<button @click="createAccountNewUser(username, password, email, address, city, firstName, lastName)">Sign up</button>
+					<p><span v-if="errorOnlineAccount"> {{errorOnlineAccount}} </span></p>
 				</form>
 			</div>
 
 			<div class="signup2">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As An Existing User</label>
-                    <input type="text" name="id" placeholder="id" v-model="id" required="">
-					<input type="text" name="username" placeholder="Username" v-model="username2" required="">
-					<input type="password" name="password" placeholder="Password" v-model="password2" required="">
-					<input type="email" name="email" placeholder="Email" v-model="email2" required="">
-					<button v-bind:disabled="!id || !username2 || !password2 || !email2" @click="createAccountExistingUser(username2, password2, email2, id)">Sign up</button>
+                    <input type="text" placeholder="id" v-model="id" required="">
+					<input type="text" placeholder="Username" v-model="username2" required="">
+					<input type="password" placeholder="Password" v-model="password2" required="">
+					<input type="email" placeholder="Email" v-model="email2" required="">
+					<button @click="createAccountExistingUser(username2, password2, email2, id)">Sign up</button>
+					<p><span v-if="errorOnlineAccount"> {{errorOnlineAccount}} </span></p>
 				</form>
 			</div>
 
 			<div class="login">
 				<form>
 					<label for="chk" aria-hidden="true">Login</label>
-					<input type="txt" name="username" placeholder="Username" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Login</button>
+					<input type="txt" placeholder="Username" v-model="usernameLogin" required="">
+					<input type="password" placeholder="Password" v-model="passwordLogin" required="">
+					<button @click="logInUser(usernameLogin, passwordLogin)">Login</button>
+					<p><span v-if="errorOnlineAccount"> {{errorOnlineAccount}} </span></p>
 				</form>
 			</div>
+
 	</div>
 </body>
     </div>
@@ -69,6 +73,7 @@
 	color: black;
 }
 
+
 h2{
 	text-align: left;
 	color:white;
@@ -94,6 +99,10 @@ h2{
   text-transform:uppercase;
 }
 
+p{
+	margin-left: 140px;
+	color: red;
+}
 
 
 .btn:hover{
@@ -225,7 +234,11 @@ button:hover{
 #chk:checked ~ .login label{
 	transform: scale(1);	
 }
-#chk:checked ~ .signup label{
+#chk:checked ~ .signup1 label{
+	transform: scale(.6);
+}
+
+#chk:checked ~ .signup2 label{
 	transform: scale(.6);
 }
 

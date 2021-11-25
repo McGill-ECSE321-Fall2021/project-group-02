@@ -79,6 +79,32 @@ public class CreateOnlineAccountService {
 	}
 	
 	/**
+	 * Returns the online account associated with the username and password
+	 * @param username, password
+	 * @return Online account for the existing user
+	 * @throws throws IllegalArgumentException if inputs are empty or username or password are invalid.
+	 * @author Sami Ait Ouahmane
+	 */
+	public OnlineAccount logIn(String username, String password) throws IllegalArgumentException {
+		String error = "";
+		
+		// log in
+		// verify empty strings
+		if(!verifyStringLength(username)) error += "Username cannot be empty or too long.\n";
+		// verify username, email exists
+		if(verifyUsernameExists(username)) error += "There is no account with this username.\n";
+		if (error.length() > 0) throw new IllegalArgumentException(error);
+		OnlineAccount account = findAccountByUsername(username);
+		if(!verifyPassword(account, password)) error += "The password is incorrect.\n";
+		
+		if (error.length() > 0) throw new IllegalArgumentException(error);
+		
+		
+		
+		return account;
+	}
+	
+	/**
 	 * Creates an online account for an existing user.
 	 * @param id, username, password, email
 	 * @return Online account for an existing user
