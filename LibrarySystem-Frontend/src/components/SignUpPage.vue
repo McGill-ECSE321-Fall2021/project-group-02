@@ -26,11 +26,11 @@
 			<div class="signup2">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As An Existing User</label>
-                    <input type="text" name="id" placeholder="id" required="">
-					<input type="text" name="username" placeholder="Username" required="">
-					<input type="password" name="password" placeholder="Password" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<button>Sign up</button>
+                    <input type="text" name="id" placeholder="id" v-model="id" required="">
+					<input type="text" name="username" placeholder="Username" v-model="username2" required="">
+					<input type="password" name="password" placeholder="Password" v-model="password2" required="">
+					<input type="email" name="email" placeholder="Email" v-model="email2" required="">
+					<button v-bind:disabled="!id || !username2 || !password2 || !email2" @click="createAccountExistingUser(username2, password2, email2, id)">Sign up</button>
 				</form>
 			</div>
 

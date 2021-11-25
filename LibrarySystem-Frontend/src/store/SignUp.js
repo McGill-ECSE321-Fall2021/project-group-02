@@ -63,6 +63,29 @@ export default {
           console.log(errorMsg)
           this.errorOnlineAccountCreation = errorMsg
         })
-      }
+      },
+
+      createAccountExistingUser: function(username, password, email, id) {
+        AXIOS.post('/onlineAccountExisting/'.concat(id, '/', username, '/', password, '/', email)).then(response => 
+          {
+            this.onlineAccounts.push(response.data)
+            this.username = ''
+            this.password = ''
+            this.email = ''
+            this.userId = ''
+            this.address= ''
+            this.firstName= ''
+            this.lastName= ''
+            this.balance= ''
+            this.city= ''
+            this.errorOnlineAccountCreation= ''
+          })
+          .catch(e => {
+            var errorMsg = e.response.data.message
+            console.log(errorMsg)
+            this.errorOnlineAccountCreation = errorMsg
+          })
+        },
+
   }
 }
