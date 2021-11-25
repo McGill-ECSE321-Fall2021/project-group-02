@@ -11,13 +11,14 @@ public class OnlineAccountDto {
 	private String firstName;
 	private String lastName;
 	private int balance;
+	private String city;
 	
 	public OnlineAccountDto() {
 		
 	}
 	
 	//put back user
-	public OnlineAccountDto(String username, String password, String email, int userId, String address, String firstName, String lastName, int balance) {
+	public OnlineAccountDto(String username, String password, String email, int userId, String address, String firstName, String lastName, int balance, String city) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -26,6 +27,7 @@ public class OnlineAccountDto {
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.balance=balance;
+		this.city=city;
 	}
 	
 	public String getUsername() {
@@ -54,6 +56,10 @@ public class OnlineAccountDto {
 	
 	public int getBalance() {
 		return this.balance;
+	}
+	
+	public String getCity() {
+		return this.city;
 	}
 	
 	public void setEmail(String email) {

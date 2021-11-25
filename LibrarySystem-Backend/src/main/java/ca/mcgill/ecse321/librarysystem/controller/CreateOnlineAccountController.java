@@ -62,7 +62,7 @@ public class CreateOnlineAccountController {
 		if (acc==null) {
 			throw new IllegalArgumentException("There is no such account!");
 		}
-		OnlineAccountDto accountDto = new OnlineAccountDto(acc.getUsername(), acc.getPassword(), acc.getEmail(),acc.getUser().getId(), acc.getUser().getAddress(), acc.getUser().getFirstName(), acc.getUser().getLastName(), acc.getUser().getBalance());                          
+		OnlineAccountDto accountDto = new OnlineAccountDto(acc.getUsername(), acc.getPassword(), acc.getEmail(),acc.getUser().getId(), acc.getUser().getAddress(), acc.getUser().getFirstName(), acc.getUser().getLastName(), acc.getUser().getBalance(), acc.getUser().getCity());                          
 		return accountDto;
 	}
 }

@@ -9,18 +9,17 @@
 <body>
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
-
 			<div class="signup1">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As A Nonexisting User</label>
-					<input type="text" name="firstName" v-model="firstName" placeholder="First Name" required="">
-					<input type="text" name="lastName" v-model="lastName" placeholder="Last Name" required="">	
-                    <input type="text" name="address" v-model="address" placeholder="Address" required="">
-					<input type="text" name="city" v-model="city" placeholder="City" required="">
-					<input type="text" name="username" v-model="username" placeholder="Username" required="">
-                    <input type="password" name="password" v-model="password" placeholder="Password" required="">
-					<input type="email" name="email" v-model="email" placeholder="Email" required="">
-					<button @click="createAccountNewUser(newPerson(firstName, lastName, address, city, username, password, email))">Sign up</button>
+					<input type="text" name="firstName" v-model="firstName" placeholder="First Name">
+					<input type="text" name="lastName" v-model="lastName" placeholder="Last Name">	
+                    <input type="text" name="address" v-model="address" placeholder="Address">
+					<input type="text" name="city" v-model="city" placeholder="City">
+					<input type="text" name="username" v-model="username" placeholder="Username">
+                    <input type="password" name="password" v-model="password" placeholder="Password">
+					<input type="email" name="email" v-model="email" placeholder="Email">
+					<button v-bind:disabled="!firstName || !lastName || !address || !city || !username || !password || !email" @click="createAccountNewUser(username, password, email, address, city, firstName, lastName)">Sign up</button>
 				</form>
 			</div>
 
@@ -48,7 +47,7 @@
     </div>
 </template>
 
-<script src="../store/signupexisting.js">
+<script src="../store/SignUp.js">
 </script>
 
 <style>

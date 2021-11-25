@@ -9,7 +9,7 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance) {
+function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance, city) {
   this.username = username;
   this.password = password;
   this.email = email;
@@ -18,6 +18,7 @@ function OnlineAccountDto(username, password, email, userId, address, firstName,
 	this.firstName=firstName;
 	this.lastName=lastName;
 	this.balance=balance;
+  this.city=city;
 }
 
 
@@ -27,27 +28,41 @@ export default {
   data () {
     return {
       onlineAccounts: [],
+      username: '',
+      password: '',
+      email: '',
+      userId: '',
+      address: '',
+	    firstName: '',
+	    lastName: '',
+	    balance: '',
+      city: '',
+      errorOnlineAccountCreation: '',
       response: []
     }
   },
 
-  createAccountNewUser: function(username, password, email, userId, address, firstName, lastName, balance) {
-    AXIOS.post('/onlineAccountNew/',null, {params: {username, password, email, userId, address, firstName, lastName, balance}}).then(response => 
-      {
-        this.onlineAccounts.push(response.data)
-        
+  methods: {
+    createAccountNewUser: function(username, password, email, address, city, firstName, lastName) {
+      AXIOS.post('/onlineAccountNew/'.concat(firstName, '/', lastName, '/', address, '/', city, '/', username, '/', password, '/', email)).then(response => 
+        {
+          this.onlineAccounts.push(response.data)
+          this.username = ''
+          this.password = ''
+          this.email = ''
+          this.userId = ''
+          this.address= ''
+          this.firstName= ''
+          this.lastName= ''
+          this.balance= ''
+          this.city= ''
+          this.errorOnlineAccountCreation= ''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccountCreation = errorMsg
+        })
       }
-      ).catch(e => {
-      var errorMsg = e.response.data.message
-      console.log(errorMsg)
-      this.errorPerson = errorMsg
-    });
-    
   }
-
-  //created: function () {
-    //Test creating an online account
-    //const oA1= new OnlineAccountDto('sam270','man','sam@larieux.com',3,'2700 rue Des Timonier','Sami','Binks',0)
-    //this.onlineAccounts = [oA1]
-  //},
 }
