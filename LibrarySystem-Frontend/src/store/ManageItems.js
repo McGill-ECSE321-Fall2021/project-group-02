@@ -48,7 +48,7 @@ function PatronDto (id){
 }
 
   export default {
-    name: 'mamageItem',
+    name: 'manageItem',
     data () {
       return {
         items: [],
@@ -104,7 +104,7 @@ function PatronDto (id){
 
     methods: {
         borrowItem: function(itemID, patronID) {
-
+            // sami service method requires the item name?
         },
 
         returnItem: function(itemID, patronID) {
@@ -117,6 +117,7 @@ function PatronDto (id){
                 item: item.id,
                 patron: patron.id}})
             .then(response => {
+                this.items.push(response.data)
                 patron.borrowedItems.splice((patron.borrowedItems.indexOf(item)),1)
                 this.itemID = ''
                 this.patronID = ''
@@ -125,16 +126,31 @@ function PatronDto (id){
             .catch(e => {
                 var errorMsg = e
                 console.log(errorMsg)
-                this.errorRegistration = errorMsg
+                this.errorMsg = errorMsg
             })
         },
 
         archiveItem: function(itemID, librarianID) {
-
+            var indexLib = this.librarians.map(x => x.id).indexOf(librarianID)
+            var librarian = this.librarian[indexLib]
+            AXIOS.post('/archive/'.concat(itemID),
+            {params : {
+                librarian: librarian.id}})
+            .then(response => {
+                this.items.push(response.data)
+                this.itemID = ''
+                this.librarianID = ''
+                this.errorMsg = ''
+            })
+            .catch(e => {
+                var errorMsg = e
+                console.log(errorMsg)
+                this.errorMsg = errorMsg
+            })
         },
 
         damageItem: function(itemID, librarianID) {
-
+            // missing damaged controlled method
         },
 
         createItem: function(itemID, itemType, itemName, itemAuthor, librarianID) {
@@ -142,7 +158,27 @@ function PatronDto (id){
         },
 
         deleteItem: function(itemID, librarianID) {
-
+            var indexItem = this.items.map(x => x.id).indexOf(itemID)
+            var item = this.item[indexItem]
+            var indexLib = this.librarians.map(x => x.id).indexOf(librarianID)
+            var librarian = this.patron[indexLib]
+            AXIOS.post('/items/discard', {},
+            {params: {
+                item: item.id,
+                librarian: librarian.id}})
+            .then(response => {
+                this.items.push(response.data)
+                this.itemID = ''
+                this.librarianID = ''
+                this.errorMsg = ''
+            })
+            .catch(e => {
+                var errorMsg = e
+                console.log(errorMsg)
+                this.errorMsg = errorMsg
+            })
         }
+
+        // need a function to set a item as 'available'? I.e., isArchived = isBorrowed = isDamaged = false
     }
 }

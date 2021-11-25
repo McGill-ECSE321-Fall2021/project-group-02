@@ -215,8 +215,8 @@ public class ItemRestController {
 	 * @author Julie
 	 */
 	@DeleteMapping(value = {"/items/discard", "/items/discard/"})
-	public void discardItem(@RequestParam(name = "itemId") int itemId) {
-		itemService.discardItem(itemId);
+	public void discardItem(@RequestParam(name = "itemId") int itemId, @RequestParam(name = "headLibrarianID") HeadLibrarianDto headLibrarianDto) {
+		itemService.discardItem(itemId, headLibrarianDto.getID());
 	}
 	
 	

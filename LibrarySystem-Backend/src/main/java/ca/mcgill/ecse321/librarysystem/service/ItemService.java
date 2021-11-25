@@ -729,14 +729,20 @@ public class ItemService {
 	 * @author Julie
 	 */
 	@Transactional
-	public void discardItem(int itemId) {
-		Item specificItem = itemRepository.findItemById(itemId); 
-		if (itemId < 0) {
-			throw new IllegalArgumentException("Item ID cannot be negative.");
-		} else if(itemRepository.existsItemById(itemId)) {
-			itemRepository.delete(specificItem);
+	public void discardItem(int itemId, int headLibrarianId) {
+		if (headLibrarianId < 0) {
+			throw new IllegalArgumentException("User ID cannot be negative.");
+		} else if (headLibrarianRepository.existsById(headLibrarianId)) {
+			Item specificItem = itemRepository.findItemById(itemId); 
+			if (itemId < 0) {
+				throw new IllegalArgumentException("Item ID cannot be negative.");
+			} else if(itemRepository.existsItemById(itemId)) {
+				itemRepository.delete(specificItem);
+			} else {
+				throw new IllegalArgumentException("Item ID does not exist.");
+			}
 		} else {
-			throw new IllegalArgumentException("Item ID does not exist.");
+			throw new IllegalArgumentException("Must be a head librarian to proceed.");
 		}
 		
 	}

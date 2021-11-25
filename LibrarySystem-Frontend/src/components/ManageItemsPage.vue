@@ -40,7 +40,7 @@
 					<input type="text" v-model="itemID" placeholder="Enter item ID" required="">
 					<input type="text" v-model="patronID" placeholder="Enter patron ID" required="">
 					<button v-bind:disabled="!itemID || !patronID" @click="returnItem(itemID, patronID)">Enter</button>
-					<span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span>
+					<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 				</form>
 			</template>
 			<template v-slot:footer>
@@ -56,10 +56,10 @@
 			</template>
 			<template v-slot:body>
 				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Move to Archived</button>
-					<button >Remove from Archived</button>
+					<input type="text" v-model="itemID" placeholder="Enter item ID" required="">
+					<input type="text" v-model="librarianID" placeholder="Enter user ID" required="">
+					<button v-bind:disabled="!itemID || !librarianID" @click="archiveItem(itemID, librarianID)">Move to Archived</button>
+					<button >Remove from Archived</button> <!-- missing method -->
 				</form>
 			</template>
 			<template v-slot:footer>
@@ -115,9 +115,9 @@
 			</template>
 			<template v-slot:body>
 				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Enter</button>
+					<input type="text" v-model="itemID" placeholder="Enter item ID" required="">
+					<input type="text" v-model="librarianID" placeholder="Enter user ID" required="">
+					<button v-bind:disabled="!itemID || !librarianID" @click="deleteItem(itemID, librarianID)">Enter</button>
 				</form>
 			</template>
 			<template v-slot:footer>

@@ -322,7 +322,7 @@ public class TestReturnItemService {
 	@Test
 	public void testDiscardItemValid() {
 		try {
-			itemService.discardItem(BOOK_ID);
+			itemService.discardItem(BOOK_ID, HEADLIBRARIAN_ID);
 			assertFalse(itemDao.existsById(BOOK_ID));
 		} catch (Exception e){
 			fail(e.getMessage());
@@ -335,7 +335,7 @@ public class TestReturnItemService {
 	@Test
 	public void testDiscardItemInvalidItemID() {			
 		try {
-			itemService.discardItem(NOTABOOK_ID);
+			itemService.discardItem(NOTABOOK_ID, HEADLIBRARIAN_ID);
 		} catch (Exception e){
 			String error = e.getMessage();
 			assertEquals(error, "Item ID does not exist.");
@@ -349,7 +349,7 @@ public class TestReturnItemService {
 	@Test
 	public void testDiscardItemNegativeItemID() {
 		try {
-			itemService.discardItem(NEGATIVEBOOK_ID);
+			itemService.discardItem(NEGATIVEBOOK_ID, HEADLIBRARIAN_ID);
 		} catch (Exception e){
 			String error = e.getMessage();
 			assertEquals(error, "Item ID cannot be negative.");
