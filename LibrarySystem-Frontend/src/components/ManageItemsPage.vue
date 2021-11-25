@@ -37,9 +37,10 @@
 			</template>
 			<template v-slot:body>
 				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="patronID" placeholder="Enter patron ID" required="">
-					<button >Enter</button>
+					<input type="text" v-model="itemID" placeholder="Enter item ID" required="">
+					<input type="text" v-model="patronID" placeholder="Enter patron ID" required="">
+					<button v-bind:disabled="!itemID || !patronID" @click="returnItem(itemID, patronID)">Enter</button>
+					<span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span>
 				</form>
 			</template>
 			<template v-slot:footer>
@@ -57,7 +58,7 @@
 				<form>
 					<input type="text" name="itemID" placeholder="Enter item ID" required="">
 					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Movie to Archived</button>
+					<button >Move to Archived</button>
 					<button >Remove from Archived</button>
 				</form>
 			</template>
@@ -93,12 +94,12 @@
 			</template>
 			<template v-slot:body>
 				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="itemType" placeholder="Enter type of item" required="">
-					<input type="text" name="itemName" placeholder="Enter item name" required="">
-					<input type="text" name="itemAuthor" placeholder="Enter item author" required="">
-					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Enter</button>
+					<input type="text" v-model="itemID" placeholder="Enter item ID" required="">
+					<input type="text" v-model="itemType" placeholder="Enter type of item" required="">
+					<input type="text" v-model="itemName" placeholder="Enter item name" required="">
+					<input type="text" v-model="itemAuthor" placeholder="Enter item author" required="">
+					<input type="text" v-model="librarianID" placeholder="Enter your user ID" required="">
+					<button>Enter</button>
 				</form>
 			</template>
 			<template v-slot:footer>
@@ -129,6 +130,8 @@
   </div>
 </template>
 
+<script src="../store/ManageItems.js">
+</script>
 
 <script>
   import Modal from './Modal.vue';
@@ -290,6 +293,7 @@ input{
 	border: none;
 	outline: none;
 	border-radius: 5px;
+	height: 100%;
 }
 
 .manageItem {
@@ -321,6 +325,8 @@ button{
 	border-radius: 5px;
 	transition: .2s ease-in;
 	cursor: pointer;
+	vertical-align: top;
+    height: 100%;
 }
 button:hover{
 	background: black;

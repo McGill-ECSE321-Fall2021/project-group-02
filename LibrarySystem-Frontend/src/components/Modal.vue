@@ -89,6 +89,8 @@
     position: relative;
     color: #eeeeee;
     padding: 20px 10px;
+    text-align: center;
+    line-height: 200%;
   }
   .btn-close {
     position: absolute;
@@ -110,7 +112,8 @@
     font-weight: bold;
     border: 1px solid #ffffff;
     border-radius: 2px;
-  }.btn-green:hover{
+  }
+  .btn-green:hover{
 	background: black;
     color:white;
 }
