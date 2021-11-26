@@ -44,6 +44,14 @@
                 <a href="#popup2" class="long-button"><i class="arrow right"></i></a>
               </div>
               <div class="row">
+                <div class="column1">
+                  <h5>balance: </h5>
+                </div>
+                <div class="balance">
+                  <h5>$50.00</h5>
+                </div>
+              </div>
+              <div class="row">
                 <a href="#popup3" class="square-button">Change password</a>
                 <a href="#popup4" class="square-button">Delete account</a>
               </div>
