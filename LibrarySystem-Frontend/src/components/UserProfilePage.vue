@@ -1,10 +1,11 @@
 <template>
   <body>
+    <div class="header">
+			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
+        <router-link to="/"><a class="btn">Home</a></router-link>
+		</div>
     <div class="user-profile">
       <div class="main">
-        <div class="topbar">
-          <a href="">Home</a>
-        </div>
 
         <div class="main-box">
           <div class = "profile-box">
@@ -122,19 +123,63 @@
   </body>
 </template>
 
-
-<script>
+<script src="/userProfile.js">
 </script>
 
-
 <style>
+  .header{
+    width:100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background:rgb(112, 1, 1);
+    box-shadow: 5px 20px 50px #000;
+    z-index: 2;
+  }
+
+  .header a{
+    color: white;
+    text-decoration: none;
+  }
+  .header a:hover{
+    color: black;
+  }
+    .btn{
+    float:right;
+    margin-right: 5px;
+    color:white;
+    background:rgba(0, 0, 0, 0.8);
+    padding:10px 20px;
+    font-size:12px;
+    text-decoration:none;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  .header-h2{
+    text-align: left;
+    color:white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight:350;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    width: 250px;
+    background:rgb(112, 1, 1);
+    padding: 10px 10px;
+  }
+  .btn:hover{
+    background:#fff;
+  }
   body{
     background-image: url("../assets/library.jpg");
   }
   .user-profile{
     display: flex;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: 5%;
     margin-left: 10%;
     margin-right: 10%;
     padding-bottom: 100px;
@@ -144,26 +189,14 @@
   .main{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-  .topbar{
-    background-color: rgb(112, 1, 1);
-    color: white;
-    text-align: right;
-    padding: 20px;
-    margin: 10px;
-  }
-  .topbar a{
-    color: white;
-    padding: 20px 20px;
-    font-size: 20px;
-  }
   .main-box{
-    background-color: lightgray;
+    background-color: rgba(0, 0, 0, 0.6);
     margin: 10px;
   }
   .profile-box{
     float: left;
     padding: 15px;
-    background-color: drgb(112, 1, 1);
+    background-color: rgb(112, 1, 1);
     color: white;
     height: 100%;
     text-align: center;
@@ -257,7 +290,7 @@
 }
 
 .popup {
-  margin: 70px auto;
+  margin: 10% auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
