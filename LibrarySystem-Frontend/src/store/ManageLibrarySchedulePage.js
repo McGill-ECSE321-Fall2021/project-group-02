@@ -8,59 +8,56 @@ var AXIOS = axios.create({
     headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function LibrarianDto (onlineAccount, firstName, lastName, address, city, weeklySchedule, balance, id){
-    this.onlineAccount = onlineAccount;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.city = city;
-    this.weeklySchedule = weeklySchedule;
-    this.balance = balance;
-    this.id = id;
-  
+function LibrarianDto (firstname,lastname,address,city,id) {
+	this.firstName = firstname
+	this.lastName = lastname
+	this.address = address
+	this.city = city
+	this.id = id
 }
 
-function OnlineAccountDto (username, password, email, user) {
-    this.username = username;
-    this.password = password;
-    this.email = email;
-    this.user = user;
-}
-
-function WeeklyScheduleDto () {
-
+function HeadLibrarianDto (firstname,lastname,address,city,id) {
+	this.firstName = firstname
+	this.lastName = lastname
+	this.address = address
+	this.city = city
+	this.id = id
 }
 
 export default {
-    name: 'manageLibrarySchedule',
-    data () {
-        const now = new Date()
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-        const minDate = new Date(today)
-        const maxDate = new Date(today)
-        maxDate.setMonth(maxDate.getMonth() + 1)
-
-
-        return {
-        value: '',
+  name: 'librarysystem',
+  data () {
+    const now = new Date()
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const minDate = new Date(today)
+    const maxDate = new Date(today)
+    maxDate.setMonth(maxDate.getMonth() + 1)
+    return {
+      value: '',
         min: minDate,
         max: maxDate,
-        librarians: [],
-        response: [],
-        errorLibrarian: ''
-      }
-    },
-
-    methods: {
-      getAllLibrarians: function () {
-        AXIOS.get('/librarians')
-        .then(response =>{
-          this.librarians = response.data
-        })
-        .catch(e =>{
-          this.errorLibrarian = e
-        })
-      }
+      librarians: [],
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      id: '',
+      errorLibrarian: '',
+      response: []
+      
     }
+  },
+  created: function () {
+    // Test data
+    AXIOS.get('/librarians')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.librarians = response.data
+      this.errorLibrarian = ''
+    })
+    .catch(e => {
+      this.errorLibrarian = e
+    })
+  },
     
 }
