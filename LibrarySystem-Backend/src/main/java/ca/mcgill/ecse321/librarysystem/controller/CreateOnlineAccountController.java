@@ -23,21 +23,21 @@ public class CreateOnlineAccountController {
 			@PathVariable(name = "lastName") String lastName, @PathVariable(name = "address") String address, 
 			@PathVariable(name = "city") String city, @PathVariable(name = "username") String username, 
 			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
-		OnlineAccount account = service.createOnlineAccountNewUser(firstName, lastName, address, city, username, password, email);
+		OnlineAccount account = service.createOnlineAccountNewUser(firstName, lastName, address, city, username, password, email, false);
 		return convertToDto(account);
 	}
 	
 	@PostMapping(value = {"/logIn/{username}/{password}", "/logIn/{username}/{password}/"})
 	public OnlineAccountDto logIn(@PathVariable(name = "username") String username, 
 			@PathVariable(name = "password") String password) throws IllegalArgumentException {
-		OnlineAccount account = service.logIn(username, password);
+		OnlineAccount account = service.logIn(username, password, true);
 		return convertToDto(account);
 	}
 	
 	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})
 	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id, @PathVariable(name = "username") String username, 
 			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
-		OnlineAccount account = service.createOnlineAccountExistingUser(id, username, password, email);
+		OnlineAccount account = service.createOnlineAccountExistingUser(id, username, password, email, false);
 		return convertToDto(account);
 	}
 	
@@ -69,7 +69,7 @@ public class CreateOnlineAccountController {
 		if (acc==null) {
 			throw new IllegalArgumentException("There is no such account!");
 		}
-		OnlineAccountDto accountDto = new OnlineAccountDto(acc.getUsername(), acc.getPassword(), acc.getEmail(),acc.getUser().getId(), acc.getUser().getAddress(), acc.getUser().getFirstName(), acc.getUser().getLastName(), acc.getUser().getBalance(), acc.getUser().getCity());                          
+		OnlineAccountDto accountDto = new OnlineAccountDto(acc.getUsername(), acc.getPassword(), acc.getEmail(),acc.getUser().getId(), acc.getUser().getAddress(), acc.getUser().getFirstName(), acc.getUser().getLastName(), acc.getUser().getBalance(), acc.getUser().getCity(), acc.getLoggedIn(), acc.getId());                          
 		return accountDto;
 	}
 }

@@ -9,7 +9,7 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance, city) {
+function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance, city, loggedIn, accountId) {
   this.username = username;
   this.password = password;
   this.email = email;
@@ -19,6 +19,8 @@ function OnlineAccountDto(username, password, email, userId, address, firstName,
 	this.lastName=lastName;
 	this.balance=balance;
   this.city=city;
+  this.loggedIn=loggedIn;
+  this.accountId=accountId;
 }
 
 
@@ -43,6 +45,7 @@ export default {
 	    balance: '',
       city: '',
       errorOnlineAccount: '',
+      accountId: '',
       response: []
     }
   },
@@ -68,7 +71,7 @@ export default {
             this.onlineAccounts.push(response.data);
             this.errorOnlineAccount= '';
             //Needs to be linked to the user profile page
-            //this.$router.push("/userProfile");
+            this.$router.push("/userProfile");
           })
           .catch(e => {
             var errorMsg = e.response.data.message;

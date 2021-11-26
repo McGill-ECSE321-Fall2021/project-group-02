@@ -123,8 +123,7 @@
   </body>
 </template>
 
-<script src="/userProfile.js">
-</script>
+<script src="./userProfile.js"></script>
 
 <style>
   .header{

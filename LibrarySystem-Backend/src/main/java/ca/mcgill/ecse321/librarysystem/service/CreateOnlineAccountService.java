@@ -30,7 +30,7 @@ public class CreateOnlineAccountService {
 	 * @throws throws IllegalArgumentException if inputs are empty, username or email is already in use or email or password is invalid.
 	 * @author Hyunbum Cho
 	 */
-	public OnlineAccount createOnlineAccountNewUser(String firstName, String lastName, String address, String city, String username, String password, String email) throws IllegalArgumentException {
+	public OnlineAccount createOnlineAccountNewUser(String firstName, String lastName, String address, String city, String username, String password, String email, boolean loggedIn) throws IllegalArgumentException {
 		String error = "";
 		
 		// create online account
@@ -69,6 +69,7 @@ public class CreateOnlineAccountService {
 		account.setPassword(password);
 		account.setUsername(username);
 		account.setUser(patron);
+		account.setLoggedIn(loggedIn);
 		onlineAccountRepository.save(account);
 		
 		patron.setOnlineAccount(account);
@@ -85,7 +86,7 @@ public class CreateOnlineAccountService {
 	 * @throws throws IllegalArgumentException if inputs are empty or username or password are invalid.
 	 * @author Sami Ait Ouahmane
 	 */
-	public OnlineAccount logIn(String username, String password) throws IllegalArgumentException {
+	public OnlineAccount logIn(String username, String password, boolean loggedIn) throws IllegalArgumentException {
 		String error = "";
 		
 		// log in
@@ -99,7 +100,7 @@ public class CreateOnlineAccountService {
 		
 		if (error.length() > 0) throw new IllegalArgumentException(error);
 		
-		
+		account.setLoggedIn(loggedIn);
 		
 		return account;
 	}
@@ -111,7 +112,7 @@ public class CreateOnlineAccountService {
 	 * @throws throws IllegalArgumentException if inputs are empty, username or email is already in use, email or password is invalid, id is invalid or user already has an online account.
 	 * @author Hyunbum Cho
 	 */
-	public OnlineAccount createOnlineAccountExistingUser(int id, String username, String password, String email) throws IllegalArgumentException {
+	public OnlineAccount createOnlineAccountExistingUser(int id, String username, String password, String email, boolean loggedIn) throws IllegalArgumentException {
 		String error = "";
 		// verify ID
 		UserEntity user = findUserById(id);
@@ -145,6 +146,7 @@ public class CreateOnlineAccountService {
 		account.setPassword(password);
 		account.setUsername(username);
 		account.setUser(user);
+		account.setLoggedIn(loggedIn);
 		onlineAccountRepository.save(account);
 		user.setOnlineAccount(account);
 		// --------------------------------------------------------------
