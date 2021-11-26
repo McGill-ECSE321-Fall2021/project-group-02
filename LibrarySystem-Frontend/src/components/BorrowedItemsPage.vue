@@ -22,7 +22,79 @@
             <div class="borrowed-items-text">
               <h1>Borrowed Items</h1>
             </div>
-            
+            <table>
+							<template v-if="($route.name).includes('books') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Books</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Title</th>
+									<th scope="col">Author</th>
+								</tr>
+								<tr v-for="book in books" :key="book.id">
+									<td>{{ book.id }}</td>
+									<td>{{ book.title }}</td>
+									<td>{{ book.author }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Albums</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Title</th>
+									<th scope="col">Artist</th>
+								</tr>
+								<tr v-for="album in albums" :key="album.id">
+									<td>{{ album.id }}</td>
+									<td>{{ album.title }}</td>
+									<td>{{ album.artist }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Movies</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Title</th>
+									<th scope="col">Director</th>
+								</tr>
+								<tr v-for="movie in movies" :key="movie.id">
+									<td>{{ movie.id }}</td>
+									<td>{{ movie.title }}</td>
+									<td>{{ movie.director }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('newspapers') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Newspapers</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Name</th>
+									<th scope="col">Date</th>
+								</tr>
+								<tr v-for="newspaper in newspapers" :key="newspaper.id">
+									<td>{{ newspaper.id }}</td>
+									<td>{{ newspaper.name }}</td>
+									<td>{{ newspaper.date }}</td>
+								</tr>
+							</template>
+							<template v-if="($route.name).includes('journals') || ($route.name).includes('items')">
+								<tr></tr>
+								<tr><th colspan="10">Journals</th></tr>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Name</th>
+									<th scope="col">Date</th>
+								</tr>
+								<tr v-for="journal in journals" :key="journal.id">
+									<td>{{ journal.id }}</td>
+									<td>{{ journal.name }}</td>
+									<td>{{ journal.date }}</td>
+								</tr>
+							</template>
+						</table>
+            <!--
             <div class="item" v-for="item in items" :key="item.id">
               <div class="image">
                 <img src="../pictures/user_profile/book_example.jpg" width="150" alt="not Found" onerror="../pictures/user_profile/blank_book.png">
@@ -52,6 +124,7 @@
                 </div>
               </div>
             </div>
+            -->
             <!--
             <div class="footer">
               <a href="#" class="arrow-button"><i class="arrow left"></i></a>
@@ -112,51 +185,34 @@
   .btn:hover{
     background:#fff;
   }
-.header{
-    width:100%;
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background:rgb(112, 1, 1);
-    box-shadow: 5px 20px 50px #000;
-    z-index: 2;
-  }
-
-  .header a{
-    color: white;
-    text-decoration: none;
-  }
-  .header a:hover{
-    color: black;
-  }
-    .btn{
-    float:right;
-    margin-right: 5px;
-    color:white;
-    background:rgba(0, 0, 0, 0.8);
-    padding:10px 20px;
-    font-size:12px;
-    text-decoration:none;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  }
-  .header-h2{
-    text-align: left;
-    color:white;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight:350;
-    position: fixed;
-    top: 0;
-    left: 0;
-    
-    width: 250px;
-    background:rgb(112, 1, 1);
-    padding: 10px 10px;
-  }
-  .btn:hover{
-    background:#fff;
-  }
+  table {
+	width: 100%;
+	border-collapse:separate;
+	border-radius: 5px;
+	
+}
+td{
+	height: 10px;
+	overflow: hidden;
+}
+th{
+	font-weight: 500;
+}
+th:nth-child(1) {
+	width: 10%;
+	background: #ddd;
+	padding-left: 5px;
+}
+th:nth-child(2) {
+	width: 50%;
+	background: #ddd;
+	padding-left: 5px;
+}
+th:nth-child(3) {
+	width: 40%;
+	background: #ddd;
+	padding-left: 5px;
+}
   body{
     background-image: url("../assets/library.jpg");
   }
