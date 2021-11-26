@@ -8,8 +8,6 @@
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>
-    
-    
 </div>
 </template>
 
@@ -26,7 +24,6 @@
 	-moz-transition-property: all;
   -moz-transition-timing-function: cubic-bezier(100,50,21,6);
 }
-
 body{
   padding:75px;
   text-align: center;
@@ -34,7 +31,6 @@ body{
   
   background-image: url("../assets/library.jpg");
 }
-
 .header{
 	width:100%;
 	height: 100px;
@@ -45,14 +41,12 @@ body{
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
 }
-
 .header a{
 	color: white;
 }
 .header a:hover{
 	color: black;
 }
-
 h2{
 	text-align: left;
 	color:white;
@@ -66,7 +60,6 @@ h2{
 	background:rgb(112, 1, 1);
 	padding: 10px 10px;
 }
-
 h1{
   color:white;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -77,7 +70,6 @@ h1{
   background:rgb(112, 1, 1);
   padding: 10px 20px;
 }
-
 .btn{
   float:right;
   margin: 45px 5px;
@@ -89,13 +81,9 @@ h1{
   letter-spacing:2px;
   text-transform:uppercase;
 }
-
-
-
 .btn:hover{
   background:#fff;
 }
-
 .footer{
   font-size:8px;
   color:#fff;
