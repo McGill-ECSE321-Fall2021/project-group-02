@@ -66,7 +66,7 @@ export default {
         AXIOS.post('/logIn/'.concat(username, '/', password)).then(response => 
           {
             this.onlineAccounts.push(response.data);
-            this.errorOnlineAccount= 'Sami';
+            this.errorOnlineAccount= '';
             //Needs to be linked to the user profile page
             //this.$router.push("/userProfile");
           })
