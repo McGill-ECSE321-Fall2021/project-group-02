@@ -10,54 +10,15 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function ItemDto (id, isArchived, isBorrowed, isDamaged){
-    this.id = id
-    this.isArchived = isArchived
-    this.isBorrowed = isBorrowed
-    this.isDamaged = isDamaged
-  }
-
-function BookDto (title, author){
-    this.title = title
-    this.atuhor = author
-  }
-
-function MovieDto (title, director) {
-    this.title = title
-    this.director = director
-}
-
-function AlbumDto (title, artist) {
-    this.title = title
-    this.artist = artist
-}
-
-function NewspaperDto (name, date) {
-    this.name = name
-    this.date = date
-}
-
-function JournalDto (name, date) {
-    this.name = name
-    this.date = date
-}
-
-function PatronDto (id){
-    this.id = id
-    this.borrowedItems = []
-}
-
   export default {
     name: 'manageItem',
     data () {
       return {
-        items: [],
         itemID = '',
         itemType = '',
         itemName = '',
         itemAuthor = '',
 
-        patrons: [],
         patronID = '',
         librarians: [],
         librarianID = '',
@@ -68,6 +29,7 @@ function PatronDto (id){
     },
 
     created: function () {
+      /*
         AXIOS.get('/items')
         .then(response => {
           // JSON responses are automatically parsed.
@@ -97,25 +59,23 @@ function PatronDto (id){
         .catch(e => {
           this.errorMsg = e
         })
-    },
+            */
 
+    },
     methods: {
         borrowItem: function(itemID, patronID) {
             // sami service method requires the item name?
         },
 
         returnItem: function(itemID, patronID) {
+          /*
             var indexItem = this.items.map(x => x.id).indexOf(itemID)
             var item = this.item[indexItem]
             var indexPatron = this.patrons.map(x => x.id).indexOf(patronID)
             var patron = this.patron[indexPatron]
-            AXIOS.post('/return', {},
-            {params: {
-                item: item.id,
-                patron: patron.id}})
+            */
+            AXIOS.post('/return/'.concat('?itemId=', itemID, '&patronId=', patronID))
             .then(response => {
-                this.items.push(response.data)
-                patron.borrowedItems.splice((patron.borrowedItems.indexOf(item)),1)
                 this.itemID = ''
                 this.patronID = ''
                 this.errorMsg = ''
@@ -128,13 +88,13 @@ function PatronDto (id){
         },
 
         archiveItem: function(itemID, librarianID) {
+          /*
             var indexLib = this.librarians.map(x => x.id).indexOf(librarianID)
             var librarian = this.librarian[indexLib]
-            AXIOS.post('/archive/'.concat(itemID),
-            {params : {
-                librarian: librarian.id}})
+
+            */
+            AXIOS.post('/archive/'.concat(itemID, '?headLibrarianID=', librarianID))
             .then(response => {
-                this.items.push(response.data)
                 this.itemID = ''
                 this.librarianID = ''
                 this.errorMsg = ''
@@ -152,15 +112,17 @@ function PatronDto (id){
 
         createItem: function(itemType, itemName, itemAuthor, librarianID) {
           if (itemType.localeCompare("Book")) {
-            AXIOS.post('/createBook/'.concat(itemName),
-            {params : {
-              author: item.author}})
+            AXIOS.post('/createBook/'.concat(itemName, '?authorName=', itemAuthor, '?isArchived=', false))
             .then(response => {
-              this.items.push(response.data)
               this.itemName = ''
               this.itemAuthor = ''
               this.librarianID = ''
             })
+            .catch(e => {
+            var errorMsg = e
+            console.log(errorMsg)
+            this.errorMsg = errorMsg
+          })
           } else if (itemType.localeCompare("Album")) {
             
           } else if (itemType.localeCompare("Movie")) {
