@@ -1035,6 +1035,8 @@ public class ItemService {
 		Album album=(Album)albumer;
 		album.setArtist(artist);
 		album.setTitle(title);
+		itemRepository.save(album);
+		albumRepository.save(album);
 		return album;
 	}
 	

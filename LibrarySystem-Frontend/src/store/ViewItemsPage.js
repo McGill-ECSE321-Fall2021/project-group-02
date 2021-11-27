@@ -91,5 +91,115 @@ export default {
       .then(response => {
         this.journals = response.data
       })
+    },
+    methods: 
+    {
+      searchItems(searchTerm, searchType){
+        if (searchType.localeCompare("Name") == 0){
+          AXIOS.get('/items/books/'.concat('?title=', searchTerm)).then(response =>{
+            this.books = response.data
+          })
+          AXIOS.get('/items/albums/'.concat('?title=', searchTerm)).then(response =>{
+            this.albums = response.data
+          })
+          AXIOS.get('/items/movies/'.concat('?title=', searchTerm)).then(response =>{
+            this.movies = response.data
+          })
+          AXIOS.get('/items/newspapers/'.concat('?name=', searchTerm)).then(response =>{
+            this.newspapers = response.data
+          })
+          AXIOS.get('/items/journals/'.concat('?name=', searchTerm)).then(response =>{
+            this.journals = response.data
+          })
+        } else if (searchType.localeCompare("Creator") == 0){
+          AXIOS.get('/items/books/'.concat('?author=', searchTerm)).then(response =>{
+            this.books = response.data
+          })
+          AXIOS.get('/items/albums/'.concat('?artist=', searchTerm)).then(response =>{
+            this.albums = response.data
+          })
+          AXIOS.get('/items/movies/'.concat('?director=', searchTerm)).then(response =>{
+            this.movies = response.data
+          })
+        } else if(searchType.localeCompare("None") == 0){
+          AXIOS.get('/items')
+          .then(response => {
+            this.items = response.data
+          })
+          AXIOS.get('/items/books')
+          .then(response => {
+            this.books = response.data
+          })
+          AXIOS.get('/items/albums')
+          .then(response => {
+            this.albums = response.data
+          })
+          AXIOS.get('/items/movies')
+          .then(response => {
+            this.movies = response.data
+          })
+          AXIOS.get('/items/newspapers')
+          .then(response => {
+            this.newspapers = response.data
+          })
+          AXIOS.get('/items/journals')
+          .then(response => {
+            this.journals = response.data
+          })
+        }
+        
+        searchTerm = '';
+        /*
+        if (searchType.localeCompare("ID") == 0) {
+          for(i = 0; i < books.length; i++){
+            if(books[i].id == searchTerm){ 
+              this.books= books[i];
+              albums = [];
+              movies = [];
+              journals = [];
+              newspapers = [];
+            }
+          }
+          for(i = 0; i < albums.length; i++){
+            if(albums[i].id == searchTerm){ 
+              this.albums= albums[i];
+              books = [];
+              movies = [];
+              journals = [];
+              newspapers = [];
+            }
+          }
+          for(i = 0; i < movies.length; i++){
+            if(movies[i].id == searchTerm){ 
+              this.movies= movies[i];
+              albums = [];
+              books = [];
+              journals = [];
+              newspapers = [];
+            }
+          }
+          for(i = 0; i < journals.length; i++){
+            if(journals[i].id == searchTerm){ 
+              this.journals= journals[i];
+              albums = [];
+              movies = [];
+              books = [];
+              newspapers = [];
+            }
+          }
+          for(i = 0; i < newspapers.length; i++){
+            if(newspapers[i].id == searchTerm){ 
+              this.newspapers = newspapers[i];
+              albums = [];
+              movies = [];
+              journals = [];
+              books = [];
+            }
+          }
+          
+        }
+        */
+       
+      }
     }
 }
