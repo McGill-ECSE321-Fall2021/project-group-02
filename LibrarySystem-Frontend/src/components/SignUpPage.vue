@@ -9,40 +9,50 @@
 <body>
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
-
 			<div class="signup1">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As A Nonexisting User</label>
-					<input type="text" name="firstName" v-model="firstName" placeholder="First Name" required="">
-					<input type="text" name="lastName" v-model="lastName" placeholder="Last Name" required="">	
-                    <input type="text" name="address" v-model="address" placeholder="Address" required="">
-					<input type="text" name="city" v-model="city" placeholder="City" required="">
-					<input type="text" name="username" v-model="username" placeholder="Username" required="">
-                    <input type="password" name="password" v-model="password" placeholder="Password" required="">
-					<input type="email" name="email" v-model="email" placeholder="Email" required="">
-					<button @click="createAccountNewUser(newPerson(firstName, lastName, address, city, username, password, email))">Sign up</button>
+					<input type="text" v-model="firstName" placeholder="First Name" required="">
+					<input type="text" v-model="lastName" placeholder="Last Name" required="">	
+                    <input type="text" v-model="address" placeholder="Address" required="">
+					<input type="text" v-model="city" placeholder="City" required="">
+					<input type="text" v-model="username" placeholder="Username" required="">
+                    <input type="password" v-model="password" placeholder="Password" required="">
+					<input type="email" v-model="email" placeholder="Email" required="">
+					<button onClick="refreshPage()" @click="createAccountNewUser(username, password, email, address, city, firstName, lastName)">Sign up</button>
+					<table style=" margin-left: 140px;">
+							<tr v-for="onlineAccount in onlineAccounts" :key="onlineAccount.accountId">
+								<td style="color: red;" v-if="onlineAccount.loggedIn" > {{ onlineAccount.loggedIn }} </td>
+							</tr>
+					</table>
+
 				</form>
 			</div>
 
 			<div class="signup2">
 				<form>
 					<label for="chk" aria-hidden="true">Sign Up As An Existing User</label>
-                    <input type="text" name="id" placeholder="id" required="">
-					<input type="text" name="username" placeholder="Username" required="">
-					<input type="password" name="password" placeholder="Password" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<button>Sign up</button>
+                    <input type="text" placeholder="userId" v-model="userId" required="">
+					<input type="text" placeholder="Username" v-model="usernameExisting" required="">
+					<input type="password" placeholder="Password" v-model="passwordExisting" required="">
+					<input type="email" placeholder="Email" v-model="emailExisting" required="">
+					<button onClick="refreshPage()" @click="createAccountExistingUser(usernameExisting, passwordExisting, emailExisting, userId)">Sign up</button>
+					<p><span v-if="errorOnlineAccount" style="color:red; margin-left: -160px;"> Error: {{errorOnlineAccount}}</span></p>
 				</form>
 			</div>
 
 			<div class="login">
 				<form>
 					<label for="chk" aria-hidden="true">Login</label>
-					<input type="txt" name="username" placeholder="Username" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Login</button>
+					<input type="txt" placeholder="Username" v-model="usernameLogin" required="">
+					<input type="password" placeholder="Password" v-model="passwordLogin" required="">
+					<button @click="logInUser(usernameLogin, passwordLogin)">Login</button>
+					<p>
+					<span v-if="errorOnlineAccount" style="color:red; margin-left: -160px;"> Error: {{ errorOnlineAccount }} </span>
+					</p>
 				</form>
 			</div>
+
 	</div>
 </body>
     </div>
@@ -70,6 +80,7 @@
 	color: black;
 }
 
+
 h2{
 	text-align: left;
 	color:white;
@@ -94,7 +105,6 @@ h2{
   letter-spacing:2px;
   text-transform:uppercase;
 }
-
 
 
 .btn:hover{
@@ -226,7 +236,11 @@ button:hover{
 #chk:checked ~ .login label{
 	transform: scale(1);	
 }
-#chk:checked ~ .signup label{
+#chk:checked ~ .signup1 label{
+	transform: scale(.6);
+}
+
+#chk:checked ~ .signup2 label{
 	transform: scale(.6);
 }
 
