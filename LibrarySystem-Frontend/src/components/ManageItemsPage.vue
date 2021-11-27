@@ -29,7 +29,6 @@
 			<button >Remove from Damaged</button>
 		</form>
 		<form>
-			<input type="text" v-model="itemID" placeholder="Enter item ID" required="">
 			<input type="text" v-model="itemName" placeholder="Enter item name" required="">
 			<input type="text" v-model="itemAuthor" placeholder="Enter item author" required="">
 			<input type="text" v-model="librarianID" placeholder="Enter your user ID" required="">
@@ -41,7 +40,7 @@
 				<option>Journal</option>
 				<option>Newspaper</option>
 			</select>
-			<button>Add New Item</button>
+			<button @click="createItem(itemType, itemName, itemAuthor, librarianID)">Add New Item</button>
 		</form>
 		<form>
 			<input type="text" v-model="itemID_del" placeholder="Enter item ID" required="">

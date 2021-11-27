@@ -41,6 +41,7 @@ var AXIOS = axios.create({
                 this.itemID = ''
                 this.patronID = ''
                 this.errorMsg = ''
+                window.location.reload();
             })
             .catch(e => {
                 var errorMsg = e
@@ -50,11 +51,12 @@ var AXIOS = axios.create({
         },
 
         archiveItem: function(itemID, librarianID) {
-            AXIOS.post('/archive/'.concat(itemID, '?headLibrarianID=', librarianID))
+            AXIOS.post('/archive/'.concat('?itemID=', itemID, '&headLibrarianID=', librarianID))
             .then(response => {
                 this.itemID = ''
                 this.librarianID = ''
                 this.errorMsg = ''
+                window.location.reload();
             })
             .catch(e => {
                 var errorMsg = e
@@ -68,8 +70,8 @@ var AXIOS = axios.create({
         },
 
         createItem: function(itemType, itemName, itemAuthor, librarianID) {
-          if (itemType.localeCompare("Book")) {
-            AXIOS.post('/createBook/'.concat(itemName, '?authorName=', itemAuthor, '?isArchived=', false))
+          if (itemType.localeCompare("Book") == 0) {
+            AXIOS.post('/createBook/'.concat(itemName, '/?authorName=', itemAuthor, '&isArchived=', false))
             .then(response => {
               this.itemName = ''
               this.itemAuthor = ''
@@ -80,8 +82,8 @@ var AXIOS = axios.create({
             console.log(errorMsg)
             this.errorMsg = errorMsg
             })
-          } else if (itemType.localeCompare("Album")) {
-            AXIOS.post('/createAlbum/'.concat(itemName, '?artistName=', itemAuthor, '?isArchived=', false))
+          } else if (itemType.localeCompare("Album") == 0) {
+            AXIOS.post('/createAlbum/'.concat(itemName, '/?artistName=', itemAuthor, '&isArchived=', false))
             .then(response => {
               this.itemName = ''
               this.itemAuthor = ''
@@ -92,8 +94,8 @@ var AXIOS = axios.create({
             console.log(errorMsg)
             this.errorMsg = errorMsg
             })
-          } else if (itemType.localeCompare("Movie")) {
-            AXIOS.post('/createMovie/'.concat(itemName, '?directorName=', itemAuthor, '?isArchived=', false))
+          } else if (itemType.localeCompare("Movie") == 0) {
+            AXIOS.post('/createMovie/'.concat(itemName, '/?directorName=', itemAuthor, '&isArchived=', false))
             .then(response => {
               this.itemName = ''
               this.itemAuthor = ''
@@ -113,12 +115,12 @@ var AXIOS = axios.create({
         },
 
         deleteItem: function(itemID, librarianID) {
-            AXIOS.post('/items/discard'.concat('?itemId=',itemID,'&headLibrarianID=',librarianID))
+            AXIOS.delete('/items/discard/'.concat('?itemID=',itemID,'&headLibrarianID=',librarianID))
             .then(response => {
-                this.items.push(response.data)
                 this.itemID = ''
                 this.librarianID = ''
                 this.errorMsg = ''
+                window.location.reload();
             })
             .catch(e => {
                 var errorMsg = e
