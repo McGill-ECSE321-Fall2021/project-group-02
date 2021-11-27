@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
 import SignUpPage from '@/components/SignUpPage'
 
@@ -12,7 +11,6 @@ import ManageItemsPage from '@/components/ManageItemsPage'
 import ViewItemsPage from '@/components/ViewItemsPage'
 //import UserProfilePage from '@/components/UserProfilePage'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
-import Modal from '@/components/Modal'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
 
 
