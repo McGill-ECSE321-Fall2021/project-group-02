@@ -48,7 +48,7 @@
 					<input type="password" placeholder="Password" v-model="passwordLogin" required="">
 					<button @click="logInUser(usernameLogin, passwordLogin)">Login</button>
 					<p>
-					<span v-if="errorOnlineAccount" style="color:red; margin-left: -160px;"> Error:{{errorOnlineAccount}} </span>
+					<span v-if="errorOnlineAccount" style="color:red; margin-left: -160px;"> Error: {{ errorOnlineAccount }} </span>
 					</p>
 				</form>
 			</div>

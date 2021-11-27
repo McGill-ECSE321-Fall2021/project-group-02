@@ -27,9 +27,11 @@
                 <div class="column1">
                   <h5>Username: </h5>
                 </div>
-                <div class="username">
-                  <h5>Template username</h5>
-                </div>
+                <table>
+							    <tr v-for="onlineAccount in onlineAccounts" :key="onlineAccount.accountId">
+								    <td style="color: red;" v-if="onlineAccount.loggedIn" > {{ onlineAccount.username }} </td>
+							    </tr>
+					      </table>
                 <!--click on arrow to redirect to change username page-->
                 <a href="#popup1" class="long-button"><i class="arrow right"></i></a>
               </div>
@@ -67,13 +69,13 @@
 		  <div class="content">
 			  <div class="new-username form">
           <h3>new username: </h3>
-          <input type="text" v-model="newUsername" required>
+          <input type="text" required>
         </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" v-model="password" required>
+          <input type="text" required>
         </div>
-          <button class="button" @click="changeUsername(password, newUsername)">confirm</button>
+          <button class="button">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -84,13 +86,13 @@
 		  <div class="content">
 			  <div class="new-email form">
           <h3>new email: </h3>
-          <input type="text" v-model="newEmail" required>
+          <input type="text" required>
         </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" v-model="password" required>
+          <input type="text" required>
         </div>
-          <button class="button" @click="changeEmail(password, newEmail)">confirm</button>
+          <button class="button">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -101,13 +103,13 @@
 		  <div class="content">
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" v-model="password" required>
+          <input type="text" required>
         </div>
 			  <div class="new-password form">
           <h3>new password: </h3>
-          <input type="text" v-model="newPassword"  required>
+          <input type="text"  required>
         </div>
-          <button class="button" @click="changePassword(password, newPassword)">confirm</button>
+          <button class="button">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -118,20 +120,20 @@
 		  <div class="content">
         <div class="email-username form">
           <h3>email/username: </h3>
-          <input type="text" v-model="emailUsername" required>
+          <input type="text" required>
         </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" v-model="password" required>
+          <input type="text" required>
         </div>
-          <button class="button" @click="deleteAccount(emailUsername, password)">confirm</button>
+          <button class="button">confirm</button>
 		    </div>
 	    </div>
     </div>
   </body>
 </template>
 
-<script src="./userProfile.js"></script>
+<script src="../store/userProfile.js"></script>
 
 <style>
   .header{
@@ -144,6 +146,11 @@
     box-shadow: 5px 20px 50px #000;
     z-index: 2;
   }
+
+  .main{
+	width: 100%;
+	height: 100%;
+}
 
   .header a{
     color: white;

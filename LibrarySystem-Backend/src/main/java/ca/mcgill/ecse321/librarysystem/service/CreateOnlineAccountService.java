@@ -101,6 +101,19 @@ public class CreateOnlineAccountService {
 		if (error.length() > 0) throw new IllegalArgumentException(error);
 		
 		account.setLoggedIn(loggedIn);
+		onlineAccountRepository.save(account);
+		
+		return account;
+	}
+	
+	/**
+	 * Returns the online account that is logged in
+	 * @param 
+	 * @return Online account for the logged in user
+	 * @author Sami Ait Ouahmane
+	 */
+	public OnlineAccount getloggedInAccount() throws IllegalArgumentException {
+		OnlineAccount account=onlineAccountRepository.findOnlineAccountByLoggedInTrue();
 		
 		return account;
 	}
