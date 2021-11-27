@@ -48,7 +48,7 @@
     </div>
 </template>
 
-<script src="../store/signupexisting.js">
+<script src="../store/SignUp.js">
 </script>
 
 <style>
