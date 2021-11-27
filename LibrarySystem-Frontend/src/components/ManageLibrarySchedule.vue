@@ -3,10 +3,10 @@
     <body>
       <body>
       <div class="header">
-				  <router-link to="/"><h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Montreal Library</h2></router-link>
-				  <router-link to="/signup"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Sign Up/Log In</a></router-link>
-        	<router-link to="/items"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Items Information</a></router-link>
-        	<router-link to="/"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Home</a></router-link>
+				  <router-link to="/"><h2>Montreal Library</h2></router-link>
+				  <router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+        	<router-link to="/items"><a class="btn">Items Information</a></router-link>
+        	<router-link to="/"><a class="btn">Home</a></router-link>
 		  </div>
       </body>
     <div id="calendar">
@@ -171,17 +171,7 @@ input[type="text"] {
 	z-index: 2;
 }
 h2{
-  text-align: left;
-	color:white;
-	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	font-weight:350;
-	position: fixed;
-	top: 0;
-	left: 0;
-	
-	width: 250px;
-	background:rgb(112, 1, 1);
-	padding: 10px 10px;
+  color: white;
 }
 router-link{
   color: white;

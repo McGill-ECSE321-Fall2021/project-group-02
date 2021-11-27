@@ -81,32 +81,42 @@ public class ItemService {
 						if(a.getTitle().equals(itemName)) {
 							List<Album> albums=patronOfInterest.getBorrowedAlbums();
 							albums.add(a);
-							patronOfInterest.setBorrowedAlbums(albums); 
+							patronOfInterest.setBorrowedAlbums(albums);
 							patronRepository.save(patronOfInterest);
+							a.setIsBorrowed(true);
+							itemRepository.save(a);
+							albumRepository.save(a);
 							return a;
 						}
 					}
-					
 					for (Movie m : movieRepository.findAll()) {
 						if(m.getTitle().equals(itemName)) {
 							List<Movie> movies=patronOfInterest.getBorrowedMovies();
 							movies.add(m);
 							patronOfInterest.setBorrowedMovies(movies);
 							patronRepository.save(patronOfInterest);
+							m.setIsBorrowed(true);
+							itemRepository.save(m);
+							movieRepository.save(m);
 							return m;
 						}
 					}
 					
 					for (Book b : bookRepository.findAll()) {
 						if(b.getTitle().equals(itemName)) {
+							itemOfInterest.setIsBorrowed(true);
+							b.setIsBorrowed(true);
+							itemRepository.save(itemOfInterest);
+							bookRepository.save(b);
+							
 							List<Book> books=patronOfInterest.getBorrowedBooks();
 							books.add(b);
 							patronOfInterest.setBorrowedBooks(books);
 							patronRepository.save(patronOfInterest);
+
 							return b;
 						}
 					}
-					
 				}
 				else {
 					throw new IllegalArgumentException("The item you are looking for has already been borrowed.");
@@ -686,6 +696,29 @@ public class ItemService {
            OTHER GENERAL ITEM METHODS - JULIE
 	 ****************************************************/
 	
+	
+	public Item makeItemBorrowable(int itemID, int userID) throws IllegalArgumentException {
+		if (userID < 0) {
+			throw new IllegalArgumentException("User ID cannot be negative.");
+		} else if (headLibrarianRepository.existsById(userID)) {
+			Item specificItem = itemRepository.findItemById(itemID);
+			if (itemID < 0) {
+				throw new IllegalArgumentException("Item ID cannot be negative.");
+			} else if(itemRepository.existsItemById(itemID)) {
+				specificItem.setIsBorrowed(false);
+				specificItem.setIsDamaged(false);
+				specificItem.setIsArchived(false);
+			} else {
+				throw new IllegalArgumentException("Item ID does not exist.");
+			}
+			
+			return specificItem;
+			
+		} else {
+			throw new IllegalArgumentException("Must be a head librarian to proceed.");
+		}
+	}
+	
 	/**
 	 * Sets an item as damaged and cannot be borrowed
 	 * @param itemId
@@ -729,14 +762,20 @@ public class ItemService {
 	 * @author Julie
 	 */
 	@Transactional
-	public void discardItem(int itemId) {
-		Item specificItem = itemRepository.findItemById(itemId); 
-		if (itemId < 0) {
-			throw new IllegalArgumentException("Item ID cannot be negative.");
-		} else if(itemRepository.existsItemById(itemId)) {
-			itemRepository.delete(specificItem);
+	public void discardItem(int itemId, int headLibrarianId) {
+		if (headLibrarianId < 0) {
+			throw new IllegalArgumentException("User ID cannot be negative.");
+		} else if (headLibrarianRepository.existsById(headLibrarianId)) {
+			Item specificItem = itemRepository.findItemById(itemId); 
+			if (itemId < 0) {
+				throw new IllegalArgumentException("Item ID cannot be negative.");
+			} else if(itemRepository.existsItemById(itemId)) {
+				itemRepository.delete(specificItem);
+			} else {
+				throw new IllegalArgumentException("Item ID does not exist.");
+			}
 		} else {
-			throw new IllegalArgumentException("Item ID does not exist.");
+			throw new IllegalArgumentException("Must be a head librarian to proceed.");
 		}
 		
 	}
@@ -1019,6 +1058,8 @@ public class ItemService {
 		Album album=(Album)albumer;
 		album.setArtist(artist);
 		album.setTitle(title);
+		itemRepository.save(album);
+		albumRepository.save(album);
 		return album;
 	}
 	

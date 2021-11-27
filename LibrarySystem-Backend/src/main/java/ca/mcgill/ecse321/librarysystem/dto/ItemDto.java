@@ -11,8 +11,11 @@ public class ItemDto {
 		
 	}
 	
-	public ItemDto(int id) {
+	public ItemDto(int id, boolean isArchived, boolean isBorrowed, boolean isDamaged) {
 		this.id = id;
+		this.isArchived = isArchived;
+		this.isBorrowed = isBorrowed;
+		this.isDamaged = isDamaged;
 	}
 	
 	public Integer getID() {

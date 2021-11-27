@@ -88,9 +88,9 @@ public class ItemRestController {
 	 * 
 	 * @author John
 	 */
-	@PostMapping(value = { "/archive/{itemId}", "/archive/{itemId}/"})
-	public ItemDto archiveItem(@PathVariable("itemID") int itemId, @RequestParam(name = "headLibrarianID") HeadLibrarianDto headLibrarianDto) {
-		Item i = itemService.archiveItem(itemId, headLibrarianDto.getID());
+	@PostMapping(value = { "/archive", "/archive/"})
+	public ItemDto archiveItem(@RequestParam(name = "itemID") int itemId, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+		Item i = itemService.archiveItem(itemId, headLibrarianID);
 		return convertToDto(i);
 	}
 	
@@ -215,10 +215,24 @@ public class ItemRestController {
 	 * @author Julie
 	 */
 	@DeleteMapping(value = {"/items/discard", "/items/discard/"})
-	public void discardItem(@RequestParam(name = "itemId") int itemId) {
-		itemService.discardItem(itemId);
+	public void discardItem(@RequestParam(name = "itemID") int itemId, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+		itemService.discardItem(itemId, headLibrarianID);
 	}
 	
+	/**
+	 * Set an item as damaged
+	 * @param itemID
+	 * @param headLibrarianID
+	 */
+	@PostMapping(value = {"/items/setDamaged", "/items/setDamaged/"})
+	public void setDamagedItem(@RequestParam(name = "itemId") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+		itemService.setDamagedItem(itemID, headLibrarianID);
+	}
+	
+	@PostMapping(value = {"/items/available", "/items/available/"})
+	public void makeItemBorrowable(@RequestParam(name = "itemID") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+		itemService.makeItemBorrowable(itemID, headLibrarianID);
+	}
 	
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI
@@ -287,7 +301,7 @@ public class ItemRestController {
 	 * @author Sami
 	 */
 	@PostMapping(value = {"/createAlbum/{title}", "/createAlbum/{title}/"} )
-	public AlbumDto createAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+	public AlbumDto createAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName, @RequestParam(name= "isArchived") boolean isArchived) {
 		Album a= itemService.createAlbum(artistName,albumTitle, isArchived);
 		return convertToDto(a);
 	}
@@ -317,7 +331,7 @@ public class ItemRestController {
 	 * @author Sami
 	 */
 	@PostMapping(value = {"/createMovie/{title}", "/createMovie/{title}/"} )
-	public MovieDto createMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName, @RequestParam(name= "patron") Patron patron, @RequestParam(name= "isArchived") boolean isArchived) {
+	public MovieDto createMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName, @RequestParam(name= "isArchived") boolean isArchived) {
 		Movie m= itemService.createMovie(directorName, movieTitle, isArchived);
 		return convertToDto(m);
 	}
@@ -453,7 +467,7 @@ public class ItemRestController {
 		if (i == null) {
 			throw new IllegalArgumentException("Item does not exist.");
 			}
-		ItemDto itemDto = new ItemDto(i.getId());
+		ItemDto itemDto = new ItemDto(i.getId(), i.getIsArchived(), i.getIsBorrowed(), i.getIsDamaged());
 		return itemDto;
 	}
 	
