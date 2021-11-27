@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
+import HomePageLogin from '@/components/HomePage2'
 import SignUpPage from '@/components/SignUpPage'
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
@@ -10,7 +11,7 @@ import CreatePatron from '@/components/CreatePatron'
 import ManageItemsPage from '@/components/ManageItemsPage'
 
 import ViewItemsPage from '@/components/ViewItemsPage'
-//import UserProfilePage from '@/components/UserProfilePage'
+import UserProfilePage from '@/components/UserProfilePage'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 import Modal from '@/components/Modal'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
@@ -24,6 +25,11 @@ export default new Router({
       path: '/',
       name: 'WelcomePage',
       component: HomePage
+    },
+    {
+      path: '/homeAfterLogin',
+      name: 'HomeAfterLogin',
+      component: HomePageLogin
     },
     {
       path: '/signup',
@@ -85,13 +91,13 @@ export default new Router({
       name: 'newspapers',
       component: ViewItemsPage
     },
-    /*
+    
     {
       path: '/userProfile',
       name: 'user-profile',
       component: UserProfilePage
     },
-    */
+    
     {
       path: '/librarians',
       name: 'ManageLibrariansPage',
