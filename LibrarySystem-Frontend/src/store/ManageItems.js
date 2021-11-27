@@ -29,37 +29,6 @@ var AXIOS = axios.create({
     },
 
     created: function () {
-      /*
-        AXIOS.get('/items')
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.items = response.data
-          this.errorMsg = ''
-        })
-        .catch(e => {
-          this.errorMsg = e
-        })
-
-        AXIOS.get('/patrons')
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.patrons = response.data
-          this.errorMsg = ''
-        })
-        .catch(e => {
-          this.errorMsg = e
-        })
-
-        AXIOS.get('/librarians')
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.librarians = response.data
-          this.errorMsg = ''
-        })
-        .catch(e => {
-          this.errorMsg = e
-        })
-            */
 
     },
     methods: {
@@ -68,12 +37,6 @@ var AXIOS = axios.create({
         },
 
         returnItem: function(itemID, patronID) {
-          /*
-            var indexItem = this.items.map(x => x.id).indexOf(itemID)
-            var item = this.item[indexItem]
-            var indexPatron = this.patrons.map(x => x.id).indexOf(patronID)
-            var patron = this.patron[indexPatron]
-            */
             AXIOS.post('/return/'.concat('?itemId=', itemID, '&patronId=', patronID))
             .then(response => {
                 this.itemID = ''
@@ -88,11 +51,6 @@ var AXIOS = axios.create({
         },
 
         archiveItem: function(itemID, librarianID) {
-          /*
-            var indexLib = this.librarians.map(x => x.id).indexOf(librarianID)
-            var librarian = this.librarian[indexLib]
-
-            */
             AXIOS.post('/archive/'.concat(itemID, '?headLibrarianID=', librarianID))
             .then(response => {
                 this.itemID = ''
@@ -135,14 +93,7 @@ var AXIOS = axios.create({
         },
 
         deleteItem: function(itemID, librarianID) {
-            var indexItem = this.items.map(x => x.id).indexOf(itemID)
-            var item = this.item[indexItem]
-            var indexLib = this.librarians.map(x => x.id).indexOf(librarianID)
-            var librarian = this.patron[indexLib]
-            AXIOS.post('/items/discard', {},
-            {params: {
-                item: item.id,
-                librarian: librarian.id}})
+            AXIOS.post('/items/discard'.concat('?itemId=',itemID,'&headLibrarianID=',librarianID))
             .then(response => {
                 this.items.push(response.data)
                 this.itemID = ''
