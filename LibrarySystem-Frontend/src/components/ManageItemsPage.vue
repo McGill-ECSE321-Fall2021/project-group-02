@@ -9,26 +9,26 @@
 		</div>
       <div class="manageItem">
 		<h2> Manage Items </h2>
-		<form>
+		<form> <!-- BORROW & RETURN ITEM -->
 			<input class="text" v-model="itemID_b" placeholder="Enter item ID" required="">
 			<input class="text" v-model="patronID_b" placeholder="Enter patron ID" required="">
 			<button @click="borrowItem(itemID_b, patronID_b)">Borrow Item</button>
 			<button @click="returnItem(itemID_b, patronID_b)">Return Item</button>
 			<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 		</form>
-		<form>
+		<form> <!-- ARCHIVE ITEM -->
 			<input class="text" v-model="itemID_ar" placeholder="Enter item ID" required="">
 			<input class="text" v-model="librarianID_ar" placeholder="Enter user ID" required="">
 			<button @click="archiveItem(itemID_ar, librarianID_ar)">Move to Archived</button>
 			<button @click="makeAvailable(itemID_ar, librarianID_ar)">Remove from Archived</button>
 		</form>
-		<form>
+		<form> <!-- DAMAGE ITEM -->
 			<input class="text" name="itemID_d" placeholder="Enter item ID" required="">
 			<input class="text" name="userID_d" placeholder="Enter user ID" required="">
 			<button @click="damageItem(itemID_d, librarianID_d)">Move to Damaged</button>
 			<button @click="makeAvailable(itemID_d, librarianID_d)">Remove from Damaged</button>
 		</form>
-		<form>
+		<form> <!-- CREATE NEW ITEM -->
 			<input type="text" v-model="itemName" placeholder="Enter item name" required="">
 			<input type="text" v-model="itemAuthor" placeholder="Enter item author" required="">
 			<input type="text" v-model="librarianID" placeholder="Enter your user ID" required="">
@@ -42,7 +42,7 @@
 			</select>
 			<button @click="createItem(itemType, itemName, itemAuthor, librarianID)">Add New Item</button>
 		</form>
-		<form>
+		<form> <!-- DELETE ITEM -->
 			<input type="text" v-model="itemID_del" placeholder="Enter item ID" required="">
 			<input type="text" v-model="librarianID_del" placeholder="Enter user ID" required="">
 			<button @click="deleteItem(itemID_del, librarianID_del)">Delete Item</button>
