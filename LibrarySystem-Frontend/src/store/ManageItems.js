@@ -80,10 +80,31 @@ var AXIOS = axios.create({
             var errorMsg = e
             console.log(errorMsg)
             this.errorMsg = errorMsg
-          })
+            })
           } else if (itemType.localeCompare("Album")) {
-            
+            AXIOS.post('/createAlbum/'.concat(itemName, '?artistName=', itemAuthor, '?isArchived=', false))
+            .then(response => {
+              this.itemName = ''
+              this.itemAuthor = ''
+              this.librarianID = ''
+            })
+            .catch(e => {
+            var errorMsg = e
+            console.log(errorMsg)
+            this.errorMsg = errorMsg
+            })
           } else if (itemType.localeCompare("Movie")) {
+            AXIOS.post('/createMovie/'.concat(itemName, '?directorName=', itemAuthor, '?isArchived=', false))
+            .then(response => {
+              this.itemName = ''
+              this.itemAuthor = ''
+              this.librarianID = ''
+            })
+            .catch(e => {
+            var errorMsg = e
+            console.log(errorMsg)
+            this.errorMsg = errorMsg
+            })
 
           } else if (itemType.localeCompare("Journal")) {
 
