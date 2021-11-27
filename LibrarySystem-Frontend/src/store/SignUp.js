@@ -71,7 +71,7 @@ export default {
             this.onlineAccounts.push(response.data);
             this.errorOnlineAccount= '';
             //Needs to be linked to the user profile page
-            //this.$router.push("/userProfile");
+            this.$router.push("/userProfile");
           })
           .catch(e => {
             var errorMsg = e.response.data.message;

@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -113,8 +115,8 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount getloggedInAccount() throws IllegalArgumentException {
-		OnlineAccount account=onlineAccountRepository.findOnlineAccountByLoggedInTrue();
-		
+		List<OnlineAccount> accountList=onlineAccountRepository.findOnlineAccountsByLoggedInTrue();
+		OnlineAccount account=accountList.get(accountList.size()-1);
 		return account;
 	}
 	

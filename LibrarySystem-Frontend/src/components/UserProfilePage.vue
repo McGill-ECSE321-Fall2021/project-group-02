@@ -2,7 +2,7 @@
   <body>
     <div class="header">
 			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
-        <router-link to="/"><a class="btn">Home</a></router-link>
+        <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 		</div>
     <div class="user-profile">
       <div class="main">
