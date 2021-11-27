@@ -66,16 +66,16 @@ export default {
       password: '',
       username: '',
       emailUsername: '',
-      onlineAccount:[],
+      onlineAccountLogged:[],
     }
   },
 
   created: function () {
     AXIOS.get('/onlineAccountLoggedIn')
       .then(response => {
-        this.onlineAccount = response.data
+        this.onlineAccountLogged.push(response.data)
       })
-  }
+  },
   
 
 }

@@ -28,8 +28,8 @@
                   <h5>Username: </h5>
                 </div>
                 <table>
-							    <tr v-for="onlineAccount in onlineAccounts" :key="onlineAccount.accountId">
-								    <td style="color: red;" v-if="onlineAccount.loggedIn" > {{ onlineAccount.username }} </td>
+							    <tr v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+								    <td style="color: black;"> {{ onlineAccount.username }} </td>
 							    </tr>
 					      </table>
                 <!--click on arrow to redirect to change username page-->
@@ -39,9 +39,11 @@
                 <div class="column1">
                   <h5>Email: </h5>
                 </div>
-                <div class="email">
-                  <h5>template@gmail.com</h5>
-                </div>
+                <table>
+							    <tr v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+								    <td style="color: black;"> {{ onlineAccount.email }} </td>
+							    </tr>
+					      </table>
                 <!--click on arrow to redirect to change email page-->
                 <a href="#popup2" class="long-button"><i class="arrow right"></i></a>
               </div>
@@ -49,9 +51,11 @@
                 <div class="column1">
                   <h5>balance: </h5>
                 </div>
-                <div class="balance">
-                  <h5>$50.00</h5>
-                </div>
+                <table>
+							    <tr v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+								    <td style="color: black;"> {{ onlineAccount.balance }} </td>
+							    </tr>
+					      </table>
               </div>
               <div class="row">
                 <a href="#popup3" class="square-button">Change password</a>
