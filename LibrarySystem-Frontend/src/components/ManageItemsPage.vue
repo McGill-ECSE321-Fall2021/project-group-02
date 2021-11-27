@@ -95,10 +95,17 @@
 			<template v-slot:body>
 				<form>
 					<input type="text" v-model="itemID" placeholder="Enter item ID" required="">
-					<input type="text" v-model="itemType" placeholder="Enter type of item" required="">
 					<input type="text" v-model="itemName" placeholder="Enter item name" required="">
 					<input type="text" v-model="itemAuthor" placeholder="Enter item author" required="">
 					<input type="text" v-model="librarianID" placeholder="Enter your user ID" required="">
+					<select type= "text" v-model="itemType">
+						<option disabled value="">Select item type</option>
+						<option>Book</option>
+						<option>Album</option>
+						<option>Movie</option>
+						<option>Journal</option>
+						<option>Newspaper</option>
+					</select>
 					<button>Enter</button>
 				</form>
 			</template>
@@ -331,6 +338,10 @@ button{
 button:hover{
 	background: black;
     color:white;
+}
+
+.v-select {
+  display:block;
 }
 
 </style>

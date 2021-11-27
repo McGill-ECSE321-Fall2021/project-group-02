@@ -53,12 +53,9 @@ function PatronDto (id){
       return {
         items: [],
         itemID = '',
+        itemType = '',
         itemName = '',
         itemAuthor = '',
-        itemType = '',
-        isArchived = '',
-        isBorrowed = '',
-        isDamaged = '',
 
         patrons: [],
         patronID = '',
@@ -150,11 +147,29 @@ function PatronDto (id){
         },
 
         damageItem: function(itemID, librarianID) {
-            // missing damaged controlled method
+            // missing damaged controller method
         },
 
-        createItem: function(itemID, itemType, itemName, itemAuthor, librarianID) {
+        createItem: function(itemType, itemName, itemAuthor, librarianID) {
+          if (itemType.localeCompare("Book")) {
+            AXIOS.post('/createBook/'.concat(itemName),
+            {params : {
+              author: item.author}})
+            .then(response => {
+              this.items.push(response.data)
+              this.itemName = ''
+              this.itemAuthor = ''
+              this.librarianID = ''
+            })
+          } else if (itemType.localeCompare("Album")) {
+            
+          } else if (itemType.localeCompare("Movie")) {
 
+          } else if (itemType.localeCompare("Journal")) {
+
+          } else if (itemType.localeCompare("Newspaper")) {
+
+          }
         },
 
         deleteItem: function(itemID, librarianID) {
