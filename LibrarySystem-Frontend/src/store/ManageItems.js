@@ -119,7 +119,7 @@ var AXIOS = axios.create({
             this.errorMsg = errorMsg
             })
 
-            // not sure? Journals and Newspapers require date isntead of author
+          // not sure? Journals and Newspapers require date isntead of author
           } else if (itemType.localeCompare("Journal") == 0) {
 
           } else if (itemType.localeCompare("Newspaper") == 0) {
