@@ -219,6 +219,20 @@ public class ItemRestController {
 		itemService.discardItem(itemId, headLibrarianID);
 	}
 	
+	/**
+	 * Set an item as damaged
+	 * @param itemID
+	 * @param headLibrarianID
+	 */
+	@PostMapping(value = {"/items/setDamaged", "/items/setDamaged/"})
+	public void setDamagedItem(@RequestParam(name = "itemId") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+		itemService.setDamagedItem(itemID, headLibrarianID);
+	}
+	
+	@PostMapping(value = {"/items/available", "/items/available/"})
+	public void makeItemBorrowable(@RequestParam(name = "itemID") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+		itemService.makeItemBorrowable(itemID, headLibrarianID);
+	}
 	
 	/****************************************************
              SPECIFIC ITEM TYPE METHODS - SAMI

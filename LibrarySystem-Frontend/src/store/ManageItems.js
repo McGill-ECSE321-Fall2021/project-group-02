@@ -64,9 +64,21 @@ var AXIOS = axios.create({
                 this.errorMsg = errorMsg
             })
         },
-
+      
+        // not tested yet
         damageItem: function(itemID, librarianID) {
-            // missing damaged controller method
+            AXIOS.post('/items/setDamaged/'.concat('?itmID=', itemID, '&headLibrarianID=', librarianID))
+            .then(response => {
+              this.itemID = ''
+              this.librarianID = ''
+              this.errorMsg = ''
+              window.location.reload();
+          })
+          .catch(e => {
+              var errorMsg = e
+              console.log(errorMsg)
+              this.errorMsg = errorMsg
+          })
         },
 
         createItem: function(itemType, itemName, itemAuthor, librarianID) {
@@ -107,9 +119,10 @@ var AXIOS = axios.create({
             this.errorMsg = errorMsg
             })
 
-          } else if (itemType.localeCompare("Journal")) {
+            // not sure?
+          } else if (itemType.localeCompare("Journal") == 0) {
 
-          } else if (itemType.localeCompare("Newspaper")) {
+          } else if (itemType.localeCompare("Newspaper") == 0) {
 
           }
         },
@@ -127,8 +140,22 @@ var AXIOS = axios.create({
                 console.log(errorMsg)
                 this.errorMsg = errorMsg
             })
-        }
+        },
 
-        // need a function to set a item as 'available'? I.e., isArchived = isBorrowed = isDamaged = false
+        // not tested
+        makeAvailable: function(itemID, librarianID) {
+          AXIOS.post('/items/available/'.concat('?itemID=',itemID,'&headLibrarianID=',librarianID))
+          .then(response => {
+              this.itemID = ''
+              this.librarianID = ''
+              this.errorMsg = ''
+              window.location.reload();
+          })
+          .catch(e => {
+              var errorMsg = e
+              console.log(errorMsg)
+              this.errorMsg = errorMsg
+          })
+        }
     }
 }

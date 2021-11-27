@@ -696,6 +696,29 @@ public class ItemService {
            OTHER GENERAL ITEM METHODS - JULIE
 	 ****************************************************/
 	
+	
+	public Item makeItemBorrowable(int itemID, int userID) throws IllegalArgumentException {
+		if (userID < 0) {
+			throw new IllegalArgumentException("User ID cannot be negative.");
+		} else if (headLibrarianRepository.existsById(userID)) {
+			Item specificItem = itemRepository.findItemById(itemID);
+			if (itemID < 0) {
+				throw new IllegalArgumentException("Item ID cannot be negative.");
+			} else if(itemRepository.existsItemById(itemID)) {
+				specificItem.setIsBorrowed(false);
+				specificItem.setIsDamaged(false);
+				specificItem.setIsArchived(false);
+			} else {
+				throw new IllegalArgumentException("Item ID does not exist.");
+			}
+			
+			return specificItem;
+			
+		} else {
+			throw new IllegalArgumentException("Must be a head librarian to proceed.");
+		}
+	}
+	
 	/**
 	 * Sets an item as damaged and cannot be borrowed
 	 * @param itemId
@@ -1035,6 +1058,8 @@ public class ItemService {
 		Album album=(Album)albumer;
 		album.setArtist(artist);
 		album.setTitle(title);
+		itemRepository.save(album);
+		albumRepository.save(album);
 		return album;
 	}
 	

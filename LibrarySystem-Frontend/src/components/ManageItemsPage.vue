@@ -20,13 +20,13 @@
 			<input class="text" v-model="itemID_ar" placeholder="Enter item ID" required="">
 			<input class="text" v-model="librarianID_ar" placeholder="Enter user ID" required="">
 			<button @click="archiveItem(itemID_ar, librarianID_ar)">Move to Archived</button>
-			<button >Remove from Archived</button> <!-- missing method -->
+			<button @click="makeAvailable(itemID_ar, librarianID_ar)">Remove from Archived</button>
 		</form>
 		<form>
 			<input class="text" name="itemID_d" placeholder="Enter item ID" required="">
 			<input class="text" name="userID_d" placeholder="Enter user ID" required="">
 			<button @click="damageItem(itemID_d, librarianID_d)">Move to Damaged</button>
-			<button >Remove from Damaged</button>
+			<button @click="makeAvailable(itemID_d, librarianID_d)">Remove from Damaged</button>
 		</form>
 		<form>
 			<input type="text" v-model="itemName" placeholder="Enter item name" required="">
