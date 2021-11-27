@@ -1,5 +1,4 @@
 import axios from 'axios'
-import e from 'express'
 var config = require('../../config')
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
@@ -14,17 +13,17 @@ var AXIOS = axios.create({
     name: 'manageItem',
     data () {
       return {
-        itemID = '',
-        itemType = '',
-        itemName = '',
-        itemAuthor = '',
+        itemID: '',
+        itemType: '',
+        itemName: '',
+        itemAuthor: '',
 
-        patronID = '',
+        patronID: '',
         librarians: [],
-        librarianID = '',
+        librarianID: '',
 
-        response= [],
-        errorMsg = '',
+        response: [],
+        errorMsg: '',
       }
     },
 
