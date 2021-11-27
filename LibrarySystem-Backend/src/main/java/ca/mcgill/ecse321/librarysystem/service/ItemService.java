@@ -81,32 +81,42 @@ public class ItemService {
 						if(a.getTitle().equals(itemName)) {
 							List<Album> albums=patronOfInterest.getBorrowedAlbums();
 							albums.add(a);
-							patronOfInterest.setBorrowedAlbums(albums); 
+							patronOfInterest.setBorrowedAlbums(albums);
 							patronRepository.save(patronOfInterest);
+							a.setIsBorrowed(true);
+							itemRepository.save(a);
+							albumRepository.save(a);
 							return a;
 						}
 					}
-					
 					for (Movie m : movieRepository.findAll()) {
 						if(m.getTitle().equals(itemName)) {
 							List<Movie> movies=patronOfInterest.getBorrowedMovies();
 							movies.add(m);
 							patronOfInterest.setBorrowedMovies(movies);
 							patronRepository.save(patronOfInterest);
+							m.setIsBorrowed(true);
+							itemRepository.save(m);
+							movieRepository.save(m);
 							return m;
 						}
 					}
 					
 					for (Book b : bookRepository.findAll()) {
 						if(b.getTitle().equals(itemName)) {
+							itemOfInterest.setIsBorrowed(true);
+							b.setIsBorrowed(true);
+							itemRepository.save(itemOfInterest);
+							bookRepository.save(b);
+							
 							List<Book> books=patronOfInterest.getBorrowedBooks();
 							books.add(b);
 							patronOfInterest.setBorrowedBooks(books);
 							patronRepository.save(patronOfInterest);
+
 							return b;
 						}
 					}
-					
 				}
 				else {
 					throw new IllegalArgumentException("The item you are looking for has already been borrowed.");

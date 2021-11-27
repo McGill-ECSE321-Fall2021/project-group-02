@@ -453,7 +453,7 @@ public class ItemRestController {
 		if (i == null) {
 			throw new IllegalArgumentException("Item does not exist.");
 			}
-		ItemDto itemDto = new ItemDto(i.getId());
+		ItemDto itemDto = new ItemDto(i.getId(), i.getIsArchived(), i.getIsBorrowed(), i.getIsDamaged());
 		return itemDto;
 	}
 	
