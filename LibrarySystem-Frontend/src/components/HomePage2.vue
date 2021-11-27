@@ -1,7 +1,7 @@
 <template>
   <div class="welcomepage">
       <div class="header">
-				 <router-link to="/"><h2>Montreal Library</h2></router-link>
+				 <router-link to="/homeAfterLogin"><h2>Montreal Library</h2></router-link>
             
 				    <router-link to="/userProfile"><a class="btn">User Profile</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>

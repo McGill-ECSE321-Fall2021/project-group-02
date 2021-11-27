@@ -22,6 +22,8 @@ var AXIOS = axios.create({
         librarians: [],
         librarianID: '',
 
+        itemDate:'',
+
         response: [],
         errorMsg: '',
       }
@@ -31,8 +33,19 @@ var AXIOS = axios.create({
 
     },
     methods: {
-        borrowItem: function(itemID, patronID) {
-            // sami service method requires the item name?
+
+        borrowItem: function(itemID, itemName, patronID) {
+            AXIOS.post('/borrow/'.concat(itemName,'/?itemId=', itemID, '&patronId=',patronID))
+            .then(response => {
+              this.itemName= ''
+              this.itemID = ''
+              this.patronID = ''
+            })
+            .catch(e => {
+              var errorMsg = e
+              console.log(errorMsg)
+              this.errorMsg = errorMsg
+            })
         },
 
         returnItem: function(itemID, patronID) {
@@ -81,7 +94,7 @@ var AXIOS = axios.create({
           })
         },
 
-        createItem: function(itemType, itemName, itemAuthor, librarianID) {
+        createItem: function(itemType, itemName, itemAuthor, itemDate) {
           if (itemType.localeCompare("Book") == 0) {
             AXIOS.post('/createBook/'.concat(itemName, '/?authorName=', itemAuthor, '&isArchived=', false))
             .then(response => {
@@ -121,9 +134,28 @@ var AXIOS = axios.create({
 
             // not sure? Journals and Newspapers require date isntead of author
           } else if (itemType.localeCompare("Journal") == 0) {
+            AXIOS.post('/createJournal/'.concat(itemName, '/?journalDate=', itemDate))
+            .then(response => {
+              this.itemName = ''
+              this.itemDate=''
+            })
+            .catch(e => {
+            var errorMsg = e
+            console.log(errorMsg)
+            this.errorMsg = errorMsg
+            })
 
           } else if (itemType.localeCompare("Newspaper") == 0) {
-
+            AXIOS.post('/createNewspaper/'.concat(itemName, '/?newspaperDate=', itemDate))
+            .then(response => {
+              this.itemName = ''
+              this.itemDate=''
+            })
+            .catch(e => {
+            var errorMsg = e
+            console.log(errorMsg)
+            this.errorMsg = errorMsg
+            })
           }
         },
 

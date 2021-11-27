@@ -55,8 +55,9 @@ export default {
       AXIOS.post('/onlineAccountNew/'.concat(firstName, '/', lastName, '/', address, '/', city, '/', username, '/', password, '/', email))
       .then(response => 
         {
-          this.onlineAccounts.push(response.data)
-          this.errorOnlineAccount= ''
+          this.onlineAccounts.push(response.data);
+          this.errorOnlineAccount= '';
+          window.location.reload();
         })
         .catch(e => {
           var errorMsg = e.response.data.message
@@ -84,8 +85,9 @@ export default {
       createAccountExistingUser: function(username, password, email, userId) {
         AXIOS.post('/onlineAccountExisting/'.concat(userId, '/', username, '/', password, '/', email)).then(response => 
           {
-            this.onlineAccounts.push(response.data)
-            this.errorOnlineAccount= ''
+            this.onlineAccounts.push(response.data);
+            this.errorOnlineAccount= '';
+            window.location.reload();
           })
           .catch(e => {
             var errorMsg = e.response.data.message
