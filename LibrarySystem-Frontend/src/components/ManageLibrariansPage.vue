@@ -12,7 +12,7 @@
 					<h3>List of Librarians</h3>
 					<form>
 						<input class="search" v-model="librarianName" placeholder="Search librarian">
-						 <button  @click="searchLibrarian(librarianName)">Search</button>
+						 <button class="srch" @click="searchLibrarian(librarianName)">Search</button>
 						<div class="dropdown">
 						<button class="dropdownbutton">Sort By</button>
 							<div class="dropdown-content">
@@ -211,6 +211,13 @@ th:nth-child(5) {
 	margin: 20px auto;
 	padding: 10px;
 	border-radius: 5px;
+}
+.srch{
+	background-color: rgb(133, 1, 1);
+	color: white;
+}
+.srch:hover{
+	background-color: rgb(87, 1, 1);
 }
 .text{
 	width: 140px;
