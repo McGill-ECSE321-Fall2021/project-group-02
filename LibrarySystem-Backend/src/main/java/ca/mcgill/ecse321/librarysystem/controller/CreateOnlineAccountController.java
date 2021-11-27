@@ -50,6 +50,17 @@ public class CreateOnlineAccountController {
 		return convertToDto(service.getloggedInAccount());
 	}
 	
+	/**
+	 * Gets a list of all the books in the library software system
+	 * @return
+	 * 
+	 * @author Vy-Kha
+	 */
+	@GetMapping(value = { "/onlineAccountLoggedInUser", "/onlineAccountLoggedInUser/" })
+	public String getLoggedInAccountUser() {
+		return service.getloggedInAccountUser().replace("class ca.mcgill.ecse321.librarysystem.model.", "");
+	}
+	
 	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})
 	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id, @PathVariable(name = "username") String username, 
 			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {

@@ -121,6 +121,16 @@ public class CreateOnlineAccountService {
 	}
 	
 	/**
+	 * Returns the online account user type
+	 * @param 
+	 * @return Online account for the logged in user
+	 * @author Vy-Kha
+	 */
+	public String getloggedInAccountUser() throws IllegalArgumentException {
+		return getloggedInAccount().getUser().getClass().toString();
+	}
+	
+	/**
 	 * Creates an online account for an existing user.
 	 * @param id, username, password, email
 	 * @return Online account for an existing user
