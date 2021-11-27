@@ -36,6 +36,28 @@ public class EmploymentRestController {
 		return service.getAllLibrariansByFirstAndLastName(fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
+	/**
+	 * @author vy-khahuynh
+	 * @param id id of the user
+	 * @return list of all librarians sharing the same first and last name
+	 * @author vy-khahuynh
+	 */
+	@GetMapping(value = { "/librariansSort", "/librariansSort/" })
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@RequestParam (name="mode") String mode) throws IllegalArgumentException{
+		return service.sortLibrarian(mode).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * @author vy-khahuynh
+	 * @param id id of the user
+	 * @return list of all librarians sharing the same first and last name
+	 * @author vy-khahuynh
+	 */
+	@GetMapping(value = { "/librarianSearch", "/librarianSearch/" })
+	public List<LibrarianDto> searchLibrarian(@RequestParam (name="librarianName") String name) throws IllegalArgumentException{
+		return service.searchLibrarian(name).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
 
 	/**
 	 * @author vy-khahuynh
@@ -44,7 +66,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians", "/librarians/" })
-	public List<LibrarianDto> getAllLibrarians() {
+	public List<LibrarianDto> getAllLibrarians() throws IllegalArgumentException{
 		return service.getAllLibrarians().stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	

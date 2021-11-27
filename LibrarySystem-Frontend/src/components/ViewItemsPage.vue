@@ -12,9 +12,17 @@
 					<h3>List of Contents</h3>
 					
 					<form>
-						<input type="search" name="srch" placeholder="Search library contents">
+						<input type="search" v-model="searchTerm" placeholder="Search library contents">
+						<select type= "text" v-model="searchType">
+							<option disabled value="">Select search category</option>
+							<option>None</option>
+							<option>Creator</option>
+							<option>Name</option>
+						</select>
+						<button @click ="searchItems(searchTerm, searchType)">Search</button>
+						
 						<div class="dropdown">
-							<button class="dropdownbutton">Category</button>
+							<button class="dropdownbutton">Category ▼</button>
 							<div class="dropdown-content">
 								<a href="#/items">All</a>
 								<a href="#/items/albums">Albums</a>
@@ -131,7 +139,21 @@ body{
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
 }
-
+button {
+  background-color: rgb(133, 1, 1);
+  color: white;
+  padding: 3px;
+  font-size: 16px;
+  border: none;
+}
+button:active{
+	background-color: rgb(87, 1, 1);
+}
+select{
+	background-color: white;
+	color: black;
+	height: 29px;
+}
 h2{
 	text-align: left;
 	color:white;
@@ -160,7 +182,6 @@ table {
 	width: 100%;
 	border-collapse:separate;
 	border-radius: 5px;
-	
 }
 td{
 	height: 10px;
@@ -215,11 +236,10 @@ th:nth-child(3) {
 
 input{
 	width: 350px;
-	height: 20px;
+	height: 30px;
 	background: white;
 	margin: 20px auto;
 	padding: 10px;
-	border-radius: 5px;
 }
 
 .dropdownbutton {
@@ -264,7 +284,6 @@ input{
 .header a:hover{
 	color: black;
 }
-
 .btn{
   float:right;
   margin: 45px 5px;

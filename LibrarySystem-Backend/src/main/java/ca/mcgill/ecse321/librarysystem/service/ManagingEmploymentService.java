@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -246,6 +247,35 @@ public class ManagingEmploymentService {
 		else return allLibrarians;
 	}
 	
+	public List<Librarian> searchLibrarian(String name) throws IllegalArgumentException{
+		error="";
+		List<Librarian> allLibrarians = new ArrayList<Librarian>();
+		
+		if(!verifyStringLength(name) || !verifyStringLength(name)) {
+			error += "First & last name cannot be empty or too long.";
+		}
+		
+		if(name.isBlank()) {
+			for(Librarian l : librarianRepository.findAll()) {
+				allLibrarians.add(l);
+			}
+			return allLibrarians; 
+		}
+		
+		if (error.length() > 0) throw new IllegalArgumentException(error);
+		
+		for(Librarian l : librarianRepository.findAll()) {
+			String fullname = l.getFirstName() + " " + l.getLastName();
+			if((fullname.toLowerCase()).contains(name.toLowerCase())) {
+				allLibrarians.add(l);
+			}
+		}
+		if(allLibrarians.size() == 0) {
+			throw new IllegalArgumentException("No librarians with such first and last name.");
+		}
+		else return allLibrarians;
+	}
+	
 	/**
 	 * @author vy-khahuynh
 	 * @param h id of the user
@@ -259,6 +289,100 @@ public class ManagingEmploymentService {
 				throw new IllegalArgumentException("No librarians with ID: " + id);
 			}
 			else return l;
+	}
+	
+	/**
+	 * @author vy-khahuynh
+	 * @param h id of the user
+	 * @param id id of the desired librarian
+	 * @return the librarian with that id if they exist	
+	 */
+	@Transactional
+	public List<Librarian> sortLibrarian(String mode) throws IllegalArgumentException{
+		List<Librarian> libs = new ArrayList<Librarian>();
+		List<Librarian> initial = new ArrayList<Librarian>();
+		List<String> fn = new ArrayList<String>();
+		List<String> ln = new ArrayList<String>();
+		List<Integer> id = new ArrayList<Integer>();
+		
+		for(Librarian l : getAllLibrarians()) {
+			fn.add(l.getFirstName());
+			ln.add(l.getLastName());
+			id.add(l.getId());
+			initial.add(l);
+		}
+		
+		switch(mode) {
+		case "fAZ":  
+			Collections.sort(fn);
+			for(String s : fn) {
+				for(Librarian l : initial) {
+					if(l.getFirstName().equals(s) && id.contains(l.getId())) {
+						libs.add(l);
+						id.remove(Integer.valueOf(l.getId()));
+					}
+				}
+			}
+			return libs;
+		case "fZA":
+			Collections.sort(fn,Collections.reverseOrder());
+			
+			for(String s : fn) {
+				for(Librarian l : initial) {
+					if(l.getFirstName().equals(s) && id.contains(l.getId())) {
+						libs.add(l);
+						id.remove(Integer.valueOf(l.getId()));
+					}
+				}
+			}
+			return libs;
+		case "lAZ":
+			Collections.sort(ln);
+			for(String s : ln) {
+				for(Librarian l : initial) {
+					if(l.getLastName().equals(s) && id.contains(l.getId())) {
+						libs.add(l);
+						id.remove(Integer.valueOf(l.getId()));
+					}
+				}
+			}
+			return libs;
+		case "lZA":
+			Collections.sort(ln,Collections.reverseOrder());
+			
+			for(String s : ln) {
+				for(Librarian l : initial) {
+					if(l.getLastName().equals(s) && id.contains(l.getId())) {
+						libs.add(l);
+						id.remove(Integer.valueOf(l.getId()));
+					}
+				}
+			}
+			return libs;
+		case "12":
+			Collections.sort(id);
+			for(Integer i : id) {
+				for(Librarian l : initial) {
+					if(l.getId() == i) {
+						libs.add(l);
+					}
+				}
+			}
+			return libs;
+		case "21":
+			Collections.sort(id,Collections.reverseOrder());
+			
+			for(Integer i : id) {
+				for(Librarian l : initial) {
+					if(l.getId() == i) {
+						libs.add(l);
+					}
+				}
+			}
+			return libs;
+			
+		default: return initial;
+		}
 	}
 	
 	
@@ -359,4 +483,6 @@ public class ManagingEmploymentService {
 		}
 		return resultList;
 	}
+	
+	
 }

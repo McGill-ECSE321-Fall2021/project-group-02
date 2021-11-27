@@ -1,14 +1,19 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.librarysystem.dto.BookDto;
 import ca.mcgill.ecse321.librarysystem.dto.OnlineAccountDto;
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.service.CreateOnlineAccountService;
@@ -23,14 +28,43 @@ public class CreateOnlineAccountController {
 			@PathVariable(name = "lastName") String lastName, @PathVariable(name = "address") String address, 
 			@PathVariable(name = "city") String city, @PathVariable(name = "username") String username, 
 			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
-		OnlineAccount account = service.createOnlineAccountNewUser(firstName, lastName, address, city, username, password, email);
+		OnlineAccount account = service.createOnlineAccountNewUser(firstName, lastName, address, city, username, password, email, false);
 		return convertToDto(account);
+	}
+	
+	@PostMapping(value = {"/logIn/{username}/{password}", "/logIn/{username}/{password}/"})
+	public OnlineAccountDto logIn(@PathVariable(name = "username") String username, 
+			@PathVariable(name = "password") String password) throws IllegalArgumentException {
+		OnlineAccount account = service.logIn(username, password, true);
+		return convertToDto(account);
+	}
+	
+	/**
+	 * Gets a list of all the books in the library software system
+	 * @return
+	 * 
+	 * @author Sami
+	 */
+	@GetMapping(value = { "/onlineAccountLoggedIn", "/onlineAccountLoggedIn/" })
+	public OnlineAccountDto getLoggedInAccount() {
+		return convertToDto(service.getloggedInAccount());
+	}
+	
+	/**
+	 * Gets a list of all the books in the library software system
+	 * @return
+	 * 
+	 * @author Vy-Kha
+	 */
+	@GetMapping(value = { "/onlineAccountLoggedInUser", "/onlineAccountLoggedInUser/" })
+	public String getLoggedInAccountUser() {
+		return service.getloggedInAccountUser().replace("class ca.mcgill.ecse321.librarysystem.model.", "");
 	}
 	
 	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})
 	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id, @PathVariable(name = "username") String username, 
 			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
-		OnlineAccount account = service.createOnlineAccountExistingUser(id, username, password, email);
+		OnlineAccount account = service.createOnlineAccountExistingUser(id, username, password, email, false);
 		return convertToDto(account);
 	}
 	
@@ -62,7 +96,7 @@ public class CreateOnlineAccountController {
 		if (acc==null) {
 			throw new IllegalArgumentException("There is no such account!");
 		}
-		OnlineAccountDto accountDto = new OnlineAccountDto(acc.getUsername(), acc.getPassword(), acc.getEmail(),acc.getUser().getId(), acc.getUser().getAddress(), acc.getUser().getFirstName(), acc.getUser().getLastName(), acc.getUser().getBalance());                          
+		OnlineAccountDto accountDto = new OnlineAccountDto(acc.getUsername(), acc.getPassword(), acc.getEmail(),acc.getUser().getId(), acc.getUser().getAddress(), acc.getUser().getFirstName(), acc.getUser().getLastName(), acc.getUser().getBalance(), acc.getUser().getCity(), acc.getLoggedIn(), acc.getId());                          
 		return accountDto;
 	}
 }

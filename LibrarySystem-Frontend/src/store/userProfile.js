@@ -1,7 +1,6 @@
-/*
-import axios from 'axois'
+import axios from 'axios'
+var config = require('../../config')
 
-var config = require(../../config)
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 
@@ -10,26 +9,21 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-created: function() {
-    // Initializing persons from backend
-    AXIOS.delete('/deleteOnlineAccountUsername')
-    .then(response => {
-      
-    })
-    .catch(e => {
-      
-    })
-  }
-
-
-function OnlineAccountDto(username, password, email, user){
+function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance, city, loggedIn, accountId) {
   this.username = username;
   this.password = password;
   this.email = email;
-  this.user = user;
+  this.userId = userId;
+  this.address=address;
+	this.firstName=firstName;
+	this.lastName=lastName;
+	this.balance=balance;
+  this.city=city;
+  this.loggedIn=loggedIn;
+  this.accountId=accountId;
 }
 
-function PatronDto(id, address, city, firstName, lastName, balance){
+function PatronDto(id, address, city, firstName, lastName, balance) {
   this.id = id;
   this.address = address;
   this.city = city;
@@ -38,23 +32,23 @@ function PatronDto(id, address, city, firstName, lastName, balance){
   this.balance = balance;
 }
 
-function HeadLibrarianDto(onlineAccount,firstName, lastName, address, city, balance, weeklySchedule, id){
+function HeadLibrarianDto(onlineAccount, firstName, lastName, address, city, balance, weeklySchedule, id) {
   this.onlineAccount = onlineAccount;
   this.firstName = firstName;
   this.lastName = lastName;
   this.address = address;
-  this.city = city; 
+  this.city = city;
   this.balance = balance;
   this.weeklySchedule = weeklySchedule;
   this.id = id;
 }
 
-function LibrarianDto(onlineAccount,firstName, lastName, address, city, balance, weeklySchedule, id){
+function LibrarianDto(onlineAccount, firstName, lastName, address, city, balance, weeklySchedule, id) {
   this.onlineAccount = onlineAccount;
   this.firstName = firstName;
   this.lastName = lastName;
   this.address = address;
-  this.city = city; 
+  this.city = city;
   this.balance = balance;
   this.weeklySchedule = weeklySchedule;
   this.id = id;
@@ -62,28 +56,27 @@ function LibrarianDto(onlineAccount,firstName, lastName, address, city, balance,
 
 export default {
   name: 'userprofile',
-  data () {
+  data() {
     return {
-      newUsername:'',
-      newPassword:'',
-      newEmail:'',
+      newUsername: '',
+      newPassword: '',
+      newEmail: '',
       response: [],
       email: '',
       password: '',
       username: '',
-      emailUsername: ''
+      emailUsername: '',
+      onlineAccountLogged:[],
     }
   },
-  //...
+
+  created: function () {
+    AXIOS.get('/onlineAccountLoggedIn')
+      .then(response => {
+        this.onlineAccountLogged.push(response.data)
+      })
+  },
+  
+
 }
 
-methods: {
-    createPerson: function (personName) {
-      // Create a new person and add it to the list of people
-      var p = new PersonDto(personName)
-      this.persons.push(p)
-      // Reset the name field for new people
-      this.newPerson = ''
-    }
-  }
-  */

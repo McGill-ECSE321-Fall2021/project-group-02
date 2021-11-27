@@ -72,13 +72,13 @@ export default {
           this.errorLibrarian = errorMsg
         })
     },
-    searchLibrarian: function (librarianName) {
-      AXIOS.post('/librariansfn/'.concat('?firstname=',librarianName))
+    searchLibrarian: function (name) {
+      AXIOS.get('/librarianSearch/'.concat('?librarianName=',name))
             .then(response => {
             // JSON responses are automatically parsed.
-              this.librarians.push(response.data)
+              this.librarians = response.data
               this.errorLibrarian = ''
-              this.librarianName = ''
+              this.name=''
             })
             .catch(e => {
               var errorMsg = e.response.data.message
@@ -86,10 +86,24 @@ export default {
               this.errorLibrarian = errorMsg
             })
         },
+        sortLibrarian: function(mode){
+          AXIOS.get('/librariansSort/'.concat('?mode=',mode))
+         .then(response => {
+           this.librarians = response.data
+            this.errorLibrarian = ''
+            this.userid = ''
+            this.validationid = ''
+          })
+          .catch(e => {
+            var errorMsg = e.response.data.message
+            console.log(errorMsg)
+            this.errorLibrarian = errorMsg
+          })
+        },
     deleteLibrarian: function(userid,validationid){
      AXIOS.delete('/deleteLibrarian/'.concat(validationid,'?LibID=',userid))
     .then(response => {
-       this.librarians.push(response.data)
+      window.location.reload();
        this.errorLibrarian = ''
        this.userid = ''
        this.validationid = ''
