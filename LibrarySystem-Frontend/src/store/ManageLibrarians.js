@@ -87,7 +87,7 @@ export default {
             })
         },
         sortLibrarian: function(mode){
-          AXIOS.get('/librarianssort/'.concat('?mode=',mode))
+          AXIOS.get('/librariansSort/'.concat('?mode=',mode))
          .then(response => {
            this.librarians = response.data
             this.errorLibrarian = ''

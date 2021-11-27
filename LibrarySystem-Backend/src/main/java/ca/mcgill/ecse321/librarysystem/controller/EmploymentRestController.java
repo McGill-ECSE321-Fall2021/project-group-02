@@ -42,7 +42,7 @@ public class EmploymentRestController {
 	 * @return list of all librarians sharing the same first and last name
 	 * @author vy-khahuynh
 	 */
-	@GetMapping(value = { "/librarianssort", "/librarianssort/" })
+	@GetMapping(value = { "/librariansSort", "/librariansSort/" })
 	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@RequestParam (name="mode") String mode) throws IllegalArgumentException{
 		return service.sortLibrarian(mode).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
@@ -66,7 +66,7 @@ public class EmploymentRestController {
 	 * @author vy-khahuynh
 	 */
 	@GetMapping(value = { "/librarians", "/librarians/" })
-	public List<LibrarianDto> getAllLibrarians() {
+	public List<LibrarianDto> getAllLibrarians() throws IllegalArgumentException{
 		return service.getAllLibrarians().stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
