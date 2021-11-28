@@ -24,7 +24,7 @@ There are six team members in Group 02:
 | Julie Chen | Documentation Lead | 12h | 20h |  |  |
 | Hyunbum Cho | Software Developer | 12h | 20h |  |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h |  |  |
-| Niilo Vuokila | Software Developer | 20h | 20h |  |  |
+| Niilo Vuokila | Software Developer | 20h | 20h | 23h |  |
 | John Park | Software Developer | 12h | 18h |  |  |
  
  ### Deliverable 1
@@ -59,5 +59,5 @@ The project report for deliverable 3 can be found [here.](https://github.com/McG
 | Julie Chen | Creation of the UI 'Manage Items' page and implementation of the corresponding JavaScript for the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods, as well as the creation of additional service and controller methods required for functionality. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 30h |
 | Hyunbum Cho | | |
 | Vy-Kha Huynh | | |
-| Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs, service and controller methods in backend. | 23h |
+| Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs, service, and controller methods in backend. | 23h |
 | John Park | | |
