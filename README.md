@@ -4,8 +4,7 @@ The goal of this project is to design a multi-tier software solution to implemen
 This system will be implemented by a team of 6 individuals and involved the use of requirements engineering, software development and design, system validation, and automatic software delivery.
 
 ## Running the Project
-The backend of this project can be run locally by cloning this GitHub repository using the URL: https://github.com/McGill-ECSE321-Fall2021/project-group-02.git <br />
-The `LibrarySystem-Backend` repository can then be run as a Spring Boot App. The application will be hosted at http://localhost:8080/ and can be tested using the Postman application.
+The backend of this project can be run locally by cloning this GitHub repository using the URL: https://github.com/McGill-ECSE321-Fall2021/project-group-02.git. The `LibrarySystem-Backend` repository can then be run as a Spring Boot App. The application will be hosted at http://localhost:8080/ and can be tested using the Postman application. Once the backend is running, the frontend (webpage) of the project can be run with all service functionalities by navigating to the `LibrarySystem-Frontend` and running `npm run dev` in the terminal.
 
 ## About Us
 There are six team members in Group 02: 
@@ -51,4 +50,14 @@ There are six team members in Group 02:
 | Vy-Kha Huynh | Implementation of business method "createLibrarian", "createHeadLibrarian", "deleteLibrarian" and other service methods ("getAllLibrarians", "getLibrariansByFirstAndLastName", "getLibrarianByFirstName" , "getLibrarianByLastName", "getLibrarianByID"), expoed them to RestAPI, wrote unit tests for them, and updated Software Quality Assurance Plan and Report | 20h |
 | Niilo Vuokila | Implemented controller methods and unit tests for "view library contents", Fixed deliverable 1 database (JPA) and persistence layer unit test issues. Integration tests for "discard item" and "return items" use cases. | 20h |
 | John Park | Implementation of business method "archiveItem" and other service methods, exposed them to RestAPI, wrote unit tests for them, and updated the Software Quality Assurance Plan and Report | 18h |
- 
+
+### Deliverable 3
+The project report for deliverable 3 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report-Deliverable-3)
+| Name | Contributions | Hours |
+| --- | --- | --- |
+| Sami Ait Ouahmane | Calling of the borrowItem method for the 'Manage Items' page. Creation of the architecture model(s) | |
+| Julie Chen | Creation of the UI 'Manage Items' page and calling of the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 24h |
+| Hyunbum Cho | | |
+| Vy-Kha Huynh | | |
+| Niilo Vuokila | | |
+| John Park | | |
