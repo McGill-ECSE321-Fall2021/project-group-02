@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '@/components/HomePage'
-<<<<<<< HEAD
-// import SignUpPage from '@/components/SignUpPage'
-=======
 import HomePageLogin from '@/components/HomePage2'
 import SignUpPage from '@/components/SignUpPage'
->>>>>>> 45b72fc90eab9467fd9005c5a02f6ac9f74c4abe
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
 import CreatePatron from '@/components/CreatePatron'
@@ -28,13 +24,6 @@ export default new Router({
       name: 'WelcomePage',
       component: HomePage
     },
-<<<<<<< HEAD
-    // {
-    //   path: '/signup',
-    //   name: 'SignUpPage',
-    //   component: SignUpPage
-    // },
-=======
     {
       path: '/homeAfterLogin',
       name: 'HomeAfterLogin',
@@ -45,7 +34,6 @@ export default new Router({
       name: 'SignUpPage',
       component: SignUpPage
     },
->>>>>>> 45b72fc90eab9467fd9005c5a02f6ac9f74c4abe
     {
 
       path: '/manageLibrarySchedule',
