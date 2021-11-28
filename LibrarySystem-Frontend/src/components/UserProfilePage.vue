@@ -14,7 +14,7 @@
               <h3>Template Name</h3>
               <a><router-link to="/userProfile">Profile</router-link></a>
               <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
-              <a href="">Sign out</a>
+              <router-link to="/"><button @click="signOutUser()">Sign out</button></router-link>
             </div>
           </div>
 
@@ -56,6 +56,7 @@
 								    <td style="color: black;"> {{ onlineAccount.balance }} </td>
 							    </tr>
 					      </table>
+                
               </div>
               <div class="row">
                 <a href="#popup3" class="square-button">Change password</a>

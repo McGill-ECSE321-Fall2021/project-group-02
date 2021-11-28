@@ -39,6 +39,11 @@ public class CreateOnlineAccountController {
 		return convertToDto(account);
 	}
 	
+	@PostMapping(value = {"/signOut", "/signOut/"})
+	public void signOut() throws IllegalArgumentException {
+		service.signOutAccount();
+	}
+	
 	/**
 	 * Gets a list of all the books in the library software system
 	 * @return

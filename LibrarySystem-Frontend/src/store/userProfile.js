@@ -66,6 +66,7 @@ export default {
       password: '',
       username: '',
       emailUsername: '',
+      errorMsg: '',
       onlineAccountLogged:[],
     }
   },
@@ -76,6 +77,20 @@ export default {
         this.onlineAccountLogged.push(response.data)
       })
   },
+
+  methods: {
+    signOutUser: function(){
+      AXIOS.post("/signOut").then(response =>
+        {
+          this.errorMsg= '';
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
+    },
+  }
   
 
 }
