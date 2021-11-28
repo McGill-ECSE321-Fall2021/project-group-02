@@ -59,5 +59,5 @@ The project report for deliverable 3 can be found [here.](https://github.com/McG
 | Julie Chen | Creation of the UI 'Manage Items' page and calling of the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 24h |
 | Hyunbum Cho | | |
 | Vy-Kha Huynh | | |
-| Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs in backend | 23h |
+| Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs, service and controller methods in backend. | 23h |
 | John Park | | |
