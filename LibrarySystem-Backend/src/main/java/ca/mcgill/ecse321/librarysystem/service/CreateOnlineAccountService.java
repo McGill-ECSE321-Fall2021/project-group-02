@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +32,7 @@ public class CreateOnlineAccountService {
 	 * @throws throws IllegalArgumentException if inputs are empty, username or email is already in use or email or password is invalid.
 	 * @author Hyunbum Cho
 	 */
-	public OnlineAccount createOnlineAccountNewUser(String firstName, String lastName, String address, String city, String username, String password, String email) throws IllegalArgumentException {
+	public OnlineAccount createOnlineAccountNewUser(String firstName, String lastName, String address, String city, String username, String password, String email, boolean loggedIn) throws IllegalArgumentException {
 		String error = "";
 		
 		// create online account
@@ -69,6 +71,7 @@ public class CreateOnlineAccountService {
 		account.setPassword(password);
 		account.setUsername(username);
 		account.setUser(patron);
+		account.setLoggedIn(loggedIn);
 		onlineAccountRepository.save(account);
 		
 		patron.setOnlineAccount(account);
@@ -79,13 +82,72 @@ public class CreateOnlineAccountService {
 	}
 	
 	/**
+	 * Returns the online account associated with the username and password
+	 * @param username, password
+	 * @return Online account for the existing user
+	 * @throws throws IllegalArgumentException if inputs are empty or username or password are invalid.
+	 * @author Sami Ait Ouahmane
+	 */
+	public OnlineAccount logIn(String username, String password, boolean loggedIn) throws IllegalArgumentException {
+		String error = "";
+		
+		// log in
+		// verify empty strings
+		if(!verifyStringLength(username)) error += "Username cannot be empty or too long.\n";
+		// verify username, email exists
+		if(verifyUsernameExists(username)) error += "There is no account with this username.\n";
+		if (error.length() > 0) throw new IllegalArgumentException(error);
+		OnlineAccount account = findAccountByUsername(username);
+		if(!verifyPassword(account, password)) error += "The password is incorrect.\n";
+		
+		if (error.length() > 0) throw new IllegalArgumentException(error);
+		
+		account.setLoggedIn(loggedIn);
+		onlineAccountRepository.save(account);
+		
+		return account;
+	}
+	
+	/**
+	 * Returns the online account that is logged in
+	 * @param 
+	 * @return Online account for the logged in user
+	 * @author Sami Ait Ouahmane
+	 */
+	public OnlineAccount getloggedInAccount() throws IllegalArgumentException {
+		List<OnlineAccount> accountList=onlineAccountRepository.findOnlineAccountsByLoggedInTrue();
+		OnlineAccount account=accountList.get(accountList.size()-1);
+		return account;
+	}
+	
+	/**
+	 * Returns the online account user type
+	 * @param 
+	 * @return Online account for the logged in user
+	 * @author Vy-Kha
+	 */
+	public String getloggedInAccountUser() throws IllegalArgumentException {
+		return getloggedInAccount().getUser().getClass().toString();
+	}
+	
+	/**
+	 * Returns the online account user id
+	 * @param 
+	 * @return id of logged in account
+	 * @author Vy-Kha
+	 */
+	public int getloggedInAccountID() throws IllegalArgumentException {
+		return getloggedInAccount().getUser().getId();	
+		}
+	
+	/**
 	 * Creates an online account for an existing user.
 	 * @param id, username, password, email
 	 * @return Online account for an existing user
 	 * @throws throws IllegalArgumentException if inputs are empty, username or email is already in use, email or password is invalid, id is invalid or user already has an online account.
 	 * @author Hyunbum Cho
 	 */
-	public OnlineAccount createOnlineAccountExistingUser(int id, String username, String password, String email) throws IllegalArgumentException {
+	public OnlineAccount createOnlineAccountExistingUser(int id, String username, String password, String email, boolean loggedIn) throws IllegalArgumentException {
 		String error = "";
 		// verify ID
 		UserEntity user = findUserById(id);
@@ -119,6 +181,7 @@ public class CreateOnlineAccountService {
 		account.setPassword(password);
 		account.setUsername(username);
 		account.setUser(user);
+		account.setLoggedIn(loggedIn);
 		onlineAccountRepository.save(account);
 		user.setOnlineAccount(account);
 		// --------------------------------------------------------------

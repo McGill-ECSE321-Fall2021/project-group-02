@@ -27,6 +27,7 @@ public class OnlineAccount
   private int id;
   private String password;
   private String email;
+  private boolean loggedIn;
 
   //OnlineAccount Associations
   @OneToOne
@@ -52,12 +53,20 @@ public class OnlineAccount
   {
     password = aPassword;
   }
+  
+  public void setLoggedIn(boolean loggedIn) {
+	  this.loggedIn = loggedIn;
+  }
 
   public String getUsername()
   {
     return username;
   }
 
+  public boolean getLoggedIn() {
+	  return loggedIn;
+  }
+  
   public String getEmail(){
     return email;
   }

@@ -9,7 +9,7 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance) {
+function OnlineAccountDto(username, password, email, userId, address, firstName, lastName, balance, city, loggedIn, accountId) {
   this.username = username;
   this.password = password;
   this.email = email;
@@ -18,6 +18,9 @@ function OnlineAccountDto(username, password, email, userId, address, firstName,
 	this.firstName=firstName;
 	this.lastName=lastName;
 	this.balance=balance;
+  this.city=city;
+  this.loggedIn=loggedIn;
+  this.accountId=accountId;
 }
 
 
@@ -27,27 +30,69 @@ export default {
   data () {
     return {
       onlineAccounts: [],
+      username: '',
+      password: '',
+      usernameLogin: '',
+      passwordLogin: '',
+      usernameExisting: '',
+      passwordExisting: '',
+      emailExisting: '',
+      email: '',
+      userId: '',
+      address: '',
+	    firstName: '',
+	    lastName: '',
+	    balance: '',
+      city: '',
+      errorOnlineAccount: '',
+      accountId: '',
       response: []
     }
   },
 
-  createAccountNewUser: function(username, password, email, userId, address, firstName, lastName, balance) {
-    AXIOS.post('/onlineAccountNew/',null, {params: {username, password, email, userId, address, firstName, lastName, balance}}).then(response => 
-      {
-        this.onlineAccounts.push(response.data)
-        
-      }
-      ).catch(e => {
-      var errorMsg = e.response.data.message
-      console.log(errorMsg)
-      this.errorPerson = errorMsg
-    });
-    
-  }
+  methods: {
+    createAccountNewUser: function(username, password, email, address, city, firstName, lastName) {
+      AXIOS.post('/onlineAccountNew/'.concat(firstName, '/', lastName, '/', address, '/', city, '/', username, '/', password, '/', email))
+      .then(response => 
+        {
+          this.onlineAccounts.push(response.data)
+          this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+      },
+      
+      logInUser: function(username, password) {
+        AXIOS.post('/logIn/'.concat(username, '/', password)).then(response => 
+          {
+            this.onlineAccounts.push(response.data);
+            this.errorOnlineAccount= '';
+            //Needs to be linked to the user profile page
+            this.$router.push("/userProfile");
+          })
+          .catch(e => {
+            var errorMsg = e.response.data.message;
+            console.log(errorMsg);
+            this.errorOnlineAccount = errorMsg;
+          })
+        },
+      
 
-  //created: function () {
-    //Test creating an online account
-    //const oA1= new OnlineAccountDto('sam270','man','sam@larieux.com',3,'2700 rue Des Timonier','Sami','Binks',0)
-    //this.onlineAccounts = [oA1]
-  //},
+      createAccountExistingUser: function(username, password, email, userId) {
+        AXIOS.post('/onlineAccountExisting/'.concat(userId, '/', username, '/', password, '/', email)).then(response => 
+          {
+            this.onlineAccounts.push(response.data)
+            this.errorOnlineAccount= ''
+          })
+          .catch(e => {
+            var errorMsg = e.response.data.message
+            console.log(errorMsg)
+            this.errorOnlineAccount = errorMsg
+          })
+        },
+
+  }
 }

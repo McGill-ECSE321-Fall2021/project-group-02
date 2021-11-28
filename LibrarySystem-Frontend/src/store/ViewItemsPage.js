@@ -7,7 +7,6 @@ var AXIOS = axios.create({
     baseURL: backendUrl,
     headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
-
 function ItemDto (id, isArchived, isBorrowed, isDamaged){
   this.id = id;
   this.isArchived = isArchived;
@@ -53,24 +52,12 @@ export default {
         response: []
       }
     },
-    
     created: function () {
-      //TEST ITEMS ADDED TO LISTS; DOES NOT TEST BACKEND INTEGRATION
-      const b1 = new BookDto(1, "TEST BOOK", "TEST_AUTHOR")
-      this.books = [b1]
-      const a1 = new AlbumDto(2, "TEST ALBUM", "TEST_ARTIST")
-      this.albums = [a1]
-      const m1 = new MovieDto(3, "TEST MOVIE", "TEST_DIRECTOR")
-      this.movies = [m1]
-      const n1 = new NewspaperDto(4, "TEST NEWSPAPER", new Date)
-      this.newspapers = [n1]
-      const j1 = new JournalDto(5, "TEST JOURNAL", new Date)
-      this.journals = [j1]
-      
       AXIOS.get('/items')
       .then(response => {
         this.items = response.data
       })
+      // Gets all the items from the database
       AXIOS.get('/items/books')
       .then(response => {
         this.books = response.data
@@ -91,5 +78,63 @@ export default {
       .then(response => {
         this.journals = response.data
       })
+    },
+    methods: 
+    {
+      searchItems(searchTerm, searchType){// Search items by type and term
+        if (searchType.localeCompare("Name") == 0){// Only Include items by the specified name
+          AXIOS.get('/items/books/'.concat('?title=', searchTerm)).then(response =>{
+            this.books = response.data
+          })
+          AXIOS.get('/items/albums/'.concat('?title=', searchTerm)).then(response =>{
+            this.albums = response.data
+          })
+          AXIOS.get('/items/movies/'.concat('?title=', searchTerm)).then(response =>{
+            this.movies = response.data
+          })
+          AXIOS.get('/items/newspapers/'.concat('?name=', searchTerm)).then(response =>{
+            this.newspapers = response.data
+          })
+          AXIOS.get('/items/journals/'.concat('?name=', searchTerm)).then(response =>{
+            this.journals = response.data
+          })
+        } else if (searchType.localeCompare("Creator") == 0){
+          AXIOS.get('/items/books/'.concat('?author=', searchTerm)).then(response =>{
+            this.books = response.data
+          })
+          AXIOS.get('/items/albums/'.concat('?artist=', searchTerm)).then(response =>{
+            this.albums = response.data
+          })
+          AXIOS.get('/items/movies/'.concat('?director=', searchTerm)).then(response =>{
+            this.movies = response.data
+          })
+        } else if(searchType.localeCompare("None") == 0){// Reset displayed items to all the ones in the database
+          AXIOS.get('/items')
+          .then(response => {
+            this.items = response.data
+          })
+          AXIOS.get('/items/books')
+          .then(response => {
+            this.books = response.data
+          })
+          AXIOS.get('/items/albums')
+          .then(response => {
+            this.albums = response.data
+          })
+          AXIOS.get('/items/movies')
+          .then(response => {
+            this.movies = response.data
+          })
+          AXIOS.get('/items/newspapers')
+          .then(response => {
+            this.newspapers = response.data
+          })
+          AXIOS.get('/items/journals')
+          .then(response => {
+            this.journals = response.data
+          })
+        }
+        searchTerm = '';
+      }
     }
 }
