@@ -48,9 +48,7 @@
 								</td>
 						</tr>
 						</table>
-						<p>
-						 <span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span> 
-						</p>
+						<p><span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span></p>
 					</div>				
 					</form>
 					<div class=lst>
@@ -215,6 +213,7 @@ th:nth-child(5) {
 .srch{
 	background-color: rgb(133, 1, 1);
 	color: white;
+	border:none;
 }
 .srch:hover{
 	background-color: rgb(87, 1, 1);
