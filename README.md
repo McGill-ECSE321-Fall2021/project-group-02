@@ -56,7 +56,7 @@ The project report for deliverable 3 can be found [here.](https://github.com/McG
 | Name | Contributions | Hours |
 | --- | --- | --- |
 | Sami Ait Ouahmane | Creation of the UI for the home page and the login/signup page. Implementation of the corresponding javascript pages and service methods to log in and sign out. Calling of the borrowItem method for the 'Manage Items' page. Creation of the architecture model(s) | 30h |
-| Julie Chen | Creation of the UI 'Manage Items' page and calling of the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 24h |
+| Julie Chen | Creation of the UI 'Manage Items' page and implementation of the corresponding JavaScript for the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods, as well as the creation of additional service and controller methods required for functionality. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 30h |
 | Hyunbum Cho | | |
 | Vy-Kha Huynh | | |
 | Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs, service and controller methods in backend. | 23h |
