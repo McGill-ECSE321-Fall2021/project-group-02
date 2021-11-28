@@ -146,10 +146,10 @@ body{
 /* Manage Items */
 .manageItems{
 	background:rgba(0, 0, 0, 0.65);	
-	border-radius: 10px;
+	border-radius: 10px 10px;
 	padding: 25px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: row; 
 	gap: 10px;
 	height: 400px;
 	width: 90%;
@@ -159,6 +159,7 @@ body{
 }
 .containerHeader{
 	background:rgba(0, 0, 0, 0.65);	
+	border-radius: 10px;
 	width: 90%;
 	height: 130px;
 	display: flex;
