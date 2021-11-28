@@ -39,27 +39,21 @@
 			<form> <!-- ARCHIVE ITEM -->
 				<label for="chk_a" aria-hidden="true">Archive Item</label>
 				<input class="text" v-model="itemID_ar" placeholder="Enter item ID" required="">
-				<input class="text" v-model="librarianID_ar" placeholder="Enter user ID" required="">
-				<button @click="archiveItem(itemID_ar, librarianID_ar)">Move to Archived</button>
-				<button @click="makeAvailable(itemID_ar, librarianID_ar)">Remove from Archived</button>
+				<button @click="archiveItem(itemID_ar)">Move to Archived</button>
+				<button @click="makeAvailable(itemID_ar)">Remove from Archived</button>
 			</form>
 		</div>
 		<div class=damageItem>
 			<form> <!-- DAMAGE ITEM -->
 				<label for="chk_da" aria-hidden="true">Damage Item</label>
 				<input class="text" name="itemID_d" placeholder="Enter item ID" required="">
-				<input class="text" name="userID_d" placeholder="Enter user ID" required="">
-				<button @click="damageItem(itemID_d, librarianID_d)">Move to Damaged</button>
-				<button @click="makeAvailable(itemID_d, librarianID_d)">Remove from Damaged</button>
+				<button @click="damageItem(itemID_d)">Move to Damaged</button>
+				<button @click="makeAvailable(itemID_d)">Remove from Damaged</button>
 			</form>
 		</div>
 		<div class=createItem>
 			<form> <!-- CREATE NEW ITEM -->
 				<label for="chk_c" aria-hidden="true">Add New Item</label>
-				<input type="text" v-model="itemName" placeholder="Enter item name">
-				<input type="text" v-model="itemAuthor" placeholder="Enter item author">
-				<input type="text" v-model="librarianID" placeholder="Enter your user ID">
-				<input type="text" v-model="itemDate" placeholder="Date: yyyy-mm-dd">
 				<select type= "text" v-model="itemType">
 					<option disabled value="">Select item type</option>
 					<option>Book</option>
@@ -68,6 +62,9 @@
 					<option>Journal</option>
 					<option>Newspaper</option>
 				</select>
+				<input type="text" v-model="itemName" placeholder="Enter item name">
+				<input v-if="itemType == 'Book' || itemType == 'Album' || itemType == 'Movie'" type="text" v-model="itemAuthor" placeholder="Enter item author">
+				<input v-if="itemType == 'Journal' || itemType == 'Newspaper'" type="text" v-model="itemDate" placeholder="Enter Date: yyyy-mm-dd">
 				<button @click="createItem(itemType, itemName, itemAuthor, itemDate)">Add New Item</button>
 			</form>
 		</div>
@@ -75,8 +72,7 @@
 			<form> <!-- DELETE ITEM -->
 				<label for="chk_de" aria-hidden="true">Delete Item</label>
 				<input type="text" v-model="itemID_del" placeholder="Enter item ID" required="">
-				<input type="text" v-model="librarianID_del" placeholder="Enter user ID" required="">
-				<button @click="deleteItem(itemID_del, librarianID_del)">Delete Item</button>
+				<button @click="deleteItem(itemID_del)">Delete Item</button>
 			</form>
 		</div>
       </div>
@@ -242,6 +238,9 @@ form{
 }
 input{
 	border-radius: 5px;
+}
+select{
+	border-color: black;
 }
 button{
 	color: white;
