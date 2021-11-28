@@ -2,6 +2,7 @@
   <div class="welcomepage">
       <div class="header">
 				 <router-link to="/"><h2>Montreal Library</h2></router-link>
+         
 				    <router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>
         		<router-link to="/"><a class="btn">Home</a></router-link>

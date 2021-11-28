@@ -11,8 +11,9 @@
 		<h2> Manage Items </h2>
 		<form> <!-- BORROW & RETURN ITEM -->
 			<input class="text" v-model="itemID_b" placeholder="Enter item ID" required="">
+			<input class="text" v-model="itemName_b" placeholder="Enter item name">
 			<input class="text" v-model="patronID_b" placeholder="Enter patron ID" required="">
-			<button @click="borrowItem(itemID_b, patronID_b)">Borrow Item</button>
+			<button @click="borrowItem(itemID_b, itemName_b, patronID_b)">Borrow Item</button>
 			<button @click="returnItem(itemID_b, patronID_b)">Return Item</button>
 			<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 		</form>
@@ -29,9 +30,10 @@
 			<button @click="makeAvailable(itemID_d, librarianID_d)">Remove from Damaged</button>
 		</form>
 		<form> <!-- CREATE NEW ITEM -->
-			<input type="text" v-model="itemName" placeholder="Enter item name" required="">
-			<input type="text" v-model="itemAuthor" placeholder="Enter item author" required="">
-			<input type="text" v-model="librarianID" placeholder="Enter your user ID" required="">
+			<input type="text" v-model="itemName" placeholder="Enter item name">
+			<input type="text" v-model="itemAuthor" placeholder="Enter item author">
+			<input type="text" v-model="librarianID" placeholder="Enter your user ID">
+			<input type="text" v-model="itemDate" placeholder="Date: yyyy-mm-dd">
 			<select type= "text" v-model="itemType">
 				<option disabled value="">Select item type</option>
 				<option>Book</option>
@@ -40,7 +42,7 @@
 				<option>Journal</option>
 				<option>Newspaper</option>
 			</select>
-			<button @click="createItem(itemType, itemName, itemAuthor, librarianID)">Add New Item</button>
+			<button @click="createItem(itemType, itemName, itemAuthor, itemDate)">Add New Item</button>
 		</form>
 		<form> <!-- DELETE ITEM -->
 			<input type="text" v-model="itemID_del" placeholder="Enter item ID" required="">

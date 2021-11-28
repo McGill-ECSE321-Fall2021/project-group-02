@@ -7,6 +7,10 @@
 				  <router-link to="/signup"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Sign Up/Log In</a></router-link>
         	<router-link to="/items"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Items Information</a></router-link>
         	<router-link to="/"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Home</a></router-link>
+				  <router-link to="/"><h2>Montreal Library</h2></router-link>
+				  <router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+        	<router-link to="/items"><a class="btn">Items Information</a></router-link>
+        	<router-link to="/"><a class="btn">Home</a></router-link>
 		  </div>
       </body>
     <div id="calendar">
@@ -182,6 +186,7 @@ h2{
 	width: 250px;
 	background:rgb(112, 1, 1);
 	padding: 10px 10px;
+  color: white;
 }
 router-link{
   color: white;

@@ -44,7 +44,7 @@ export default {
 	    lastName: '',
 	    balance: '',
       city: '',
-      errorOnlineAccount: '',
+      errorMsg: '',
       accountId: '',
       response: []
     }
@@ -55,13 +55,14 @@ export default {
       AXIOS.post('/onlineAccountNew/'.concat(firstName, '/', lastName, '/', address, '/', city, '/', username, '/', password, '/', email))
       .then(response => 
         {
-          this.onlineAccounts.push(response.data)
-          this.errorOnlineAccount= ''
+          this.onlineAccounts.push(response.data);
+          this.errorMsg= '';
+          window.location.reload();
         })
         .catch(e => {
           var errorMsg = e.response.data.message
           console.log(errorMsg)
-          this.errorOnlineAccount = errorMsg
+          this.errorMsg = errorMsg
         })
       },
       
@@ -69,14 +70,14 @@ export default {
         AXIOS.post('/logIn/'.concat(username, '/', password)).then(response => 
           {
             this.onlineAccounts.push(response.data);
-            this.errorOnlineAccount= '';
+            this.errorMsg= '';
             //Needs to be linked to the user profile page
             this.$router.push("/userProfile");
           })
           .catch(e => {
             var errorMsg = e.response.data.message;
             console.log(errorMsg);
-            this.errorOnlineAccount = errorMsg;
+            this.errorMsg = errorMsg;
           })
         },
       
@@ -84,13 +85,14 @@ export default {
       createAccountExistingUser: function(username, password, email, userId) {
         AXIOS.post('/onlineAccountExisting/'.concat(userId, '/', username, '/', password, '/', email)).then(response => 
           {
-            this.onlineAccounts.push(response.data)
-            this.errorOnlineAccount= ''
+            this.onlineAccounts.push(response.data);
+            this.errorMsg= '';
+            window.location.reload();
           })
           .catch(e => {
             var errorMsg = e.response.data.message
             console.log(errorMsg)
-            this.errorOnlineAccount = errorMsg
+            this.errorMsg = errorMsg
           })
         },
 
