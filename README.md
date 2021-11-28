@@ -20,7 +20,7 @@ There are six team members in Group 02:
 ## Contributions
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
 | --- | --- | --- | --- | --- | --- |
-| Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h |  |  |
+| Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h | 30h |  |
 | Julie Chen | Documentation Lead | 12h | 20h |  |  |
 | Hyunbum Cho | Software Developer | 12h | 20h |  |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h |  |  |
@@ -55,7 +55,7 @@ There are six team members in Group 02:
 The project report for deliverable 3 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report-Deliverable-3)
 | Name | Contributions | Hours |
 | --- | --- | --- |
-| Sami Ait Ouahmane | Calling of the borrowItem method for the 'Manage Items' page. Creation of the architecture model(s) | |
+| Sami Ait Ouahmane | Creation of the UI for the home page and the login/signup page. Implementation of the corresponding javascript pages and service methods to log in and sign out. Calling of the borrowItem method for the 'Manage Items' page. Creation of the architecture model(s) | |
 | Julie Chen | Creation of the UI 'Manage Items' page and calling of the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 24h |
 | Hyunbum Cho | | |
 | Vy-Kha Huynh | | |
