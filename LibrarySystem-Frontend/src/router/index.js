@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
-import SignUpPage from '@/components/SignUpPage'
+// import SignUpPage from '@/components/SignUpPage'
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
 import CreatePatron from '@/components/CreatePatron'
@@ -25,11 +25,11 @@ export default new Router({
       name: 'WelcomePage',
       component: HomePage
     },
-    {
-      path: '/signup',
-      name: 'SignUpPage',
-      component: SignUpPage
-    },
+    // {
+    //   path: '/signup',
+    //   name: 'SignUpPage',
+    //   component: SignUpPage
+    // },
     {
 
       path: '/manageLibrarySchedule',
