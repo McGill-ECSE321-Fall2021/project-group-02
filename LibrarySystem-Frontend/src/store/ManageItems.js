@@ -62,7 +62,7 @@ var AXIOS = axios.create({
         },
         // service that allows a librarian to set an item as archived
         archiveItem: function(itemID) {
-            var librarianID = AXIOS.get('/onlineAccountLoggedInUser')
+          var librarianID = AXIOS.get('/onlineAccountLoggedInID')
             AXIOS.post('/archive/'.concat('?itemID=', itemID, '&headLibrarianID=', librarianID))
             .then(response => {
                 this.itemID = ''
@@ -77,7 +77,7 @@ var AXIOS = axios.create({
         },
         // service that allows a librarian to set an item as damaged
         damageItem: function(itemID) {
-          var librarianID = AXIOS.get('/onlineAccountLoggedInUser')
+          var librarianID = AXIOS.get('/onlineAccountLoggedInID')
             AXIOS.post('/items/setDamaged/'.concat('?itmID=', itemID, '&headLibrarianID=', librarianID))
             .then(response => {
               this.itemID = ''
@@ -155,7 +155,7 @@ var AXIOS = axios.create({
         },
         // service that allows a librarian to delete an item from the library
         deleteItem: function(itemID) {
-          var librarianID = AXIOS.get('/onlineAccountLoggidInUser')
+          var librarianID = AXIOS.get('/onlineAccountLoggedInID')
             AXIOS.delete('/items/discard/'.concat('?itemID=',itemID,'&headLibrarianID=',librarianID))
             .then(response => {
                 this.itemID = ''
@@ -170,7 +170,7 @@ var AXIOS = axios.create({
         },
       // service that allows a librarian to remove an item from the archives/damages and allows it to be borrowed
         makeAvailable: function(itemID) {
-          var librarianID = AXIOS.get('/onlineAccountLoggedInUser')
+          var librarianID = AXIOS.get('/onlineAccountLoggedInID')
           AXIOS.post('/items/available/'.concat('?itemID=',itemID,'&headLibrarianID=',librarianID))
           .then(response => {
               this.itemID = ''
