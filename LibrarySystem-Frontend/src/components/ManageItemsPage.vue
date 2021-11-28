@@ -7,14 +7,17 @@
 		<router-link to="/items"><a class="btn">Items Information</a></router-link>
 		<router-link to="/"><a class="btn">Home</a></router-link>
 	  </div>
-      <div class="manageItems">
+	  <div class = "containerHeader">
 		<h2> Manage Items </h2>
+	  </div>
+      <div class="manageItems">
 		<input type="checkbox" id="chk_b" aria-hidden="true">
 		<input type="checkbox" id="chk_r" aria-hidden="true">
 		<input type="checkbox" id="chk_a" aria-hidden="true">
 		<input type="checkbox" id="chk_da" aria-hidden="true">
 		<input type="checkbox" id="chk_c" aria-hidden="true">
 		<input type="checkbox" id="chk_de" aria-hidden="true">
+		<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 		<div class=borrowItem>
 			<form> <!-- BORROW ITEM -->
 				<label for="chk_b" aria-hidden="true">Borrow Item</label>
@@ -22,7 +25,6 @@
 				<input class="text" v-model="itemName_b" placeholder="Enter item name">
 				<input class="text" v-model="patronID_b" placeholder="Enter patron ID" required="">
 				<button @click="borrowItem(itemID_b, itemName_b, patronID_b)">Borrow Item</button>
-				<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 			</form>
 		</div>
 		<div class=returnItem>
@@ -31,7 +33,6 @@
 				<input class="text" v-model="itemID_r" placeholder="Enter item ID" required="">
 				<input class="text" v-model="patronID_r" placeholder="Enter patron ID" required="">
 				<button @click="returnItem(itemID_b, patronID_b)">Return Item</button>
-				<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 			</form>
 		</div>
 		<div class=archiveItem>
@@ -41,7 +42,6 @@
 				<input class="text" v-model="librarianID_ar" placeholder="Enter user ID" required="">
 				<button @click="archiveItem(itemID_ar, librarianID_ar)">Move to Archived</button>
 				<button @click="makeAvailable(itemID_ar, librarianID_ar)">Remove from Archived</button>
-				<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 			</form>
 		</div>
 		<div class=damageItem>
@@ -51,7 +51,6 @@
 				<input class="text" name="userID_d" placeholder="Enter user ID" required="">
 				<button @click="damageItem(itemID_d, librarianID_d)">Move to Damaged</button>
 				<button @click="makeAvailable(itemID_d, librarianID_d)">Remove from Damaged</button>
-				<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 			</form>
 		</div>
 		<div class=createItem>
@@ -70,7 +69,6 @@
 					<option>Newspaper</option>
 				</select>
 				<button @click="createItem(itemType, itemName, itemAuthor, itemDate)">Add New Item</button>
-				<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 			</form>
 		</div>
 		<div class=deleteItem>
@@ -79,7 +77,6 @@
 				<input type="text" v-model="itemID_del" placeholder="Enter item ID" required="">
 				<input type="text" v-model="librarianID_del" placeholder="Enter user ID" required="">
 				<button @click="deleteItem(itemID_del, librarianID_del)">Delete Item</button>
-				<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 			</form>
 		</div>
       </div>
@@ -136,11 +133,12 @@ h1{
 }
 /* Background */
 body{
-	margin: 60px 0px;
+	margin: auto;
 	padding: 0;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	align-items: left;
+	align-items: center;
 	min-height: 100vh;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-image: url("../assets/library.jpg");
@@ -153,17 +151,28 @@ body{
 	display: flex;
 	flex-direction: row;
 	gap: 10px;
-	height: 350px;
+	height: 400px;
+	width: 90%;
 	text-align: center;
 	align-items: baseline;
 	overflow: hidden;
+}
+.containerHeader{
+	background:rgba(0, 0, 0, 0.65);	
+	width: 90%;
+	height: 130px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 h2{
 	color:white;
 	background-color: rgb(112,1,1);
 	text-align: center;
 	padding: 10px 10px;
-	height: 150px;
+	height: 90px;
+	width: 400px;
 
 	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-size: 45px;
@@ -171,44 +180,50 @@ h2{
 }
 .borrowItem {
 	background: white;
+	height: 100%;
 	border-radius: 60% / 10%;
 	padding: 10px;
-	transform: translateY(200px);
+	transform: translateY(260px);
 	transition: .8s ease-in-out;
 }
 .returnItem{
 	background: white;
+	height: 100%;
 	border-radius: 60% / 10%;
 	padding: 10px;
-	transform: translateY(200px);
+	transform: translateY(260px);
 	transition: .8s ease-in-out;
 }
 .archiveItem{
 	background: white;
+	height: 100%;
 	border-radius: 60% / 10%;
 	padding: 10px;
-	transform: translateY(200px);
+	transform: translateY(260px);
 	transition: .8s ease-in-out;
 }
 .damageItem{
 	background: white;
+	height: 100%;
 	border-radius: 60% / 10%;
 	padding: 10px;
-	transform: translateY(200px);
+	transform: translateY(260px);
 	transition: .8s ease-in-out;
 }
 .createItem{
 	background: white;
+	height: 100%;
 	border-radius: 60% / 10%;
 	padding: 10px;
-	transform: translateY(200px);
+	transform: translateY(260px);
 	transition: .8s ease-in-out;
 }
 .deleteItem{
 	background: white;
+	height: 100%;
 	border-radius: 60% / 10%;
 	padding: 10px;
-	transform: translateY(200px);
+	transform: translateY(260px);
 	transition: .8s ease-in-out;
 }
 label{
@@ -218,6 +233,25 @@ label{
 	transform: scale(.6);
 	cursor: pointer;
 	transition: .5s ease-in-out;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+input{
+	border-radius: 5px;
+}
+button{
+	color: white;
+	background: black;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+}
+button:hover{
+	background: rgb(133,1,1);
+    color:white;
 }
 
 /* Pop-up */
