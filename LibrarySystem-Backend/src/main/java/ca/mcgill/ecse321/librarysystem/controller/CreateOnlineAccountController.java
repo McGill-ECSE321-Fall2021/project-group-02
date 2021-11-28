@@ -51,7 +51,7 @@ public class CreateOnlineAccountController {
 	}
 	
 	/**
-	 * Gets a list of all the books in the library software system
+	 * Gets the type of the logged in user
 	 * @return
 	 * 
 	 * @author Vy-Kha
@@ -59,6 +59,17 @@ public class CreateOnlineAccountController {
 	@GetMapping(value = { "/onlineAccountLoggedInUser", "/onlineAccountLoggedInUser/" })
 	public String getLoggedInAccountUser() {
 		return service.getloggedInAccountUser().replace("class ca.mcgill.ecse321.librarysystem.model.", "");
+	}
+	
+	/**
+	 * Gets the id of the logged in user
+	 * @return
+	 * 
+	 * @author Vy-Kha
+	 */
+	@GetMapping(value = { "/onlineAccountLoggedInID", "/onlineAccountLoggedInID/" })
+	public int getLoggedInAccountID() {
+		return service.getloggedInAccountID();
 	}
 	
 	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})

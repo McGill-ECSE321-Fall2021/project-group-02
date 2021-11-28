@@ -67,7 +67,7 @@ export default {
           this.id = ''
         })
         .catch(e => {
-          var errorMsg = e.response.data.message
+          var errorMsg = e
           console.log(errorMsg)
           this.errorLibrarian = errorMsg
         })
@@ -81,7 +81,7 @@ export default {
               this.name=''
             })
             .catch(e => {
-              var errorMsg = e.response.data.message
+              var errorMsg = e
               console.log(errorMsg)
               this.errorLibrarian = errorMsg
             })
@@ -95,7 +95,7 @@ export default {
             this.validationid = ''
           })
           .catch(e => {
-            var errorMsg = e.response.data.message
+            var errorMsg = e
             console.log(errorMsg)
             this.errorLibrarian = errorMsg
           })
@@ -109,7 +109,7 @@ export default {
        this.validationid = ''
      })
      .catch(e => {
-       var errorMsg = e.response.data.message
+       var errorMsg = e
        console.log(errorMsg)
        this.errorLibrarian = errorMsg
      })   
