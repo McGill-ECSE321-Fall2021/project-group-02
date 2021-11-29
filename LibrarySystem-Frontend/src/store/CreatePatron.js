@@ -24,6 +24,7 @@ export default {
         onlineAccounts: [],
         response: [],
 
+        patronsID: '',
         errorMsg: '',
       }
     },
@@ -31,13 +32,13 @@ export default {
     },
     methods: {
       createPatron: function(firstName, lastName, city, address) {
-        var patron = AXIOS.post('/createPatron/'.concat(address, '/?city=', city, '&balance=', 0, '&firstName=', firstName, '&lastName=', lastName))
+        AXIOS.post('/createPatron/'.concat(address, '/?city=', city, '&balance=', 0, '&firstName=', firstName, '&lastName=', lastName))
         .then(response => {
           this.firstName = ''
           this.lastName = ''
           this.city = ''
           this.address = ''
-          this.success = 'Success! Patron has been created. Patron ID: '.concat(patron.id)
+          this.errorMsg = ''
         })
         .catch(e => {
           var errorMsg = e
