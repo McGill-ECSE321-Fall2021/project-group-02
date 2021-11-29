@@ -67,6 +67,7 @@ export default {
       username: '',
       emailUsername: '',
       onlineAccountLogged:[],
+      accountId
     }
   },
 
@@ -74,6 +75,7 @@ export default {
     AXIOS.get('/onlineAccountLoggedIn')
       .then(response => {
         this.onlineAccountLogged.push(response.data)
+        this.accountId = response.data.accountId
       })
   },
   
