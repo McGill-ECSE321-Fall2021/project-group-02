@@ -20,21 +20,10 @@ function LibrarianDto (onlineAccount, firstName, lastName, address, city, weekly
   
 }
 
-<<<<<<< Updated upstream
-function OnlineAccountDto (username, password, email, user) {
-    this.username = username;
-    this.password = password;
-    this.email = email;
-    this.user = user;
-}
-
-function WeeklyScheduleDto () {
-=======
 function DailyScheduleDto (day, startTime, endTime) {
   this.day = day;
   this.startTime = startTime;
   this.endTime = endTime;
->>>>>>> Stashed changes
 
 }
 
@@ -44,15 +33,6 @@ function WeeklyScheduleDto (startDate, endDate) {
 }
 
 export default {
-<<<<<<< Updated upstream
-    name: 'manageLibrarySchedule',
-    data () {
-        const now = new Date()
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-        const minDate = new Date(today)
-        const maxDate = new Date(today)
-        maxDate.setMonth(maxDate.getMonth() + 1)
-=======
   name: 'librarysystem',
   data () {
     const now = new Date()
@@ -92,7 +72,6 @@ export default {
   },
   created: function () {
     // Test data
->>>>>>> Stashed changes
 
 
         return {
@@ -105,20 +84,6 @@ export default {
       }
     },
 
-<<<<<<< Updated upstream
-    methods: {
-      getAllLibrarians: function () {
-        AXIOS.get('/librarians')
-        .then(response =>{
-          this.librarians = response.data
-        })
-        .catch(e =>{
-          this.errorLibrarian = e
-        })
-      }
-    }
-    
-=======
   methods: {
     createDailySchedule: function (day, startTime, endTime, id, headLibrarianID) {
       AXIOS.post('/createDailySchedule/'.concat(headLibrarianID, '/', id,'/',day,'/',startTime,'/',endTime))
@@ -158,5 +123,4 @@ export default {
     
 
   }
->>>>>>> Stashed changes
 }

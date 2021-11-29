@@ -8,16 +8,6 @@
         	<router-link to="/items"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Items Information</a></router-link>
         	<router-link to="/"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Home</a></router-link>
 		  </div>
-<<<<<<< Updated upstream
-      </body>
-    <div id="calendar">
-      <div class="wrapper">
-            <b-form-datepicker id="datepicker-placeholder" placeholder="Choose a date" v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" size="lg" block locale="en"></b-form-datepicker>
-            <b-calendar v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" block locale="en"></b-calendar>
-            <div class="text-center" style="margin-top: 100px; margin-bottom: 100px;">
-            <b-button v-b-toggle.sidebar-no-header :pressed.sync="myToggle" style="border-radius: 25px; background-color: #c82333" size="lg">Change Schedule</b-button>
-            </div>
-=======
     
     <div class="calendar">
       <div class="wrapper" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
@@ -51,7 +41,6 @@
             <button class="button" v-b-toggle.sidebar-no-header style="background:rgb(112, 1, 1); color: white;padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;
               font-size: 16px;" size="lg">Change Schedule</button>
             
->>>>>>> Stashed changes
       </div>
     </div>
         <div class="sidebar" >
@@ -70,15 +59,6 @@
                      @click="createDailySchedule(WeekDay, startTime, endTime, librarianID, id)">Publish and Notify</button>
 
                   <div id="divider" style="color: white">''</div>
-<<<<<<< Updated upstream
-                  <div class="center">
-                    <button style="background-color: #c82333; color: white; border-radius: 25px; font-size: 20px; padding: 10px 24px; border: 2px solid gray" type="submit">Publish and Notify</button>
-                  </div>
-                </div>
-                <div class="p-3" text-align="center">
-                    <h5 id="employee" style="text-align: center">Employees</h5>
-
-=======
                   
                   <input class="text" v-model="id" placeholder="Validation Token">
 
@@ -86,7 +66,6 @@
                   
                     <h5 id="employee" style="text-align: center">Employees</h5>
                     <div id="table-wrapper">
->>>>>>> Stashed changes
                     <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -103,35 +82,6 @@
                         </tr>
                       </tbody>
                     </table>
-<<<<<<< Updated upstream
-                      
-                    <nav class="mb-3">
-                        <b-nav vertical>
-                            <label style="text-align: center">Employee 1</label>
-                            <label style="text-align: center">Employee 2</label>
-                            <label style="text-align: center">Employee 3</label>
-                            <label style="text-align: center">Employee 4</label>
-                        </b-nav>
-                    </nav>
-                </div>
-                </template>
-                <div class="container0">
-                  <h5 id="sidebar-timeSet-title">Select Employee</h5>
-                  <input type="text" name="Employee ID" style="border-radius: 25px;" placeholder="Enter Employee ID">
-                </div>
-                <div id="divider" style="color: white">''</div>
-                <div class="container">
-                  <h5 id="sidebar-timeSet-title">Set Time</h5>
-                  <input type="time" name="startTime" style="border-radius: 25px;" placeholder="HH:mm">
-                  <input type="time" name="endTime" style="border-radius: 25px;" placeholder="HH:mm">
-                </div>
-                <div id="divider" style="color: white">''</div>
-                <div class="container1">
-                  <img src="../assets/logo.png" style="text-align: center">
-                </div>
-                <div class="container2">
-                  <h3 style="text-align: center">Montreal Library</h3>
-=======
                     </div>
                     <h5 id="sidebar-timeSet-title">Select Employee</h5>
                   <input class="text" v-model="librarianID" placeholder="Librarian ID">
@@ -145,11 +95,11 @@
           
 
                 
->>>>>>> Stashed changes
                 </div>
                 </template>
             </b-sidebar>
         </div>
+        </body>
         </body>
     </div>
 </template>
@@ -270,8 +220,6 @@ input[type="time"] {
   display: block;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-<<<<<<< Updated upstream
-=======
 .calendar {
   padding: 25px;
 	position: static;
@@ -314,5 +262,4 @@ thead th {
 	overflow: auto;
 
 }
->>>>>>> Stashed changes
 </style>
