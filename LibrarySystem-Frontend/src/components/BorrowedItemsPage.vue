@@ -3,7 +3,7 @@
     <div class="header">
 			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
       <router-link to="/items"><a class="btn">Items Information</a></router-link>
-        <router-link to="/"><a class="btn">Home</a></router-link>
+      <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 		</div>
     <div class="borrowed-items-page">
       <div class="main">
@@ -17,7 +17,7 @@
               </div>
               <a><router-link to="/userProfile">Profile</router-link></a>
               <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
-              <a href="">Sign out</a>
+              <a><router-link to="/" @click="signOutUser()">Sign out</router-link></a>
             </div>
           </div>
 
@@ -69,7 +69,6 @@
                   </tr>
                 </template>
               </table>
-            <!--</div>-->
           </div>
         </div>
       </div>

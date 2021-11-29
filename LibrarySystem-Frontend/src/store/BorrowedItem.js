@@ -49,34 +49,46 @@ export default {
   name: 'borrowed-item',
     data () {
       return {
-        items: [],
         books: [],
         albums: [],
         movies: [],
         response: [],
         onlineAccountLogged: [],
+        userId: -1,
       }
   },
   created: function () {
     AXIOS.get('/onlineAccountLoggedIn')
       .then(response => {
         this.onlineAccountLogged.push(response.data)
+        this.userId = response.data.userId
       })
-      my_id = onlineAccountLogged[onlineAccountLogged.length - 1].getUserId()
-      AXIOS.get('/borrowedItems/books', {params: {id: my_id}})
+      AXIOS.get('/borrowedItems/books', {}, {params: {id: this.userId}})
       .then(response => {
         this.books.push(response.data)
       })
-      AXIOS.get('/borrowedItems/albums', {params: {id: my_id}})
+      AXIOS.get('/borrowedItems/albums', {}, {params: {id: this.userId}})
       .then(response => {
         this.albums.push(response.data)
       })
-      AXIOS.get('/borrowedItems/movies', {params: {id: my_id}})
+      AXIOS.get('/borrowedItems/movies', {}, {params: {id: this.userId}})
       .then(response => {
         this.movies.push(response.data)
       })
   },
 
   methods:{
+    signOutUser: function(){
+      AXIOS.post("/signOut").then(response =>
+        {
+          this.errorMsg= '';
+          onlineAccountLogged = [];
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
+    },
   }
 }

@@ -42,12 +42,12 @@ public class CreateOnlineAccountController {
 		OnlineAccount account = service.logIn(username, password, true);
 		return convertToDto(account);
 	}
-	
-	@PostMapping(value = {"/signOut", "/signOut/"})
+
+	@PostMapping(value = { "/signOut", "/signOut/" })
 	public void signOut() throws IllegalArgumentException {
 		service.signOutAccount();
 	}
-	
+
 	/**
 	 * Gets a list of all the books in the library software system
 	 * 
@@ -62,6 +62,7 @@ public class CreateOnlineAccountController {
 
 	/**
 	 * Gets the type of the logged in user
+	 * 
 	 * @return
 	 * 
 	 * @author Vy-Kha
@@ -70,9 +71,10 @@ public class CreateOnlineAccountController {
 	public String getLoggedInAccountUser() {
 		return service.getloggedInAccountUser().replace("class ca.mcgill.ecse321.librarysystem.model.", "");
 	}
-	
+
 	/**
 	 * Gets the id of the logged in user
+	 * 
 	 * @return
 	 * 
 	 * @author Vy-Kha
@@ -81,10 +83,13 @@ public class CreateOnlineAccountController {
 	public int getLoggedInAccountID() {
 		return service.getloggedInAccountID();
 	}
-	
-	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})
-	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id, @PathVariable(name = "username") String username, 
-			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
+
+	@PostMapping(value = { "/onlineAccountExisting/{id}/{username}/{password}/{email}",
+			"/onlineAccountExisting/{id}/{username}/{password}/{email}/" })
+	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id,
+			@PathVariable(name = "username") String username,
+			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email)
+			throws IllegalArgumentException {
 		OnlineAccount account = service.createOnlineAccountExistingUser(id, username, password, email, false);
 		return convertToDto(account);
 	}
@@ -99,6 +104,12 @@ public class CreateOnlineAccountController {
 	public void deleteOnlineAccountEmail(@RequestParam(name = "email") String email,
 			@RequestParam(name = "password") String password) throws IllegalArgumentException {
 		service.deleteOnlineAccountUsername(email, password);
+	}
+
+	@DeleteMapping(value = { "/deleteOnlineAccount", "/deleteOnlineAccount/" })
+	public void deleteOnlineAccount(@RequestParam(name = "id") int id,
+			@RequestParam(name = "password") String password) throws IllegalArgumentException {
+		service.deleteOnlineAccount(id, password);
 	}
 
 	@PutMapping(value = { "/changePassword", "/changePassword/" })

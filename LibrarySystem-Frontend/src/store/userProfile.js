@@ -68,7 +68,7 @@ export default {
       emailUsername: '',
       errorMsg: '',
       onlineAccountLogged:[],
-      accountId
+      id: -1
     }
   },
 
@@ -76,7 +76,7 @@ export default {
     AXIOS.get('/onlineAccountLoggedIn')
       .then(response => {
         this.onlineAccountLogged.push(response.data)
-        this.accountId = response.data.accountId
+        this.id = response.data.accountId
       })
   },
 
@@ -85,6 +85,7 @@ export default {
       AXIOS.post("/signOut").then(response =>
         {
           this.errorMsg= '';
+          onlineAccountLogged = [];
         })
         .catch(e => {
           var errorMsg = e.response.data.message
@@ -92,14 +93,11 @@ export default {
           this.errorMsg = errorMsg
         })
     },
-  }
-  
-  methods: {
-    changeUsername: function(id, usernameNew, password) {
-      AXIOS.put('/changeUsername/', {params: {id: this.accountId, password: this.password, newUsername: this.newUsername}})
+    changeUsername: function(password, newUsername) {
+      AXIOS.put('/changeUsername', {}, {params: {id: this.id, password: this.password, newUsername: this.newUsername}})
       .then(response => 
         {
-          this.usernameNew = this.password = this.errorOnlineAccount= ''
+          this.newUsername = this.password = this.errorOnlineAccount= ''
         })
         .catch(e => {
           this.usernameNew = this.password = ''
@@ -107,7 +105,46 @@ export default {
           console.log(errorMsg)
           this.errorOnlineAccount = errorMsg
         })
-      },
+    },
+    changeEmail: function(password, newEmail) {
+      AXIOS.put('/changeEmail', {}, {params: {id: this.id, password: this.password, newEmail: this.newEmail}})
+      .then(response => 
+        {
+          this.newEmail = this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+    },
+    changePassword: function(password, newPassword) {
+      AXIOS.put('/changePassword', {}, {params: {id: this.id, password: this.password, newPassword: this.newPassword}})
+      .then(response => 
+        {
+          this.newPassword = this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+    },
+    deleteAccount: function(password) {
+      AXIOS.delete('/deleteOnlineAccount', {}, {params: {id: this.id, password: this.password}})
+      .then(response => 
+        {
+          this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+    },
   }
 
 }

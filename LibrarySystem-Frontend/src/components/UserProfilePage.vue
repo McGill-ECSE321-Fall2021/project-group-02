@@ -4,7 +4,7 @@
 
 			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
       <router-link to="/items"><a class="btn">Items Information</a></router-link>
-        <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
+      <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 		</div>
     <div class="user-profile">
       <div class="main">
@@ -18,7 +18,7 @@
               </div>
               <a><router-link to="/userProfile">Profile</router-link></a>
               <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
-              <router-link to="/"><button @click="signOutUser()">Sign out</button></router-link>
+              <a><router-link to="/" @click="signOutUser()">Sign out</router-link></a>
             </div>
           </div>
 
@@ -57,31 +57,29 @@
               </div>
               <div class="row">
                 <a href="#popup3" class="square-button">Change password</a>
-                <a href="#popup4" class="square-button">Delete account</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
     <div id="popup1" class="overlay">
 	    <div class="popup">
 	      <h2>Change username</h2>
 		    <a class="close" href="#">&times;</a>
-		  <div class="content">
-			  <div class="new-username form">
-          <h3>new username: </h3>
-          <input type="text" v-model="newUsername" required>
-        </div>
-        <div class="password form">
-          <h3>password: </h3>
-          <input type="text" v-model="password" required>
-        </div>
-          <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
-            <button class="button" onClick="refreshPage()" @click="changeUsername(newUsername, password)">confirm</button>
+		    <div class="content">
+          <div class="new-username form">
+            <h3>new username: </h3>
+            <input type="text" v-model="newUsername" required>
           </div>
+          <div class="password form">
+            <h3>password: </h3>
+            <input type="text" v-model="password" required>
+          </div>
+          <button class="button" onClick="refreshPage()" @click="changeUsername(password, newUsername)">confirm</button>
 		    </div>
-         <span v-if="errorOnlineAccount" style="color:red">Error: {{errorOnlineAccount}} </span>
+        <span v-if="errorOnlineAccount" style="color:red">Error: {{errorOnlineAccount}} </span>
 	    </div>
     </div>
     <div id="popup2" class="overlay">
@@ -91,13 +89,13 @@
 		  <div class="content">
 			  <div class="new-email form">
           <h3>new email: </h3>
-          <input type="text" required>
+          <input type="text" v-model="newEmail" required>
         </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="password" required>
         </div>
-          <button class="button">confirm</button>
+          <button class="button" onClick="refreshPage()" @click="changeEmail(password, newEmail)">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -108,30 +106,13 @@
 		  <div class="content">
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="password" required>
         </div>
 			  <div class="new-password form">
           <h3>new password: </h3>
-          <input type="text"  required>
+          <input type="text" v-model="newPassword" required>
         </div>
-          <button class="button">confirm</button>
-		    </div>
-	    </div>
-    </div>
-    <div id="popup4" class="overlay">
-	    <div class="popup">
-	      <h2>Delete account</h2>
-		    <a class="close" href="#">&times;</a>
-		  <div class="content">
-        <div class="email-username form">
-          <h3>email/username: </h3>
-          <input type="text" required>
-        </div>
-        <div class="password form">
-          <h3>password: </h3>
-          <input type="text" required>
-        </div>
-          <button class="button">confirm</button>
+          <button class="button" onClick="refreshPage()" @click="changePassword(password, newPassword)">confirm</button>
 		    </div>
 	    </div>
     </div>
@@ -255,29 +236,33 @@
     text-decoration: none;
   }
   .button {
-    margin: 5px;
-    background-color: darkcyan;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px; 
+    margin-top: 1em;
+    color:white;
+    background:rgb(160, 1, 1);
+    padding:10px 20px;
+    font-size:14px;
+    text-decoration:none;
+    letter-spacing:2px;
+    border-radius: 5px;
   }
   .button:hover{
-    background-color: green;
+    background:rgb(114, 1, 1);
+    text-decoration: none;
+    color: white;
   }
   .square-button{
-    margin: 5px;
-    background-color: darkcyan;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-decoration: none;
+    float:right;
+    margin-left: 1em;
+    color:white;
+    background:rgb(160, 1, 1);
+    padding:10px 20px;
+    font-size:14px;
+    text-decoration:none;
+    letter-spacing:2px;
+    border-radius: 5px;
   }
   .square-button:hover{
-    background-color: green;
+    background:rgb(114, 1, 1);
     text-decoration: none;
     color: white;
   }
