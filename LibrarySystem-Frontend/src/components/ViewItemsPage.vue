@@ -43,11 +43,14 @@
 									<th scope="col">ID</th>
 									<th scope="col">Title</th>
 									<th scope="col">Author</th>
+									<th scope="col">Availability</th>
 								</tr>
 								<tr v-for="book in books" :key="book.id">
 									<td>{{ book.id }}</td>
 									<td>{{ book.title }}</td>
 									<td>{{ book.author }}</td>
+									<td v-if="book.isAvailable"> ✓ </td>
+									<td v-else> ✕ </td>
 								</tr>
 							</template>
 							<template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
@@ -57,11 +60,14 @@
 									<th scope="col">ID</th>
 									<th scope="col">Title</th>
 									<th scope="col">Artist</th>
+									<th scope="col">Availability</th>
 								</tr>
 								<tr v-for="album in albums" :key="album.id">
 									<td>{{ album.id }}</td>
 									<td>{{ album.title }}</td>
 									<td>{{ album.artist }}</td>
+									<td v-if="album.isAvailable"> ✓ </td>
+									<td v-else> ✕ </td>
 								</tr>
 							</template>
 							<template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
@@ -71,13 +77,18 @@
 									<th scope="col">ID</th>
 									<th scope="col">Title</th>
 									<th scope="col">Director</th>
+									<th scope="col">Availability</th>
 								</tr>
 								<tr v-for="movie in movies" :key="movie.id">
 									<td>{{ movie.id }}</td>
 									<td>{{ movie.title }}</td>
 									<td>{{ movie.director }}</td>
+									<td v-if="movie.isAvailable"> ✓ </td>
+									<td v-else> ✕ </td>
 								</tr>
 							</template>
+						</table>
+						<table>
 							<template v-if="($route.name).includes('newspapers') || ($route.name).includes('items')">
 								<tr></tr>
 								<tr><th colspan="10">Newspapers</th></tr>
@@ -196,14 +207,22 @@ th:nth-child(1) {
 	padding-left: 5px;
 }
 th:nth-child(2) {
-	width: 50%;
+	width: 45%;
 	background: #ddd;
 	padding-left: 5px;
 }
 th:nth-child(3) {
-	width: 40%;
+	width: 35%;
 	background: #ddd;
 	padding-left: 5px;
+}
+th:nth-child(4) {
+	width: 15%;
+	background: #ddd;
+	padding-left: 5px;
+}
+td:nth-child(4) {
+	text-align: center;
 }
 
 .items{

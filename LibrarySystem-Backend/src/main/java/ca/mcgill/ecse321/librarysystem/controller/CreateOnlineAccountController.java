@@ -56,8 +56,7 @@ public class CreateOnlineAccountController {
 	}
 
 	/**
-	 * Gets a list of all the books in the library software system
-	 * 
+	 * Gets the type of the logged in user
 	 * @return
 	 * 
 	 * @author Vy-Kha
@@ -66,13 +65,21 @@ public class CreateOnlineAccountController {
 	public String getLoggedInAccountUser() {
 		return service.getloggedInAccountUser().replace("class ca.mcgill.ecse321.librarysystem.model.", "");
 	}
-
-	@PostMapping(value = { "/onlineAccountExisting/{id}/{username}/{password}/{email}",
-			"/onlineAccountExisting/{id}/{username}/{password}/{email}/" })
-	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id,
-			@PathVariable(name = "username") String username,
-			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email)
-			throws IllegalArgumentException {
+	
+	/**
+	 * Gets the id of the logged in user
+	 * @return
+	 * 
+	 * @author Vy-Kha
+	 */
+	@GetMapping(value = { "/onlineAccountLoggedInID", "/onlineAccountLoggedInID/" })
+	public int getLoggedInAccountID() {
+		return service.getloggedInAccountID();
+	}
+	
+	@PostMapping(value = {"/onlineAccountExisting/{id}/{username}/{password}/{email}", "/onlineAccountExisting/{id}/{username}/{password}/{email}/"})
+	public OnlineAccountDto createOnlineAccountExistingUser(@PathVariable(name = "id") int id, @PathVariable(name = "username") String username, 
+			@PathVariable(name = "password") String password, @PathVariable(name = "email") String email) throws IllegalArgumentException {
 		OnlineAccount account = service.createOnlineAccountExistingUser(id, username, password, email, false);
 		return convertToDto(account);
 	}
