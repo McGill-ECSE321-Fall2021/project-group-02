@@ -2,9 +2,14 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
+<<<<<<< Updated upstream
+=======
+import HomePageLogin from '@/components/HomePage2'
+>>>>>>> Stashed changes
 import SignUpPage from '@/components/SignUpPage'
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
+import ViewLibrarianSchedule from '@/components/ViewLibrarianSchedule'
 import CreatePatron from '@/components/CreatePatron'
 
 import ManageItemsPage from '@/components/ManageItemsPage'
@@ -25,6 +30,14 @@ export default new Router({
       name: 'WelcomePage',
       component: HomePage
     },
+<<<<<<< Updated upstream
+=======
+    {
+      path: '/homeAfterLogin',
+      name: 'HomeAfterLogin',
+      component: HomePageLogin
+    },
+>>>>>>> Stashed changes
     {
       path: '/signup',
       name: 'SignUpPage',
@@ -35,6 +48,11 @@ export default new Router({
       path: '/manageLibrarySchedule',
       name: 'ManageLibrarySchedule',
       component: ManageLibrarySchedule
+    },
+    {
+      path: '/schedules',
+      name: 'ViewLibrarianSchedule',
+      component: ViewLibrarianSchedule
     },
     {
       path: '/manageLibrarySchedule/librarians',

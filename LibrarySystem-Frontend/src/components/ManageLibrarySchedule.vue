@@ -8,6 +8,7 @@
         	<router-link to="/items"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Items Information</a></router-link>
         	<router-link to="/"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Home</a></router-link>
 		  </div>
+<<<<<<< Updated upstream
       </body>
     <div id="calendar">
       <div class="wrapper">
@@ -16,6 +17,41 @@
             <div class="text-center" style="margin-top: 100px; margin-bottom: 100px;">
             <b-button v-b-toggle.sidebar-no-header :pressed.sync="myToggle" style="border-radius: 25px; background-color: #c82333" size="lg">Change Schedule</b-button>
             </div>
+=======
+    
+    <div class="calendar">
+      <div class="wrapper" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+            <label for="datepicker-placeholder-start" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: white">Choose a start date</label>
+            <b-form-datepicker id="datepicker-placeholder-start" placeholder="Choose start date" v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" size="lg" block locale="en"></b-form-datepicker>
+            <div id="divider" style="color: black">''</div>
+            <label for="datepicker-placeholder-end" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: white">Choose an end date</label>
+            <b-form-datepicker id="datepicker-placeholder-end" placeholder="Choose end date" v-model="value1" :date-disabled-fn="dateDisabled" :min="min" :max="max" size="lg" block locale="en"></b-form-datepicker>
+            <!-- <b-calendar v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" block locale="en"></b-calendar> -->
+            <div id="divider" style="color: black">''</div>
+
+            <table class="table">
+              <tr>
+                <td>
+              <input class="text" v-model="librarianID" placeholder="Librarian ID">
+                </td>
+              </tr>
+              <tr>
+                <td>
+              
+              <input class="text" v-model="id" placeholder="Validation Token">
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                    <button style="background:rgb(112, 1, 1); color: white; text-align: center;" @click="createWeeklySchedule(id, value, value1, librarianID)">Set Week</button>
+                </td>
+              </tr>
+            </table>
+            <button class="button" v-b-toggle.sidebar-no-header style="background:rgb(112, 1, 1); color: white;padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;
+              font-size: 16px;" size="lg">Change Schedule</button>
+            
+>>>>>>> Stashed changes
       </div>
     </div>
         <div class="sidebar" >
@@ -30,7 +66,11 @@
               <template>
                 <div class="container">
                   <h3 id="sidebar-no-header-title">Library Schedule</h3>
+<button style="background-color: #c82333; color: white; font-size: 20px; padding: 10px 24px; border: 2px solid gray;"
+                     @click="createDailySchedule(WeekDay, startTime, endTime, librarianID, id)">Publish and Notify</button>
+
                   <div id="divider" style="color: white">''</div>
+<<<<<<< Updated upstream
                   <div class="center">
                     <button style="background-color: #c82333; color: white; border-radius: 25px; font-size: 20px; padding: 10px 24px; border: 2px solid gray" type="submit">Publish and Notify</button>
                   </div>
@@ -38,6 +78,15 @@
                 <div class="p-3" text-align="center">
                     <h5 id="employee" style="text-align: center">Employees</h5>
 
+=======
+                  
+                  <input class="text" v-model="id" placeholder="Validation Token">
+
+                  <div id="divider" style="color: white">''</div>
+                  
+                    <h5 id="employee" style="text-align: center">Employees</h5>
+                    <div id="table-wrapper">
+>>>>>>> Stashed changes
                     <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -54,6 +103,7 @@
                         </tr>
                       </tbody>
                     </table>
+<<<<<<< Updated upstream
                       
                     <nav class="mb-3">
                         <b-nav vertical>
@@ -81,7 +131,23 @@
                 </div>
                 <div class="container2">
                   <h3 style="text-align: center">Montreal Library</h3>
+=======
+                    </div>
+                    <h5 id="sidebar-timeSet-title">Select Employee</h5>
+                  <input class="text" v-model="librarianID" placeholder="Librarian ID">
+                  <h5 id="sidebar-timeSet-title">Set Time</h5>
+                  <input type="text" v-model="startTime" placeholder="Start Time (HH:mm:ss)">
+                  <input type="text" v-model="endTime" placeholder="End Time (HH:mm:ss)">
+
+          <b-calendar v-model="value3" :date-disabled-fn="dateDisabled" :min="min" :max="max" block locale="en"></b-calendar>
+
+          <input class="text" v-model="WeekDay" placeholder="WeekDay">
+          
+
+                
+>>>>>>> Stashed changes
                 </div>
+                </template>
             </b-sidebar>
         </div>
         </body>
@@ -204,4 +270,49 @@ input[type="time"] {
   display: block;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+<<<<<<< Updated upstream
+=======
+.calendar {
+  padding: 25px;
+	position: static;
+	margin-top: 150px;
+	margin-bottom: 150px;
+	width: 400px;
+	height: 600px;
+	background:rgba(0, 0, 0, 0.65);
+	overflow: none;
+	border-radius: 10px;
+	/*box-shadow: 5px 20px 50px #000;*/
+	background-image: none;
+	display: flex;
+	flex-direction: column;
+}
+.table table-striped table-bordered {
+  overflow-y: auto;
+}
+.table_outer {
+  overflow: auto;
+  height: 15em;
+}
+.fixed-header {
+  z-index: 50;
+}
+thead th {
+  top: 0;
+  position: sticky;
+  background-color: white;
+}
+.table{
+  text-align: center;
+  border: 0;
+}
+#table-wrapper{
+ 	height: 150px;
+	width: 300px;
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	overflow: auto;
+
+}
+>>>>>>> Stashed changes
 </style>

@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import java.util.stream.Collectors;
@@ -15,9 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.service.ManagingEmploymentService;
 import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
+import ca.mcgill.ecse321.librarysystem.dto.WeeklyScheduleDto;
+import ca.mcgill.ecse321.librarysystem.dto.DailyScheduleDto;
 import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
+import ca.mcgill.ecse321.librarysystem.model.DailySchedule;
+import ca.mcgill.ecse321.librarysystem.model.DailySchedule.WeekDay;
 import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.model.Librarian;
+import ca.mcgill.ecse321.librarysystem.model.WeeklySchedule;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -36,6 +43,31 @@ public class EmploymentRestController {
 		return service.getAllLibrariansByFirstAndLastName(fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
+<<<<<<< Updated upstream
+=======
+	/**
+	 * @author vy-khahuynh
+	 * @param id id of the user
+	 * @return list of all librarians sharing the same first and last name
+	 * @author vy-khahuynh
+	 */
+	@GetMapping(value = { "/librarianssort", "/librarianssort/" })
+	public List<LibrarianDto> getAllLibrariansByFirstAndLastName(@RequestParam (name="mode") String mode) throws IllegalArgumentException{
+		return service.sortLibrarian(mode).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * @author vy-khahuynh
+	 * @param id id of the user
+	 * @return list of all librarians sharing the same first and last name
+	 * @author vy-khahuynh
+	 */
+	@GetMapping(value = { "/librarianSearch", "/librarianSearch/" })
+	public List<LibrarianDto> searchLibrarian(@RequestParam (name="librarianName") String name) throws IllegalArgumentException{
+		return service.searchLibrarian(name).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
+>>>>>>> Stashed changes
 
 	/**
 	 * @author vy-khahuynh
@@ -83,6 +115,12 @@ public class EmploymentRestController {
 		return convertToDto(l);
 	}
 	
+	@GetMapping(value= {"/librariansWeeklySchedule", "/librariansWeeklySchedule/" })
+	public WeeklyScheduleDto getWeeklyScheduleByID(@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
+		WeeklySchedule ws = service.getWeeklyScheduleByID(libid);
+		return convertToDto(ws);
+	}
+	
 	/**
 	 * @author vy-khahuynh
 	 * @param id id of the user
@@ -102,6 +140,22 @@ public class EmploymentRestController {
 			@PathVariable(name="city") String city) throws IllegalArgumentException {
 		Librarian l = service.createLibrarian(userID, firstname, lastname, address, city);
 		return convertToDto(l);
+	}
+	
+	@PostMapping(value = { "/createDailySchedule/{userID}/{librarianID}/{weekday}/{startTime}/{endTime}", "/createDailySchedule/{userID}/{librarianID}/{weekday}/{startTime}/{endTime}/" })
+	public DailyScheduleDto createDailySchedule(@PathVariable(name="userID") int userID, @PathVariable(name="librarianID")int librarianID, @PathVariable(name="weekday") WeekDay day, 
+			@PathVariable(name="startTime") Time startTime, @PathVariable(name="endTime") Time endTime) throws IllegalArgumentException {
+				DailySchedule ds = service.createDailySchedule(userID, librarianID, day, startTime, endTime);
+				return convertToDto(ds);
+			}
+	
+	
+	
+	@PostMapping(value = { "/createWeeklySchedule/{userID}/{startDate}/{endDate}/{librarianID}", "/createWeeklySchedule/{userID}/{startDate}/{endDate}/{librarianID}/" })
+	public WeeklyScheduleDto createWeeklySchedule(@PathVariable(name="userID") int userID, @PathVariable(name="startDate") Date startDate, 
+			@PathVariable(name="endDate") Date endDate, @PathVariable(name="librarianID") int librarianID) {
+				WeeklySchedule ws = service.createWeeklySchedule(userID, startDate, endDate, librarianID);
+				return convertToDto(ws);
 	}
 	
 	/**
@@ -159,5 +213,21 @@ public class EmploymentRestController {
 		}
 		HeadLibrarianDto hlDto = new HeadLibrarianDto(hl.getOnlineAccount(),hl.getFirstName(),hl.getLastName(),hl.getAddress(),hl.getCity(),hl.getBalance(),hl.getWeeklySchedule(),hl.getId());
 		return hlDto;	
+	}
+	
+	private DailyScheduleDto convertToDto(DailySchedule ds) {
+		if (ds == null) {
+			throw new IllegalArgumentException("Daily Schedule does not exist.");
+		}
+		DailyScheduleDto dsDto = new DailyScheduleDto(ds.getDay(), ds.getStartTime(), ds.getEndTime(), ds.getId());
+		return dsDto;	
+	}
+	
+	private WeeklyScheduleDto convertToDto(WeeklySchedule ws) {
+		if (ws == null) {
+			throw new IllegalArgumentException("Daily Schedule does not exist.");
+		}
+		WeeklyScheduleDto wsDto = new WeeklyScheduleDto(ws.getStartDate(), ws.getEndDate(), ws.getDailySchedules(), ws.getId());
+		return wsDto;	
 	}
 }
