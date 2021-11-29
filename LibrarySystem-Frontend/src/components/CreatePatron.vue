@@ -1,29 +1,23 @@
 <template>
     <div class="createpatronpage">
-        <div class="header">
-		<router-link to="/"><h2>Montreal Library</h2></router-link>
-				<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
-        		<router-link to="/items"><a class="btn">Items Information</a></router-link>
-        		<router-link to="/"><a class="btn">Home</a></router-link>
-		  </div>
-        <body>
-            <div class="main">
-                <input type="checkbox" id="chk" aria-hidden="true">
-                <div class="createpatron">
-                    <form>
-                        <label for="chk" aria-hidden="true">Create Patron</label>
-                        <input type="text" name="firstName" placeholder="First Name" required="">
-                        <input type="text" name="lastName" placeholder="Last Name" required="">
-                        <input type="text" name="username" placeholder="Username" required="">
-                        <input type="text" name="city" placeholder="City" required="">
-                        <input type="text" name="address" placeholder="Address" required="">
-                        <input type="email" name="email" placeholder="Email" required="">
-                        <input type="password" name="pswd" placeholder="Password" required="">
-                        <button>Create Patron</button>
-                    </form>
-                </div>
-           </div>
-        </body>
+		<body>
+			<div class="header">
+			<router-link to="/"><h1>Montreal Library</h1></router-link>
+					<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+					<router-link to="/items"><a class="btn">Items Information</a></router-link>
+					<router-link to="/"><a class="btn">Home</a></router-link>
+			</div>
+				<div class="createPatron">
+					<form>
+						<h2> Create Patron </h2>
+						<input type="text" v-model="firstName" placeholder="First Name" required="">
+						<input type="text" v-model="lastName" placeholder="Last Name" required="">
+						<input type="text" v-model="city" placeholder="City" required="">
+						<input type="text" v-model="address" placeholder="Address" required="">
+						<button @click="createPatron(firstName, lastName, city, address)">Create Patron</button>
+					</form>
+				</div>
+		</body>
     </div>
 </template>
 
@@ -31,6 +25,7 @@
 </script>
 
 <style>
+/* Navigation Bar */
 .header{
 	width:100%;
 	height: 100px;
@@ -41,15 +36,13 @@
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
 }
-
 .header a{
 	color: white;
 }
 .header a:hover{
 	color: black;
 }
-
-h2{
+h1{
 	text-align: left;
 	color:white;
 	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -73,13 +66,11 @@ h2{
   letter-spacing:2px;
   text-transform:uppercase;
 }
-
-
-
 .btn:hover{
   background:#fff;
 }
 
+/* Body */
 body{
 	margin: 60px 0px;
 	padding: 0;
@@ -90,97 +81,42 @@ body{
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-image: url("../assets/library.jpg");
 }
-.main{
-	width: 530px;
-	height: 600px;
-	overflow: hidden;
-	border-radius: 10px;
-	background:rgba(0, 0, 0, 0.8);
-}
-#chk{
-	display: none;
-	
-	
-}
-
-.signup2{
-	left: 160px;
-	bottom:618px;
-	position: relative;
-	width:50%;
-	height: 50%;
-}
-
-
-.signup1{
-	right: 100px;
-	position: relative;
-	width:100%;
-	height: 100%;
-}
-
-.signup2 label{
-	
-	font-size: 1.2em;
-	margin: 20px 140px;
-	width: 210px;
-}
-
-.signup1 label{
-	
-	font-size: 1.2em;
-	margin: 20px 130px;
-	width: 210px;
-}
-label{
-	text-align:center;
-	color: #fff;
-	justify-content: center;
-	display: flex;
-	margin: 60px;
+h2{
+	color: white;
 	font-weight: bold;
-	cursor: pointer;
-	transition: .5s ease-in-out;
-	
+}
+.createPatron{
+	background:rgba(0, 0, 0, 0.8);
+	overflow: hidden;
+	border-radius: 10px 10px 10px 10px;
+	padding: 25px;
+	width: 500px;
+	height: 100%;
+	text-align: center;
+	justify-content: center;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }
 input{
-	width: 210px;
-	height: 20px;
-	background: white;
-	justify-content: center;
-	display: flex;
-	margin: 20px 140px;
-	padding: 10px;
+	justify-content: center;	
 	border: none;
 	outline: none;
 	border-radius: 5px;
+	padding: 2px;
 }
 button{
-	width: 210px;
-	height: 40px;
-	margin: 10px 140px;
 	justify-content: center;
 	display: block;
 	color: black;
 	background: white;
-    
-	font-size: 1em;
-	margin-top: 20px;
-	outline: none;
 	border: none;
 	border-radius: 5px;
 	transition: .2s ease-in;
 	cursor: pointer;
 }
-
-.signup2 button{
-	margin-top: 138px;
-}
-
-.login button{
-	margin: 10px auto;
-}
-
 button:hover{
 	background: black;
     color:white;
