@@ -68,6 +68,7 @@ export default {
       emailUsername: '',
       errorMsg: '',
       onlineAccountLogged:[],
+      accountId
     }
   },
 
@@ -75,6 +76,7 @@ export default {
     AXIOS.get('/onlineAccountLoggedIn')
       .then(response => {
         this.onlineAccountLogged.push(response.data)
+        this.accountId = response.data.accountId
       })
   },
 
@@ -92,6 +94,21 @@ export default {
     },
   }
   
+  methods: {
+    changeUsername: function(id, usernameNew, password) {
+      AXIOS.put('/changeUsername/', {params: {id: this.accountId, password: this.password, newUsername: this.newUsername}})
+      .then(response => 
+        {
+          this.usernameNew = this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+      },
+  }
 
 }
 
