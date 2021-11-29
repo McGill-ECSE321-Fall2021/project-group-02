@@ -66,6 +66,7 @@ export default {
       password: '',
       username: '',
       emailUsername: '',
+      errorMsg: '',
       onlineAccountLogged:[],
       accountId
     }
@@ -78,6 +79,20 @@ export default {
         this.accountId = response.data.accountId
       })
   },
+
+  methods: {
+    signOutUser: function(){
+      AXIOS.post("/signOut").then(response =>
+        {
+          this.errorMsg= '';
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
+    },
+  }
   
   methods: {
     changeUsername: function(id, usernameNew, password) {

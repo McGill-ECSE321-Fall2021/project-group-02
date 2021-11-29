@@ -18,7 +18,7 @@
               </div>
               <a><router-link to="/userProfile">Profile</router-link></a>
               <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
-              <a href="">Sign out</a>
+              <router-link to="/"><button @click="signOutUser()">Sign out</button></router-link>
             </div>
           </div>
 

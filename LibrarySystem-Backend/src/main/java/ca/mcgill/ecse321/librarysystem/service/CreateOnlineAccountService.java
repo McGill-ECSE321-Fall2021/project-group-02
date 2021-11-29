@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,6 +124,7 @@ public class CreateOnlineAccountService {
 			throw new IllegalArgumentException(error);
 
 		account.setLoggedIn(loggedIn);
+		
 		onlineAccountRepository.save(account);
 
 		return account;
@@ -136,9 +138,28 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount getloggedInAccount() throws IllegalArgumentException {
-		List<OnlineAccount> accountList = onlineAccountRepository.findOnlineAccountsByLoggedInTrue();
-		OnlineAccount account = accountList.get(accountList.size() - 1);
-		return account;
+		List<OnlineAccount> accountList=toList(onlineAccountRepository.findAll());
+		for(int i=accountList.size()-1;i>=0;i--) {
+			if(accountList.get(i).getLoggedIn()) {
+				return accountList.get(i);
+			}
+		}
+		throw new IllegalArgumentException("There are no logged in accounts!");
+	}
+	
+	/**
+	 * Removes all the logged in users from the logged in array
+	 * @param 
+	 * @return Sign out
+	 * @author Sami Ait Ouahmane
+	 */
+	public void signOutAccount() throws IllegalArgumentException {
+		List<OnlineAccount> accountList=toList(onlineAccountRepository.findAll());
+		
+		for(OnlineAccount oA: accountList) {
+			oA.setLoggedIn(false);
+			onlineAccountRepository.save(oA);
+		}
 	}
 
 	/**
@@ -442,6 +463,14 @@ public class CreateOnlineAccountService {
 
 	public UserEntity findUserById(int id) {
 		return userEntityRepository.findUserEntityById(id);
+	}
+	
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
 	}
 
 }
