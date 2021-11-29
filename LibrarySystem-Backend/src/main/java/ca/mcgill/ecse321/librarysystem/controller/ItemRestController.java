@@ -95,7 +95,7 @@ public class ItemRestController {
 			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		Item i = itemService.archiveItem(itemId, headLibrarianID);
 		return convertToDto(i);
-		
+
 	}
 
 	/******************************************
@@ -233,22 +233,24 @@ public class ItemRestController {
 			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		itemService.discardItem(itemId, headLibrarianID);
 	}
-  
+
 	/**
 	 * Set an item as damaged
+	 * 
 	 * @param itemID
 	 * @param headLibrarianID
 	 */
-	@PostMapping(value = {"/items/setDamaged", "/items/setDamaged/"})
-	public void setDamagedItem(@RequestParam(name = "itemId") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+	@PostMapping(value = { "/items/setDamaged", "/items/setDamaged/" })
+	public void setDamagedItem(@RequestParam(name = "itemId") int itemID,
+			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		itemService.setDamagedItem(itemID, headLibrarianID);
 	}
-	
-	@PostMapping(value = {"/items/available", "/items/available/"})
-	public void makeItemBorrowable(@RequestParam(name = "itemID") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+
+	@PostMapping(value = { "/items/available", "/items/available/" })
+	public void makeItemBorrowable(@RequestParam(name = "itemID") int itemID,
+			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		itemService.makeItemBorrowable(itemID, headLibrarianID);
 	}
-	
 
 	/****************************************************
 	 * SPECIFIC ITEM TYPE METHODS - SAMI
@@ -509,7 +511,7 @@ public class ItemRestController {
 	 * @author Hyunbum Cho
 	 */
 	@GetMapping(value = { "/borrowedItems/books", "/borrowedItems/books/" })
-	public List<BookDto> getAllBorrwedBooks(@RequestParam(name = "id") int id) throws IllegalArgumentException {
+	public List<BookDto> getAllBorrowedBooks(@RequestParam(name = "id") int id) throws IllegalArgumentException {
 		return itemService.getBooksBorrowedByPatron(id).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
 
@@ -521,7 +523,7 @@ public class ItemRestController {
 	 * @author Hyunbum Cho
 	 */
 	@GetMapping(value = { "/borrowedItems/albums", "/borrowedItems/albums/" })
-	public List<AlbumDto> getAllborrowedAlbums(@RequestParam(name = "id") int id) throws IllegalArgumentException {
+	public List<AlbumDto> getAllBorrowedAlbums(@RequestParam(name = "id") int id) throws IllegalArgumentException {
 		return itemService.getAlbumsBorrowedByPatron(id).stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
 
@@ -533,7 +535,7 @@ public class ItemRestController {
 	 * @author Hyunbum Cho
 	 */
 	@GetMapping(value = { "/borrowedItems/movies", "/borrowedItems/movies/" })
-	public List<MovieDto> getAllBorrowedmovies(@RequestParam(name = "id") int id) throws IllegalArgumentException {
+	public List<MovieDto> getAllBorrowedMovies(@RequestParam(name = "id") int id) throws IllegalArgumentException {
 		return itemService.getMoviesBorrowedByPatron(id).stream().map(m -> convertToDto(m)).collect(Collectors.toList());
 	}
 
@@ -552,7 +554,7 @@ public class ItemRestController {
 		if (m == null) {
 			throw new IllegalArgumentException("There is no such Movie!");
 		}
-		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector(), m.getIsBorrowed(), m.getId());
+		MovieDto movieDto = new MovieDto(m.getTitle(), m.getDirector(), m.getIsBorrowed(), m.getId());
 		return movieDto;
 	}
 
@@ -576,7 +578,7 @@ public class ItemRestController {
 		if (a == null) {
 			throw new IllegalArgumentException("There is no such Album!");
 		}
-		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist(), a.getIsBorrowed(), a.getId());
+		AlbumDto albumDto = new AlbumDto(a.getTitle(), a.getArtist(), a.getIsBorrowed(), a.getId());
 		return albumDto;
 	}
 
@@ -585,7 +587,7 @@ public class ItemRestController {
 			throw new IllegalArgumentException("There is no such Book!");
 		}
 
-		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(), b.getIsBorrowed(), b.getId());
+		BookDto bookDto = new BookDto(b.getTitle(), b.getAuthor(), b.getIsBorrowed(), b.getId());
 		return bookDto;
 	}
 
