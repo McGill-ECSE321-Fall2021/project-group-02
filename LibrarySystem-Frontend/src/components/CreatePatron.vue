@@ -2,19 +2,20 @@
     <div class="createpatronpage">
 		<body>
 			<div class="header">
-			<router-link to="/"><h1>Montreal Library</h1></router-link>
+			<router-link to="/"><h2>Montreal Library</h2></router-link>
 					<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
 					<router-link to="/items"><a class="btn">Items Information</a></router-link>
 					<router-link to="/"><a class="btn">Home</a></router-link>
 			</div>
 				<div class="createPatron">
 					<form>
-						<h2> Create Patron </h2>
+						<h1> Create Patron </h1>
 						<input type="text" v-model="firstName" placeholder="First Name" required="">
 						<input type="text" v-model="lastName" placeholder="Last Name" required="">
 						<input type="text" v-model="city" placeholder="City" required="">
 						<input type="text" v-model="address" placeholder="Address" required="">
 						<button @click="createPatron(firstName, lastName, city, address)">Create Patron</button>
+						<p><span v-if="success" style="color:green">Success! Patron has been created. The patron ID is: {{success}} </span></p>
 						<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 					</form>
 				</div>
@@ -22,7 +23,7 @@
     </div>
 </template>
 
-<script>
+<script src="../store/CreatePatron.js">
 </script>
 
 <style>
@@ -43,7 +44,7 @@
 .header a:hover{
 	color: black;
 }
-h1{
+h2{
 	text-align: left;
 	color:white;
 	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -51,8 +52,7 @@ h1{
 	position: fixed;
 	top: 0;
 	left: 0;
-	
-	width: 250px;
+
 	background:rgb(112, 1, 1);
 	padding: 10px 10px;
 }
@@ -82,7 +82,7 @@ body{
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-image: url("../assets/library.jpg");
 }
-h2{
+h1{
 	color: white;
 	font-weight: bold;
 }
