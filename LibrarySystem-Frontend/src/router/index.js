@@ -11,6 +11,7 @@ import ManageItemsPage from '@/components/ManageItemsPage'
 
 import ViewItemsPage from '@/components/ViewItemsPage'
 import UserProfilePage from '@/components/UserProfilePage'
+import UserProfilePageLibrarian from '@/components/UserProfilePageLibrarian'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
 
@@ -94,6 +95,12 @@ export default new Router({
       path: '/userProfile',
       name: 'user-profile',
       component: UserProfilePage
+    },
+    
+    {
+      path: '/userProfileLibrarian',
+      name: 'user-profile-librarian',
+      component: UserProfilePageLibrarian
     },
     
     {
