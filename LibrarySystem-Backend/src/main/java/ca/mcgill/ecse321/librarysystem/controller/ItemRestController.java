@@ -92,6 +92,7 @@ public class ItemRestController {
 	public ItemDto archiveItem(@RequestParam(name = "itemID") int itemId, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		Item i = itemService.archiveItem(itemId, headLibrarianID);
 		return convertToDto(i);
+		
 	}
 	
 	/******************************************
@@ -475,7 +476,7 @@ public class ItemRestController {
 		if (m == null) {
 			throw new IllegalArgumentException("There is no such Movie!");
 		}
-		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector(), m.getId());
+		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector(), m.getIsBorrowed(), m.getId());
 		return movieDto;
 	}
 	
@@ -500,7 +501,7 @@ public class ItemRestController {
 		if (a == null) {
 			throw new IllegalArgumentException("There is no such Album!");
 		}
-		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist(), a.getId());
+		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist(), a.getIsBorrowed(), a.getId());
 		return albumDto;
 	}
 	
@@ -508,7 +509,7 @@ public class ItemRestController {
 		if (b == null) {
 			throw new IllegalArgumentException("There is no such Book!");
 		}
-		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(), b.getId());
+		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(), b.getIsBorrowed(), b.getId());
 		return bookDto;
 	}
 	
