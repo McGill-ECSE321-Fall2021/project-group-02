@@ -21,7 +21,7 @@ There are six team members in Group 02:
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
 | --- | --- | --- | --- | --- | --- |
 | Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h | 30h |  |
-| Julie Chen | Documentation Lead | 12h | 20h |  |  |
+| Julie Chen | Documentation Lead | 12h | 20h | 30h |  |
 | Hyunbum Cho | Software Developer | 12h | 20h |  |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h | 20h |  |
 | Niilo Vuokila | Software Developer | 20h | 20h | 23h |  |
