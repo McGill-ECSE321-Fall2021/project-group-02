@@ -17,7 +17,6 @@
                 <h3>{{ onlineAccount.firstName }} {{ onlineAccount.lastName }}</h3>
               </div>
               <a><router-link to="/userProfile">Profile</router-link></a>
-              <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
               <a><router-link to="/" @click="signOutUser()">Sign out</router-link></a>
             </div>
           </div>

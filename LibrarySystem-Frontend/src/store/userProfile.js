@@ -66,7 +66,9 @@ export default {
       password: '',
       username: '',
       emailUsername: '',
+      errorMsg: '',
       onlineAccountLogged:[],
+      id: -1
     }
   },
 
@@ -74,9 +76,76 @@ export default {
     AXIOS.get('/onlineAccountLoggedIn')
       .then(response => {
         this.onlineAccountLogged.push(response.data)
+        this.id = response.data.accountId
       })
   },
-  
+
+  methods: {
+    signOutUser: function(){
+      AXIOS.post("/signOut").then(response =>
+        {
+          this.errorMsg= '';
+          onlineAccountLogged = [];
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
+    },
+    changeUsername: function(password, newUsername) {
+      AXIOS.put('/changeUsername', {}, {params: {id: this.id, password: this.password, newUsername: this.newUsername}})
+      .then(response => 
+        {
+          this.newUsername = this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+    },
+    changeEmail: function(password, newEmail) {
+      AXIOS.put('/changeEmail', {}, {params: {id: this.id, password: this.password, newEmail: this.newEmail}})
+      .then(response => 
+        {
+          this.newEmail = this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+    },
+    changePassword: function(password, newPassword) {
+      AXIOS.put('/changePassword', {}, {params: {id: this.id, password: this.password, newPassword: this.newPassword}})
+      .then(response => 
+        {
+          this.newPassword = this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+    },
+    deleteAccount: function(password) {
+      AXIOS.delete('/deleteOnlineAccount', {}, {params: {id: this.id, password: this.password}})
+      .then(response => 
+        {
+          this.password = this.errorOnlineAccount= ''
+        })
+        .catch(e => {
+          this.usernameNew = this.password = ''
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorOnlineAccount = errorMsg
+        })
+    },
+  }
 
 }
 

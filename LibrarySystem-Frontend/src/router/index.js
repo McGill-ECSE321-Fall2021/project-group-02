@@ -11,6 +11,7 @@ import ManageItemsPage from '@/components/ManageItemsPage'
 
 import ViewItemsPage from '@/components/ViewItemsPage'
 import UserProfilePage from '@/components/UserProfilePage'
+import UserProfilePageLibrarian from '@/components/UserProfilePageLibrarian'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
 
@@ -97,6 +98,12 @@ export default new Router({
     },
     
     {
+      path: '/userProfileLibrarian',
+      name: 'user-profile-librarian',
+      component: UserProfilePageLibrarian
+    },
+    
+    {
       path: '/librarians',
       name: 'ManageLibrariansPage',
       component: ManageLibrariansPage
@@ -104,6 +111,21 @@ export default new Router({
     {
       path: '/userProfile/borrowedItems',
       name: 'borrowed-items',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/books',
+      name: 'borrowed-books',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/albums',
+      name: 'borrowed-albums',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/movies',
+      name: 'borrowed-movies',
       component: BorrowedItemsPage
     }
   ]

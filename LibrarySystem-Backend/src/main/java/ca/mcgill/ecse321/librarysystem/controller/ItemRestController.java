@@ -29,21 +29,22 @@ import java.sql.Date;
 @CrossOrigin(origins = "*")
 @RestController
 public class ItemRestController {
-	
+
 	@Autowired
 	ItemService itemService;
-	
+
 	@Autowired
 	UserEntityRepository useRepository;
-	
+
 	@Autowired
 	ItemRepository itemRepository;
-	
+
 	/************************************
-    	  BORROW ITEM SERVICE - SAMI
+	 * BORROW ITEM SERVICE - SAMI
 	 ************************************/
 	/**
 	 * Sets an item as borrowed by a patron
+	 * 
 	 * @param itemName
 	 * @param itemDto
 	 * @param patronDto
@@ -51,19 +52,19 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/borrow/{name}", "/borrow/{name}/"} )
-	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name="itemId") int itemId, @RequestParam(name= "patronId") int patronId) {
-		Item i= itemService.borrowItem(itemId, itemName, patronId);
+	@PostMapping(value = { "/borrow/{name}", "/borrow/{name}/" })
+	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name = "itemId") int itemId,
+			@RequestParam(name = "patronId") int patronId) {
+		Item i = itemService.borrowItem(itemId, itemName, patronId);
 		return convertToDto(i);
 	}
-	
-	
-	
+
 	/************************************
-          RETURN ITEM SERVICE - JULIE
-    ************************************/
+	 * RETURN ITEM SERVICE - JULIE
+	 ************************************/
 	/**
 	 * Places an item back into the borrwable library contents
+	 * 
 	 * @param itemName
 	 * @param itemDto
 	 * @param patronDto
@@ -71,134 +72,145 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
-	@PostMapping(value = { "/return", "/return/"})
+	@PostMapping(value = { "/return", "/return/" })
 	public ItemDto returnItem(@RequestParam(name = "itemId") int itemId, @RequestParam(name = "patronId") int patronId) {
 		Item i = itemService.returnItem(itemId, patronId);
 		return convertToDto(i);
 	}
-	
+
 	/************************************
-          ARCHIVE ITEM SERVICE - JOHN
+	 * ARCHIVE ITEM SERVICE - JOHN
 	 ************************************/
 	/**
 	 * Places an item into the archived library section
+	 * 
 	 * @param itemDto
-	 * @param 
+	 * @param
 	 * @return archived item
 	 * 
 	 * @author John
 	 */
-	@PostMapping(value = { "/archive", "/archive/"})
-	public ItemDto archiveItem(@RequestParam(name = "itemID") int itemId, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+	@PostMapping(value = { "/archive", "/archive/" })
+	public ItemDto archiveItem(@RequestParam(name = "itemID") int itemId,
+			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		Item i = itemService.archiveItem(itemId, headLibrarianID);
 		return convertToDto(i);
-		
+
 	}
-	
+
 	/******************************************
-	    VIEW LIBRARY CONTENTS - JULIE/NIILO
+	 * VIEW LIBRARY CONTENTS - JULIE/NIILO
 	 ******************************************/
 	/**
 	 * Finds all books under a specific name
+	 * 
 	 * @param title The name of the book that is being searched for
 	 * 
 	 * @return the list of all books under the name specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/books", "/items/books/"}, params = "title")
+	@GetMapping(value = { "/items/books", "/items/books/" }, params = "title")
 	public List<BookDto> getBooksByTitle(@RequestParam String title) throws IllegalArgumentException {
 		return itemService.getBooksByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Finds all books under a specific author
+	 * 
 	 * @param title The name of the author that is being searched for
 	 * 
 	 * @return the list of all books under the author specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/books", "/items/books/"}, params = "author")
+	@GetMapping(value = { "/items/books", "/items/books/" }, params = "author")
 	public List<BookDto> getBooksByAuthor(@RequestParam String author) throws IllegalArgumentException {
 		return itemService.getBooksByAuthor(author).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Finds all albums under a specific name
+	 * 
 	 * @param title The name of the albums that is being searched for
 	 * 
 	 * @return the list of all albums under the name specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/albums", "/items/albums/"}, params = "title")
+	@GetMapping(value = { "/items/albums", "/items/albums/" }, params = "title")
 	public List<AlbumDto> getAlbumsByTitle(@RequestParam String title) throws IllegalArgumentException {
 		return itemService.getAlbumsByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Finds all albums under a specific artist
+	 * 
 	 * @param artist The name of the artist that is being searched for
 	 * 
 	 * @return the list of all albums under the artist specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/albums", "/items/albums/"}, params = "artist")
+	@GetMapping(value = { "/items/albums", "/items/albums/" }, params = "artist")
 	public List<AlbumDto> getAlbumsByArtist(@RequestParam String artist) throws IllegalArgumentException {
 		return itemService.getAlbumsByArtist(artist).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Finds all movies under a specific name
+	 * 
 	 * @param title The name of the movie that is being searched for
 	 * 
 	 * @return the list of all movies under the name specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/movies", "/items/movies/"}, params = "title")
+	@GetMapping(value = { "/items/movies", "/items/movies/" }, params = "title")
 	public List<MovieDto> getMoviesByTitle(@RequestParam String title) throws IllegalArgumentException {
 		return itemService.getMoviesByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Finds all movies under a specific director
+	 * 
 	 * @param title The name of the director that is being searched for
 	 * 
 	 * @return the list of all movies under the director specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/movies", "/items/movies/"}, params = "director")
+	@GetMapping(value = { "/items/movies", "/items/movies/" }, params = "director")
 	public List<MovieDto> getMoviesByDirector(@RequestParam String director) throws IllegalArgumentException {
 		return itemService.getMoviesByDirector(director).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Finds all journals under a specific name
+	 * 
 	 * @param title The name of the journal that is being searched for
 	 * 
 	 * @return the list of all journals under the name specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/journals", "/items/journals/"}, params = "name")
+	@GetMapping(value = { "/items/journals", "/items/journals/" }, params = "name")
 	public List<JournalDto> getJournalsByName(@RequestParam String name) throws IllegalArgumentException {
 		return itemService.getJournalsByName(name).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Finds all newspapers under a specific name
+	 * 
 	 * @param name The name of the newspaper that is being searched for
 	 * 
 	 * @return the list of all newspapers under the name specified
 	 * @author Niilo
 	 */
-	@GetMapping(value = {"/items/newspapers", "/items/newspapers/"}, params = "name")
+	@GetMapping(value = { "/items/newspapers", "/items/newspapers/" }, params = "name")
 	public List<NewspaperDto> getNewspapersByName(@RequestParam String name) throws IllegalArgumentException {
 		return itemService.getNewspaperByName(name).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
 
 	/****************************************************
-           OTHER GENERAL ITEM METHODS - JULIE
+	 * OTHER GENERAL ITEM METHODS - JULIE
 	 ****************************************************/
 	/**
 	 * Get a list of all the items in the library software system
+	 * 
 	 * @return
 	 * 
 	 * @author Julie
@@ -207,62 +219,71 @@ public class ItemRestController {
 	public List<ItemDto> getAllItems() {
 		return itemService.getAllItems().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Remove an item from the library software system
+	 * 
 	 * @param itemId
 	 * @param userID
 	 * 
 	 * @author Julie
 	 */
-	@DeleteMapping(value = {"/items/discard", "/items/discard/"})
-	public void discardItem(@RequestParam(name = "itemID") int itemId, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+	@DeleteMapping(value = { "/items/discard", "/items/discard/" })
+	public void discardItem(@RequestParam(name = "itemID") int itemId,
+			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		itemService.discardItem(itemId, headLibrarianID);
 	}
-	
+
 	/**
 	 * Set an item as damaged
+	 * 
 	 * @param itemID
 	 * @param headLibrarianID
 	 */
-	@PostMapping(value = {"/items/setDamaged", "/items/setDamaged/"})
-	public void setDamagedItem(@RequestParam(name = "itemId") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+	@PostMapping(value = { "/items/setDamaged", "/items/setDamaged/" })
+	public void setDamagedItem(@RequestParam(name = "itemId") int itemID,
+			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		itemService.setDamagedItem(itemID, headLibrarianID);
 	}
-	
-	@PostMapping(value = {"/items/available", "/items/available/"})
-	public void makeItemBorrowable(@RequestParam(name = "itemID") int itemID, @RequestParam(name = "headLibrarianID") int headLibrarianID) {
+
+	@PostMapping(value = { "/items/available", "/items/available/" })
+	public void makeItemBorrowable(@RequestParam(name = "itemID") int itemID,
+			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		itemService.makeItemBorrowable(itemID, headLibrarianID);
 	}
-	
+
 	/****************************************************
-             SPECIFIC ITEM TYPE METHODS - SAMI
+	 * SPECIFIC ITEM TYPE METHODS - SAMI
 	 ****************************************************/
-	
+
 	/**
 	 * Creates a patron
+	 * 
 	 * @author Sami
 	 * @return Patron
 	 */
-	@PostMapping(value= {"/createPatron/{address}","/createPatron/{address}/"})
-	public PatronDto createPatron(@PathVariable("address") String address, @RequestParam(name="city") String city, @RequestParam(name="balance") int balance, @RequestParam(name="firstName") String firstName, @RequestParam(name="lastName") String lastName) {
-		Patron p=itemService.createPatron(address, balance, city, firstName, lastName);
+	@PostMapping(value = { "/createPatron/{address}", "/createPatron/{address}/" })
+	public PatronDto createPatron(@PathVariable("address") String address, @RequestParam(name = "city") String city,
+			@RequestParam(name = "balance") int balance, @RequestParam(name = "firstName") String firstName,
+			@RequestParam(name = "lastName") String lastName) {
+		Patron p = itemService.createPatron(address, balance, city, firstName, lastName);
 		return convertToDto(p);
 	}
-	
+
 	/**
 	 * Deletes a patron
+	 * 
 	 * @author Sami
 	 * @return Patron
 	 */
-	@DeleteMapping(value= {"/deletePatron/{address}","/deletePatron/{address}/"})
+	@DeleteMapping(value = { "/deletePatron/{address}", "/deletePatron/{address}/" })
 	public void deletePatron(@PathVariable("address") String address) {
 		itemService.deletePatron(address);
 	}
-	
-	
+
 	/**
 	 * Adds a new book to the library software system
+	 * 
 	 * @param bookTitle
 	 * @param authorName
 	 * @param patron
@@ -271,14 +292,16 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/createBook/{title}", "/createBook/{title}/"} )
-	public BookDto createBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName, @RequestParam(name= "isArchived") boolean isArchived) {
-		Book b= itemService.createBook(authorName, bookTitle, isArchived);
+	@PostMapping(value = { "/createBook/{title}", "/createBook/{title}/" })
+	public BookDto createBook(@PathVariable("title") String bookTitle,
+			@RequestParam(name = "authorName") String authorName, @RequestParam(name = "isArchived") boolean isArchived) {
+		Book b = itemService.createBook(authorName, bookTitle, isArchived);
 		return convertToDto(b);
 	}
-	
+
 	/**
 	 * Deletes a book
+	 * 
 	 * @param bookTitle
 	 * @param authorName
 	 * @param patron
@@ -286,13 +309,15 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@DeleteMapping(value = {"/deleteBook/{title}", "/deleteBook/{title}/"} )
-	public void deleteBook(@PathVariable("title") String bookTitle, @RequestParam(name="authorName") String authorName) {
-		itemService.deleteBook(authorName,bookTitle);
+	@DeleteMapping(value = { "/deleteBook/{title}", "/deleteBook/{title}/" })
+	public void deleteBook(@PathVariable("title") String bookTitle,
+			@RequestParam(name = "authorName") String authorName) {
+		itemService.deleteBook(authorName, bookTitle);
 	}
-	
+
 	/**
 	 * Adds a new album to the library software system
+	 * 
 	 * @param albumTitle
 	 * @param artistName
 	 * @param patron
@@ -301,28 +326,31 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/createAlbum/{title}", "/createAlbum/{title}/"} )
-	public AlbumDto createAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName, @RequestParam(name= "isArchived") boolean isArchived) {
-		Album a= itemService.createAlbum(artistName,albumTitle, isArchived);
+	@PostMapping(value = { "/createAlbum/{title}", "/createAlbum/{title}/" })
+	public AlbumDto createAlbum(@PathVariable("title") String albumTitle,
+			@RequestParam(name = "artistName") String artistName, @RequestParam(name = "isArchived") boolean isArchived) {
+		Album a = itemService.createAlbum(artistName, albumTitle, isArchived);
 		return convertToDto(a);
 	}
-	
+
 	/**
 	 * Deletes a album
+	 * 
 	 * @param albumTitle
 	 * @param artistName
 	 * @return
 	 * 
 	 * @author Sami
 	 */
-	@DeleteMapping(value = {"/deleteAlbum/{title}", "/deleteAlbum/{title}/"} )
-	public void deleteAlbum(@PathVariable("title") String albumTitle, @RequestParam(name="artistName") String artistName) {
-		itemService.deleteAlbum(artistName,albumTitle);
+	@DeleteMapping(value = { "/deleteAlbum/{title}", "/deleteAlbum/{title}/" })
+	public void deleteAlbum(@PathVariable("title") String albumTitle,
+			@RequestParam(name = "artistName") String artistName) {
+		itemService.deleteAlbum(artistName, albumTitle);
 	}
-	
-	
+
 	/**
 	 * Adds a new movie to the library software system
+	 * 
 	 * @param movieTitle
 	 * @param directorName
 	 * @param patron
@@ -331,81 +359,93 @@ public class ItemRestController {
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/createMovie/{title}", "/createMovie/{title}/"} )
-	public MovieDto createMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName, @RequestParam(name= "isArchived") boolean isArchived) {
-		Movie m= itemService.createMovie(directorName, movieTitle, isArchived);
+	@PostMapping(value = { "/createMovie/{title}", "/createMovie/{title}/" })
+	public MovieDto createMovie(@PathVariable("title") String movieTitle,
+			@RequestParam(name = "directorName") String directorName, @RequestParam(name = "isArchived") boolean isArchived) {
+		Movie m = itemService.createMovie(directorName, movieTitle, isArchived);
 		return convertToDto(m);
 	}
-	
+
 	/**
 	 * Deletes movie
+	 * 
 	 * @param movieTitle
 	 * @param directorName
 	 * @return
 	 * 
 	 * @author Sami
 	 */
-	@DeleteMapping(value = {"/deleteMovie/{title}", "/deleteMovie/{title}/"} )
-	public void deleteMovie(@PathVariable("title") String movieTitle, @RequestParam(name="directorName") String directorName) {
+	@DeleteMapping(value = { "/deleteMovie/{title}", "/deleteMovie/{title}/" })
+	public void deleteMovie(@PathVariable("title") String movieTitle,
+			@RequestParam(name = "directorName") String directorName) {
 		itemService.deleteMovie(directorName, movieTitle);
 	}
-	
+
 	/**
 	 * Adds a new newspaper to the library software system
+	 * 
 	 * @param newspaperTitle
 	 * @param newspaperDate
 	 * @return
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/createNewspaper/{title}", "/createNewspaper/{title}/"} )
-	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
-		Newspaper n= itemService.createNewspaper(newspaperTitle, newspaperDate);
+	@PostMapping(value = { "/createNewspaper/{title}", "/createNewspaper/{title}/" })
+	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle,
+			@RequestParam(name = "newspaperDate") Date newspaperDate) {
+		Newspaper n = itemService.createNewspaper(newspaperTitle, newspaperDate);
 		return convertToDto(n);
 	}
-	
+
 	/**
 	 * Deletes newspaper
+	 * 
 	 * @param newspaperTitle
 	 * @param newspaperDate
 	 * @return
 	 * 
 	 * @author Sami
 	 */
-	@DeleteMapping(value = {"/deleteNewspaper/{title}", "/deleteNewspaper/{title}/"} )
-	public void deleteNewspaper(@PathVariable("title") String newspaperTitle, @RequestParam(name="newspaperDate") Date newspaperDate) {
+	@DeleteMapping(value = { "/deleteNewspaper/{title}", "/deleteNewspaper/{title}/" })
+	public void deleteNewspaper(@PathVariable("title") String newspaperTitle,
+			@RequestParam(name = "newspaperDate") Date newspaperDate) {
 		itemService.deleteNewspaper(newspaperTitle, newspaperDate);
 	}
-	
+
 	/**
 	 * Adds a new journal to the library software system
+	 * 
 	 * @param journalTitle
 	 * @param journalDate
 	 * @return
 	 * 
 	 * @author Sami
 	 */
-	@PostMapping(value = {"/createJournal/{title}", "/createJournal/{title}/"} )
-	public JournalDto createJournal(@PathVariable("title") String journalTitle, @RequestParam(name="journalDate") Date journalDate) {
-		Journal j= itemService.createJournal(journalTitle, journalDate);
+	@PostMapping(value = { "/createJournal/{title}", "/createJournal/{title}/" })
+	public JournalDto createJournal(@PathVariable("title") String journalTitle,
+			@RequestParam(name = "journalDate") Date journalDate) {
+		Journal j = itemService.createJournal(journalTitle, journalDate);
 		return convertToDto(j);
 	}
-	
+
 	/**
 	 * Deletes journal
+	 * 
 	 * @param journalTitle
 	 * @param journalDate
 	 * @return
 	 * 
 	 * @author Sami
 	 */
-	@DeleteMapping(value = {"/deleteJournal/{title}", "/deleteJournal/{title}/"} )
-	public void deleteJournal(@PathVariable("title") String journalTitle, @RequestParam(name="journalDate") Date journalDate) {
+	@DeleteMapping(value = { "/deleteJournal/{title}", "/deleteJournal/{title}/" })
+	public void deleteJournal(@PathVariable("title") String journalTitle,
+			@RequestParam(name = "journalDate") Date journalDate) {
 		itemService.deleteNewspaper(journalTitle, journalDate);
 	}
-	
+
 	/**
 	 * Gets a list of all the books in the library software system
+	 * 
 	 * @return
 	 * 
 	 * @author Sami
@@ -414,9 +454,10 @@ public class ItemRestController {
 	public List<BookDto> getAllBooks() {
 		return itemService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Gets a list of all the albums in the library software system
+	 * 
 	 * @return
 	 * 
 	 * @author Sami
@@ -425,9 +466,10 @@ public class ItemRestController {
 	public List<AlbumDto> getAllAlbums() {
 		return itemService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Gets a list of all the movies in the library software system
+	 * 
 	 * @return
 	 * 
 	 * @author Sami
@@ -436,9 +478,10 @@ public class ItemRestController {
 	public List<MovieDto> getAllMovies() {
 		return itemService.getAllMovies().stream().map(m -> convertToDto(m)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Gets a list of all the newspapers in the library software system
+	 * 
 	 * @return
 	 * 
 	 * @author Sami
@@ -447,9 +490,10 @@ public class ItemRestController {
 	public List<NewspaperDto> getAllNewspapers() {
 		return itemService.getAllNewspapers().stream().map(n -> convertToDto(n)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Gets a list of all the journals in the library software system
+	 * 
 	 * @return
 	 * 
 	 * @author Sami
@@ -458,66 +502,101 @@ public class ItemRestController {
 	public List<JournalDto> getAllJournals() {
 		return itemService.getAllJournals().stream().map(j -> convertToDto(j)).collect(Collectors.toList());
 	}
-	
-	
-	
+
+	/**
+	 * Gets a list of all the books borrowed by a patron
+	 * 
+	 * @return array of all the books borrowed by a patron
+	 * 
+	 * @author Hyunbum Cho
+	 */
+	@GetMapping(value = { "/borrowedItems/books", "/borrowedItems/books/" })
+	public List<BookDto> getAllBorrowedBooks(@RequestParam(name = "id") int id) throws IllegalArgumentException {
+		return itemService.getBooksBorrowedByPatron(id).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
+	}
+
+	/**
+	 * Gets a list of all the albums in the library software system
+	 * 
+	 * @return array of all the albums borrowed by a patron
+	 * 
+	 * @author Hyunbum Cho
+	 */
+	@GetMapping(value = { "/borrowedItems/albums", "/borrowedItems/albums/" })
+	public List<AlbumDto> getAllBorrowedAlbums(@RequestParam(name = "id") int id) throws IllegalArgumentException {
+		return itemService.getAlbumsBorrowedByPatron(id).stream().map(a -> convertToDto(a)).collect(Collectors.toList());
+	}
+
+	/**
+	 * Gets a list of all the movies in the library software system
+	 * 
+	 * @return array of all the movies borrowed by a patron
+	 * 
+	 * @author Hyunbum Cho
+	 */
+	@GetMapping(value = { "/borrowedItems/movies", "/borrowedItems/movies/" })
+	public List<MovieDto> getAllBorrowedMovies(@RequestParam(name = "id") int id) throws IllegalArgumentException {
+		return itemService.getMoviesBorrowedByPatron(id).stream().map(m -> convertToDto(m)).collect(Collectors.toList());
+	}
+
 	/****************************************************
-                   DTO CONVERSION - SAMI/JULIE
+	 * DTO CONVERSION - SAMI/JULIE
 	 ****************************************************/
 	private ItemDto convertToDto(Item i) {
 		if (i == null) {
 			throw new IllegalArgumentException("Item does not exist.");
-			}
+		}
 		ItemDto itemDto = new ItemDto(i.getId(), i.getIsArchived(), i.getIsBorrowed(), i.getIsDamaged());
 		return itemDto;
 	}
-	
+
 	private MovieDto convertToDto(Movie m) {
 		if (m == null) {
 			throw new IllegalArgumentException("There is no such Movie!");
 		}
-		MovieDto movieDto = new MovieDto(m.getTitle(),m.getDirector(), m.getIsBorrowed(), m.getId());
+		MovieDto movieDto = new MovieDto(m.getTitle(), m.getDirector(), m.getIsBorrowed(), m.getId());
 		return movieDto;
 	}
-	
+
 	private NewspaperDto convertToDto(Newspaper n) {
 		if (n == null) {
 			throw new IllegalArgumentException("There is no such Newspaper!");
 		}
-		NewspaperDto newspaperDto = new NewspaperDto(n.getName(),n.getDate(), n.getId());
+		NewspaperDto newspaperDto = new NewspaperDto(n.getName(), n.getDate(), n.getId());
 		return newspaperDto;
 	}
-	
 
 	private JournalDto convertToDto(Journal j) {
 		if (j == null) {
 			throw new IllegalArgumentException("There is no such Journal!");
 		}
-		JournalDto journalDto = new JournalDto(j.getName(),j.getDate(), j.getId());
+		JournalDto journalDto = new JournalDto(j.getName(), j.getDate(), j.getId());
 		return journalDto;
 	}
-	
+
 	private AlbumDto convertToDto(Album a) {
 		if (a == null) {
 			throw new IllegalArgumentException("There is no such Album!");
 		}
-		AlbumDto albumDto = new AlbumDto(a.getTitle(),a.getArtist(), a.getIsBorrowed(), a.getId());
+		AlbumDto albumDto = new AlbumDto(a.getTitle(), a.getArtist(), a.getIsBorrowed(), a.getId());
 		return albumDto;
 	}
-	
+
 	private BookDto convertToDto(Book b) {
 		if (b == null) {
 			throw new IllegalArgumentException("There is no such Book!");
 		}
-		BookDto bookDto = new BookDto(b.getTitle(),b.getAuthor(), b.getIsBorrowed(), b.getId());
+
+		BookDto bookDto = new BookDto(b.getTitle(), b.getAuthor(), b.getIsBorrowed(), b.getId());
 		return bookDto;
 	}
-	
+
 	private PatronDto convertToDto(Patron p) {
 		if (p == null) {
 			throw new IllegalArgumentException("There is no such Patron!");
 		}
-		PatronDto patronDto = new PatronDto(p.getId(),p.getAddress(),p.getCity(),p.getFirstName(),p.getLastName(),p.getBalance());
+		PatronDto patronDto = new PatronDto(p.getId(), p.getAddress(), p.getCity(), p.getFirstName(), p.getLastName(),
+				p.getBalance());
 		return patronDto;
 	}
 }

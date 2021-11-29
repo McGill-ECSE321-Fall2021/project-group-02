@@ -2,7 +2,8 @@
   <body>
     <div class="header">
 			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
-        <router-link to="/"><a class="btn">Home</a></router-link>
+      <router-link to="/items"><a class="btn">Items Information</a></router-link>
+      <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 		</div>
     <div class="borrowed-items-page">
       <div class="main">
@@ -11,10 +12,12 @@
           <div class = "profile-box">
             <img src="../pictures/user_profile/blank_profile_pic.png" class="rounded-circle" width="150" alt="not Found" onerror="../pictures/user_profile/blank_profile_pic.png">
             <div class="subpages">
-              <h3>Template Name</h3>
+              <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+                <h3>{{ onlineAccount.firstName }} {{ onlineAccount.lastName }}</h3>
+              </div>
               <a><router-link to="/userProfile">Profile</router-link></a>
               <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
-              <a href="">Sign out</a>
+              <a><router-link to="/" @click="signOutUser()">Sign out</router-link></a>
             </div>
           </div>
 
@@ -22,122 +25,59 @@
             <div class="borrowed-items-text">
               <h1>Borrowed Items</h1>
             </div>
-            <table>
-							<template v-if="($route.name).includes('books') || ($route.name).includes('items')">
-								<tr></tr>
-								<tr><th colspan="10">Books</th></tr>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Title</th>
-									<th scope="col">Author</th>
-								</tr>
-								<tr v-for="book in books" :key="book.id">
-									<td>{{ book.id }}</td>
-									<td>{{ book.title }}</td>
-									<td>{{ book.author }}</td>
-								</tr>
-							</template>
-							<template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
-								<tr></tr>
-								<tr><th colspan="10">Albums</th></tr>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Title</th>
-									<th scope="col">Artist</th>
-								</tr>
-								<tr v-for="album in albums" :key="album.id">
-									<td>{{ album.id }}</td>
-									<td>{{ album.title }}</td>
-									<td>{{ album.artist }}</td>
-								</tr>
-							</template>
-							<template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
-								<tr></tr>
-								<tr><th colspan="10">Movies</th></tr>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Title</th>
-									<th scope="col">Director</th>
-								</tr>
-								<tr v-for="movie in movies" :key="movie.id">
-									<td>{{ movie.id }}</td>
-									<td>{{ movie.title }}</td>
-									<td>{{ movie.director }}</td>
-								</tr>
-							</template>
-							<template v-if="($route.name).includes('newspapers') || ($route.name).includes('items')">
-								<tr></tr>
-								<tr><th colspan="10">Newspapers</th></tr>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Name</th>
-									<th scope="col">Date</th>
-								</tr>
-								<tr v-for="newspaper in newspapers" :key="newspaper.id">
-									<td>{{ newspaper.id }}</td>
-									<td>{{ newspaper.name }}</td>
-									<td>{{ newspaper.date }}</td>
-								</tr>
-							</template>
-							<template v-if="($route.name).includes('journals') || ($route.name).includes('items')">
-								<tr></tr>
-								<tr><th colspan="10">Journals</th></tr>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Name</th>
-									<th scope="col">Date</th>
-								</tr>
-								<tr v-for="journal in journals" :key="journal.id">
-									<td>{{ journal.id }}</td>
-									<td>{{ journal.name }}</td>
-									<td>{{ journal.date }}</td>
-								</tr>
-							</template>
-						</table>
-            <!--
-            <div class="item" v-for="item in items" :key="item.id">
-              <div class="image">
-                <img src="../pictures/user_profile/book_example.jpg" width="150" alt="not Found" onerror="../pictures/user_profile/blank_book.png">
-              </div>
-
-              <div class="text">
-                <div class="title">
-                  Title/Name
-                </div>
-                <div class="author">
-                  Author/Artist
-                </div>
-                <div class="itemid">
-                  {{item.id}}
-                </div>
-                <div class="item-type">
-                  Item type: 
-                  <div class="type">
-                    book
-                  </div>
-                </div>
-                <div class="return-date">
-                  Return by: 
-                  <div class="date">
-                    12/10/2021
-                  </div>
-                </div>
-              </div>
-            </div>
-            -->
-            <!--
-            <div class="footer">
-              <a href="#" class="arrow-button"><i class="arrow left"></i></a>
-              page-number-placeholder
-              <a href="#" class="arrow-button"><i class="arrow right"></i></a>
-            </div>
-            -->
+              <table>
+                  <template v-if="($route.name).includes('books') || ($route.name).includes('items')">
+                  <tr></tr>
+                  <tr><th colspan="10">Books</th></tr>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                  </tr>
+                  <tr v-for="book in books" :key="book.id">
+                      <td>{{ book.id }}</td>
+                      <td>{{ book.title }}</td>
+                      <td>{{ book.author }}</td>
+                  </tr>
+                </template>
+                <template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
+                  <tr></tr>
+                  <tr><th colspan="10">Albums</th></tr>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Artist</th>
+                  </tr>
+                  <tr v-for="album in albums" :key="album.id">
+                    <td>{{ album.id }}</td>
+                    <td>{{ album.title }}</td>
+                    <td>{{ album.artist }}</td>
+                  </tr>
+                </template>
+                <template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
+                  <tr></tr>
+                  <tr><th colspan="10">Movies</th></tr>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Director</th>
+                  </tr>
+                  <tr v-for="movie in movies" :key="movie.id">
+                    <td>{{ movie.id }}</td>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.director }}</td>
+                  </tr>
+                </template>
+              </table>
           </div>
         </div>
       </div>
     </div>
   </body>
 </template>
+
+<script src="../store/BorrowedItem.js"></script>
+
 
 <style>
   .header{
