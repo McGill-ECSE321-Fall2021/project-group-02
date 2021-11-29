@@ -105,6 +105,21 @@ export default new Router({
       path: '/userProfile/borrowedItems',
       name: 'borrowed-items',
       component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/books',
+      name: 'borrowed-books',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/albums',
+      name: 'borrowed-albums',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/movies',
+      name: 'borrowed-movies',
+      component: BorrowedItemsPage
     }
   ]
 })

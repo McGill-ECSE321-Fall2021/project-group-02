@@ -2,6 +2,7 @@
   <body>
     <div class="header">
 			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
+      <router-link to="/items"><a class="btn">Items Information</a></router-link>
         <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 		</div>
     <div class="user-profile">
@@ -11,7 +12,9 @@
           <div class = "profile-box">
             <img src="../pictures/user_profile/blank_profile_pic.png" class="rounded-circle" width="150" alt="not Found" onerror="../pictures/user_profile/blank_profile_pic.png">
             <div class="subpages">
-              <h3>Template Name</h3>
+              <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+                <h3>{{ onlineAccount.firstName }} {{ onlineAccount.lastName }}</h3>
+              </div>
               <a><router-link to="/userProfile">Profile</router-link></a>
               <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
               <a href="">Sign out</a>
@@ -27,11 +30,9 @@
                 <div class="column1">
                   <h5>Username: </h5>
                 </div>
-                <table>
-							    <tr v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
-								    <td style="color: black;"> {{ onlineAccount.username }} </td>
-							    </tr>
-					      </table>
+                <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+                  <h5>{{ onlineAccount.username }} </h5>
+                </div>
                 <!--click on arrow to redirect to change username page-->
                 <a href="#popup1" class="long-button"><i class="arrow right"></i></a>
               </div>
@@ -39,11 +40,9 @@
                 <div class="column1">
                   <h5>Email: </h5>
                 </div>
-                <table>
-							    <tr v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
-								    <td style="color: black;"> {{ onlineAccount.email }} </td>
-							    </tr>
-					      </table>
+                <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+                  <h5>{{ onlineAccount.email }} </h5>
+                </div>
                 <!--click on arrow to redirect to change email page-->
                 <a href="#popup2" class="long-button"><i class="arrow right"></i></a>
               </div>
@@ -51,11 +50,9 @@
                 <div class="column1">
                   <h5>balance: </h5>
                 </div>
-                <table>
-							    <tr v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
-								    <td style="color: black;"> {{ onlineAccount.balance }} </td>
-							    </tr>
-					      </table>
+                <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+                  <h5>${{ onlineAccount.balance }} </h5>
+                </div>
               </div>
               <div class="row">
                 <a href="#popup3" class="square-button">Change password</a>
@@ -73,14 +70,17 @@
 		  <div class="content">
 			  <div class="new-username form">
           <h3>new username: </h3>
-          <input type="text" required>
+          <input type="text" v-model="newUsername" required>
         </div>
         <div class="password form">
           <h3>password: </h3>
-          <input type="text" required>
+          <input type="text" v-model="password" required>
         </div>
-          <button class="button">confirm</button>
+          <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+            <button class="button" onClick="refreshPage()" @click="changeUsername(newUsername, password)">confirm</button>
+          </div>
 		    </div>
+         <span v-if="errorOnlineAccount" style="color:red">Error: {{errorOnlineAccount}} </span>
 	    </div>
     </div>
     <div id="popup2" class="overlay">
