@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.mcgill.ecse321.librarysystem.dao.ItemRepository;
+import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.dao.UserEntityRepository;
 import ca.mcgill.ecse321.librarysystem.dto.PatronDto;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
@@ -25,10 +25,10 @@ public class PatronRestController {
 	PatronService patronService;
 	
 	@Autowired
-	UserEntityRepository useRepository;
+	UserEntityRepository userRepository;
 	
 	@Autowired
-	ItemRepository itemRepository;
+	PatronRepository patronRepository;
 	
 	/**
 	 * Gets a list of all the patrons in the library software system
