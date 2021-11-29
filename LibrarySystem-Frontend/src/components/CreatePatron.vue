@@ -15,6 +15,7 @@
 						<input type="text" v-model="city" placeholder="City" required="">
 						<input type="text" v-model="address" placeholder="Address" required="">
 						<button @click="createPatron(firstName, lastName, city, address)">Create Patron</button>
+						<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
 					</form>
 				</div>
 		</body>

@@ -8,6 +8,15 @@ var AXIOS = axios.create({
     headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
+function PatronDto(id, address, city, firstName, lastName, balance) {
+  this.id = id;
+  this.address = address;
+  this.city = city;
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.balance = balance;
+}
+
 export default {
     name: 'createPatron',
     data () {
@@ -22,12 +31,13 @@ export default {
     },
     methods: {
       createPatron: function(firstName, lastName, city, address) {
-        AXIOS.post('/createPatron/'.concat(address, '/?city=', city, '&balance=', 0, '&firstName=', firstName, '&lastName=', lastName))
+        var patron = AXIOS.post('/createPatron/'.concat(address, '/?city=', city, '&balance=', 0, '&firstName=', firstName, '&lastName=', lastName))
         .then(response => {
           this.firstName = ''
           this.lastName = ''
           this.city = ''
           this.address = ''
+          this.success = 'Success! Patron has been created. Patron ID: '.concat(patron.id)
         })
         .catch(e => {
           var errorMsg = e
