@@ -67,7 +67,7 @@ export default {
           this.id = ''
         })
         .catch(e => {
-          var errorMsg = e.response.data.message
+          var errorMsg = e
           console.log(errorMsg)
           this.errorLibrarian = errorMsg
         })
@@ -81,13 +81,13 @@ export default {
               this.name=''
             })
             .catch(e => {
-              var errorMsg = e.response.data.message
+              var errorMsg = e
               console.log(errorMsg)
               this.errorLibrarian = errorMsg
             })
         },
         sortLibrarian: function(mode){
-          AXIOS.get('/librarianssort/'.concat('?mode=',mode))
+          AXIOS.get('/librariansSort/'.concat('?mode=',mode))
          .then(response => {
            this.librarians = response.data
             this.errorLibrarian = ''
@@ -95,7 +95,7 @@ export default {
             this.validationid = ''
           })
           .catch(e => {
-            var errorMsg = e.response.data.message
+            var errorMsg = e
             console.log(errorMsg)
             this.errorLibrarian = errorMsg
           })
@@ -109,7 +109,7 @@ export default {
        this.validationid = ''
      })
      .catch(e => {
-       var errorMsg = e.response.data.message
+       var errorMsg = e
        console.log(errorMsg)
        this.errorLibrarian = errorMsg
      })   
