@@ -1,12 +1,11 @@
 <template>
   <div class="welcomepage">
       <div class="header">
-				 <router-link to="/"><h2>Montreal Library</h2></router-link>
-         
-				    <router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+				 <router-link to="/homeAfterLogin"><h2>Montreal Library</h2></router-link>
+            
+				    <router-link to="/userProfile"><a class="btn">User Profile</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>
         		<router-link to="/"><a class="btn">Home</a></router-link>
-
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>

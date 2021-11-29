@@ -1,20 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import HomePage from '@/components/HomePage'
-// import HomePageLogin from '@/components/HomePage2'
+import HomePageLogin from '@/components/HomePage2'
 import SignUpPage from '@/components/SignUpPage'
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
-import ViewLibrarianSchedule from '@/components/ViewLibrarianSchedule'
 import CreatePatron from '@/components/CreatePatron'
 
 import ManageItemsPage from '@/components/ManageItemsPage'
 
 import ViewItemsPage from '@/components/ViewItemsPage'
-//import UserProfilePage from '@/components/UserProfilePage'
+import UserProfilePage from '@/components/UserProfilePage'
+import UserProfilePageLibrarian from '@/components/UserProfilePageLibrarian'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
-import Modal from '@/components/Modal'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
 
 
@@ -42,11 +40,6 @@ export default new Router({
       path: '/manageLibrarySchedule',
       name: 'ManageLibrarySchedule',
       component: ManageLibrarySchedule
-    },
-    {
-      path: '/schedules',
-      name: 'ViewLibrarianSchedule',
-      component: ViewLibrarianSchedule
     },
     {
       path: '/manageLibrarySchedule/librarians',
@@ -97,13 +90,19 @@ export default new Router({
       name: 'newspapers',
       component: ViewItemsPage
     },
-    /*
+    
     {
       path: '/userProfile',
       name: 'user-profile',
       component: UserProfilePage
     },
-    */
+    
+    {
+      path: '/userProfileLibrarian',
+      name: 'user-profile-librarian',
+      component: UserProfilePageLibrarian
+    },
+    
     {
       path: '/librarians',
       name: 'ManageLibrariansPage',
@@ -112,6 +111,21 @@ export default new Router({
     {
       path: '/userProfile/borrowedItems',
       name: 'borrowed-items',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/books',
+      name: 'borrowed-books',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/albums',
+      name: 'borrowed-albums',
+      component: BorrowedItemsPage
+    },
+    {
+      path: '/borrowedItems/movies',
+      name: 'borrowed-movies',
       component: BorrowedItemsPage
     }
   ]

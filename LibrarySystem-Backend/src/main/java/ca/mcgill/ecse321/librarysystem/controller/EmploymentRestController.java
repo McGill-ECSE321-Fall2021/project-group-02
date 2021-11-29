@@ -43,8 +43,7 @@ public class EmploymentRestController {
 		return service.getAllLibrariansByFirstAndLastName(fn, ln).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
-<<<<<<< Updated upstream
-=======
+
 	/**
 	 * @author vy-khahuynh
 	 * @param id id of the user
@@ -67,7 +66,7 @@ public class EmploymentRestController {
 		return service.searchLibrarian(name).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
 	
->>>>>>> Stashed changes
+
 
 	/**
 	 * @author vy-khahuynh
@@ -115,7 +114,7 @@ public class EmploymentRestController {
 		return convertToDto(l);
 	}
 	
-	@GetMapping(value= {"/librariansWeeklySchedule", "/librariansWeeklySchedule/" })
+	@GetMapping(value= {"/schedules", "/schedules/" })
 	public WeeklyScheduleDto getWeeklyScheduleByID(@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
 		WeeklySchedule ws = service.getWeeklyScheduleByID(libid);
 		return convertToDto(ws);

@@ -2,25 +2,26 @@
 	<body>
 		<div class="viewlibrarianspage">
 			<div class="header">
-				 <h2><router-link to="/">Montreal Library</router-link></h2>
-	             <a class="btn"><router-link to="/signup">Log Out</router-link></a>
-        		 <a class="btn"><router-link to="/items">Items Information</router-link></a>
-         		 <a class="btn"><router-link to="/">Home</router-link></a>
+				<router-link to="/"><h2>Montreal Library</h2></router-link>
+				<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+        		<router-link to="/items"><a class="btn">Items Information</a></router-link>
+        		<router-link to="/"><a class="btn">Home</a></router-link>
 			</div>
 			<body>
 				<div class=librarians>
 					<h3>List of Librarians</h3>
 					<form>
-						<input class="search" name="srch" v-model="librarianName" placeholder="Search librarian">
+						<input class="search" v-model="librarianName" placeholder="Search librarian">
+						 <button class="srch" @click="searchLibrarian(librarianName)">Search</button>
 						<div class="dropdown">
 						<button class="dropdownbutton">Sort By</button>
 							<div class="dropdown-content">
-								<a href="#">First Name (A to Z)</a>
-								<a href="#">First Name (Z to A)</a>
-								<a href="#">Last Name (A to Z)</a>
-								<a href="#">Last Name (Z to A)</a>
-								<a href="#">ID (Low to High)</a>
-								<a href="#">ID (High to Low)</a>
+								<button @click="sortLibrarian('fAZ')">First Name (A to Z)</button>
+								<button @click="sortLibrarian('fZA')"> First Name (Z to A)</button>
+								<button @click="sortLibrarian('lAZ')">Last Name (A to Z)</button>
+								<button @click="sortLibrarian('lZA')">Last Name (Z to A)</button>
+								<button @click="sortLibrarian('12')">ID (Low to High)</button>
+								<button @click="sortLibrarian('21')">ID (High to Low)</button>
 							</div>
 						</div>
 						<div id="newlibrarian">
@@ -29,36 +30,25 @@
 							<td>
 								<td>
 								<input class="text" v-model="firstName" placeholder="First Name">
-															
 								<input class="text" v-model="lastName" placeholder="Last Name">
-							
 								<input class="address" v-model="address" placeholder="Address">
-							
 								<input class="text" v-model="city" placeholder="City">
-
-								<input class="userid" v-model="id" placeholder="Validation Token">
-							</td>
-							<td>
+								<input class="text" v-model="id" placeholder="Validation Token">
       							  <button v-bind:disabled="!firstName || !lastName || !address || !city || !id" @click="createLibrarian(firstName,lastName,address,city,id)">Create librarian</button>
-							</td>
+								</td>
 						</tr>
 						</table>
 						<table>
 						<tr>
 							<td>
 								<td>
-								<input class="userid" v-model="lid" placeholder="Librarian ID">
-
-								<input class="userid" v-model="hlid" placeholder="Validation Token">
-							</td>
-							<td>
-      							  <button v-bind:disabled="!lid || !hlid" @click="deleteLibrarian(lid,hlid)">Delete librarian</button>
-							</td>
+								<input class="text" v-model="lid" placeholder="Librarian ID">
+								<input class="text" v-model="hlid" placeholder="Validation Token">
+      							<button v-bind:disabled="!lid || !hlid" @click="deleteLibrarian(lid,hlid)">Delete librarian</button>
+								</td>
 						</tr>
 						</table>
-						<p>
-						<span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span>
-						</p>
+						<p><span v-if="errorLibrarian" style="color:red">{{errorLibrarian}} </span></p>
 					</div>				
 					</form>
 					<div class=lst>
@@ -85,8 +75,7 @@
 	</body>
 </template>
 
-<script src="./ManageLibrarians.js">
-
+<script src="../store/ManageLibrarians.js">
 </script>
 
 <style>
@@ -198,7 +187,20 @@ th:nth-child(5) {
 	overflow: auto;
 	background-image: none;
 }
-
+.btn{
+  float:right;
+  margin: 45px 5px;
+  color:white;
+  background:rgba(0, 0, 0, 0.8);
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.btn:hover{
+  background:#fff;
+}
 .search{
 	width: 350px;
 	height: 20px;
@@ -207,8 +209,16 @@ th:nth-child(5) {
 	padding: 10px;
 	border-radius: 5px;
 }
+.srch{
+	background-color: rgb(133, 1, 1);
+	color: white;
+	border:none;
+}
+.srch:hover{
+	background-color: rgb(87, 1, 1);
+}
 .text{
-	width: 150px;
+	width: 140px;
 	height: 20px;
 	background: white;
 	margin: 20px auto;
@@ -217,14 +227,6 @@ th:nth-child(5) {
 }
 .address{
 	width: 200px;
-	height: 20px;
-	background: white;
-	margin: 20px auto;
-	padding: 10px;
-	border-radius: 5px;
-}
-.userid{
-	width: 140px;
 	height: 20px;
 	background: white;
 	margin: 20px auto;

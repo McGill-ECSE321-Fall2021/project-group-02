@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.librarysystem.service;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,6 +165,35 @@ public class ManagingEmploymentService {
 //		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 //	}
 	
+	public List<Librarian> searchLibrarian(String name) throws IllegalArgumentException{
+		error="";
+		List<Librarian> allLibrarians = new ArrayList<Librarian>();
+		
+		if(!verifyStringLength(name) || !verifyStringLength(name)) {
+			error += "First & last name cannot be empty or too long.";
+		}
+		
+		if(name.isBlank()) {
+			for(Librarian l : librarianRepository.findAll()) {
+				allLibrarians.add(l);
+			}
+			return allLibrarians; 
+		}
+		
+		if (error.length() > 0) throw new IllegalArgumentException(error);
+		
+		for(Librarian l : librarianRepository.findAll()) {
+			String fullname = l.getFirstName() + " " + l.getLastName();
+			if((fullname.toLowerCase()).contains(name.toLowerCase())) {
+				allLibrarians.add(l);
+			}
+		}
+		if(allLibrarians.size() == 0) {
+			throw new IllegalArgumentException("No librarians with such first and last name.");
+		}
+		else return allLibrarians;
+	}
+	
 	/**
 	 * @author vy-khahuynh
 	 * @param  id of the user
@@ -266,8 +296,7 @@ public class ManagingEmploymentService {
 			else return l;
 	}
 	
-<<<<<<< Updated upstream
-=======
+
 	@Transactional
 	public WeeklySchedule getWeeklyScheduleByID(int id) throws IllegalArgumentException {
 		Librarian l = librarianRepository.findLibrarianById(id);
@@ -372,7 +401,7 @@ public class ManagingEmploymentService {
 		}
 	}
 	
->>>>>>> Stashed changes
+
 	
 	//  NOT PART OF USE CASE, KEEP JUST IN CASE
 	/**

@@ -2,234 +2,89 @@
   <div class="manageitemspage">
     <body>
       <div class="header">
-			<router-link to="/"><h1>Montreal Library</h1></router-link>
-			<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
-			<router-link to="/items"><a class="btn">Items Information</a></router-link>
-			<router-link to="/"><a class="btn">Home</a></router-link>
-		</div>
-      <div class="manageItem">
+		<router-link to="/"><h1>Montreal Library</h1></router-link>
+		<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+		<router-link to="/items"><a class="btn">Items Information</a></router-link>
+		<router-link to="/"><a class="btn">Home</a></router-link>
+	  </div>
+	  <div class = "containerHeader">
 		<h2> Manage Items </h2>
-        <div id="borrowItem">
-          <button type="button" class="button" @click="showBorrowModal">Borrow Item</button>
-		  <Modal v-show="isBorrowModalVisible" @close="closeModal">
-		    <template v-slot:header>
-				Borrow Item
-			</template>
-
-			<template v-slot:body>
-				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="patronID" placeholder="Enter patron ID" required="">
-					<button >Enter</button>
-				</form>
-			</template>
-
-			<template v-slot:footer>
-			</template>
-		  </Modal>
-        </div>  
-
-		<div id="returnItem">
-          <button type="button" class="button" @click="showReturnModal">Return Item</button>
-		  <Modal v-show="isReturnModalVisible" @close="closeModal">
-		    <template v-slot:header>
-				 Return Item
-			</template>
-			<template v-slot:body>
-				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="patronID" placeholder="Enter patron ID" required="">
-					<button >Enter</button>
-				</form>
-			</template>
-			<template v-slot:footer>
-			</template>
-		  </Modal>
-        </div>  
-
-		<div id="archiveItem">
-          <button type="button" class="button" @click="showArchiveModal">Archive Item</button>
-		  <Modal v-show="isArchiveModalVisible" @close="closeModal">
-		    <template v-slot:header>
-				 Archive Item
-			</template>
-			<template v-slot:body>
-				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Movie to Archived</button>
-					<button >Remove from Archived</button>
-				</form>
-			</template>
-			<template v-slot:footer>
-			</template>
-		  </Modal>
-        </div>  
-
-		<div id="damageItem">
-          <button type="button" class="button" @click="showDamageModal">Damage Item</button>
-		  <Modal v-show="isDamageModalVisible" @close="closeModal">
-		    <template v-slot:header>
-				 Damage Item
-			</template>
-			<template v-slot:body>
-				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Move to Damaged</button>
-					<button >Remove from Damaged</button>
-				</form>
-			</template>
-			<template v-slot:footer>
-			</template>
-		  </Modal>
-        </div>  
-
-		<div id="addItem">
-          <button type="button" class="button" @click="showAddModal">Add a New Item</button>
-		  <Modal v-show="isAddModalVisible" @close="closeModal">
-		    <template v-slot:header>
-				 Add a New Item
-			</template>
-			<template v-slot:body>
-				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="itemType" placeholder="Enter type of item" required="">
-					<input type="text" name="itemName" placeholder="Enter item name" required="">
-					<input type="text" name="itemAuthor" placeholder="Enter item author" required="">
-					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Enter</button>
-				</form>
-			</template>
-			<template v-slot:footer>
-			</template>
-		  </Modal>
-        </div>  
-
-		<div id="deleteItem">
-          <button type="button" class="button" @click="showDeleteModal">Delete Item</button>
-		  <Modal v-show="isDeleteModalVisible" @close="closeModal">
-		    <template v-slot:header>
-				 Delete Item
-			</template>
-			<template v-slot:body>
-				<form>
-					<input type="text" name="itemID" placeholder="Enter item ID" required="">
-					<input type="text" name="userID" placeholder="Enter user ID" required="">
-					<button >Enter</button>
-				</form>
-			</template>
-			<template v-slot:footer>
-			</template>
-		  </Modal>
-        </div>  
-
+	  </div>
+      <div class="manageItems">
+		<input type="checkbox" id="chk_b" aria-hidden="true">
+		<input type="checkbox" id="chk_r" aria-hidden="true">
+		<input type="checkbox" id="chk_a" aria-hidden="true">
+		<input type="checkbox" id="chk_da" aria-hidden="true">
+		<input type="checkbox" id="chk_c" aria-hidden="true">
+		<input type="checkbox" id="chk_de" aria-hidden="true">
+		<p><span v-if="errorMsg" style="color:red">Error: {{errorMsg}} </span></p>
+		<div class=borrowItem>
+			<form> <!-- BORROW ITEM -->
+				<label for="chk_b" aria-hidden="true">Borrow Item</label>
+				<input class="text" v-model="itemID_b" placeholder="Enter item ID" required="">
+				<input class="text" v-model="itemName_b" placeholder="Enter item name">
+				<input class="text" v-model="patronID_b" placeholder="Enter patron ID" required="">
+				<button @click="borrowItem(itemID_b, itemName_b, patronID_b)">Borrow Item</button>
+			</form>
+		</div>
+		<div class=returnItem>
+			<form> <!-- RETURN ITEM -->
+				<label for="chk_r" aria-hidden="true">Return Item</label>
+				<input class="text" v-model="itemID_r" placeholder="Enter item ID" required="">
+				<input class="text" v-model="patronID_r" placeholder="Enter patron ID" required="">
+				<button @click="returnItem(itemID_b, patronID_b)">Return Item</button>
+			</form>
+		</div>
+		<div class=archiveItem>
+			<form> <!-- ARCHIVE ITEM -->
+				<label for="chk_a" aria-hidden="true">Archive Item</label>
+				<input class="text" v-model="itemID_ar" placeholder="Enter item ID" required="">
+				<button @click="archiveItem(itemID_ar)">Move to Archived</button>
+				<button @click="makeAvailable(itemID_ar)">Remove from Archived</button>
+			</form>
+		</div>
+		<div class=damageItem>
+			<form> <!-- DAMAGE ITEM -->
+				<label for="chk_da" aria-hidden="true">Damage Item</label>
+				<input class="text" name="itemID_d" placeholder="Enter item ID" required="">
+				<button @click="damageItem(itemID_d)">Move to Damaged</button>
+				<button @click="makeAvailable(itemID_d)">Remove from Damaged</button>
+			</form>
+		</div>
+		<div class=createItem>
+			<form> <!-- CREATE NEW ITEM -->
+				<label for="chk_c" aria-hidden="true">Add New Item</label>
+				<select type= "text" v-model="itemType">
+					<option disabled value="">Select item type</option>
+					<option>Book</option>
+					<option>Album</option>
+					<option>Movie</option>
+					<option>Journal</option>
+					<option>Newspaper</option>
+				</select>
+				<input type="text" v-model="itemName" placeholder="Enter item name">
+				<input v-if="itemType == 'Book' || itemType == 'Album' || itemType == 'Movie'" type="text" v-model="itemAuthor" placeholder="Enter item author">
+				<input v-if="itemType == 'Journal' || itemType == 'Newspaper'" type="text" v-model="itemDate" placeholder="Enter Date: yyyy-mm-dd">
+				<button @click="createItem(itemType, itemName, itemAuthor, itemDate)">Add New Item</button>
+			</form>
+		</div>
+		<div class=deleteItem>
+			<form> <!-- DELETE ITEM -->
+				<label for="chk_de" aria-hidden="true">Delete Item</label>
+				<input type="text" v-model="itemID_del" placeholder="Enter item ID" required="">
+				<button @click="deleteItem(itemID_del)">Delete Item</button>
+			</form>
+		</div>
       </div>
     </body>
   </div>
 </template>
 
-
-<script>
-  import Modal from './Modal.vue';
-
-  export default {
-    name: 'ManageItemsPage',
-    components: {
-      Modal,
-    },
-    data() {
-      return {
-        isBorrowModalVisible: false,
-        isReturnModalVisible: false,
-		isArchiveModalVisible: false,
-		isDamageModalVisible: false,
-		isAddModalVisible: false,
-		isDeleteModalVisible: false,
-      };
-    },
-    methods: {
-      showBorrowModal() {
-        this.isBorrowModalVisible = true;
-        this.isReturnModalVisible = false;
-		this.isArchiveModalVisible = false,
-		this.isDamageModalVisible = false;
-		this.isAddModalVisible = false;
-		this.isDeleteModalVisible = false;
-      },
-	  showReturnModal() {
-        this.isBorrowModalVisible = false;
-        this.isReturnModalVisible = true;
-		this.isArchiveModalVisible = false,
-		this.isDamageModalVisible = false;
-		this.isAddModalVisible = false;
-		this.isDeleteModalVisible = false;
-      },
-	  showArchiveModal() {
-		this.isBorrowModalVisible = false;
-        this.isReturnModalVisible = false;
-		this.isArchiveModalVisible = true,
-		this.isDamageModalVisible = false;
-		this.isAddModalVisible = false;
-		this.isDeleteModalVisible = false;
-	  },
-	  showDamageModal() {
-		this.isBorrowModalVisible = false;
-        this.isReturnModalVisible = false;
-		this.isArchiveModalVisible = false,
-		this.isDamageModalVisible = true;
-		this.isAddModalVisible = false;
-		this.isDeleteModalVisible = false;
-	  },
-	  showAddModal() {
-		this.isBorrowModalVisible = false;
-        this.isReturnModalVisible = false;
-		this.isArchiveModalVisible = false,
-		this.isDamageModalVisible = false;
-		this.isAddModalVisible = true;
-		this.isDeleteModalVisible = false;
-	  },
-	  showDeleteModal() {
-		this.isBorrowModalVisible = false;
-        this.isReturnModalVisible = false;
-		this.isArchiveModalVisible = false,
-		this.isDamageModalVisible = false;
-		this.isAddModalVisible = false;
-		this.isDeleteModalVisible = true;
-	  },
-      closeModal() {
-        this.isBorrowModalVisible = false;
-        this.isReturnModalVisible = false;
-		this.isArchiveModalVisible = false,
-		this.isDamageModalVisible = false;
-		this.isAddModalVisible = false;
-		this.isDeleteModalVisible = false;
-      }
-    }
-  };
+<script src="../store/ManageItems.js">
 </script>
 
-
 <style>
-* {
-	-webkit-transition-property: all;
-	-webkit-transition-duration: .2s;
-  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
-	-moz-transition-property: all;
-  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
-}
-
-body{
-	padding: 0;
-	display: flex;
-    flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background-image: url("../assets/library.jpg");
-}
-
+/* Navigation Bar */
 .header{
 	width:100%;
 	height: 100px;
@@ -240,10 +95,12 @@ body{
 	box-shadow: 5px 20px 50px #000;
 	z-index: 2;
 }
+.header a{
+	color: white;
+}
 .header a:hover{
- 	color: black;
- }
-
+	color: black;
+}
 h1{
 	text-align: left;
 	color:white;
@@ -252,23 +109,10 @@ h1{
 	position: fixed;
 	top: 0;
 	left: 0;
-	
-	width: 400px;
+	width: 50%;
 	background:rgb(112, 1, 1);
 	padding: 10px 10px;
 }
-
-h2{
-	color:white;
-	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	text-align: center;
-	font-weight:350;
-	height: 70px;
-	width: 400px;
-	background:rgb(112, 1, 1);
-	padding: 10px 10px;
-}
-
 .btn{
   float:right;
   margin: 45px 5px;
@@ -280,51 +124,169 @@ h2{
   letter-spacing:2px;
   text-transform:uppercase;
 }
-.btn:hover {
+.btn:hover{
   background:#fff;
 }
-
-input{
-	background: white;
-	padding: 10px;
-	border: none;
-	outline: none;
-	border-radius: 5px;
-}
-
-.manageItem {
-	background:rgba(0, 0, 0, 0.65);
-	border-radius: 10px;
-	background-image: none;
-	padding: 10px;
-	height: 100%;
+/* Background */
+body{
+	margin: auto;
+	padding: 0;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-image: url("../assets/library.jpg");
+}
+/* Manage Items */
+.manageItems{
+	background:rgba(0, 0, 0, 0.65);	
+	border-radius: 10px 10px;
+	padding: 25px;
+	display: flex;
+	flex-direction: row; 
 	gap: 10px;
+	height: 400px;
+	width: 90%;
+	text-align: center;
+	align-items: baseline;
+	overflow: hidden;
+}
+.containerHeader{
+	background:rgba(0, 0, 0, 0.65);	
+	border-radius: 10px;
+	width: 90%;
+	height: 130px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 }
-
-p {
-  text-align: center;
-  color: #fff;
-  margin-top: 20px;
+h2{
+	color:white;
+	background-color: rgb(112,1,1);
+	text-align: center;
+	padding: 10px 10px;
+	height: 90px;
+	width: 400px;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 45px;
+	font-weight:350;
 }
-
-button{
-	color: black;
+.borrowItem {
 	background: white;
-	font-size: 1em;
+	height: 100%;
+	border-radius: 60% / 10%;
+	padding: 10px;
+	transform: translateY(260px);
+	transition: .8s ease-in-out;
+}
+.returnItem{
+	background: white;
+	height: 100%;
+	border-radius: 60% / 10%;
+	padding: 10px;
+	transform: translateY(260px);
+	transition: .8s ease-in-out;
+}
+.archiveItem{
+	background: white;
+	height: 100%;
+	border-radius: 60% / 10%;
+	padding: 10px;
+	transform: translateY(260px);
+	transition: .8s ease-in-out;
+}
+.damageItem{
+	background: white;
+	height: 100%;
+	border-radius: 60% / 10%;
+	padding: 10px;
+	transform: translateY(260px);
+	transition: .8s ease-in-out;
+}
+.createItem{
+	background: white;
+	height: 100%;
+	border-radius: 60% / 10%;
+	padding: 10px;
+	transform: translateY(260px);
+	transition: .8s ease-in-out;
+}
+.deleteItem{
+	background: white;
+	height: 100%;
+	border-radius: 60% / 10%;
+	padding: 10px;
+	transform: translateY(260px);
+	transition: .8s ease-in-out;
+}
+label{
+	color: black;
+	font-size: 2.3em;
 	font-weight: bold;
-    margin-left: 0;
-	outline: none;
+	transform: scale(.6);
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+input{
+	border-radius: 5px;
+}
+select{
+	border-color: black;
+}
+button{
+	color: white;
+	background: black;
 	border: none;
 	border-radius: 5px;
 	transition: .2s ease-in;
-	cursor: pointer;
 }
 button:hover{
-	background: black;
+	background: rgb(133,1,1);
     color:white;
 }
-
+/* Pop-up */
+#chk_b {
+	display: none;
+}
+#chk_r {
+	display: none;
+}
+#chk_a {
+	display: none;
+}
+#chk_da {
+	display: none;
+}
+#chk_c {
+	display: none;
+}
+#chk_de {
+	display: none;
+}
+#chk_b:checked ~ .borrowItem{
+	transform: translateY(-10px);
+}
+#chk_r:checked ~ .returnItem{
+	transform: translateY(-10px);
+}
+#chk_a:checked ~ .archiveItem{
+	transform: translateY(-10px);
+}
+#chk_da:checked ~ .damageItem{
+	transform: translateY(-10px);
+}
+#chk_c:checked ~ .createItem{
+	transform: translateY(-10px);
+}
+#chk_de:checked ~ .deleteItem{
+	transform: translateY(-10px);
+}
 </style>

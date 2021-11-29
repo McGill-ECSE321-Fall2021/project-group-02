@@ -1,19 +1,23 @@
 <template>
   <body>
+    <div class="header">
+			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
+      <router-link to="/items"><a class="btn">Items Information</a></router-link>
+      <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
+		</div>
     <div class="borrowed-items-page">
       <div class="main">
-        <div class="topbar">
-          <a href="">Home</a>
-        </div>
 
         <div class="main-box">
           <div class = "profile-box">
             <img src="../pictures/user_profile/blank_profile_pic.png" class="rounded-circle" width="150" alt="not Found" onerror="../pictures/user_profile/blank_profile_pic.png">
             <div class="subpages">
-              <h3>Template Name</h3>
+              <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+                <h3>{{ onlineAccount.firstName }} {{ onlineAccount.lastName }}</h3>
+              </div>
               <a><router-link to="/userProfile">Profile</router-link></a>
               <a><router-link to="/userProfile/borrowedItems">Borrowed Items</router-link></a>
-              <a href="">Sign out</a>
+              <a><router-link to="/" @click="signOutUser()">Sign out</router-link></a>
             </div>
           </div>
 
@@ -21,43 +25,50 @@
             <div class="borrowed-items-text">
               <h1>Borrowed Items</h1>
             </div>
-            
-            <div class="item" v-for="item in items" :key="item.id">
-              <div class="image">
-                <img src="../pictures/user_profile/book_example.jpg" width="150" alt="not Found" onerror="../pictures/user_profile/blank_book.png">
-              </div>
-
-              <div class="text">
-                <div class="title">
-                  Title/Name
-                </div>
-                <div class="author">
-                  Author/Artist
-                </div>
-                <div class="itemid">
-                  {{item.id}}
-                </div>
-                <div class="item-type">
-                  Item type: 
-                  <div class="type">
-                    book
-                  </div>
-                </div>
-                <div class="return-date">
-                  Return by: 
-                  <div class="date">
-                    12/10/2021
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--
-            <div class="footer">
-              <a href="#" class="arrow-button"><i class="arrow left"></i></a>
-              page-number-placeholder
-              <a href="#" class="arrow-button"><i class="arrow right"></i></a>
-            </div>
-            -->
+              <table>
+                  <template v-if="($route.name).includes('books') || ($route.name).includes('items')">
+                  <tr></tr>
+                  <tr><th colspan="10">Books</th></tr>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                  </tr>
+                  <tr v-for="book in books" :key="book.id">
+                      <td>{{ book.id }}</td>
+                      <td>{{ book.title }}</td>
+                      <td>{{ book.author }}</td>
+                  </tr>
+                </template>
+                <template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
+                  <tr></tr>
+                  <tr><th colspan="10">Albums</th></tr>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Artist</th>
+                  </tr>
+                  <tr v-for="album in albums" :key="album.id">
+                    <td>{{ album.id }}</td>
+                    <td>{{ album.title }}</td>
+                    <td>{{ album.artist }}</td>
+                  </tr>
+                </template>
+                <template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
+                  <tr></tr>
+                  <tr><th colspan="10">Movies</th></tr>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Director</th>
+                  </tr>
+                  <tr v-for="movie in movies" :key="movie.id">
+                    <td>{{ movie.id }}</td>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.director }}</td>
+                  </tr>
+                </template>
+              </table>
           </div>
         </div>
       </div>
@@ -65,7 +76,82 @@
   </body>
 </template>
 
+<script src="../store/BorrowedItem.js"></script>
+
+
 <style>
+  .header{
+    width:100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background:rgb(112, 1, 1);
+    box-shadow: 5px 20px 50px #000;
+    z-index: 2;
+  }
+  .header a{
+    color: white;
+    text-decoration: none;
+  }
+  .header a:hover{
+    color: black;
+  }
+    .btn{
+    float:right;
+    margin-right: 5px;
+    color:white;
+    background:rgba(0, 0, 0, 0.8);
+    padding:10px 20px;
+    font-size:12px;
+    text-decoration:none;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  .header-h2{
+    text-align: left;
+    color:white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight:350;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    width: 250px;
+    background:rgb(112, 1, 1);
+    padding: 10px 10px;
+  }
+  .btn:hover{
+    background:#fff;
+  }
+  table {
+	width: 100%;
+	border-collapse:separate;
+	border-radius: 5px;
+	
+}
+td{
+	height: 10px;
+	overflow: hidden;
+}
+th{
+	font-weight: 500;
+}
+th:nth-child(1) {
+	width: 10%;
+	background: #ddd;
+	padding-left: 5px;
+}
+th:nth-child(2) {
+	width: 50%;
+	background: #ddd;
+	padding-left: 5px;
+}
+th:nth-child(3) {
+	width: 40%;
+	background: #ddd;
+	padding-left: 5px;
+}
   body{
     background-image: url("../assets/library.jpg");
   }
@@ -75,27 +161,16 @@
   .borrowed-items-page{
     display: flex;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: 5%;
     margin-left: 10%;
     margin-right: 10%;
     padding-bottom: 100px;
     padding-left: 50px;
     padding-right: 50px;
   }
-  .topbar{
-    background-color: rgb(112, 1, 1);
-    color: white;
-    text-align: right;
-    padding: 20px;
-    margin: 10px;
-  }
-  .topbar a{
-    color: white;
-    padding: 20px 20px;
-    font-size: 20px;
-  }
   .main-box{
-    background-color: lightgray;
+    background-color: rgba(0, 0, 0, 0.6);
     margin: 10px;
   }
   .profile-box{
@@ -164,7 +239,6 @@
   ::-webkit-scrollbar {
     width: 10px;
   }
-
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1; 
@@ -174,7 +248,6 @@
   ::-webkit-scrollbar-thumb {
     background: #888; 
   }
-
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
