@@ -65,15 +65,15 @@ export default {
       })
       AXIOS.get('/borrowedItems/books', {}, {params: {id: this.userId}})
       .then(response => {
-        this.books.push(response.data)
+        this.books = response.data
       })
       AXIOS.get('/borrowedItems/albums', {}, {params: {id: this.userId}})
       .then(response => {
-        this.albums.push(response.data)
+        this.albums = response.data
       })
       AXIOS.get('/borrowedItems/movies', {}, {params: {id: this.userId}})
       .then(response => {
-        this.movies.push(response.data)
+        this.movies = response.data
       })
   },
 

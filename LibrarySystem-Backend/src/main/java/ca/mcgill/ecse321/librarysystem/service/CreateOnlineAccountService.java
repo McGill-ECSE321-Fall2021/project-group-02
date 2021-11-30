@@ -72,7 +72,7 @@ public class CreateOnlineAccountService {
 		patron.setCity(city);
 		patron.setFirstName(firstName);
 		patron.setLastName(lastName);
-		boolean withinCity = (city == "Montreal");
+		boolean withinCity = (city.equals("Montreal") || city.equals("montreal"));
 		if (!withinCity) {
 			patron.setBalance(patron.getBalance() + 50);
 		} else {
@@ -124,7 +124,7 @@ public class CreateOnlineAccountService {
 			throw new IllegalArgumentException(error);
 
 		account.setLoggedIn(loggedIn);
-		
+
 		onlineAccountRepository.save(account);
 
 		return account;
@@ -138,25 +138,26 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount getloggedInAccount() throws IllegalArgumentException {
-		List<OnlineAccount> accountList=toList(onlineAccountRepository.findAll());
-		for(int i=accountList.size()-1;i>=0;i--) {
-			if(accountList.get(i).getLoggedIn()) {
+		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
+		for (int i = accountList.size() - 1; i >= 0; i--) {
+			if (accountList.get(i).getLoggedIn()) {
 				return accountList.get(i);
 			}
 		}
 		throw new IllegalArgumentException("There are no logged in accounts!");
 	}
-	
+
 	/**
 	 * Removes all the logged in users from the logged in array
-	 * @param 
+	 * 
+	 * @param
 	 * @return Sign out
 	 * @author Sami Ait Ouahmane
 	 */
 	public void signOutAccount() throws IllegalArgumentException {
-		List<OnlineAccount> accountList=toList(onlineAccountRepository.findAll());
-		
-		for(OnlineAccount oA: accountList) {
+		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
+
+		for (OnlineAccount oA : accountList) {
 			oA.setLoggedIn(false);
 			onlineAccountRepository.save(oA);
 		}
@@ -175,14 +176,15 @@ public class CreateOnlineAccountService {
 
 	/**
 	 * Returns the online account user id
-	 * @param 
+	 * 
+	 * @param
 	 * @return id of logged in account
 	 * @author Vy-Kha
 	 */
 	public int getloggedInAccountID() throws IllegalArgumentException {
-		return getloggedInAccount().getUser().getId();	
-		}
-	
+		return getloggedInAccount().getUser().getId();
+	}
+
 	/**
 	 * Creates an online account for an existing user.
 	 * 
@@ -464,8 +466,8 @@ public class CreateOnlineAccountService {
 	public UserEntity findUserById(int id) {
 		return userEntityRepository.findUserEntityById(id);
 	}
-	
-	private <T> List<T> toList(Iterable<T> iterable){
+
+	private <T> List<T> toList(Iterable<T> iterable) {
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {
 			resultList.add(t);
