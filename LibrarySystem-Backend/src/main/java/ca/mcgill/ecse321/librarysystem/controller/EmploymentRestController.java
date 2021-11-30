@@ -139,13 +139,13 @@ public class EmploymentRestController {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	@PostMapping(value = { "/createHeadLibrarian/{firstname}/{lastname}/{address}/{city}", "/createHeadLibrarian/{firstname}/{lastname}/{address}/{city}/" })
-	public HeadLibrarianDto createHeadLibrarian(@PathVariable(name="firstname") String firstname,
-			@PathVariable(name="lastname") String lastname,@PathVariable(name="address") String address,
-			@PathVariable(name="city") String city) throws IllegalArgumentException {
-		HeadLibrarian hl = service.createHeadLibrarian(firstname, lastname, address, city);
+	@PostMapping(value = { "/createHeadLibrarian", "/createHeadLibrarian/" })
+	public HeadLibrarianDto createHeadLibrarian() throws IllegalArgumentException {
+		HeadLibrarian hl = service.createHeadLibrarian();
 		return convertToDto(hl);
 	}
+	
+	
 	
 	/**
 	 * @author vy-khahuynh

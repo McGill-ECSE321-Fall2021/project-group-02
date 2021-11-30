@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.librarysystem.dao.OnlineAccountRepository;
 import ca.mcgill.ecse321.librarysystem.dao.PatronRepository;
 import ca.mcgill.ecse321.librarysystem.dao.UserEntityRepository;
+import ca.mcgill.ecse321.librarysystem.model.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.model.OnlineAccount;
 import ca.mcgill.ecse321.librarysystem.model.Patron;
 import ca.mcgill.ecse321.librarysystem.model.UserEntity;
@@ -25,6 +26,9 @@ public class CreateOnlineAccountService {
 	@Autowired
 	UserEntityRepository userEntityRepository;
 
+	
+	
+	
 	@Transactional
 
 	/**
