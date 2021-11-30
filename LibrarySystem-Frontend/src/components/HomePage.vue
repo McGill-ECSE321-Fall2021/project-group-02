@@ -14,7 +14,7 @@
 </template>
 
 
-<script>
+<script src="../store/HomePage.js">
 </script>
 
 

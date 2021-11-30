@@ -326,108 +326,10 @@ public class TestManagingEmploymentService {
 		error="";
 		HeadLibrarian hl = null;
 		try {
-			hl = service.createHeadLibrarian( HEADLIBRARIAN_FIRSTNAME, HEADLIBRARIAN_LASTNAME, HEADLIBRARIAN_ADDRESS, HEADLIBRARIAN_CITY);
+			hl = service.createHeadLibrarian();
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		checkHeadLibrarian(hl);
-	}
-	
-	
-	@Test
-	public void testCreateHeadLibrarianEmptyFirstName() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian("", LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("First name cannot be empty or too long.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianEmptyLastName() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian( LIBRARIAN_FIRSTNAME, "",LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("Last name cannot be empty or too long.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianEmptyAddress() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,"",LIBRARIAN_CITY);
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("Address cannot be empty or too long.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianEmptyCity() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,"");
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("City cannot be empty or too long.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianLongFirstName() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian("jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj", LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("First name cannot be empty or too long.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianLongLastName() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, "jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj",LIBRARIAN_ADDRESS,LIBRARIAN_CITY);
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("Last name cannot be empty or too long.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianLongAddress() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,"jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj",LIBRARIAN_CITY);
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("Address cannot be empty or too long.",error);
-	}
-	
-	@Test
-	public void testCreateHeadLibrarianLongCity() {
-		error="";
-		HeadLibrarian hl = null;
-		try {
-			hl = service.createHeadLibrarian(LIBRARIAN_FIRSTNAME, LIBRARIAN_LASTNAME,LIBRARIAN_ADDRESS,"jfdksljdljslkfdjklsjflksjdlkjslkfjksljfdlskfjslkfj");
-		} catch (IllegalArgumentException e){
-			error = e.getMessage();
-		}
-		assertEquals("City cannot be empty or too long.",error);
 	}
 	
 	// ----------------------------- DeleteLibrarian ---------------------------- //

@@ -75,28 +75,33 @@ public class ManagingEmploymentService {
 	 * @throws IllegalArgumentException
 	 */
 	@Transactional
-	public HeadLibrarian createHeadLibrarian(String fn, String ln, String ad, String city) throws IllegalArgumentException{
-		error = "";
-		if(!verifyStringLength(fn)) error += "First name cannot be empty or too long.";
-		if(!verifyStringLength(ln)) error += "Last name cannot be empty or too long.";
-		if(!verifyStringLength(ad)) error += "Address cannot be empty or too long.";
-		if(!verifyStringLength(city)) error += "City cannot be empty or too long.";
-		if (error.length() > 0) throw new IllegalArgumentException(error);
-		
-		
+	public HeadLibrarian createHeadLibrarian() throws IllegalArgumentException{
 			HeadLibrarian newHL = new HeadLibrarian();
-			newHL.setFirstName(fn);
-			newHL.setLastName(ln);
-			newHL.setAddress(ad);
-			newHL.setCity(city);
+			newHL.setFirstName("Robert");
+			newHL.setLastName("Maxwell");
+			newHL.setAddress("2770 Ran Avenue");
+			newHL.setCity("Montreal");
 			newHL.setBalance(0);
 			
 			headLibrarianRepository.save(newHL);
 			for(HeadLibrarian hl : headLibrarianRepository.findAll()) {
 				if(hl.getId()!=newHL.getId()) {
+					onlineAccountRepository.delete(hl.getOnlineAccount());
 					headLibrarianRepository.delete(hl);
+					
 				}
 			}
+			
+			OnlineAccount headAccount=new OnlineAccount();
+			headAccount.setEmail("robert@gmail.com");
+			headAccount.setLoggedIn(false);
+			headAccount.setPassword("fabulous");
+			headAccount.setUsername("robert1");
+			headAccount.setUser(newHL);
+			onlineAccountRepository.save(headAccount);
+			
+			newHL.setOnlineAccount(headAccount);
+			headLibrarianRepository.save(newHL);
 			
 			return newHL;
 	}
