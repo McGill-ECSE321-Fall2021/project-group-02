@@ -35,7 +35,7 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with: 
           heroku_api_key: 6bf7b3d2-c47d-4c79-80d7-bf54e7971fa4
-          heroku_app_name: " librarysystem-backend-6f21"
+          heroku_app_name: "librarysystem-backend-6f21"
           heroku_email: "sami.aitouahmane@mail.mcgill.ca"
           dontuseforce: false
   frontend:
@@ -47,7 +47,7 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with: 
           heroku_api_key: 6bf7b3d2-c47d-4c79-80d7-bf54e7971fa4
-          heroku_app_name: " librarysystem-frontend-6f21"
+          heroku_app_name: "librarysystem-frontend-6f21"
           heroku_email: "sami.aitouahmane@mail.mcgill.ca"
           dontuseforce: false
       
