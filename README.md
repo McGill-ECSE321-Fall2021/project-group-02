@@ -6,6 +6,8 @@ This system will be implemented by a team of 6 individuals and involved the use 
 ## Running the Project
 The backend of this project can be run locally by cloning this GitHub repository using the URL: https://github.com/McGill-ECSE321-Fall2021/project-group-02.git. The `LibrarySystem-Backend` repository can then be run as a Spring Boot App. The application will be hosted at http://localhost:8080/ and can be tested using the Postman application. Once the backend is running, the frontend (webpage) of the project can be run with all service functionalities by navigating to the `LibrarySystem-Frontend` and running `npm run dev` in the terminal.
 
+The app is deployed here: https://librarysystem-backend-6f21.herokuapp.com/
+
 ## About Us
 There are six team members in Group 02: 
 | Name | Team Role | Major | Year |
