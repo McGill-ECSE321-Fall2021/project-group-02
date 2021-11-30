@@ -106,6 +106,13 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount logIn(String username, String password, boolean loggedIn) throws IllegalArgumentException {
+		List<OnlineAccount> accountList=toList(onlineAccountRepository.findAll());
+		
+		for(OnlineAccount oA: accountList) {
+			oA.setLoggedIn(false);
+			onlineAccountRepository.save(oA);
+		}
+		
 		String error = "";
 
 		// log in
