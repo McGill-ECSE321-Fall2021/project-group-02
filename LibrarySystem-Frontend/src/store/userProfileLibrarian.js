@@ -68,6 +68,7 @@ export default {
       emailUsername: '',
       errorMsg: '',
       onlineAccountLogged:[],
+      user: [],
       id: -1
     }
   },
