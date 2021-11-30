@@ -38,16 +38,18 @@ function DailyScheduleDto (day, startTime, endTime) {
       lastName: '',
       address: '',
       city: '',
-      id: '',
+      dailyid: '',
+      weeklyid: '',
       errorLibrarian: '',
-      response: []
+      response: [],
+      errorWeeklySchedules: '',
+      errorDailySchedules: '',
+      user: []
       }
     },
     created: function () {
-      AXIOS.get('/schedules')
-      .then(response => {
-        this.weeklySchedules = response.data
-      })
+      
+      
       AXIOS.get('/librarians')
       .then(response => {
         // JSON responses are automatically parsed.
@@ -77,5 +79,44 @@ function DailyScheduleDto (day, startTime, endTime) {
                     this.errorLibrarian = errorMsg
                   })
               },
+
+        getDailySchedules: function (id) {
+            AXIOS.get('/schedulesdaily/'.concat('?LibID=', id))
+                    .then(response => {
+                      // JSON responses are automatically parsed.
+                      this.dailySchedules = response.data
+                      this.errorDailySchedules = ''
+                      this.dailyid=''
+                    })
+                    .catch(e => {
+                      var errorMsg = e
+                      console.log(errorMsg)
+                      this.errorDailySchedules = errorMsg
+                    })
+                },
+
+          getWeeklySchedules: function (id) {
+              AXIOS.get('/schedulesweekly/'.concat('?LibID=', id))
+                    .then(response => {
+                        this.weeklySchedules = response.data
+                        this.errorWeeklySchedules = ''
+                        this.weeklyid = ''
+                    })
+                    .catch(e => {
+                        var errorMsg = e
+                        console.log(errorMsg)
+                        this.errorWeeklySchedules = errorMsg
+                    })
+                },
+                getTypeOfUser(){
+                  AXIOS.get('/onlineAccountLoggedInUser')
+                  .then(response => {
+                    this.user = response.data
+                  }).catch(e => {
+                    this.user = [];
+                  })
+                  return this.user;
+                }
+
     }
 }

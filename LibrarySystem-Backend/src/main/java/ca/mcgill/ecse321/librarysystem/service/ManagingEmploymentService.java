@@ -435,18 +435,16 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public WeeklySchedule getWeeklySchedule(int h,int id)throws IllegalArgumentException {
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+	public List<WeeklySchedule> getWeeklySchedulesByID(int id)throws IllegalArgumentException {
+		List<WeeklySchedule> newList = new ArrayList<WeeklySchedule>();
+		
 		if(librarianRepository.existsById(id)) {
 			Librarian cur = librarianRepository.findLibrarianById(id);
-			return cur.getWeeklySchedule();
+			newList.add(cur.getWeeklySchedule());
+			return newList;
 		}
 		else throw new IllegalArgumentException("This librarian does not exist!");
-	}
-	else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+	
 	}
 	
 	/**
@@ -456,11 +454,9 @@ public class ManagingEmploymentService {
 	 * @author vy-khahuynh
 	 */
 	@Transactional
-	public List<WeeklySchedule> getAllWeeklySchedule(int h)throws IllegalArgumentException{
-		if(!(h > -1)) {
-			throw new IllegalArgumentException("IDs have to be positive.");
-		}
-		if(headLibrarianRepository.existsHeadLibrarianById(h)) {
+	public List<WeeklySchedule> getAllWeeklySchedule() throws IllegalArgumentException{
+		
+		
 		if(weeklyScheduleRepository.findAll() instanceof ArrayList) {
 			return (ArrayList<WeeklySchedule>) weeklyScheduleRepository.findAll();
 		}
@@ -472,7 +468,15 @@ public class ManagingEmploymentService {
 			return ws;
 		}
 	}
-		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+	
+	@Transactional
+	public List<DailySchedule> getLibrarianDailySchedules(int id) throws IllegalArgumentException {
+		if(librarianRepository.existsById(id)) {
+			Librarian cur = librarianRepository.findLibrarianById(id);
+			WeeklySchedule ws = cur.getWeeklySchedule();;
+			return ws.getDailySchedules();
+		}
+		else throw new IllegalArgumentException("This librarian does not exist!");
 	}
 	
 	@Transactional

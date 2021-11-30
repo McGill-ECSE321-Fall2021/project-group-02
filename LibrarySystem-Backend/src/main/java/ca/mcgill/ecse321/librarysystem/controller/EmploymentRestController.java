@@ -114,11 +114,21 @@ public class EmploymentRestController {
 		return convertToDto(l);
 	}
 	
-	@GetMapping(value= {"/schedules", "/schedules/" })
-	public WeeklyScheduleDto getWeeklyScheduleByID(@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
-		WeeklySchedule ws = service.getWeeklyScheduleByID(libid);
-		return convertToDto(ws);
+	@GetMapping(value= {"/schedulesweekly", "/schedulesweekly/" })
+	public List<WeeklyScheduleDto> getAllWeeklySchedulesByID(@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
+		return service.getWeeklySchedulesByID(libid).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
 	}
+	
+	@GetMapping(value= {"/schedulesdaily" , "/schedulesdaily/"})
+	public List<DailyScheduleDto> getDailySchedulesByID(@RequestParam(name="LibID")int libid) throws IllegalArgumentException{
+		return service.getLibrarianDailySchedules(libid).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
+//	@GetMapping(value= {"/schedulesweekly" , "/schedulesweekly/"})
+//	public WeeklyScheduleDto getWeeklyScheduleByID(@RequestParam(name="LibID")int libid) throws IllegalArgumentException {
+//		WeeklySchedule ws = service.getWeeklyScheduleByID(libid);
+//		return convertToDto(ws);
+//	}
 	
 	/**
 	 * @author vy-khahuynh

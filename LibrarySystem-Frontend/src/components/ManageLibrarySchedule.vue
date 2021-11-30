@@ -1,14 +1,42 @@
 <template>
   <div id="manageLibrarySchedule">
-    <body>
-      <body>
       <div class="header">
-				  <router-link to="/"><h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Montreal Library</h2></router-link>
-				  <router-link to="/signup"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Sign Up/Log In</a></router-link>
-        	<router-link to="/items"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Items Information</a></router-link>
-        	<router-link to="/"><a class="btn" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Home</a></router-link>
-		  </div>
-    
+				<template v-if="getTypeOfUser().includes('Patron')">
+					<router-link to="/homeAfterLogin"><h2>Montreal Library</h2></router-link>
+					<router-link to="/userProfile"><a class="add">User Profile</a></router-link>
+					<router-link to="/items"><a class="add">Items Information</a></router-link>
+					<router-link to="/homeAfterLogin"><a class="add">Home</a></router-link>
+				</template>
+				<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
+					<router-link to="/homePageHeadLibrarian"><h2>Montreal Library</h2></router-link>
+					<router-link to="/librarians"><a class="add">Manage Employment</a></router-link>
+					<router-link to="/manageLibrarySchedule"><a class="add">Manage Library Schedule</a></router-link>
+					<router-link to="/schedules"><a class="add">View Librarian Schedule</a></router-link>
+					<router-link to="/manageitems"><a class="add">Manage Items</a></router-link>
+					<router-link to="/createPatron"><a class="add">Create Patron</a></router-link>
+					<router-link to="/userProfileLibrarian"><a class="add">User Profile</a></router-link>
+					<router-link to="/items"><a class="add">Items Information</a></router-link>
+					<router-link to="/homePageHeadLibrarian"><a class="add">Home</a></router-link>
+				</template>
+				<template v-else-if="getTypeOfUser().includes('Librarian')">
+					<router-link to="/homePageLibrarian"><h2>Montreal Library</h2></router-link>
+					<router-link to="/librarians"><a class="add">Manage Employment</a></router-link>
+					<router-link to="/manageLibrarySchedule"><a class="add">Manage Library Schedule</a></router-link>
+					<router-link to="/schedules"><a class="add">View Librarian Schedule</a></router-link>
+					<router-link to="/manageitems"><a class="add">Manage Items</a></router-link>
+					<router-link to="/createPatron"><a class="add">Create Patron</a></router-link>
+					<router-link to="/userProfileLibrarian"><a class="add">User Profile</a></router-link>
+					<router-link to="/items"><a class="add">Items Information</a></router-link>
+					<router-link to="/homePageLibrarian"><a class="add">Home</a></router-link>
+				</template>
+				<template v-else>
+					<router-link to="/"><h2>Montreal Library</h2></router-link>
+        			<router-link to="/signup"><a class="add">Sign Up/Log In</a></router-link>
+					<router-link to="/items"><a class="add">Items Information</a></router-link>
+					<router-link to="/"><a class="add">Home</a></router-link>
+				</template>
+			</div>
+    <body>
     <div class="calendar">
       <div class="wrapper" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
             <label for="datepicker-placeholder-start" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: white">Choose a start date</label>
@@ -37,9 +65,16 @@
                     <button style="background:rgb(112, 1, 1); color: white; text-align: center;" @click="createWeeklySchedule(id, value, value1, librarianID)">Set Week</button>
                 </td>
               </tr>
-            </table>
-            <button class="button" v-b-toggle.sidebar-no-header style="background:rgb(112, 1, 1); color: white;padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;
+              <tr>
+                <button class="button" v-b-toggle.sidebar-no-header style="background:rgb(112, 1, 1); color: white;padding: 15px 32px;text-align: center; text-decoration: none; display: inline-block;
               font-size: 16px;" size="lg">Change Schedule</button>
+              </tr>
+              <tr>
+                <p><span v-if="success" style="color:green">Weekly Schedule has been created. </span></p>
+                <p><span v-if="errorMsg" style="color:red">Error!</span></p>
+              </tr>
+            </table>
+            
             
       </div>
     </div>
@@ -99,9 +134,8 @@
                 </template>
             </b-sidebar>
         </div>
-        </body>
-        </body>
-    </div>
+    </body>
+  </div>
 </template>
 
 <script src="../store/ManageLibrarySchedulePage.js">
@@ -109,9 +143,6 @@
 
 
 <style>
-#calendar {
-  width: 500px;
-}
 body{
 	margin: 0;
 	padding: 0;
@@ -178,7 +209,7 @@ input[type="text"] {
 }
 .header{
 	width:100%;
-	height: 100px;
+	height: 130px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -260,6 +291,19 @@ thead th {
 	padding: 0px;
 	margin: 0px auto 0px auto;
 	overflow: auto;
-
+}
+.add{
+  float:right;
+  margin: 75px 5px;
+  color:white;
+  background:rgba(0, 0, 0, 0.8);
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.add:hover {
+  background:#fff;
 }
 </style>

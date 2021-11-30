@@ -67,22 +67,24 @@ export default {
       librarianID: '',
 
       weeklySchedules: [],
+      success: '',
+
+      user: []
       
     }
   },
   created: function () {
     // Test data
-
-
-        return {
-        value: '',
-        min: minDate,
-        max: maxDate,
-        librarians: [],
-        response: [],
-        errorLibrarian: ''
-      }
-    },
+    AXIOS.get('/librarians')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.librarians = response.data
+      this.errorLibrarian = ''
+    })
+    .catch(e => {
+      this.errorLibrarian = e
+    })
+  },
 
   methods: {
     createDailySchedule: function (day, startTime, endTime, id, headLibrarianID) {
@@ -95,6 +97,9 @@ export default {
           this.endTime= ''
           this.id = ''
           this.headLibrarianID = ''
+          var success = response.data
+          this.sucess = success
+
       })
       .catch(e => {
         var errorMsg = e.response.data.message
@@ -111,6 +116,9 @@ export default {
         this.endDate = ''
         this.librarianID = ''
         this.headLibrarianID = ''
+
+        var success = response.data
+        this.sucess = success
       })
       .catch(e => {
         var errorMsg = e.response.data.message
@@ -118,8 +126,16 @@ export default {
         this.errorMsg = errorMsg
     })
 
+    },
+    getTypeOfUser(){
+      AXIOS.get('/onlineAccountLoggedInUser')
+      .then(response => {
+        this.user = response.data
+      }).catch(e => {
+        this.user = [];
+      })
+      return this.user;
     }
-    
     
 
   }
