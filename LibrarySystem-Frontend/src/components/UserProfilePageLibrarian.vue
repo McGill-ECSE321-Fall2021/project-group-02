@@ -8,12 +8,13 @@
       <template v-if="getTypeOfUser().includes('Patron')">
         			<router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 				</template>
+        <template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
+        			<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
+				</template>
 				<template v-else-if="getTypeOfUser().includes('Librarian')">
         			<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
 				</template>
-				<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
-        			<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
-				</template>
+				
 				<template v-else>
         			<router-link to="/"><a class="btn">Home</a></router-link>
 				</template>
