@@ -25,6 +25,7 @@ var AXIOS = axios.create({
 
         response: [],
         errorMsg: '',
+        user: []
       }
     },
 
@@ -182,6 +183,15 @@ var AXIOS = axios.create({
               console.log(errorMsg)
               this.errorMsg = errorMsg
           })
+        },
+        getTypeOfUser(){
+          AXIOS.get('/onlineAccountLoggedInUser')
+          .then(response => {
+            this.user = response.data
+          }).catch(e => {
+            this.user = [];
+          })
+          return this.user;
         }
     }
 }

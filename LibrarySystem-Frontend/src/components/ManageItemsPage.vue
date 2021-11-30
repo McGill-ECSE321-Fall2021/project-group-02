@@ -5,7 +5,18 @@
 		<router-link to="/"><h1>Montreal Library</h1></router-link>
 		<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
 		<router-link to="/items"><a class="btn">Items Information</a></router-link>
-		<router-link to="/"><a class="btn">Home</a></router-link>
+		<template v-if="getTypeOfUser().includes('Patron')">
+			<router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
+		</template>
+		<template v-else-if="getTypeOfUser().includes('Librarian')">
+			<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
+		</template>
+		<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
+			<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
+		</template>
+		<template v-else>
+			<router-link to="/"><a class="btn">Home</a></router-link>
+		</template>
 	  </div>
 	  <div class = "containerHeader">
 		<h2> Manage Items </h2>
