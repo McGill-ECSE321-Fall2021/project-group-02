@@ -22,7 +22,7 @@ There are six team members in Group 02:
 | --- | --- | --- | --- | --- | --- |
 | Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h | 30h |  |
 | Julie Chen | Documentation Lead | 12h | 20h | 30h |  |
-| Hyunbum Cho | Software Developer | 12h | 20h |  |  |
+| Hyunbum Cho | Software Developer | 12h | 20h | 25h |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h | 20h |  |
 | Niilo Vuokila | Software Developer | 20h | 20h | 23h |  |
 | John Park | Software Developer | 12h | 18h | 25h |  |
@@ -57,7 +57,7 @@ The project report for deliverable 3 can be found [here.](https://github.com/McG
 | --- | --- | --- |
 | Sami Ait Ouahmane | Creation of the UI for the home page and the login/signup page. Implementation of the corresponding javascript pages and service methods to log in and sign out. Calling of the borrowItem method for the 'Manage Items' page. Creation of the architecture model(s) | 30h |
 | Julie Chen | Creation of the UI 'Manage Items' page and implementation of the corresponding JavaScript for the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods, as well as the creation of additional service and controller methods required for functionality. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 30h |
-| Hyunbum Cho | | |
+| Hyunbum Cho | Creation of the UI for user profile page and borrowed items page and related backend services that were missing. | 25h |
 | Vy-Kha Huynh | Creation of the ManageLibrarianPage UI, implementation and connection between backend and frontend, all service method related to firing and hiring librarians, some service emthod to get info about the user such as id and type | 20h |
 | Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs, service, and controller methods in backend. | 23h |
 | John Park | Creation of UI for 'Manage Library Schedule', implementation of corresponding JavaScript. Modification of DTOs, service, and controller methods in backend. | 25h |
