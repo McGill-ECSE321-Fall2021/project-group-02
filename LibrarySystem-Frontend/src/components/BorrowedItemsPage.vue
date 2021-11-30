@@ -1,9 +1,23 @@
 <template>
   <body>
     <div class="header">
-			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
+			<router-link to="/homeAfterLogin"><h2 id="header-h2">Montreal Library</h2></router-link>
       <router-link to="/items"><a class="btn">Items Information</a></router-link>
       <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
+      <!--
+      <template v-if="getTypeOfUser().includes('Patron')">
+        			<router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
+				</template>
+				<template v-else-if="getTypeOfUser().includes('Librarian')">
+        			<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
+				</template>
+				<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
+        			<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
+				</template>
+				<template v-else>
+        			<router-link to="/"><a class="btn">Home</a></router-link>
+				</template>
+        -->
 		</div>
     <div class="borrowed-items-page">
       <div class="main">
@@ -25,6 +39,7 @@
             <div class="borrowed-items-text">
               <h1>Borrowed Items</h1>
             </div>
+            <a class = "button" @click="getBorrowedItems()">view items</a>
               <table>
                   <tr></tr>
                   <tr><th colspan="10">Books</th></tr>
@@ -91,6 +106,22 @@
   }
   .header a:hover{
     color: black;
+  }
+  .button {
+    display: flex;
+    justify-content: center;
+    color:white;
+    background:rgb(160, 1, 1);
+    padding:10px 20px;
+    font-size:14px;
+    text-decoration:none;
+    letter-spacing:2px;
+    border-radius: 5px;
+  }
+  .button:hover{
+    background:rgb(114, 1, 1);
+    text-decoration: none;
+    color: white;
   }
     .btn{
     float:right;

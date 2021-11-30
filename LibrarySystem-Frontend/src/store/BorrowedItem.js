@@ -65,19 +65,12 @@ export default {
       .then(response => {
         this.onlineAccountLogged.push(response.data)
         this.userId = response.data.userId
-      })
-      AXIOS.get('/borrowedItems/books/'.concat('?id=', this.userId))
-      .then(response => {
-        this.books = response.data
-      })
-      AXIOS.get('/borrowedItems/albums', {}, {params: {id: this.userId}})
-      .then(response => {
-        this.albums = response.data
-      })
-      AXIOS.get('/borrowedItems/movies', {}, {params: {id: this.userId}})
-      .then(response => {
-        this.movies = response.data
-      })
+        console.log('hello' + this.userId)
+      }) .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
   },
 
   methods:{
@@ -93,5 +86,41 @@ export default {
           this.errorMsg = errorMsg
         })
     },
-  }
+    getTypeOfUser(){
+        AXIOS.get('/onlineAccountLoggedInUser')
+        .then(response => {
+          this.user = response.data
+        }).catch(e => {
+          this.user = [];
+        })
+        return this.user;
+      },
+      getBorrowedItems: function(){
+      AXIOS.get('/borrowedItems/books/'.concat('?id=', this.userId))
+      .then(response => {
+        this.books = response.data
+      }) .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
+      AXIOS.get('/borrowedItems/albums'.concat('?id=', this.userId))
+      .then(response => {
+        this.albums = response.data
+      }) .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
+      AXIOS.get('/borrowedItems/movies'.concat('?id=', this.userId))
+      .then(response => {
+        this.movies = response.data
+      }) .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorMsg = errorMsg
+        })
+    },
+  },
+  
 }
