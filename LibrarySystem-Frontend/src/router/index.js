@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '@/components/HomePage'
-import HomePageLogin from '@/components/HomePageUser'
+import HomePageLogin from '@/components/HomePagePatron'
 import HomePageLibrarian from '@/components/HomePageLibrarian'
+import HomePageHeadLibrarian from '@/components/HomePageHeadLibrarian'
 import SignUpPage from '@/components/SignUpPage'
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
@@ -10,6 +11,7 @@ import CreatePatron from '@/components/CreatePatron'
 
 import ManageItemsPage from '@/components/ManageItemsPage'
 
+import LsPage from '@/components/ViewLibrarianSchedule'
 import ViewItemsPage from '@/components/ViewItemsPage'
 import UserProfilePage from '@/components/UserProfilePage'
 import UserProfilePageLibrarian from '@/components/UserProfilePageLibrarian'
@@ -133,6 +135,11 @@ export default new Router({
       path: '/homePageLibrarian',
       name: 'home-page-librarian',
       component: HomePageLibrarian
+    },
+    {
+      path: '/homePageHeadLibrarian',
+      name: 'home-page-head-librarian',
+      component: HomePageHeadLibrarian
     }
   ]
 })

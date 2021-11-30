@@ -1,13 +1,14 @@
 <template>
   <div class="welcomepage">
       <div class="header">
-				 <router-link to="/homePageLibrarian"><h2>Montreal Library</h2></router-link>
-            <router-link to="/"><a class="btn">Manage Schedule</a></router-link>
-            <router-link to="/"><a class="btn">View Librarian Schedule</a></router-link>
-            <router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
+				 <router-link to="/homePageHeadLibrarian"><h2>Montreal Library</h2></router-link>
+                 <router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
+                 <router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
+                <router-link to="/"><a class="btn">View Librarian Schedule</a></router-link>
+                <router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
 				    <router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>
-        		<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
+        		<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>
