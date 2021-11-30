@@ -59,7 +59,7 @@ public class CreateOnlineAccountController {
 	public OnlineAccountDto getLoggedInAccount() {
 		return convertToDto(service.getloggedInAccount());
 	}
-
+	
 	/**
 	 * Gets the type of the logged in user
 	 * 

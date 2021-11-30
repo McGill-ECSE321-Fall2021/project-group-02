@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '@/components/HomePage'
-import HomePageLogin from '@/components/HomePage2'
+import HomePageLogin from '@/components/HomePageUser'
+import HomePageLibrarian from '@/components/HomePageLibrarian'
 import SignUpPage from '@/components/SignUpPage'
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
@@ -127,6 +128,11 @@ export default new Router({
       path: '/borrowedItems/movies',
       name: 'borrowed-movies',
       component: BorrowedItemsPage
+    },
+    {
+      path: '/homePageLibrarian',
+      name: 'home-page-librarian',
+      component: HomePageLibrarian
     }
   ]
 })
