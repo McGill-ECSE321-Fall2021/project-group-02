@@ -103,8 +103,6 @@ public class ManagingEmploymentService {
 			}
 			
 			
-			
-			
 			OnlineAccount headAccount=new OnlineAccount();
 			headAccount.setEmail("robert@gmail.com");
 			headAccount.setLoggedIn(false);

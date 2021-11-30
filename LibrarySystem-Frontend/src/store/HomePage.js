@@ -25,7 +25,8 @@ export default {
     data () {
       return {
         errorMsg: '',
-        response: []
+        response: [],
+        user: []
       }
     },
 
@@ -34,5 +35,13 @@ export default {
           .then(response => {
           })
       },
-  
+      getTypeOfUser(){
+        AXIOS.get('/onlineAccountLoggedInUser')
+        .then(response => {
+          this.user = response.data
+        }).catch(e => {
+          this.user = [];
+        })
+        return this.user;
+      }
   }

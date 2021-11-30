@@ -57,6 +57,7 @@ export default {
         movies: [],
         response: [],
         onlineAccountLogged: [],
+        user: [],
         userId: -1,
       }
   },
