@@ -2,7 +2,6 @@
   <div class="welcomepage">
       <div class="header">
 				 <router-link to="/homePageHeadLibrarian"><h2>Montreal Library</h2></router-link>
-         <router-link tp="/createPatron"><a class="btn">Create Patron</a></router-link>
                  <router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
                  <router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
                 <router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
