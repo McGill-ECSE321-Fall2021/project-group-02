@@ -52,7 +52,8 @@ export default {
         movies: [],
         journals: [],
         newspapers: [],
-        response: []
+        response: [],
+        user: []
       }
     },
     created: function () {
@@ -138,6 +139,15 @@ export default {
           })
         }
         searchTerm = '';
+      },
+      getTypeOfUser(){
+        AXIOS.get('/onlineAccountLoggedInUser')
+        .then(response => {
+          this.user = response.data
+        }).catch(e => {
+          this.user = [];
+        })
+        return this.user;
       }
     }
 }

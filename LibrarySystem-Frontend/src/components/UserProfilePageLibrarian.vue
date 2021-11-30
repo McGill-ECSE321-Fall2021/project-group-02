@@ -1,8 +1,7 @@
 <template>
   <body>
     <div class="header">
-
-			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
+			<router-link to="/homePageLibrarian"><h2 id="header-h2">Montreal Library</h2></router-link>
       <router-link to="/items"><a class="btn">Items Information</a></router-link>
       <router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 		</div>
@@ -118,7 +117,7 @@
   </body>
 </template>
 
-<script src="../store/userProfile.js"></script>
+<script></script>
 
 <style>
   .header{

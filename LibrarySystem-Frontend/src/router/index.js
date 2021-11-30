@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '@/components/HomePage'
-import HomePageLogin from '@/components/HomePage2'
+import HomePageLogin from '@/components/HomePagePatron'
+import HomePageLibrarian from '@/components/HomePageLibrarian'
+import HomePageHeadLibrarian from '@/components/HomePageHeadLibrarian'
 import SignUpPage from '@/components/SignUpPage'
 
 import ManageLibrarySchedule from '@/components/ManageLibrarySchedule'
@@ -14,6 +16,7 @@ import UserProfilePage from '@/components/UserProfilePage'
 import UserProfilePageLibrarian from '@/components/UserProfilePageLibrarian'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
+import ViewLibrarianSchedule from '@/components/ViewLibrarianSchedule'
 
 
 Vue.use(Router)
@@ -34,6 +37,12 @@ export default new Router({
       path: '/signup',
       name: 'SignUpPage',
       component: SignUpPage
+    },
+    {
+
+      path: '/schedules',
+      name: 'ViewLibrarianSchedule',
+      component: ViewLibrarianSchedule
     },
     {
 
@@ -127,6 +136,16 @@ export default new Router({
       path: '/borrowedItems/movies',
       name: 'borrowed-movies',
       component: BorrowedItemsPage
+    },
+    {
+      path: '/homePageLibrarian',
+      name: 'home-page-librarian',
+      component: HomePageLibrarian
+    },
+    {
+      path: '/homePageHeadLibrarian',
+      name: 'home-page-head-librarian',
+      component: HomePageHeadLibrarian
     }
   ]
 })

@@ -28,20 +28,23 @@ function ItemDto (id, isArchived, isBorrowed, isDamaged){
   this.isBorrowed = isBorrowed;
   this.isDamaged = isDamaged;
 }
-function BookDto (id, title, author){
+function BookDto (title, author, isAvailable, id){
   this.id = id;
   this.title = title;
   this.author = author;
+  this.isAvailable = isAvailable;
 }
-function AlbumDto (id, title, artist){
+function AlbumDto (id, title, artist, isAvailable){
   this.id = id;
   this.title = title;
   this.artist = artist;
+  this.isAvailable = isAvailable;
 }
-function MovieDto (id, title, director){
+function MovieDto (id, title, director, isAvailable){
   this.id = id;
   this.title = title;
   this.director = director;
+  this.isAvailable = isAvailable;
 }
 
 
@@ -63,7 +66,7 @@ export default {
         this.onlineAccountLogged.push(response.data)
         this.userId = response.data.userId
       })
-      AXIOS.get('/borrowedItems/books', {}, {params: {id: this.userId}})
+      AXIOS.get('/borrowedItems/books/'.concat('?id=', this.userId))
       .then(response => {
         this.books = response.data
       })

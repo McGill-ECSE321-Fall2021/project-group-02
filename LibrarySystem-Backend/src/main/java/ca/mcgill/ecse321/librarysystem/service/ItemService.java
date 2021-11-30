@@ -484,7 +484,7 @@ public class ItemService {
 			borrowedPatronItems.addAll(specificPatron.getBorrowedAlbums());
 			borrowedPatronItems.addAll(specificPatron.getBorrowedBooks());
 			borrowedPatronItems.addAll(specificPatron.getBorrowedMovies());
-			return borrowedPatronItems = new ArrayList<Item>();
+			return borrowedPatronItems;
 		} else {
 			throw new IllegalArgumentException("Patron ID does not exist.");
 		}
@@ -504,7 +504,7 @@ public class ItemService {
 			List<Book> borrowedPatronBooks = new ArrayList<Book>();
 			Patron specificPatron = patronRepository.findPatronById(patronID);
 			borrowedPatronBooks.addAll(specificPatron.getBorrowedBooks());
-			return borrowedPatronBooks = new ArrayList<Book>();
+			return borrowedPatronBooks;
 		} else {
 			throw new IllegalArgumentException("Patron ID does not exist.");
 		}
@@ -524,7 +524,7 @@ public class ItemService {
 			List<Album> borrowedPatronAlbums = new ArrayList<Album>();
 			Patron specificPatron = patronRepository.findPatronById(patronID);
 			borrowedPatronAlbums.addAll(specificPatron.getBorrowedAlbums());
-			return borrowedPatronAlbums = new ArrayList<Album>();
+			return borrowedPatronAlbums;
 		} else {
 			throw new IllegalArgumentException("Patron ID does not exist.");
 		}
@@ -544,7 +544,7 @@ public class ItemService {
 			List<Movie> borrowedPatronMovies = new ArrayList<Movie>();
 			Patron specificPatron = patronRepository.findPatronById(patronID);
 			borrowedPatronMovies.addAll(specificPatron.getBorrowedMovies());
-			return borrowedPatronMovies = new ArrayList<Movie>();
+			return borrowedPatronMovies;
 		} else {
 			throw new IllegalArgumentException("Patron ID does not exist.");
 		}
