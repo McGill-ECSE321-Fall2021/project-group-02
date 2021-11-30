@@ -1,3 +1,4 @@
 task stage () {
     dependsOn ':LibrarySystem-Backend:assemble'
+    dependsOn ':LibrarySystem-Frontend:assemble'
 }
