@@ -3,7 +3,6 @@
     <body>
       <div class="header">
 		<router-link to="/"><h1>Montreal Library</h1></router-link>
-		<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
 		<router-link to="/items"><a class="btn">Items Information</a></router-link>
 		<template v-if="getTypeOfUser().includes('Patron')">
 			<router-link to="/userProfile"><a class="btn">User Profile</a></router-link>
@@ -27,6 +26,7 @@
 			<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
 		</template>
 		<template v-else>
+			<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
 			<router-link to="/"><a class="btn">Home</a></router-link>
 		</template>
 	  </div>
