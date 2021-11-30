@@ -76,21 +76,32 @@ public class ManagingEmploymentService {
 	 */
 	@Transactional
 	public HeadLibrarian createHeadLibrarian() throws IllegalArgumentException{
+			int found=0;
 			HeadLibrarian newHL = new HeadLibrarian();
-			newHL.setFirstName("Robert");
-			newHL.setLastName("Maxwell");
-			newHL.setAddress("2770 Ran Avenue");
-			newHL.setCity("Montreal");
-			newHL.setBalance(0);
-			
-			headLibrarianRepository.save(newHL);
 			for(HeadLibrarian hl : headLibrarianRepository.findAll()) {
 				if(hl.getId()==newHL.getId()) {
-					onlineAccountRepository.delete(hl.getOnlineAccount());
-					headLibrarianRepository.delete(hl);
-					
+					newHL=hl;
+					found=1;
 				}
 			}
+			
+			if(found==0) {
+				newHL.setFirstName("Robert");
+				newHL.setLastName("Maxwell");
+				newHL.setAddress("2770 Ran Avenue");
+				newHL.setCity("Montreal");
+				newHL.setBalance(0);
+				headLibrarianRepository.save(newHL);
+			}
+			
+			
+			
+			for(OnlineAccount oa : onlineAccountRepository.findAll()) {
+				if(oa.getUsername().equals("robert1")) {
+					return newHL;
+				}
+			}
+			
 			
 			OnlineAccount headAccount=new OnlineAccount();
 			headAccount.setEmail("robert@gmail.com");
@@ -102,7 +113,6 @@ public class ManagingEmploymentService {
 			
 			return newHL;
 	}
-	
 	/**
 	 * @author vy-khahuynh
 	 * @param h id of the user
