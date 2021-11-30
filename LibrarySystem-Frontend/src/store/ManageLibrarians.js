@@ -36,7 +36,8 @@ export default {
       city: '',
       id: '',
       errorLibrarian: '',
-      response: []
+      response: [],
+      user: []
     }
   },
 
@@ -113,6 +114,15 @@ export default {
        console.log(errorMsg)
        this.errorLibrarian = errorMsg
      })   
+    },
+    getTypeOfUser(){
+      AXIOS.get('/onlineAccountLoggedInUser')
+      .then(response => {
+        this.user = response.data
+      }).catch(e => {
+        this.user = [];
+      })
+      return this.user;
     }
   }
 }

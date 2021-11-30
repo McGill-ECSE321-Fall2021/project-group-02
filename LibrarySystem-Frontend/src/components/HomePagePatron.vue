@@ -5,7 +5,7 @@
             
 				    <router-link to="/userProfile"><a class="btn">User Profile</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>
-        		<router-link to="/"><a class="btn">Home</a></router-link>
+        		<router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>

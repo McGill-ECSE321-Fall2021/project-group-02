@@ -45,7 +45,8 @@ export default {
       errorLibrarian: '',
       response: [],
       dailySchedules: [],
-      errorDailySchedule: ''
+      errorDailySchedule: '',
+      user: []
       
     }
   },
@@ -86,6 +87,15 @@ export default {
         console.log(errorMsg)
         this.errorDailySchedule = errorMsg
       })
+    },
+    getTypeOfUser(){
+      AXIOS.get('/onlineAccountLoggedInUser')
+      .then(response => {
+        this.user = response.data
+      }).catch(e => {
+        this.user = [];
+      })
+      return this.user;
     }
   }
 }

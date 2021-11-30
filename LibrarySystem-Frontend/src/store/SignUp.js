@@ -46,6 +46,7 @@ export default {
       city: '',
       errorMsg: '',
       accountId: '',
+      user: [],
       response: []
     }
   },
@@ -103,6 +104,15 @@ export default {
             this.errorMsg = errorMsg
           })
         },
+        getTypeOfUser(){
+          AXIOS.get('/onlineAccountLoggedInUser')
+          .then(response => {
+            this.user = response.data
+          }).catch(e => {
+            this.user = [];
+          })
+          return this.user;
+        }
 
   }
 }
