@@ -14,6 +14,7 @@
             <router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
             <router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
 			<router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
+			<router-link to="/createPatron"><a class="btn">Create Patron</a></router-link>
 			<router-link to="/items"><a class="btn">Items Information</a></router-link>
 			<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
 				<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
@@ -21,6 +22,7 @@
 		<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
 			<router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
 			<router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
+			<router-link to="/createPatron"><a class="btn">Create Patron</a></router-link>
 			<router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
 			<router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
 			<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
