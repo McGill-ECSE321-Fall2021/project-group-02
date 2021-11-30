@@ -15,6 +15,7 @@ import UserProfilePage from '@/components/UserProfilePage'
 import UserProfilePageLibrarian from '@/components/UserProfilePageLibrarian'
 import BorrowedItemsPage from '@/components/BorrowedItemsPage'
 import ManageLibrariansPage from '@/components/ManageLibrariansPage'
+import ViewLibrarianSchedule from '@/components/ViewLibrarianSchedule'
 
 
 Vue.use(Router)
@@ -35,6 +36,12 @@ export default new Router({
       path: '/signup',
       name: 'SignUpPage',
       component: SignUpPage
+    },
+    {
+
+      path: '/schedules',
+      name: 'ViewLibrarianSchedule',
+      component: ViewLibrarianSchedule
     },
     {
 
