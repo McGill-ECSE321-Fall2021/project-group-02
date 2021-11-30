@@ -26,7 +26,6 @@
               <h1>Borrowed Items</h1>
             </div>
               <table>
-                  <template v-if="($route.name).includes('books') || ($route.name).includes('items')">
                   <tr></tr>
                   <tr><th colspan="10">Books</th></tr>
                   <tr>
@@ -39,8 +38,6 @@
                       <td>{{ book.title }}</td>
                       <td>{{ book.author }}</td>
                   </tr>
-                </template>
-                <template v-if="($route.name).includes('albums') || ($route.name).includes('items')">
                   <tr></tr>
                   <tr><th colspan="10">Albums</th></tr>
                   <tr>
@@ -53,8 +50,6 @@
                     <td>{{ album.title }}</td>
                     <td>{{ album.artist }}</td>
                   </tr>
-                </template>
-                <template v-if="($route.name).includes('movies') || ($route.name).includes('items')">
                   <tr></tr>
                   <tr><th colspan="10">Movies</th></tr>
                   <tr>
@@ -67,7 +62,6 @@
                     <td>{{ movie.title }}</td>
                     <td>{{ movie.director }}</td>
                   </tr>
-                </template>
               </table>
           </div>
         </div>

@@ -117,7 +117,7 @@
   </body>
 </template>
 
-<script src="../store/userProfile.js"></script>
+<script></script>
 
 <style>
   .header{
