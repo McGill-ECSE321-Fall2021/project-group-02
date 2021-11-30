@@ -72,7 +72,15 @@ export default {
             this.onlineAccounts.push(response.data);
             this.errorMsg= '';
             //Needs to be linked to the user profile page
-            this.$router.push("/userProfile");
+            if(username === "robert1") {
+              this.$router.push("/userProfileLibrarian");
+              window.location.reload();
+            }
+            else{
+              this.$router.push("/userProfile");
+              window.location.reload();
+            }
+            
           })
           .catch(e => {
             var errorMsg = e.response.data.message;

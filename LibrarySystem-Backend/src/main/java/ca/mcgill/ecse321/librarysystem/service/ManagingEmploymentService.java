@@ -85,7 +85,7 @@ public class ManagingEmploymentService {
 			
 			headLibrarianRepository.save(newHL);
 			for(HeadLibrarian hl : headLibrarianRepository.findAll()) {
-				if(hl.getId()!=newHL.getId()) {
+				if(hl.getId()==newHL.getId()) {
 					onlineAccountRepository.delete(hl.getOnlineAccount());
 					headLibrarianRepository.delete(hl);
 					
@@ -99,9 +99,6 @@ public class ManagingEmploymentService {
 			headAccount.setUsername("robert1");
 			headAccount.setUser(newHL);
 			onlineAccountRepository.save(headAccount);
-			
-			newHL.setOnlineAccount(headAccount);
-			headLibrarianRepository.save(newHL);
 			
 			return newHL;
 	}
