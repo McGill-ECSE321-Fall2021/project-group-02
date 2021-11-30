@@ -77,7 +77,7 @@ h1{
 }
 .btn{
   float:start;
-  margin: 65px 5px;
+  margin: 75px 5px;
   color:white;
   background:rgba(0, 0, 0, 0.8);
   padding:10px 20px;

@@ -2,11 +2,9 @@
   <div class="welcomepage">
       <div class="header">
 				 <router-link to="/"><h2>Montreal Library</h2></router-link>
-         
 				    <router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>
         		<router-link to="/"><a class="btn">Home</a></router-link>
-
 		  </div>
     
     <h1>Welcome To The Montreal Library Website!</h1>
@@ -35,7 +33,7 @@ body{
 }
 .header{
 	width:100%;
-	height: 100px;
+	height: 130px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -74,7 +72,7 @@ h1{
 }
 .btn{
   float:right;
-  margin: 45px 5px;
+  margin: 75px 5px;
   color:white;
   background:rgba(0, 0, 0, 0.8);
   padding:10px 20px;

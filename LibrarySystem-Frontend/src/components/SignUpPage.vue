@@ -1,11 +1,41 @@
 <template>
     <div class="signuppage">
         <div class="header">
-		<router-link to="/"><h2>Montreal Library</h2></router-link>
+			<template v-if="getTypeOfUser().includes('Patron')">
+				<router-link to="/homeAfterLogin"><h2>Montreal Library</h2></router-link>
+				<router-link to="/userProfile"><a class="btn">User Profile</a></router-link>
+				<router-link to="/items"><a class="btn">Items Information</a></router-link>
+				<router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
+			</template>
+			<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
+				<router-link to="/homePageHeadLibrarian"><h2>Montreal Library</h2></router-link>
+				<router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
+				<router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
+				<router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
+				<router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
+				<router-link to="/createPatron"><a class="btn">Create Patron</a></router-link>
+				<router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
+				<router-link to="/items"><a class="btn">Items Information</a></router-link>
+				<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
+			</template>
+			<template v-else-if="getTypeOfUser().includes('Librarian')">
+				<router-link to="/homePageLibrarian"><h2>Montreal Library</h2></router-link>
+				<router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
+				<router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
+				<router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
+				<router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
+				<router-link to="/createPatron"><a class="btn">Create Patron</a></router-link>
+				<router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
+				<router-link to="/items"><a class="btn">Items Information</a></router-link>
+				<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
+			</template>
+			<template v-else>
+				<router-link to="/"><h2>Montreal Library</h2></router-link>
 				<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
-        		<router-link to="/items"><a class="btn">Items Information</a></router-link>
-        		<router-link to="/"><a class="btn">Home</a></router-link>
-		  </div>
+				<router-link to="/items"><a class="btn">Items Information</a></router-link>
+				<router-link to="/"><a class="btn">Home</a></router-link>
+			</template>
+		</div>
 <body>
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
@@ -64,7 +94,7 @@
 <style>
 .header{
 	width:100%;
-	height: 100px;
+	height: 130px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -96,7 +126,7 @@ h2{
 }
 .btn{
   float:right;
-  margin: 45px 5px;
+  margin: 75px 5px;
   color:white;
   background:rgba(0, 0, 0, 0.8);
   padding:10px 20px;
