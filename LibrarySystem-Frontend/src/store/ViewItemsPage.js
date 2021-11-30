@@ -144,6 +144,8 @@ export default {
         AXIOS.get('/onlineAccountLoggedInUser')
         .then(response => {
           this.user = response.data
+        }).catch(e => {
+          this.user = [];
         })
         return this.user;
       }
