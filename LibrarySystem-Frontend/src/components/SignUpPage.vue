@@ -94,7 +94,7 @@
 <style>
 .header{
 	width:100%;
-	height: 100px;
+	height: 130px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -126,7 +126,7 @@ h2{
 }
 .btn{
   float:right;
-  margin: 45px 5px;
+  margin: 75px 5px;
   color:white;
   background:rgba(0, 0, 0, 0.8);
   padding:10px 20px;
