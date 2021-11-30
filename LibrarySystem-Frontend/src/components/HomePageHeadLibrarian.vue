@@ -4,9 +4,9 @@
 				 <router-link to="/homePageHeadLibrarian"><h2>Montreal Library</h2></router-link>
                  <router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
                  <router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
-                <router-link to="/"><a class="btn">View Librarian Schedule</a></router-link>
+                <router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
                 <router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
-				    <router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
+				<router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>
         		<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
 		  </div>
@@ -37,7 +37,7 @@ body{
 }
 .header{
 	width:100%;
-	height: 100px;
+	height: 130px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -75,8 +75,8 @@ h1{
   padding: 10px 20px;
 }
 .btn{
-  float:right;
-  margin: 45px 5px;
+  float:start;
+  margin: 65px 5px;
   color:white;
   background:rgba(0, 0, 0, 0.8);
   padding:10px 20px;

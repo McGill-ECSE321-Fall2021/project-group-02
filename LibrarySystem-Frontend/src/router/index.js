@@ -11,7 +11,6 @@ import CreatePatron from '@/components/CreatePatron'
 
 import ManageItemsPage from '@/components/ManageItemsPage'
 
-import LsPage from '@/components/ViewLibrarianSchedule'
 import ViewItemsPage from '@/components/ViewItemsPage'
 import UserProfilePage from '@/components/UserProfilePage'
 import UserProfilePageLibrarian from '@/components/UserProfilePageLibrarian'

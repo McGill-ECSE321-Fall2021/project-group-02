@@ -3,7 +3,7 @@
       <div class="header">
 				 <router-link to="/homePageLibrarian"><h2>Montreal Library</h2></router-link>
             <router-link to="/"><a class="btn">Manage Schedule</a></router-link>
-            <router-link to="/"><a class="btn">View Librarian Schedule</a></router-link>
+            <router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
             <router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
 				    <router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
         		<router-link to="/items"><a class="btn">Items Information</a></router-link>
