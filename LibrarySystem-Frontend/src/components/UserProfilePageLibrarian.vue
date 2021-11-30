@@ -4,7 +4,7 @@
 			<router-link to="/homePageLibrarian"><h2 id="header-h2">Montreal Library</h2></router-link>
       <router-link to="/items"><a class="btn">Items Information</a></router-link>
       <router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
-      <!--
+      
       <template v-if="getTypeOfUser().includes('Patron')">
         			<router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 				</template>
@@ -17,7 +17,7 @@
 				<template v-else>
         			<router-link to="/"><a class="btn">Home</a></router-link>
 				</template>
-        -->
+        
 		</div>
     <div class="user-profile">
       <div class="main">
