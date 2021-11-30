@@ -2,18 +2,9 @@
   <body>
     <div class="header">
 
-    <template v-if="getTypeOfUser().includes('Patron')">
-        			<router-link to="/homeAfterLogin"><h2 id="header-h2">Montreal Library</h2></router-link>
-				</template>
-				<template v-else-if="getTypeOfUser().includes('Librarian')">
-        			<router-link to="/homePageLibrarian"><h2 id="header-h2">Montreal Library</h2></router-link>
-				</template>
-				<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
-        			<router-link to="/homePageHeadLibrarian"><h2 id="header-h2">Montreal Library</h2></router-link>
-				</template>
-				<template v-else>
+        			
         			<router-link to="/"><h2 id="header-h2">Montreal Library</h2></router-link>
-				</template>
+				
       <router-link to="/items"><a class="btn">Items Information</a></router-link>
       <router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
       <!--
