@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    runs-on: Ubuntu-latest
+    runs-on: Windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 15
@@ -18,6 +18,13 @@ jobs:
         java-version: '15.0.2'
         distribution: 'adopt'
         cache: gradle
+    - name: Validate Gradle wrapper
+      uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+    - name: Grant execute permission for gradlew
+      run: chmod +x ./gradlew
+      working-directory: EventRegistration-Backend
+    - name: Build with Gradle
+      run: ./gradlew build
     
   backend:
     runs-on: Ubuntu-latest
