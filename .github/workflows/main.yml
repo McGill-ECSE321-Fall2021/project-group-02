@@ -9,7 +9,7 @@ on:
 jobs:
     
   backend:
-    runs-on: Windows-latest
+    runs-on: Ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: push backend
@@ -21,7 +21,7 @@ jobs:
           dontuseforce: false
   frontend:
     needs: backend
-    runs-on: Windows-latest
+    runs-on: Ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: push frontend
