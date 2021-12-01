@@ -16,12 +16,16 @@ function LibrarianDto (firstname,lastname,address,city,id) {
 	this.id = id
 }
 
-function DailyScheduleDto (day, startTime, endTime, id) {
+function DailyScheduleDto (day, startTime, endTime) {
   this.day = day;
   this.startTime = startTime;
   this.endTime = endTime;
-  this.id = id;
 
+}
+
+function WeeklyScheduleDto (startDate, endDate) {
+  this.startDate = startDate;
+  this.endDate = endDate;
 }
 
 export default {
@@ -46,20 +50,27 @@ export default {
       response: [],
       dailySchedules: [],
       errorDailySchedule: '',
+
+      startDate:'',
+      endDate: '',
+
+      startTime:'',
+      endTime: '',
+
+      day: '',
+      errorMsg: '',
+
+      librarianID: '',
+
+      weeklySchedules: [],
+      success: '',
+
       user: []
       
     }
   },
   created: function () {
     // Test data
-    const p1 = new LibrarianDto('John', 'Park', 'TestAddress', 'TestCity', 5)
-    const l1 = new LibrarianDto('YounessBellali', 'Doe', 'TestAddress1', 'TestCity1', 1)
-    const l3 = new LibrarianDto('Jane', 'Doe', 'TestAddress1', 'TestCity1', 2)
-    const l5 = new LibrarianDto('Jane', 'Doe', 'TestAddress1', 'TestCity1', 6)
-    const l6 = new LibrarianDto('Jane', 'Doe', 'TestAddress1', 'TestCity1', 6)
-    this.librarians = [p1, l1, l3, l5, l6]
-
-
     AXIOS.get('/librarians')
     .then(response => {
       // JSON responses are automatically parsed.
@@ -72,8 +83,8 @@ export default {
   },
 
   methods: {
-    createDailySchedule: function (day, startTime, endTime, id) {
-      AXIOS.post('/createDailySchedule/'.concat(id,'/',day,'/',startTime,'/',endTime))
+    createDailySchedule: function (day, startTime, endTime, id, headLibrarianID) {
+      AXIOS.post('/createDailySchedule/'.concat(headLibrarianID, '/', id,'/',day,'/',startTime,'/',endTime))
       .then(response => {
         this.dailySchedules.push(response.data)
         this.errorDailySchedule = ''
@@ -81,6 +92,29 @@ export default {
           this.startTime = ''
           this.endTime= ''
           this.id = ''
+          this.headLibrarianID = ''
+          var success = response.data
+          this.sucess = success
+
+      })
+      .catch(e => {
+        var errorMsg = e.response.data.message
+        console.log(errorMsg)
+        this.errorDailySchedule = errorMsg
+      })
+    },
+
+    createWeeklySchedule: function (headLibrarianID, startDate, endDate, librarianID) {
+      AXIOS.post('/createWeeklySchedule/'.concat(headLibrarianID, '/', startDate, '/', endDate, '/', librarianID))
+      .then(response => {
+        this.weeklySchedules.push(response.data)
+        this.startDate = ''
+        this.endDate = ''
+        this.librarianID = ''
+        this.headLibrarianID = ''
+
+        var success = response.data
+        this.sucess = success
       })
       .catch(e => {
         var errorMsg = e.response.data.message
@@ -97,5 +131,7 @@ export default {
       })
       return this.user;
     }
+    
+
   }
 }
