@@ -182,7 +182,11 @@ public class CreateOnlineAccountService {
 	 * @author Vy-Kha
 	 */
 	public String getloggedInAccountUser() throws IllegalArgumentException {
-		return getloggedInAccount().getUser().getClass().toString();
+		try{
+			return getloggedInAccount().getUser().getClass().toString();
+		} catch (Exception e){
+			return "";
+		}
 	}
 
 	/**
