@@ -78,6 +78,14 @@
               </div>
               <div class="row">
                 <div class="column1">
+                  <h5>ID: </h5>
+                </div>
+                <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
+                  <h5>{{ onlineAccount.userId }} </h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column1">
                   <h5>balance: </h5>
                 </div>
                 <div v-for="onlineAccount in onlineAccountLogged" :key="onlineAccount.accountId">
@@ -215,6 +223,7 @@
     padding-bottom: 100px;
     padding-left: 50px;
     padding-right: 50px;
+    
   }
   .main{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -231,8 +240,8 @@
     color: white;
     height: 100%;
     text-align: center;
-    width: 25em;
-    margin-right: 5em;
+    width: 30%;
+    margin-right: 10px;
   }
   .profile-box a{
     display: block;
@@ -247,7 +256,7 @@
     background-color: white;
     padding: 10px;
     float: right;
-    width: 50em;
+    width: 60%;
     display: block;
   }
   .row{
