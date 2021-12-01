@@ -110,6 +110,7 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount logIn(String username, String password, boolean loggedIn) throws IllegalArgumentException {
+		if(onlineAccountRepository.findAll()!=null) {
 		List<OnlineAccount> accountList=toList(onlineAccountRepository.findAll());
 		
 		for(OnlineAccount oA: accountList) {
@@ -139,6 +140,9 @@ public class CreateOnlineAccountService {
 		onlineAccountRepository.save(account);
 
 		return account;
+		}
+		
+		throw new IllegalArgumentException("Online account with provided username does not exist.");
 	}
 
 	/**
@@ -149,11 +153,13 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount getloggedInAccount() throws IllegalArgumentException {
+		if(onlineAccountRepository.findAll()!=null) {
 		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
 		for (int i = accountList.size() - 1; i >= 0; i--) {
 			if (accountList.get(i).getLoggedIn()) {
 				return accountList.get(i);
 			}
+		}
 		}
 		throw new IllegalArgumentException("There are no logged in accounts!");
 	}
@@ -166,12 +172,16 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public void signOutAccount() throws IllegalArgumentException {
-		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
-
-		for (OnlineAccount oA : accountList) {
-			oA.setLoggedIn(false);
-			onlineAccountRepository.save(oA);
+		if(onlineAccountRepository.findAll()!=null) {
+			List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
+			
+			for (OnlineAccount oA : accountList) {
+				oA.setLoggedIn(false);
+				onlineAccountRepository.save(oA);
+			}
 		}
+		
+		
 	}
 
 	/**
