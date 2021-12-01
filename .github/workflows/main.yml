@@ -1,16 +1,12 @@
 name: Java CI with Gradle
-
 on:
   push:
     branches: main
   pull_request:
     branches: main
-
 jobs:
   build:
-
     runs-on: Windows-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 15
@@ -23,31 +19,31 @@ jobs:
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-      working-directory: LibrarySystem-Backend
+      working-directory: EventRegistration-Backend
     - name: Build with Gradle
       run: ./gradlew build
     
   backend:
-    runs-on: Windows-latest
+    runs-on: Ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: push backend
         uses: akhileshns/heroku-deploy@v3.12.12
         with: 
           heroku_api_key: 6bf7b3d2-c47d-4c79-80d7-bf54e7971fa4
-          heroku_app_name: "librarysystem-backend-6f21"
+          heroku_app_name: "librarysystem-backend-7f21"
           heroku_email: "sami.aitouahmane@mail.mcgill.ca"
           dontuseforce: false
   frontend:
     needs: backend
-    runs-on: Windows-latest
+    runs-on: Ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: push frontend
         uses: akhileshns/heroku-deploy@v3.12.12
         with: 
           heroku_api_key: 6bf7b3d2-c47d-4c79-80d7-bf54e7971fa4
-          heroku_app_name: "librarysystem-frontend-6f21"
+          heroku_app_name: "librarysystem-frontend-7f21"
           heroku_email: "sami.aitouahmane@mail.mcgill.ca"
           dontuseforce: false
       

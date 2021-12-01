@@ -103,7 +103,7 @@ h2{
 
 /* Body */
 body{
-	margin: 60px 0px;
+	margin: 90px 0px;
 	padding: 0;
 	display: flex;
 	justify-content: center;

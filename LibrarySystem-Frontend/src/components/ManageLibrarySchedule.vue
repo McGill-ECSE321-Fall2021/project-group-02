@@ -36,16 +36,46 @@
 					<router-link to="/"><a class="btn">Home</a></router-link>
 				</template>
 			</div>
-    
+    <body>
     <div class="calendar">
       <div class="wrapper" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
-            <!-- <b-form-datepicker id="datepicker-placeholder" placeholder="Choose a date" v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" size="lg" block locale="en"></b-form-datepicker> -->
-            <b-calendar v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" block locale="en"></b-calendar>
-            <div class="text-center" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top: 100px; margin-bottom: 100px;">
-            <button class="button" v-b-toggle.sidebar-no-header style="background:rgb(112, 1, 1); color: white;padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;
+            <label for="datepicker-placeholder-start" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: white">Choose a start date</label>
+            <b-form-datepicker id="datepicker-placeholder-start" placeholder="Choose start date" v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" size="lg" block locale="en"></b-form-datepicker>
+            <div id="divider" style="color: black">''</div>
+            <label for="datepicker-placeholder-end" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: white">Choose an end date</label>
+            <b-form-datepicker id="datepicker-placeholder-end" placeholder="Choose end date" v-model="value1" :date-disabled-fn="dateDisabled" :min="min" :max="max" size="lg" block locale="en"></b-form-datepicker>
+            <!-- <b-calendar v-model="value" :date-disabled-fn="dateDisabled" :min="min" :max="max" block locale="en"></b-calendar> -->
+            <div id="divider" style="color: black">''</div>
+
+            <table class="table">
+              <tr>
+                <td>
+              <input class="text" v-model="librarianID" placeholder="Librarian ID">
+                </td>
+              </tr>
+              <tr>
+                <td>
+              
+              <input class="text" v-model="id" placeholder="Validation Token">
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                    <button style="background:rgb(112, 1, 1); color: white; text-align: center;" @click="createWeeklySchedule(id, value, value1, librarianID)">Set Week</button>
+                </td>
+              </tr>
+              <tr>
+                <button class="button" v-b-toggle.sidebar-no-header style="background:rgb(112, 1, 1); color: white;padding: 15px 32px;text-align: center; text-decoration: none; display: inline-block;
               font-size: 16px;" size="lg">Change Schedule</button>
-            <p style="color: white">Date: <b>'{{ value }}'</b></p>
-            </div>
+              </tr>
+              <tr>
+                <p><span v-if="success" style="color:green">Weekly Schedule has been created. </span></p>
+                <p><span v-if="errorMsg" style="color:red">Error!</span></p>
+              </tr>
+            </table>
+            
+            
       </div>
     </div>
         <div class="sidebar" >
@@ -60,59 +90,52 @@
               <template>
                 <div class="container">
                   <h3 id="sidebar-no-header-title">Library Schedule</h3>
+                    <button style="background-color: #c82333; color: white; font-size: 20px; padding: 10px 24px; border: 2px solid gray;"
+                     @click="createDailySchedule(WeekDay, startTime, endTime, librarianID, id)">Publish and Notify</button>
+
                   <div id="divider" style="color: white">''</div>
-                  <div class="center">
-                    <!-- <button style="background-color: #c82333; color: white; font-size: 20px; padding: 10px 24px; border: 2px solid gray"
-                      v-bind:disabled="!selectedLibrarian.id || !startTime || !endTime || !value.getDay()" @click="createDailySchedule(value.getDay(),startTime,endTime,id)">Publish and Notify</button> -->
-                  </div>
-                </div>
-                <div class="p-3" text-align="center" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                  
+                  <input class="text" v-model="id" placeholder="Validation Token">
+
+                  <div id="divider" style="color: white">''</div>
+                  
                     <h5 id="employee" style="text-align: center">Employees</h5>
-                    <div class="table_outer">
+                    <div id="table-wrapper">
                     <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th class="col-id-no fixed-header">ID</th>
-                          <th class="col-first-name fixed-header">First Name</th>
-                          <th class="col-last-name fixed-header">Last Name</th>
+                          <th>ID</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr v-for="librarian in librarians" :key="librarian.id">
-                          <td>{{ librarian.id }}</td>
-                          <td>{{ librarian.firstName }}</td>
-                          <td>{{ librarian.lastName }}</td>
+                          <td>{{librarian.id}}</td>
+                          <td>{{librarian.firstName}}</td>
+                          <td>{{librarian.lastName}}</td>
                         </tr>
                       </tbody>
                     </table>
                     </div>
+                    <h5 id="sidebar-timeSet-title">Select Employee</h5>
+                  <input class="text" v-model="librarianID" placeholder="Librarian ID">
+                  <h5 id="sidebar-timeSet-title">Set Time</h5>
+                  <input type="text" v-model="startTime" placeholder="Start Time (HH:mm:ss)">
+                  <input type="text" v-model="endTime" placeholder="End Time (HH:mm:ss)">
+
+          <b-calendar v-model="value3" :date-disabled-fn="dateDisabled" :min="min" :max="max" block locale="en"></b-calendar>
+
+          <input class="text" v-model="WeekDay" placeholder="WeekDay">
+          
+
+                
                 </div>
                 </template>
-                <div class="container0" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
-                  <h5 id="sidebar-timeSet-title">Select Employee</h5>
-                  <select v-model="selectedLibrarian">
-                    <option disabled value="">Select Employee ID</option>
-                    <option v-for="librarian in librarians" :key="librarian.id">
-                      {{ librarian.id }}
-                    </option>
-                  </select>
-                </div>
-                <div id="divider" style="color: white">''</div>
-                <div class="container" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
-                  <h5 id="sidebar-timeSet-title">Set Time</h5>
-                  <input type="time" v-model="startTime" placeholder="HH:mm">
-                  <input type="time" v-model="endTime" placeholder="HH:mm">
-                </div>
-                <div id="divider" style="color: white">''</div>
-                <div class="container1">
-                  <img src="../assets/logo.png" style="text-align: center">
-                </div>
-                <div class="container2" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
-                  <h3 style="text-align: center">Montreal Library</h3>
-                </div>
             </b-sidebar>
         </div>
-    </div>
+    </body>
+  </div>
 </template>
 
 <script src="../store/ManageLibrarySchedulePage.js">
@@ -127,22 +150,8 @@ body{
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	font-family: 'Jost', sans-serif;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-image: url("../assets/library.jpg");
-}
-.btn{
-  float:right;
-  margin: 45px 5px;
-  color:white;
-  background:rgba(0, 0, 0, 0.8);
-  padding:10px 20px;
-  font-size:12px;
-  text-decoration:none;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-.btn:hover{
-  background:#fff;
 }
 #sidebar-timeSet-title{
   justify-content: center;
@@ -165,6 +174,14 @@ body{
   display: flex;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+/* sidebar-button{
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+} */
 mb-3{
   justify-content: center;
   align-items: center;
@@ -192,7 +209,7 @@ input[type="text"] {
 }
 .header{
 	width:100%;
-	height: 100px;
+	height: 130px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -212,7 +229,6 @@ h2{
 	width: 250px;
 	background:rgb(112, 1, 1);
 	padding: 10px 10px;
-  color: white;
 }
 router-link{
   color: white;
@@ -264,5 +280,31 @@ thead th {
   top: 0;
   position: sticky;
   background-color: white;
+}
+.table{
+  text-align: center;
+  border: 0;
+}
+#table-wrapper{
+ 	height: 150px;
+	width: 300px;
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	overflow: auto;
+}
+.btn{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  float:right;
+  margin: 75px 5px;
+  color:white;
+  background:rgba(0, 0, 0, 0.8);
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.btn:hover {
+  background:#fff;
 }
 </style>
