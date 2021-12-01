@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.model.*;
+import ca.mcgill.ecse321.librarysystem.model.DailySchedule.WeekDay;
 import ca.mcgill.ecse321.librarysystem.dao.*;
 
 @Service
@@ -469,6 +472,98 @@ public class ManagingEmploymentService {
 //	}
 //		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
 //	}
+	
+	@Transactional
+	public List<WeeklySchedule> getWeeklySchedulesByID(int id)throws IllegalArgumentException {
+		List<WeeklySchedule> newList = new ArrayList<WeeklySchedule>();
+		
+		if(librarianRepository.existsById(id)) {
+			Librarian cur = librarianRepository.findLibrarianById(id);
+			newList.add(cur.getWeeklySchedule());
+			return newList;
+		}
+		else throw new IllegalArgumentException("This librarian does not exist!");
+	
+	}
+	
+	@Transactional
+	public List<DailySchedule> getLibrarianDailySchedules(int id) throws IllegalArgumentException {
+		if(librarianRepository.existsById(id)) {
+			Librarian cur = librarianRepository.findLibrarianById(id);
+			WeeklySchedule ws = cur.getWeeklySchedule();;
+			return ws.getDailySchedules();
+		}
+		else throw new IllegalArgumentException("This librarian does not exist!");
+	}
+	
+	@Transactional
+	public DailySchedule createDailySchedule(int hid, int id, WeekDay day, Time startTime, Time endTime) {
+		if(!(id > -1)) {
+			throw new IllegalArgumentException("IDs have to be positive.");
+		}
+		
+		if(headLibrarianRepository.existsHeadLibrarianById(hid)) {
+		if(librarianRepository.existsLibrarianById(id)) {
+			DailySchedule ds = new DailySchedule();
+			ds.setEndTime(endTime);
+			ds.setStartTime(startTime);
+			ds.setDay(day);
+			
+			Librarian l = librarianRepository.findLibrarianById(id);
+			WeeklySchedule ws = l.getWeeklySchedule();
+			List<DailySchedule> dailyschedule = ws.getDailySchedules();
+			
+			
+			dailyschedule.add(ds);
+			ws.setDay(dailyschedule);
+			l.setWeeklySchedule(ws);
+			
+			dailyScheduleRepository.save(ds);
+			return ds;
+		} else {
+			throw new IllegalArgumentException("Librarian does not exist.");
+		}
+		}
+		else throw new IllegalArgumentException("Must be a head librarian to proceed.");
+	}
+	
+	@Transactional
+	public List<DailySchedule> getDailyScheduleById(int id) {
+
+		List<DailySchedule> dailySchedule = new ArrayList<DailySchedule>();
+		if(librarianRepository.existsById(id)) {
+			Librarian l = librarianRepository.findLibrarianById(id);
+			WeeklySchedule ws = l.getWeeklySchedule();
+			dailySchedule.addAll(ws.getDailySchedules());
+		}
+		return dailySchedule;
+	}
+	
+	@Transactional
+	public WeeklySchedule createWeeklySchedule(int hID, Date startDate, Date endDate, int librarianID) throws IllegalArgumentException {
+		if(!(hID > -1)) {
+			throw new IllegalArgumentException("IDs have to be positive.");
+		}
+		if(headLibrarianRepository.existsHeadLibrarianById(hID)) {
+			if(librarianRepository.existsLibrarianById(librarianID)) {
+				Librarian l = librarianRepository.findLibrarianById(librarianID);
+				WeeklySchedule ws = new WeeklySchedule();
+				ws.setStartDate(startDate);
+				ws.setEndDate(endDate);
+				weeklyScheduleRepository.save(ws);
+				l.setWeeklySchedule(ws);
+				librarianRepository.save(l);
+				return ws;
+			}
+			else {
+				throw new IllegalArgumentException("Librarian does not exist.");
+			}
+		}
+		else {
+			throw new IllegalArgumentException("Must be a head librarian to proceed.");
+		}
+		
+	}
 	
 	/**
 	 * @author stevencho
