@@ -26,9 +26,6 @@ public class CreateOnlineAccountService {
 	@Autowired
 	UserEntityRepository userEntityRepository;
 
-	
-	
-	
 	@Transactional
 
 	/**
@@ -110,13 +107,13 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount logIn(String username, String password, boolean loggedIn) throws IllegalArgumentException {
-		List<OnlineAccount> accountList=toList(onlineAccountRepository.findAll());
-		
-		for(OnlineAccount oA: accountList) {
+		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
+
+		for (OnlineAccount oA : accountList) {
 			oA.setLoggedIn(false);
 			onlineAccountRepository.save(oA);
 		}
-		
+
 		String error = "";
 
 		// log in
@@ -182,15 +179,7 @@ public class CreateOnlineAccountService {
 	 * @author Vy-Kha
 	 */
 	public String getloggedInAccountUser() throws IllegalArgumentException {
-		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
-		for (int i = accountList.size() - 1; i >= 0; i--) {
-			if (accountList.get(i).getLoggedIn()) {
-				return getloggedInAccount().getUser().getClass().toString();
-			}
-		}
-		
-		return "";
-		
+		return getloggedInAccount().getUser().getClass().toString();
 	}
 
 	/**
