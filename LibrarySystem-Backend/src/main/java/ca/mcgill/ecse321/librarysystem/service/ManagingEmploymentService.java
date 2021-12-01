@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.model.*;
+import ca.mcgill.ecse321.librarysystem.model.DailySchedule.WeekDay;
 import ca.mcgill.ecse321.librarysystem.dao.*;
 
 @Service
