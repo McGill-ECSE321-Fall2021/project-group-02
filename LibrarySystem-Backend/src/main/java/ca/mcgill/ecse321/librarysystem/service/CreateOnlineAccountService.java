@@ -107,35 +107,39 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount logIn(String username, String password, boolean loggedIn) throws IllegalArgumentException {
-		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
+		if (onlineAccountRepository.findAll() != null) {
+			List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
 
-		for (OnlineAccount oA : accountList) {
-			oA.setLoggedIn(false);
-			onlineAccountRepository.save(oA);
+			for (OnlineAccount oA : accountList) {
+				oA.setLoggedIn(false);
+				onlineAccountRepository.save(oA);
+			}
+
+			String error = "";
+
+			// log in
+			// verify empty strings
+			if (!verifyStringLength(username))
+				error += "Username cannot be empty or too long.\n";
+			if (error.length() > 0)
+				throw new IllegalArgumentException(error);
+			OnlineAccount account = findAccountByUsername(username);
+			if (account == null)
+				throw new IllegalArgumentException("Online account with provided username does not exist.");
+			if (!verifyPassword(account, password))
+				error += "The password is incorrect.\n";
+
+			if (error.length() > 0)
+				throw new IllegalArgumentException(error);
+
+			account.setLoggedIn(loggedIn);
+
+			onlineAccountRepository.save(account);
+
+			return account;
 		}
 
-		String error = "";
-
-		// log in
-		// verify empty strings
-		if (!verifyStringLength(username))
-			error += "Username cannot be empty or too long.\n";
-		if (error.length() > 0)
-			throw new IllegalArgumentException(error);
-		OnlineAccount account = findAccountByUsername(username);
-		if (account == null)
-			throw new IllegalArgumentException("Online account with provided username does not exist.");
-		if (!verifyPassword(account, password))
-			error += "The password is incorrect.\n";
-
-		if (error.length() > 0)
-			throw new IllegalArgumentException(error);
-
-		account.setLoggedIn(loggedIn);
-
-		onlineAccountRepository.save(account);
-
-		return account;
+		throw new IllegalArgumentException("Online account with provided username does not exist.");
 	}
 
 	/**
@@ -146,10 +150,12 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public OnlineAccount getloggedInAccount() throws IllegalArgumentException {
-		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
-		for (int i = accountList.size() - 1; i >= 0; i--) {
-			if (accountList.get(i).getLoggedIn()) {
-				return accountList.get(i);
+		if (onlineAccountRepository.findAll() != null) {
+			List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
+			for (int i = accountList.size() - 1; i >= 0; i--) {
+				if (accountList.get(i).getLoggedIn()) {
+					return accountList.get(i);
+				}
 			}
 		}
 		throw new IllegalArgumentException("There are no logged in accounts!");
@@ -163,12 +169,15 @@ public class CreateOnlineAccountService {
 	 * @author Sami Ait Ouahmane
 	 */
 	public void signOutAccount() throws IllegalArgumentException {
-		List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
+		if (onlineAccountRepository.findAll() != null) {
+			List<OnlineAccount> accountList = toList(onlineAccountRepository.findAll());
 
-		for (OnlineAccount oA : accountList) {
-			oA.setLoggedIn(false);
-			onlineAccountRepository.save(oA);
+			for (OnlineAccount oA : accountList) {
+				oA.setLoggedIn(false);
+				onlineAccountRepository.save(oA);
+			}
 		}
+
 	}
 
 	/**
