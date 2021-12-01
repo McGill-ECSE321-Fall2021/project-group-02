@@ -3,37 +3,37 @@
       <div class="header">
 				<template v-if="getTypeOfUser().includes('Patron')">
 					<router-link to="/homeAfterLogin"><h2>Montreal Library</h2></router-link>
-					<router-link to="/userProfile"><a class="add">User Profile</a></router-link>
-					<router-link to="/items"><a class="add">Items Information</a></router-link>
-					<router-link to="/homeAfterLogin"><a class="add">Home</a></router-link>
+					<router-link to="/userProfile"><a class="btn">User Profile</a></router-link>
+					<router-link to="/items"><a class="btn">Items Information</a></router-link>
+					<router-link to="/homeAfterLogin"><a class="btn">Home</a></router-link>
 				</template>
 				<template v-else-if="getTypeOfUser().includes('HeadLibrarian')">
 					<router-link to="/homePageHeadLibrarian"><h2>Montreal Library</h2></router-link>
-					<router-link to="/librarians"><a class="add">Manage Employment</a></router-link>
-					<router-link to="/manageLibrarySchedule"><a class="add">Manage Library Schedule</a></router-link>
-					<router-link to="/schedules"><a class="add">View Librarian Schedule</a></router-link>
-					<router-link to="/manageitems"><a class="add">Manage Items</a></router-link>
-					<router-link to="/createPatron"><a class="add">Create Patron</a></router-link>
-					<router-link to="/userProfileLibrarian"><a class="add">User Profile</a></router-link>
-					<router-link to="/items"><a class="add">Items Information</a></router-link>
-					<router-link to="/homePageHeadLibrarian"><a class="add">Home</a></router-link>
+					<router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
+					<router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
+					<router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
+					<router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
+					<router-link to="/createPatron"><a class="btn">Create Patron</a></router-link>
+					<router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
+					<router-link to="/items"><a class="btn">Items Information</a></router-link>
+					<router-link to="/homePageHeadLibrarian"><a class="btn">Home</a></router-link>
 				</template>
 				<template v-else-if="getTypeOfUser().includes('Librarian')">
 					<router-link to="/homePageLibrarian"><h2>Montreal Library</h2></router-link>
-					<router-link to="/librarians"><a class="add">Manage Employment</a></router-link>
-					<router-link to="/manageLibrarySchedule"><a class="add">Manage Library Schedule</a></router-link>
-					<router-link to="/schedules"><a class="add">View Librarian Schedule</a></router-link>
-					<router-link to="/manageitems"><a class="add">Manage Items</a></router-link>
-					<router-link to="/createPatron"><a class="add">Create Patron</a></router-link>
-					<router-link to="/userProfileLibrarian"><a class="add">User Profile</a></router-link>
-					<router-link to="/items"><a class="add">Items Information</a></router-link>
-					<router-link to="/homePageLibrarian"><a class="add">Home</a></router-link>
+					<router-link to="/librarians"><a class="btn">Manage Employment</a></router-link>
+					<router-link to="/manageLibrarySchedule"><a class="btn">Manage Library Schedule</a></router-link>
+					<router-link to="/schedules"><a class="btn">View Librarian Schedule</a></router-link>
+					<router-link to="/manageitems"><a class="btn">Manage Items</a></router-link>
+					<router-link to="/createPatron"><a class="btn">Create Patron</a></router-link>
+					<router-link to="/userProfileLibrarian"><a class="btn">User Profile</a></router-link>
+					<router-link to="/items"><a class="btn">Items Information</a></router-link>
+					<router-link to="/homePageLibrarian"><a class="btn">Home</a></router-link>
 				</template>
 				<template v-else>
 					<router-link to="/"><h2>Montreal Library</h2></router-link>
-        			<router-link to="/signup"><a class="add">Sign Up/Log In</a></router-link>
-					<router-link to="/items"><a class="add">Items Information</a></router-link>
-					<router-link to="/"><a class="add">Home</a></router-link>
+        			<router-link to="/signup"><a class="btn">Sign Up/Log In</a></router-link>
+					<router-link to="/items"><a class="btn">Items Information</a></router-link>
+					<router-link to="/"><a class="btn">Home</a></router-link>
 				</template>
 			</div>
     <body>
@@ -90,7 +90,7 @@
               <template>
                 <div class="container">
                   <h3 id="sidebar-no-header-title">Library Schedule</h3>
-<button style="background-color: #c82333; color: white; font-size: 20px; padding: 10px 24px; border: 2px solid gray;"
+                    <button style="background-color: #c82333; color: white; font-size: 20px; padding: 10px 24px; border: 2px solid gray;"
                      @click="createDailySchedule(WeekDay, startTime, endTime, librarianID, id)">Publish and Notify</button>
 
                   <div id="divider" style="color: white">''</div>
@@ -150,7 +150,7 @@ body{
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	font-family: 'Jost', sans-serif;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-image: url("../assets/library.jpg");
 }
 #sidebar-timeSet-title{
@@ -292,7 +292,8 @@ thead th {
 	margin: 0px auto 0px auto;
 	overflow: auto;
 }
-.add{
+.btn{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   float:right;
   margin: 75px 5px;
   color:white;
@@ -303,7 +304,7 @@ thead th {
   letter-spacing:2px;
   text-transform:uppercase;
 }
-.add:hover {
+.btn:hover {
   background:#fff;
 }
 </style>

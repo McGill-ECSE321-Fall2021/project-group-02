@@ -27,6 +27,8 @@ public class ManagingEmploymentService {
 	OnlineAccountRepository onlineAccountRepository;
 	@Autowired
 	WeeklyScheduleRepository weeklyScheduleRepository;
+	@Autowired
+	DailyScheduleRepository dailyScheduleRepository;
 	
 	/**
 	 * @author vy-khahuynh
