@@ -7,6 +7,17 @@ on:
     branches: main
 
 jobs:
+
+  build:
+    runs-on: Ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 15
+      uses: actions/setup-java@v2
+      with:
+        java-version: '15.0.2'
+        distribution: 'adopt'
+        cache: gradle
     
   backend:
     runs-on: Ubuntu-latest
