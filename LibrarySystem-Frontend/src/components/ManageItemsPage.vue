@@ -131,6 +131,21 @@
 .header a:hover{
 	color: black;
 }
+.header h2{
+	text-align: left;
+	color:white;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight:350;
+	position: fixed;
+	top: 0;
+	left: 0;
+	font-size: 30px;
+	height: 50px;
+	
+	width: 250px;
+	background:rgb(112, 1, 1);
+	padding: 10px 10px;
+}
 h1{
 	text-align: left;
 	color:white;

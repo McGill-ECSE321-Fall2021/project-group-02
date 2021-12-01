@@ -153,7 +153,7 @@
 <style>
   .header{
     width:100%;
-    height: 100px;
+    height: 130px;
     position: fixed;
     top: 0;
     left: 0;
@@ -177,6 +177,7 @@
     .btn{
     float:right;
     margin-right: 5px;
+    margin-top: 75px;
     color:white;
     background:rgba(0, 0, 0, 0.8);
     padding:10px 20px;
@@ -185,7 +186,7 @@
     letter-spacing:2px;
     text-transform:uppercase;
   }
-  .header-h2{
+  .header h2{
     text-align: left;
     color:white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -221,6 +222,7 @@
   .main-box{
     background-color: rgba(0, 0, 0, 0.6);
     margin: 10px;
+    margin-top: 90px;
   }
   .profile-box{
     float: left;
