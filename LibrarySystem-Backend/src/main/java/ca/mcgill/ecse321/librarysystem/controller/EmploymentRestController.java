@@ -112,6 +112,16 @@ public class EmploymentRestController {
 		return convertToDto(l);
 	}
 	
+	@GetMapping(value= {"/schedulesweekly", "/schedulesweekly/" })
+	public List<WeeklyScheduleDto> getAllWeeklySchedulesByID(@RequestParam(name="LibID") int libid) throws IllegalArgumentException {
+		return service.getWeeklySchedulesByID(libid).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
+	@GetMapping(value= {"/schedulesdaily" , "/schedulesdaily/"})
+	public List<DailyScheduleDto> getDailySchedulesByID(@RequestParam(name="LibID")int libid) throws IllegalArgumentException{
+		return service.getLibrarianDailySchedules(libid).stream().map(l -> convertToDto(l)).collect(Collectors.toList());
+	}
+	
 	/**
 	 * @author vy-khahuynh
 	 * @param id id of the user
