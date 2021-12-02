@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/activity_main.xml" value="0.3875" />
+        <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/content_main.xml" value="0.33" />
+        <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/fragment_first.xml" value="0.3875" />
+        <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/fragment_second.xml" value="0.3875" />
+        <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/signin_signup_page.xml" value="0.3875" />
+        <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/viewcontents_page.xml" value="0.19047619047619047" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
