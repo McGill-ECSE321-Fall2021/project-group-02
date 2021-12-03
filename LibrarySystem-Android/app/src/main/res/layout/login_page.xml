@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- TEMPORARY HOME REDIRECT BUTTON USED TO TEST HOME PAGE -->
     <Button
-        android:id="@+id/button"
+        android:id="@+id/homePage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:onClick="homeRedirect"

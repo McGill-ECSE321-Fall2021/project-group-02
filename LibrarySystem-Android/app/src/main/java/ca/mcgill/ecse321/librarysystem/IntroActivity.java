@@ -16,21 +16,39 @@ public class IntroActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set the correct xml layout for this activity
         setContentView(R.layout.intro_page);
         setStyle();
 
     }
 
+    /**
+     * Redirects to the log in page
+     *
+     * @param view the view that calls the method
+     * @author Niilo
+     */
     public void logInRedirect(View view){
         Intent i = new Intent(this, LogInActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Redirects to the sign up page
+     *
+     * @param view the view that calls the method
+     * @author Niilo
+     */
     public void signUpRedirect(View view){
         Intent i = new Intent(this, SignUpActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Sets the style of the Activity to hardcoded specifications
+     *
+     * @author Niilo
+     */
     private void setStyle(){
         Button btn_tmp = (Button)findViewById(R.id.buttonLogIn);
         btn_tmp.setBackgroundColor(0xFF961919);

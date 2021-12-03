@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/** Called when the activity is first created. */
 public class LogInActivity extends Activity {
 
     @Override
@@ -15,6 +14,11 @@ public class LogInActivity extends Activity {
         setContentView(R.layout.login_page);
     }
 
+    /**
+     * Redirects to the homepage (used to test home page layout)
+     *
+     * @author Niilo
+     */
     public void homeRedirect(View view) {
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
