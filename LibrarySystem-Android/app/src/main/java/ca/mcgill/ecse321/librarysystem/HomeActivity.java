@@ -62,6 +62,18 @@ public class HomeActivity extends Activity {
         startActivity(i);
     }
 
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
+
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * Redirects to the sign out page
      *
@@ -72,11 +84,22 @@ public class HomeActivity extends Activity {
         error = "";
         Intent i = new Intent(this, IntroActivity.class);
 
-        // TODO: error handling for below
-        HttpUtils.post("signOut/",  new RequestParams(), new JsonHttpResponseHandler());
+        // TODO: get error handling to work
+        HttpUtils.post("signOut/",  new RequestParams(), new JsonHttpResponseHandler(){
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
 
-        startActivity(i);
-
+            }
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+        startActivity(i);// Should be inside onSuccess(), does not work for some reason
     }
 
     /**

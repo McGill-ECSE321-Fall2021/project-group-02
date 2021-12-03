@@ -11,16 +11,25 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="60dp"
         android:fontFamily="sans-serif-black"
-        android:textSize="45sp"
-        android:textAlignment="center"
         android:text="MONTREAL LIBRARY"
+        android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSignOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/design_default_color_error"
+        android:textAlignment="center"/>
 
 
     <Button
@@ -32,9 +41,9 @@
         android:onClick="viewContentsRedirect"
         android:text="VIEW CONTENTS"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/header"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <Button
         android:id="@+id/buttonUserProfile"
@@ -45,9 +54,9 @@
         android:onClick="userProfileRedirect"
         android:text="USER PROFILE"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonViewContents"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonViewContents" />
 
     <Button
         android:id="@+id/buttonBorrowedItems"
@@ -58,9 +67,10 @@
         android:onClick="borrowedItemsRedirect"
         android:text="VIEW BORROWED ITEMS"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUserProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUserProfile" />
+
     <Button
         android:id="@+id/buttonSignOut"
         android:layout_width="380dp"
@@ -72,6 +82,6 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
