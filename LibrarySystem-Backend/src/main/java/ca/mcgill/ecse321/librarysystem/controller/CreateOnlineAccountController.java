@@ -128,7 +128,7 @@ public class CreateOnlineAccountController {
 	* @param password The password that the existing user created
 	* @param email The email of the existing user
 	*
-	* @return OnlineAccountDto
+	* @return The online account of the existing user
 	*
 	* @author Vy-Kha Huynh
 	*/
