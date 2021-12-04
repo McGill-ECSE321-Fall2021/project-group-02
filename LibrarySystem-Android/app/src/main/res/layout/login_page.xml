@@ -3,19 +3,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <!-- TEMPORARY HOME REDIRECT BUTTON USED TO TEST HOME PAGE -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/usernameUser"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- TEMPORARY HOME REDIRECT BUTTON USED TO TEST HOME PAGE -->
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:fontFamily="sans-serif-black"
+            android:text="MONTREAL LIBRARY"
+
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#FF0000"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/passwordUser"
+        android:layout_width="374dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="74dp"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:contentDescription="Password"
+        android:textColor="#FFFFFF"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/logIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameUser"
+        tools:ignore="EditableContentDescCheck" />
+
+    <EditText
+        android:id="@+id/usernameUser"
+        android:layout_width="376dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="34dp"
+        android:hint="Username"
+        android:textColorHint="@color/white"
+        android:contentDescription="Username"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/passwordUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="EditableContentDescCheck" />
+
     <Button
-        android:id="@+id/homePage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:onClick="homeRedirect"
-        android:text="⌂"
-        android:textSize="40dp"
+        android:id="@+id/logIn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="204dp"
+        android:onClick="logIn"
+        android:text="Log In"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
