@@ -9,4 +9,25 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="col1">Title</string>
+    <string name="col2">Author</string>
+    <string name="col3">Availability</string>
+    <string name="books">Books</string>
+
+    <string name="albums">Albums</string>
+    <string name="albumTitle">Title</string>
+    <string name="albumArtist">Artist</string>
+
+    <string name="movies">Movies</string>
+    <string name="movieTitle">Title</string>
+    <string name="movieDirector">Director</string>
+
+    <string name="newspaper">Newspapers</string>
+    <string name="newspaperName">Name</string>
+    <string name="newspaperDate">Date</string>
+
+    <string name="journals">Journals</string>
+    <string name="journalsName">Name</string>
+    <string name="journalsDate">Date</string>
 </resources>
