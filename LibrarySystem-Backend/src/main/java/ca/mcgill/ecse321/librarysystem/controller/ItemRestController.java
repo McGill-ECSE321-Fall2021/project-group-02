@@ -607,7 +607,6 @@ public class ItemRestController {
 	/****************************************************
 	 * DTO CONVERSION - SAMI/JULIE
 	 ****************************************************/
-	
 	/**
 	* Converts Item object to ItemDto object
 	*
