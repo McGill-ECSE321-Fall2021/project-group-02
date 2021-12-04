@@ -26,6 +26,7 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Creates an online account for a new user
+	*
 	* @param firstName The first name of the new user
 	* @param lastName The last name of the new user
 	* @param address The address of the new user
@@ -36,7 +37,7 @@ public class CreateOnlineAccountController {
 	*
 	* @return OnlineAccountDto
 	*
-	* @author Sami
+	* @author Sami Ait Ouahmane
 	*/
 
 	@PostMapping(value = { "/onlineAccountNew/{firstName}/{lastName}/{address}/{city}/{username}/{password}/{email}",
@@ -53,12 +54,13 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Logs in the user with the username and password
+	*
 	* @param username The username that the patron uses to log in
 	* @param password The password that the patron uses to log in
 	*
 	* @return OnlineAccountDto
 	* 
-	* @author Sami
+	* @author Sami Ait Ouahmane
 	*/
 
 	@PostMapping(value = { "/logIn/{username}/{password}", "/logIn/{username}/{password}/" })
@@ -71,7 +73,7 @@ public class CreateOnlineAccountController {
 	/**
 	* Signs out the currently logged in user
 	*
-	* @author Sami
+	* @author Sami Ait Ouahmane
 	*/
 
 	@PostMapping(value = { "/signOut", "/signOut/" })
@@ -82,10 +84,11 @@ public class CreateOnlineAccountController {
 	/**
 	 * Gets a list of all the books in the library software system
 	 * 
-	 * @return
+	 * @return The online account of the logged in user
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@GetMapping(value = { "/onlineAccountLoggedIn", "/onlineAccountLoggedIn/" })
 	public OnlineAccountDto getLoggedInAccount() {
 		return convertToDto(service.getloggedInAccount());
@@ -94,22 +97,24 @@ public class CreateOnlineAccountController {
 	/**
 	 * Gets the type of the logged in user
 	 * 
-	 * @return
+	 * @return The type of the logged in user
 	 * 
-	 * @author Vy-Kha
+	 * @author Vy-Kha Huyhn
 	 */
+	
 	@GetMapping(value = { "/onlineAccountLoggedInUser", "/onlineAccountLoggedInUser/" })
 	public String getLoggedInAccountUser() {
 		return service.getloggedInAccountUser().replace("class ca.mcgill.ecse321.librarysystem.model.", "");
 	}
 
 	/**
-	 * Gets the id of the logged in user
+	 * Gets the ID of the logged in user
 	 * 
-	 * @return
+	 * @return The ID of the logged in user
 	 * 
-	 * @author Vy-Kha
+	 * @author Vy-Kha Huyhn
 	 */
+	
 	@GetMapping(value = { "/onlineAccountLoggedInID", "/onlineAccountLoggedInID/" })
 	public int getLoggedInAccountID() {
 		return service.getloggedInAccountID();
@@ -117,6 +122,7 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Creates an online account for an existing user
+	*
 	* @param id The ID that was generated for the existing user
 	* @param username The username that the existing user created
 	* @param password The password that the existing user created
@@ -124,7 +130,7 @@ public class CreateOnlineAccountController {
 	*
 	* @return OnlineAccountDto
 	*
-	* @author Vy-Kha
+	* @author Vy-Kha Huynh
 	*/
 
 	@PostMapping(value = { "/onlineAccountExisting/{id}/{username}/{password}/{email}",
@@ -139,6 +145,7 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Deletes the online account given a username
+	*
 	* @param username The username associated with the online account
 	* @param password The password associated with the online account
 	*
@@ -153,6 +160,7 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Deletes the online account given an email
+	*
 	* @param email The email associated with the online account
 	* @param password The password associated with the online account
 	*
@@ -167,6 +175,7 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Deletes the online account given an ID
+	*
 	* @param id The ID associated with the online account
 	* @param password The password associated with the online account
 	*
@@ -181,11 +190,12 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Changes the password for a given online account
+	*
 	* @param id The ID associated with the online account
 	* @param password The old password associated with the online account
 	* @param newPassword The new password to be associated with the online account
 	*
-	* @return OnlineAccountDto
+	* @return The online account with the new password
 	*
 	* @author Hyunbum Cho
 	*/
@@ -200,11 +210,12 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Changes the email for a given online account
+	*
 	* @param id The ID associated with the online account
 	* @param password The password associated with the online account
 	* @param newEmail The new email to be associated with the online account
 	*
-	* @return OnlineAccountDto
+	* @return The online account with the new email
 	*
 	* @author Hyunbum Cho
 	*/
@@ -219,11 +230,12 @@ public class CreateOnlineAccountController {
 	
 	/**
 	* Changes the username for a given online account
+	*
 	* @param id The ID associated with the online account
 	* @param password The password associated with the online account
 	* @param newUsername The new username to be associated with the online account
 	*
-	* @return OnlineAccountDto
+	* @return The online account with the new username
 	*
 	* @author Hyunbum Cho
 	*/
@@ -235,6 +247,16 @@ public class CreateOnlineAccountController {
 		OnlineAccount account = service.changeUsername(id, password, newUsername);
 		return convertToDto(account);
 	}
+	
+	/**
+	* Converts the OnlineAccount object to OnlineAccountDto object
+	*
+	* @param acc The OnlineAccount object to be converted
+	*
+	* @return The OnlineAccountDto object of the online account
+	*
+	* @author Hyunbum Cho
+	*/
 
 	private OnlineAccountDto convertToDto(OnlineAccount acc) {
 		if (acc == null) {
