@@ -82,7 +82,7 @@ public class CreateOnlineAccountController {
 	}
 
 	/**
-	 * Gets a list of all the books in the library software system
+	 * Gets the online account of the current logged in user
 	 * 
 	 * @return The online account of the logged in user
 	 * 
