@@ -77,7 +77,7 @@
         android:layout_height="70dp"
         android:layout_gravity="end"
         android:layout_marginBottom="15dp"
-        android:onClick="signOutRedirect"
+        android:onClick="SignOut"
         android:text="SIGN OUT"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
