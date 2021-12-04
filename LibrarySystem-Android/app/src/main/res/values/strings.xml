@@ -35,4 +35,8 @@
     <string name="journalsName">Name</string>
     <string name="journalsDate">Date</string>
     <string name="journalID">ID</string>
+
+    <string name="borrowedItemsPageHeader">BORROWED ITEMS</string>
+
+    <string name="viewContentsPageHeader">VIEW LIBRARY CONTENTS</string>
 </resources>
