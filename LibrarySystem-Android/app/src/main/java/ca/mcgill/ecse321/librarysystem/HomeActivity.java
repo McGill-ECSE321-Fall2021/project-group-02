@@ -15,7 +15,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cz.msebera.android.httpclient.entity.mime.Header;
+import cz.msebera.android.httpclient.Header;
 
 public class HomeActivity extends Activity {
 
@@ -75,21 +75,18 @@ public class HomeActivity extends Activity {
     }
 
     /**
-     * Redirects to the sign out page
-     *
-     * @param view the view that calls the method
-     * @author Niilo
+     * Allows the user to sign out
+     * @param v
+     * @author Sami Ait Ouahmane
      */
-    public void signOutRedirect(View view){
+    public void SignOut(View v) {
         error = "";
-        Intent i = new Intent(this, IntroActivity.class);
-
-        // TODO: get error handling to work
-        HttpUtils.post("signOut/",  new RequestParams(), new JsonHttpResponseHandler(){
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+        HttpUtils.post("signOut/",new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
                 refreshErrorMessage();
-
             }
+            @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
                     error += errorResponse.get("message").toString();
@@ -99,7 +96,17 @@ public class HomeActivity extends Activity {
                 refreshErrorMessage();
             }
         });
-        startActivity(i);// Should be inside onSuccess(), does not work for some reason
+    }
+
+    /**
+     * Redirects to the intro page
+     *
+     * @param view the view that calls the method
+     * @author Sami Ait Ouahmane
+     */
+    public void introRedirect(View view){
+        Intent i = new Intent(this, IntroActivity.class);
+        startActivity(i);
     }
 
     /**
