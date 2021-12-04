@@ -35,7 +35,7 @@ public class CreateOnlineAccountController {
 	* @param password The password of the new user
 	* @param email The email of the new user
 	*
-	* @return OnlineAccountDto
+	* @return The online account of the new user
 	*
 	* @author Sami Ait Ouahmane
 	*/
@@ -58,7 +58,7 @@ public class CreateOnlineAccountController {
 	* @param username The username that the patron uses to log in
 	* @param password The password that the patron uses to log in
 	*
-	* @return OnlineAccountDto
+	* @return The online account of the user logging in
 	* 
 	* @author Sami Ait Ouahmane
 	*/
