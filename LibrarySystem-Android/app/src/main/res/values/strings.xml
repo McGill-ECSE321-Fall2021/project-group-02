@@ -14,20 +14,25 @@
     <string name="col2">Author</string>
     <string name="col3">Availability</string>
     <string name="books">Books</string>
+    <string name="bookID">ID</string>
 
     <string name="albums">Albums</string>
     <string name="albumTitle">Title</string>
     <string name="albumArtist">Artist</string>
+    <string name="albumID">ID</string>
 
     <string name="movies">Movies</string>
     <string name="movieTitle">Title</string>
     <string name="movieDirector">Director</string>
+    <string name="movieID">ID</string>
 
     <string name="newspaper">Newspapers</string>
     <string name="newspaperName">Name</string>
     <string name="newspaperDate">Date</string>
+    <string name="newspaperID">ID</string>
 
     <string name="journals">Journals</string>
     <string name="journalsName">Name</string>
     <string name="journalsDate">Date</string>
+    <string name="journalID">ID</string>
 </resources>

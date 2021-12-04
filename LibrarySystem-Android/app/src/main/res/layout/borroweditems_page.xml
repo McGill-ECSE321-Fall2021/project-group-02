@@ -1,6 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="sans-serif-black"
+        android:text="BORROWED ITEMS"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:layout_width="352dp"
+        android:layout_height="566dp"
+        android:layout_margin="40dp"
+        android:background="@color/white"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="110dp"
+        tools:ignore="MissingConstraints" >
+
+        <TableRow
+            android:background="@drawable/border"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/books"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                />
+        </TableRow>
+
+        <TableRow
+            android:background="@drawable/border"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/bookID"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/col1"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/col2"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+        </TableRow>
+        <TableRow
+            android:background="@drawable/border"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/albums"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                />
+        </TableRow>
+
+        <TableRow
+            android:background="@drawable/border"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/albumID"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/albumTitle"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/albumArtist"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+        </TableRow>
+        <TableRow
+            android:background="@drawable/border"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/movies"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                />
+        </TableRow>
+
+        <TableRow
+            android:background="@drawable/border"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/movieID"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/movieTitle"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+            <TextView
+                android:layout-width="wrap_content"
+                android:layout-heigth="wrap_content"
+                android:text="@string/movieDirector"
+                android:textColor="@android:color/darker_gray"
+                android:padding="10sp"
+                android:textSize="14sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
