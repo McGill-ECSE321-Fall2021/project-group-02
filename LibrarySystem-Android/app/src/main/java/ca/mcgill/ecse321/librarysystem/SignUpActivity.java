@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -108,6 +109,9 @@ public class SignUpActivity extends Activity {
         Button btn_tmp = (Button)findViewById(R.id.signUp2);
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
+
+        Window w = this.getWindow();
+        w.setStatusBarColor(Color.BLACK);
 
         TextView txt = (TextView) findViewById(R.id.header);
         txt.setBackgroundColor(0xA0000000);
