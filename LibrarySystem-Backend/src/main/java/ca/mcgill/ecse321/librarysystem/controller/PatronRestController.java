@@ -32,15 +32,27 @@ public class PatronRestController {
 	
 	/**
 	 * Gets a list of all the patrons in the library software system
+	 *
 	 * @return List of all Patron DTOs
 	 * 
-	 * @author Niilo
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/patrons", "/patrons" })
 	public List<PatronDto> getAllPatrons() {
 		return patronService.getAllPatrons().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
 
+	/**
+	 * Converts Patron object to PatronDto object
+	 *
+	 * @param p The Patron object to be converted
+	 *
+	 * @return The PatronDto object of the patron
+	 * 
+	 * @author Niilo Vuokila
+	 */
+	
 	private PatronDto convertToDto(Patron p) {
 		if (p == null) {
 			throw new IllegalArgumentException("There is no such Patron!");
