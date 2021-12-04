@@ -45,13 +45,15 @@ public class ItemRestController {
 	/**
 	 * Sets an item as borrowed by a patron
 	 * 
-	 * @param itemName
-	 * @param itemDto
-	 * @param patronDto
-	 * @return
+	 * @param itemName The name of the item that is being borrowed
+	 * @param itemId The ID of the item that is being borrowed
+	 * @param patronId The ID of the patron that is borrowing the item
+	 *
+	 * @return The item that is being borrowed
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@PostMapping(value = { "/borrow/{name}", "/borrow/{name}/" })
 	public ItemDto borrowItem(@PathVariable("name") String itemName, @RequestParam(name = "itemId") int itemId,
 			@RequestParam(name = "patronId") int patronId) {
@@ -65,13 +67,14 @@ public class ItemRestController {
 	/**
 	 * Places an item back into the borrwable library contents
 	 * 
-	 * @param itemName
-	 * @param itemDto
-	 * @param patronDto
-	 * @return
+	 * @param itemId The ID of the item that is being returned
+	 * @param patronId The ID of the patron that is returning the item
 	 * 
-	 * @author Julie
+	 * @return The item that is being returned
+	 * 
+	 * @author Julie Chen
 	 */
+	
 	@PostMapping(value = { "/return", "/return/" })
 	public ItemDto returnItem(@RequestParam(name = "itemId") int itemId, @RequestParam(name = "patronId") int patronId) {
 		Item i = itemService.returnItem(itemId, patronId);
@@ -84,12 +87,14 @@ public class ItemRestController {
 	/**
 	 * Places an item into the archived library section
 	 * 
-	 * @param itemDto
-	 * @param
-	 * @return archived item
+	 * @param itemId The ID of the item that is being archived
+	 * @param headLibrarianID The ID of the head librarian 
+	 *
+	 * @return The item that is being archived
 	 * 
-	 * @author John
+	 * @author John Park
 	 */
+	
 	@PostMapping(value = { "/archive", "/archive/" })
 	public ItemDto archiveItem(@RequestParam(name = "itemID") int itemId,
 			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
@@ -107,8 +112,10 @@ public class ItemRestController {
 	 * @param title The name of the book that is being searched for
 	 * 
 	 * @return the list of all books under the name specified
-	 * @author Niilo
+	 * 
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/books", "/items/books/" }, params = "title")
 	public List<BookDto> getBooksByTitle(@RequestParam String title) throws IllegalArgumentException {
 		return itemService.getBooksByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -120,8 +127,10 @@ public class ItemRestController {
 	 * @param title The name of the author that is being searched for
 	 * 
 	 * @return the list of all books under the author specified
-	 * @author Niilo
+	 * 
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/books", "/items/books/" }, params = "author")
 	public List<BookDto> getBooksByAuthor(@RequestParam String author) throws IllegalArgumentException {
 		return itemService.getBooksByAuthor(author).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -133,8 +142,10 @@ public class ItemRestController {
 	 * @param title The name of the albums that is being searched for
 	 * 
 	 * @return the list of all albums under the name specified
-	 * @author Niilo
+	 * 
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/albums", "/items/albums/" }, params = "title")
 	public List<AlbumDto> getAlbumsByTitle(@RequestParam String title) throws IllegalArgumentException {
 		return itemService.getAlbumsByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -146,8 +157,10 @@ public class ItemRestController {
 	 * @param artist The name of the artist that is being searched for
 	 * 
 	 * @return the list of all albums under the artist specified
-	 * @author Niilo
+	 * 
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/albums", "/items/albums/" }, params = "artist")
 	public List<AlbumDto> getAlbumsByArtist(@RequestParam String artist) throws IllegalArgumentException {
 		return itemService.getAlbumsByArtist(artist).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -159,8 +172,10 @@ public class ItemRestController {
 	 * @param title The name of the movie that is being searched for
 	 * 
 	 * @return the list of all movies under the name specified
-	 * @author Niilo
+	 *
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/movies", "/items/movies/" }, params = "title")
 	public List<MovieDto> getMoviesByTitle(@RequestParam String title) throws IllegalArgumentException {
 		return itemService.getMoviesByTitle(title).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -172,8 +187,10 @@ public class ItemRestController {
 	 * @param title The name of the director that is being searched for
 	 * 
 	 * @return the list of all movies under the director specified
-	 * @author Niilo
+	 *
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/movies", "/items/movies/" }, params = "director")
 	public List<MovieDto> getMoviesByDirector(@RequestParam String director) throws IllegalArgumentException {
 		return itemService.getMoviesByDirector(director).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -185,8 +202,10 @@ public class ItemRestController {
 	 * @param title The name of the journal that is being searched for
 	 * 
 	 * @return the list of all journals under the name specified
-	 * @author Niilo
+	 *
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/journals", "/items/journals/" }, params = "name")
 	public List<JournalDto> getJournalsByName(@RequestParam String name) throws IllegalArgumentException {
 		return itemService.getJournalsByName(name).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -198,8 +217,10 @@ public class ItemRestController {
 	 * @param name The name of the newspaper that is being searched for
 	 * 
 	 * @return the list of all newspapers under the name specified
-	 * @author Niilo
+	 *
+	 * @author Niilo Vuokila
 	 */
+	
 	@GetMapping(value = { "/items/newspapers", "/items/newspapers/" }, params = "name")
 	public List<NewspaperDto> getNewspapersByName(@RequestParam String name) throws IllegalArgumentException {
 		return itemService.getNewspaperByName(name).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -211,10 +232,11 @@ public class ItemRestController {
 	/**
 	 * Get a list of all the items in the library software system
 	 * 
-	 * @return
+	 * @return the list of all items in the library
 	 * 
-	 * @author Julie
+	 * @author Julie Chen
 	 */
+	
 	@GetMapping(value = { "/items", "/items/" })
 	public List<ItemDto> getAllItems() {
 		return itemService.getAllItems().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -228,6 +250,7 @@ public class ItemRestController {
 	 * 
 	 * @author Julie
 	 */
+	
 	@DeleteMapping(value = { "/items/discard", "/items/discard/" })
 	public void discardItem(@RequestParam(name = "itemID") int itemId,
 			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
