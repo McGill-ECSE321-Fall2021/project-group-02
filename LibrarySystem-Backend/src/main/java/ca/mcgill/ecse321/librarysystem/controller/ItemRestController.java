@@ -245,10 +245,10 @@ public class ItemRestController {
 	/**
 	 * Remove an item from the library software system
 	 * 
-	 * @param itemId
-	 * @param userID
+	 * @param itemId The ID of the item to be removed
+	 * @param headLibrarianID The ID of the head librarian
 	 * 
-	 * @author Julie
+	 * @author Julie Chen
 	 */
 	
 	@DeleteMapping(value = { "/items/discard", "/items/discard/" })
@@ -260,14 +260,26 @@ public class ItemRestController {
 	/**
 	 * Set an item as damaged
 	 * 
-	 * @param itemID
-	 * @param headLibrarianID
+	 * @param itemID The ID of the item to be set as damaged
+	 * @param headLibrarianID The ID of the head librarian
+	 *
+	 * @author Julie Chen
 	 */
+	
 	@PostMapping(value = { "/items/setDamaged", "/items/setDamaged/" })
 	public void setDamagedItem(@RequestParam(name = "itemId") int itemID,
 			@RequestParam(name = "headLibrarianID") int headLibrarianID) {
 		itemService.setDamagedItem(itemID, headLibrarianID);
 	}
+	
+	/**
+	 * Set an item as available
+	 * 
+	 * @param itemID The ID of the item to be set as available
+	 * @param headLibrarianID The ID of the head librarian
+	 *
+	 * @author Julie Chen
+	 */
 
 	@PostMapping(value = { "/items/available", "/items/available/" })
 	public void makeItemBorrowable(@RequestParam(name = "itemID") int itemID,
@@ -281,10 +293,18 @@ public class ItemRestController {
 
 	/**
 	 * Creates a patron
+	 *
+	 * @param address The address of the patron
+	 * @param city The city of the patron
+	 * @param balance The starting balance of the patron
+	 * @param fistName The first name of the patron
+	 * @param lastName The last name of the patron
 	 * 
-	 * @author Sami
-	 * @return Patron
+	 * @return The new patron
+	 * 
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@PostMapping(value = { "/createPatron/{address}", "/createPatron/{address}/" })
 	public PatronDto createPatron(@PathVariable("address") String address, @RequestParam(name = "city") String city,
 			@RequestParam(name = "balance") int balance, @RequestParam(name = "firstName") String firstName,
@@ -295,10 +315,12 @@ public class ItemRestController {
 
 	/**
 	 * Deletes a patron
-	 * 
-	 * @author Sami
-	 * @return Patron
+	 *
+	 * @param address The address of the patron
+	 *
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@DeleteMapping(value = { "/deletePatron/{address}", "/deletePatron/{address}/" })
 	public void deletePatron(@PathVariable("address") String address) {
 		itemService.deletePatron(address);
@@ -307,14 +329,15 @@ public class ItemRestController {
 	/**
 	 * Adds a new book to the library software system
 	 * 
-	 * @param bookTitle
-	 * @param authorName
-	 * @param patron
-	 * @param isArchived
-	 * @return
+	 * @param bookTitle The title of the new book
+	 * @param authorName The name of the author of the new book
+	 * @param isArchived The archive status of the book
+	 *
+	 * @return The new book that was added to the library
 	 * 
-	 * @author Sami
-	 */
+	 * @author Sami Ait Ouahmane
+	 */ 
+	
 	@PostMapping(value = { "/createBook/{title}", "/createBook/{title}/" })
 	public BookDto createBook(@PathVariable("title") String bookTitle,
 			@RequestParam(name = "authorName") String authorName, @RequestParam(name = "isArchived") boolean isArchived) {
@@ -325,13 +348,12 @@ public class ItemRestController {
 	/**
 	 * Deletes a book
 	 * 
-	 * @param bookTitle
-	 * @param authorName
-	 * @param patron
-	 * @return
+	 * @param bookTitle The title of the book to be deleted
+	 * @param authorName The name of the author of the book to be deleted
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@DeleteMapping(value = { "/deleteBook/{title}", "/deleteBook/{title}/" })
 	public void deleteBook(@PathVariable("title") String bookTitle,
 			@RequestParam(name = "authorName") String authorName) {
@@ -341,14 +363,15 @@ public class ItemRestController {
 	/**
 	 * Adds a new album to the library software system
 	 * 
-	 * @param albumTitle
-	 * @param artistName
-	 * @param patron
-	 * @param isArchived
-	 * @return
+	 * @param albumTitle The title of the new album
+	 * @param artistName The name of the artist of the new album
+	 * @param isArchived The archive status of the new album
+	 *
+	 * @return The new album to be added to the library
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@PostMapping(value = { "/createAlbum/{title}", "/createAlbum/{title}/" })
 	public AlbumDto createAlbum(@PathVariable("title") String albumTitle,
 			@RequestParam(name = "artistName") String artistName, @RequestParam(name = "isArchived") boolean isArchived) {
@@ -359,12 +382,12 @@ public class ItemRestController {
 	/**
 	 * Deletes a album
 	 * 
-	 * @param albumTitle
-	 * @param artistName
-	 * @return
+	 * @param albumTitle The title of the album to be deleted
+	 * @param artistName The name of the artist of the album to be deleted
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@DeleteMapping(value = { "/deleteAlbum/{title}", "/deleteAlbum/{title}/" })
 	public void deleteAlbum(@PathVariable("title") String albumTitle,
 			@RequestParam(name = "artistName") String artistName) {
@@ -374,14 +397,15 @@ public class ItemRestController {
 	/**
 	 * Adds a new movie to the library software system
 	 * 
-	 * @param movieTitle
-	 * @param directorName
-	 * @param patron
-	 * @param isArchived
-	 * @return
+	 * @param movieTitle The title of the new movie to be added
+	 * @param directorName The name of the director of the new movie
+	 * @param isArchived The archive status of the new movie
+	 *
+	 * @return The new movie to be added to the library
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@PostMapping(value = { "/createMovie/{title}", "/createMovie/{title}/" })
 	public MovieDto createMovie(@PathVariable("title") String movieTitle,
 			@RequestParam(name = "directorName") String directorName, @RequestParam(name = "isArchived") boolean isArchived) {
@@ -392,12 +416,12 @@ public class ItemRestController {
 	/**
 	 * Deletes movie
 	 * 
-	 * @param movieTitle
-	 * @param directorName
-	 * @return
+	 * @param movieTitle The title of the movie to be deleted
+	 * @param directorName The name of the director of the movie to be deleted
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@DeleteMapping(value = { "/deleteMovie/{title}", "/deleteMovie/{title}/" })
 	public void deleteMovie(@PathVariable("title") String movieTitle,
 			@RequestParam(name = "directorName") String directorName) {
@@ -407,12 +431,14 @@ public class ItemRestController {
 	/**
 	 * Adds a new newspaper to the library software system
 	 * 
-	 * @param newspaperTitle
-	 * @param newspaperDate
-	 * @return
+	 * @param newspaperTitle The title of the newspaper to be added
+	 * @param newspaperDate The date of the newspaper to be added
 	 * 
-	 * @author Sami
+	 * @return The newspaper to be added to the library
+	 * 
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@PostMapping(value = { "/createNewspaper/{title}", "/createNewspaper/{title}/" })
 	public NewspaperDto createNewspaper(@PathVariable("title") String newspaperTitle,
 			@RequestParam(name = "newspaperDate") Date newspaperDate) {
@@ -423,12 +449,12 @@ public class ItemRestController {
 	/**
 	 * Deletes newspaper
 	 * 
-	 * @param newspaperTitle
-	 * @param newspaperDate
-	 * @return
+	 * @param newspaperTitle The title of the newspaper to be deleted
+	 * @param newspaperDate The date of the newspaper to be deleted
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@DeleteMapping(value = { "/deleteNewspaper/{title}", "/deleteNewspaper/{title}/" })
 	public void deleteNewspaper(@PathVariable("title") String newspaperTitle,
 			@RequestParam(name = "newspaperDate") Date newspaperDate) {
@@ -438,12 +464,14 @@ public class ItemRestController {
 	/**
 	 * Adds a new journal to the library software system
 	 * 
-	 * @param journalTitle
-	 * @param journalDate
-	 * @return
+	 * @param journalTitle The title of the journal to be added
+	 * @param journalDate The date of the journal to be added
+	 *
+	 * @return The new journal to be added to the library
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@PostMapping(value = { "/createJournal/{title}", "/createJournal/{title}/" })
 	public JournalDto createJournal(@PathVariable("title") String journalTitle,
 			@RequestParam(name = "journalDate") Date journalDate) {
@@ -454,12 +482,12 @@ public class ItemRestController {
 	/**
 	 * Deletes journal
 	 * 
-	 * @param journalTitle
-	 * @param journalDate
-	 * @return
+	 * @param journalTitle The title of the journal to be deleted
+	 * @param journalDate The date of the journal to be deleted
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@DeleteMapping(value = { "/deleteJournal/{title}", "/deleteJournal/{title}/" })
 	public void deleteJournal(@PathVariable("title") String journalTitle,
 			@RequestParam(name = "journalDate") Date journalDate) {
@@ -469,10 +497,11 @@ public class ItemRestController {
 	/**
 	 * Gets a list of all the books in the library software system
 	 * 
-	 * @return
+	 * @return the list of all books in the library
 	 * 
-	 * @author Sami
+	 * @author Sami Ait OUahmane
 	 */
+	
 	@GetMapping(value = { "/items/books", "/items/books/" })
 	public List<BookDto> getAllBooks() {
 		return itemService.getAllBooks().stream().map(b -> convertToDto(b)).collect(Collectors.toList());
@@ -481,10 +510,11 @@ public class ItemRestController {
 	/**
 	 * Gets a list of all the albums in the library software system
 	 * 
-	 * @return
+	 * @return the list of all albums in the library
 	 * 
-	 * @author Sami
+	 * @author Sami Ait OUahmane
 	 */
+	
 	@GetMapping(value = { "/items/albums", "/items/albums/" })
 	public List<AlbumDto> getAllAlbums() {
 		return itemService.getAllAlbums().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
@@ -493,10 +523,11 @@ public class ItemRestController {
 	/**
 	 * Gets a list of all the movies in the library software system
 	 * 
-	 * @return
+	 * @return the list of all movies in the library
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@GetMapping(value = { "/items/movies", "/items/movies/" })
 	public List<MovieDto> getAllMovies() {
 		return itemService.getAllMovies().stream().map(m -> convertToDto(m)).collect(Collectors.toList());
@@ -505,10 +536,11 @@ public class ItemRestController {
 	/**
 	 * Gets a list of all the newspapers in the library software system
 	 * 
-	 * @return
+	 * @return the list of all newspaper in the library
 	 * 
-	 * @author Sami
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@GetMapping(value = { "/items/newspapers", "/items/newspapers/" })
 	public List<NewspaperDto> getAllNewspapers() {
 		return itemService.getAllNewspapers().stream().map(n -> convertToDto(n)).collect(Collectors.toList());
@@ -517,10 +549,11 @@ public class ItemRestController {
 	/**
 	 * Gets a list of all the journals in the library software system
 	 * 
-	 * @return
-	 * 
-	 * @author Sami
+	 * @return the list of all journals in the library
+	 *  
+	 * @author Sami Ait Ouahmane
 	 */
+	
 	@GetMapping(value = { "/items/journals", "/items/journals/" })
 	public List<JournalDto> getAllJournals() {
 		return itemService.getAllJournals().stream().map(j -> convertToDto(j)).collect(Collectors.toList());
@@ -529,34 +562,43 @@ public class ItemRestController {
 	/**
 	 * Gets a list of all the books borrowed by a patron
 	 * 
-	 * @return array of all the books borrowed by a patron
+	 * @param id The ID of the patron
+	 *
+	 * @return the list of all the books borrowed by a patron
 	 * 
 	 * @author Hyunbum Cho
 	 */
+	
 	@GetMapping(value = { "/borrowedItems/books", "/borrowedItems/books/" })
 	public List<BookDto> getAllBorrowedBooks(@RequestParam(name = "id") int id) throws IllegalArgumentException {
 		return itemService.getBooksBorrowedByPatron(id).stream().map(b -> convertToDto(b)).collect(Collectors.toList());
 	}
 
 	/**
-	 * Gets a list of all the albums in the library software system
-	 * 
-	 * @return array of all the albums borrowed by a patron
+	 * Gets a list of all the albums borrowed by a patron
+	 *
+	 * @param id The ID of the patron
+	 *
+	 * @return the list of all the albums borrowed by a patron
 	 * 
 	 * @author Hyunbum Cho
 	 */
+	
 	@GetMapping(value = { "/borrowedItems/albums", "/borrowedItems/albums/" })
 	public List<AlbumDto> getAllBorrowedAlbums(@RequestParam(name = "id") int id) throws IllegalArgumentException {
 		return itemService.getAlbumsBorrowedByPatron(id).stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
 
 	/**
-	 * Gets a list of all the movies in the library software system
+	 * Gets a list of all the movies borrowed by a patron
 	 * 
-	 * @return array of all the movies borrowed by a patron
+	 * @param id The ID of the patron
+	 *
+	 * @return the list of all the movies borrowed by a patron
 	 * 
 	 * @author Hyunbum Cho
 	 */
+	
 	@GetMapping(value = { "/borrowedItems/movies", "/borrowedItems/movies/" })
 	public List<MovieDto> getAllBorrowedMovies(@RequestParam(name = "id") int id) throws IllegalArgumentException {
 		return itemService.getMoviesBorrowedByPatron(id).stream().map(m -> convertToDto(m)).collect(Collectors.toList());
@@ -565,6 +607,17 @@ public class ItemRestController {
 	/****************************************************
 	 * DTO CONVERSION - SAMI/JULIE
 	 ****************************************************/
+	
+	/**
+	* Converts Item object to ItemDto object
+	*
+	* @param i The Item object to be converted 
+	*
+	* @return the ItemDto object of the item
+	*
+	* @author Sami Ait Ouahmane
+	*/
+	
 	private ItemDto convertToDto(Item i) {
 		if (i == null) {
 			throw new IllegalArgumentException("Item does not exist.");
@@ -572,6 +625,16 @@ public class ItemRestController {
 		ItemDto itemDto = new ItemDto(i.getId(), i.getIsArchived(), i.getIsBorrowed(), i.getIsDamaged());
 		return itemDto;
 	}
+	
+	/**
+	* Converts Movie object to MovieDto object
+	*
+	* @param m The Movie object to be converted 
+	*
+	* @return the MovieDto object of the movie
+	*
+	* @author Sami Ait Ouahmane
+	*/
 
 	private MovieDto convertToDto(Movie m) {
 		if (m == null) {
@@ -580,6 +643,16 @@ public class ItemRestController {
 		MovieDto movieDto = new MovieDto(m.getTitle(), m.getDirector(), m.getIsBorrowed(), m.getId());
 		return movieDto;
 	}
+	
+	/**
+	* Converts Newspaper object to NwespaperDto object
+	*
+	* @param n The Newspaper object to be converted 
+	*
+	* @return the NewspaperDto object of the newspaper
+	*
+	* @author Sami Ait Ouahmane
+	*/
 
 	private NewspaperDto convertToDto(Newspaper n) {
 		if (n == null) {
@@ -588,6 +661,16 @@ public class ItemRestController {
 		NewspaperDto newspaperDto = new NewspaperDto(n.getName(), n.getDate(), n.getId());
 		return newspaperDto;
 	}
+	
+	/**
+	* Converts Journal object to JournalDto object
+	*
+	* @param j The Journal object to be converted 
+	*
+	* @return the JournalDto object of the journal
+	*
+	* @author Julie Chen
+	*/
 
 	private JournalDto convertToDto(Journal j) {
 		if (j == null) {
@@ -596,6 +679,16 @@ public class ItemRestController {
 		JournalDto journalDto = new JournalDto(j.getName(), j.getDate(), j.getId());
 		return journalDto;
 	}
+	
+	/**
+	* Converts Album object to AlbumDto object
+	*
+	* @param a The Album object to be converted 
+	*
+	* @return the AlbumDto object of the album
+	*
+	* @author Julie Chen
+	*/
 
 	private AlbumDto convertToDto(Album a) {
 		if (a == null) {
@@ -604,6 +697,16 @@ public class ItemRestController {
 		AlbumDto albumDto = new AlbumDto(a.getTitle(), a.getArtist(), a.getIsBorrowed(), a.getId());
 		return albumDto;
 	}
+	
+	/**
+	* Converts Book object to BookDto object
+	*
+	* @param b The Book object to be converted 
+	*
+	* @return the BookDto object of the book
+	*
+	* @author Julie Chen
+	*/
 
 	private BookDto convertToDto(Book b) {
 		if (b == null) {
@@ -613,6 +716,16 @@ public class ItemRestController {
 		BookDto bookDto = new BookDto(b.getTitle(), b.getAuthor(), b.getIsBorrowed(), b.getId());
 		return bookDto;
 	}
+	
+	/**
+	* Converts Patron object to PatronDto object
+	*
+	* @param p The Patron object to be converted 
+	*
+	* @return the PatronDto object of the patron
+	*
+	* @author Julie Chen
+	*/
 
 	private PatronDto convertToDto(Patron p) {
 		if (p == null) {
