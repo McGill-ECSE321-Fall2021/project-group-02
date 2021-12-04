@@ -86,7 +86,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="204dp"
-        android:onClick="homeRedirect"
+        android:onClick="logIn"
         android:text="Log In"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"

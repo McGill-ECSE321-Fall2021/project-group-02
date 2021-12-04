@@ -167,7 +167,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="28dp"
-        android:onClick="introRedirect"
+        android:onClick="SignUp"
         android:text="SignUp"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
