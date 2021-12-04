@@ -2,8 +2,11 @@ package ca.mcgill.ecse321.librarysystem;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -83,6 +86,7 @@ public class SignUpActivity extends Activity {
         setContentView(R.layout.signup_page);
         // initialize error message text view
         refreshErrorMessage();
+        setStyle();
     }
 
     /**
@@ -95,6 +99,39 @@ public class SignUpActivity extends Activity {
         Intent i = new Intent(this, IntroActivity.class);
         startActivity(i);
     }
+    /**
+     * Sets the style of the Activity to hardcoded specifications for sign up nonexisting
+     *
+     * @author Sami Ait Ouahmane
+     */
+    private void setStyle(){
+        Button btn_tmp = (Button)findViewById(R.id.signUp2);
+        btn_tmp.setBackgroundColor(0xFF961919);
+        btn_tmp.setTextColor(Color.WHITE);
 
+        TextView txt = (TextView) findViewById(R.id.header);
+        txt.setBackgroundColor(0xA0000000);
+
+        EditText ed1 = (EditText) findViewById(R.id.password);
+        ed1.setBackgroundColor(0xA0000000);
+
+        EditText ed2 = (EditText) findViewById(R.id.username);
+        ed2.setBackgroundColor(0xA0000000);
+
+        EditText ed3 = (EditText) findViewById(R.id.email);
+        ed3.setBackgroundColor(0xA0000000);
+
+        EditText ed4 = (EditText) findViewById(R.id.address);
+        ed4.setBackgroundColor(0xA0000000);
+
+        EditText ed5 = (EditText) findViewById(R.id.city);
+        ed5.setBackgroundColor(0xA0000000);
+
+        EditText ed6 = (EditText) findViewById(R.id.lastNameUser);
+        ed6.setBackgroundColor(0xA0000000);
+
+        EditText ed7 = (EditText) findViewById(R.id.firstNameUser);
+        ed7.setBackgroundColor(0xA0000000);
+    }
 
 }

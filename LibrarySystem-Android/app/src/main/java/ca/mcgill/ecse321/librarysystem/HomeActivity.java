@@ -85,6 +85,7 @@ public class HomeActivity extends Activity {
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
                 refreshErrorMessage();
+                introRedirect(v);
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {

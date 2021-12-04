@@ -2,9 +2,12 @@ package ca.mcgill.ecse321.librarysystem;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -42,6 +45,7 @@ public class LogInActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+        setStyle();
     }
 
     /**
@@ -82,5 +86,25 @@ public class LogInActivity extends Activity {
     public void homeRedirect(View view) {
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
+    }
+
+    /**
+     * Sets the style of the Activity to hardcoded specifications for log in
+     *
+     * @author Sami Ait Ouahmane
+     */
+    private void setStyle(){
+        Button btn_tmp = (Button)findViewById(R.id.logIn);
+        btn_tmp.setBackgroundColor(0xFF961919);
+        btn_tmp.setTextColor(Color.WHITE);
+
+        TextView txt = (TextView) findViewById(R.id.header);
+        txt.setBackgroundColor(0xA0000000);
+
+        EditText ed1 = (EditText) findViewById(R.id.passwordUser);
+        ed1.setBackgroundColor(0xA0000000);
+
+        EditText ed2 = (EditText) findViewById(R.id.usernameUser);
+        ed2.setBackgroundColor(0xA0000000);
     }
 }
