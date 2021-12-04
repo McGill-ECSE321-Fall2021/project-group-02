@@ -63,3 +63,14 @@ The project report for deliverable 3 can be found [here.](https://github.com/McG
 | Vy-Kha Huynh | Creation of the ManageLibrarianPage UI, implementation and connection between backend and frontend, all service method related to firing and hiring librarians, some service emthod to get info about the user such as id and type | 20h |
 | Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs, service, and controller methods in backend. | 23h |
 | John Park | Creation of UI for 'Manage Library Schedule', implementation of corresponding JavaScript. Modification of DTOs, service, and controller methods in backend. | 25h |
+
+### Deliverable 4
+The project report for deliverable 3 can be found [here.]
+| Name | Contributions | Hours |
+| --- | --- | --- |
+| Sami Ait Ouahmane |  |  |
+| Julie Chen |  |  |
+| Hyunbum Cho |  |  |
+| Vy-Kha Huynh |  |  |
+| Niilo Vuokila | Creation of the home page and intro page activity and template files. Added template and activity files for each required page and configured the branch. | 8h |
+| John Park |  |  |
