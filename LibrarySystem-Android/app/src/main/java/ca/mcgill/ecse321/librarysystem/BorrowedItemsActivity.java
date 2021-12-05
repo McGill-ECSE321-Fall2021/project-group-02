@@ -12,15 +12,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.entity.mime.Header;
 
 public class BorrowedItemsActivity extends Activity {
     String error = "";
     int id;
-    ArrayList<String> books = new ArrayList<String>();
-    ArrayList<String> albums = new ArrayList<String>();
-    ArrayList<String> movies = new ArrayList<String>();
+    List<JSONObject> books = new ArrayList<JSONObject>();
+    List<JSONObject> albums = new ArrayList<JSONObject>();
+    List<JSONObject> movies = new ArrayList<JSONObject>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,38 @@ public class BorrowedItemsActivity extends Activity {
         });
 
         HttpUtils.get("borrowedItems/books", new RequestParams(id), new JsonHttpResponseHandler() {
-            public void onSuccess(int statusCode, Header[] headers, int response) {
-                id = response;
+            public void onSuccess(int statusCode, Header[] headers, List<JSONObject> response) {
+                books = response;
+                refreshErrorMessage();
+            }
+
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try{
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e){
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+        HttpUtils.get("borrowedItems/albums", new RequestParams(id), new JsonHttpResponseHandler() {
+            public void onSuccess(int statusCode, Header[] headers, List<JSONObject> response) {
+                albums = response;
+                refreshErrorMessage();
+            }
+
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try{
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e){
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+        HttpUtils.get("borrowedItems/movies", new RequestParams(id), new JsonHttpResponseHandler() {
+            public void onSuccess(int statusCode, Header[] headers, List<JSONObject> response) {
+                movies = response;
                 refreshErrorMessage();
             }
 
