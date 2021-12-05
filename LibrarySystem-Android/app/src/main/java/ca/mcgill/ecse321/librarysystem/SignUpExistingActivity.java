@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class SignUpActivity extends Activity {
+public class SignUpExistingActivity extends Activity {
 
     private String error=null;
 
@@ -42,23 +41,17 @@ public class SignUpActivity extends Activity {
      * @param v
      * @author Sami Ait Ouahmane
      */
-    public void SignUp(View v) {
+    public void SignUpExisting(View v) {
         error = "";
-        final TextView tvfN = (TextView) findViewById(R.id.firstNameUser);
-        final TextView tvlN = (TextView) findViewById(R.id.lastNameUser);
-        final TextView tvAd = (TextView) findViewById(R.id.address);
-        final TextView tvCity = (TextView) findViewById(R.id.city);
-        final TextView tvUsername = (TextView) findViewById(R.id.username);
-        final TextView tvPassword = (TextView) findViewById(R.id.password);
-        final TextView tvEmail = (TextView) findViewById(R.id.email);
-        HttpUtils.post("onlineAccountNew/"+tvfN.getText().toString()+'/'+tvlN.getText().toString()+'/'+tvAd.getText().toString()+'/'+tvCity.getText().toString()+'/'+tvUsername.getText().toString()+'/'+tvPassword.getText().toString()+'/'+tvEmail.getText().toString()+'/',new RequestParams(), new JsonHttpResponseHandler() {
+        final TextView tvID = (TextView) findViewById(R.id.id);
+        final TextView tvUsername = (TextView) findViewById(R.id.username1);
+        final TextView tvPassword = (TextView) findViewById(R.id.password1);
+        final TextView tvEmail = (TextView) findViewById(R.id.email1);
+        HttpUtils.post("onlineAccountNew/"+tvID.getText().toString()+'/'+tvUsername.getText().toString()+'/'+tvPassword.getText().toString()+'/'+tvEmail.getText().toString(),new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 refreshErrorMessage();
-                tvfN.setText("");
-                tvlN.setText("");
-                tvAd.setText("");
-                tvCity.setText("");
+                tvID.setText("");
                 tvUsername.setText("");
                 tvPassword.setText("");
                 tvEmail.setText("");
@@ -84,7 +77,7 @@ public class SignUpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup_page);
+        setContentView(R.layout.signupexisting_page);
         // initialize error message text view
         refreshErrorMessage();
         setStyle();
@@ -106,36 +99,23 @@ public class SignUpActivity extends Activity {
      * @author Sami Ait Ouahmane
      */
     private void setStyle(){
-        Button btn_tmp = (Button)findViewById(R.id.signUp2);
+        Button btn_tmp = (Button)findViewById(R.id.signUp);
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
-
-        Window w = this.getWindow();
-        w.setStatusBarColor(Color.BLACK);
 
         TextView txt = (TextView) findViewById(R.id.header);
         txt.setBackgroundColor(0xA0000000);
 
-        EditText ed1 = (EditText) findViewById(R.id.password);
+        EditText ed1 = (EditText) findViewById(R.id.password1);
         ed1.setBackgroundColor(0xA0000000);
 
-        EditText ed2 = (EditText) findViewById(R.id.username);
+        EditText ed2 = (EditText) findViewById(R.id.username1);
         ed2.setBackgroundColor(0xA0000000);
 
-        EditText ed3 = (EditText) findViewById(R.id.email);
+        EditText ed3 = (EditText) findViewById(R.id.email1);
         ed3.setBackgroundColor(0xA0000000);
 
-        EditText ed4 = (EditText) findViewById(R.id.address);
-        ed4.setBackgroundColor(0xA0000000);
-
-        EditText ed5 = (EditText) findViewById(R.id.city);
-        ed5.setBackgroundColor(0xA0000000);
-
-        EditText ed6 = (EditText) findViewById(R.id.lastNameUser);
-        ed6.setBackgroundColor(0xA0000000);
-
-        EditText ed7 = (EditText) findViewById(R.id.firstNameUser);
+        EditText ed7 = (EditText) findViewById(R.id.id);
         ed7.setBackgroundColor(0xA0000000);
     }
-
 }
