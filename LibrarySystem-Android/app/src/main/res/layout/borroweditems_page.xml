@@ -35,8 +35,8 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/books"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -51,8 +51,8 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/bookID"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -62,8 +62,8 @@
                 android:background="@drawable/border"
                 />
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/col1"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -73,8 +73,8 @@
                 android:background="@drawable/border"
                 />
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/col2"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -89,8 +89,8 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/albums"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -105,8 +105,8 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/albumID"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -116,8 +116,8 @@
                 android:background="@drawable/border"
                 />
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/albumTitle"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -127,8 +127,8 @@
                 android:background="@drawable/border"
                 />
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/albumArtist"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -143,8 +143,8 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/movies"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -159,8 +159,8 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/movieID"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -170,8 +170,8 @@
                 android:background="@drawable/border"
                 />
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/movieTitle"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
@@ -181,8 +181,8 @@
                 android:background="@drawable/border"
                 />
             <TextView
-                android:layout-width="wrap_content"
-                android:layout-heigth="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/movieDirector"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10sp"
