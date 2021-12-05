@@ -7,29 +7,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class UserProfileActivity extends Activity {
-    private TextView nameTextView, usernameTextView, emailTextView, balanceTextView;
-    private ImageView userImageView, homeButton;
-    private Button changePasswordButton;
-    private String error = "";
-    private String name = "";
-    private String username = "";
-    private String email = "";
-    private String accountId = "";
-    private String userId = "";
-    private String balance = "";
+public class ChangePassword extends Activity {
+    private EditText passwordEditText, newPasswordEditText;
+    private ImageView homeButton, closeButton;
+    private Button confirmButton;
+    String accountId = "";
+    String error = "";
 
 
     @Override
@@ -37,22 +32,20 @@ public class UserProfileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userprofile_page);
 
-        nameTextView = findViewById(R.id.name_textView);
-        usernameTextView = findViewById(R.id.username_textView);
-        emailTextView = findViewById(R.id.email_textView);
-        balanceTextView = findViewById(R.id.balance_textView);
-        userImageView = findViewById(R.id.user_imageView);
-        changePasswordButton = findViewById(R.id.changePassword_button);
+        passwordEditText = findViewById(R.id.editTextTextPassword);
+        newPasswordEditText = findViewById(R.id.editTextTextNewPassword);
         homeButton = findViewById(R.id.home_imageView);
+        confirmButton = findViewById(R.id.confirm_button2);
+        closeButton = findViewById(R.id.close_imageView);
         setStyle();
         getUserInfo();
 
 
 
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changePasswordRedirect(view);
+                changePassword();
             }
         });
 
@@ -60,24 +53,26 @@ public class UserProfileActivity extends Activity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeRedirect(view);
+                homeRedirect();
             }
         });
 
-        nameTextView.setText(name);
-        usernameTextView.setText(username);
-        emailTextView.setText(email);
-        balanceTextView.setText(balance);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userProfileRedirect();
+            }
+        });
 
     }
 
-    public void homeRedirect(View view){
+    public void homeRedirect(){
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }
 
-    public void changePasswordRedirect(View view){
-        Intent i = new Intent(this, ChangePassword.class);
+    public void userProfileRedirect(){
+        Intent i = new Intent(this, UserProfileActivity.class);
         startActivity(i);
     }
 
@@ -93,25 +88,13 @@ public class UserProfileActivity extends Activity {
         }
     }
 
-    private void getUserInfo(){
+    public void getUserInfo(){
         HttpUtils.get("onlineAccountLoggedIn/", new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                name = "";
-                username = "";
-                email = "";
                 accountId = "";
-                userId = "";
-                balance = "";
                 try {
-                    name += response.getJSONObject("firstName").toString();
-                    name += " ";
-                    name += response.getJSONObject("lastName").toString();
-                    username = response.getJSONObject("username").toString();
-                    email = response.getJSONObject("email").toString();
                     accountId = response.getJSONObject("accountId").toString();
-                    userId = response.getJSONObject("userId").toString();
-                    balance = response.getJSONObject("balance").toString();
                 } catch (Exception e) {
                     error += e.getMessage();
                 }
@@ -129,6 +112,33 @@ public class UserProfileActivity extends Activity {
             }
         });
     }
+
+    public void changePassword(){
+        String pass = passwordEditText.toString();
+        String newPass = newPasswordEditText.toString();
+        RequestParams rp = new RequestParams();
+        rp.add("id", accountId);
+        rp.add("password", pass);
+        rp.add("newPassword", newPass);
+
+        HttpUtils.put("changePassword/", rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
     private void setStyle(){
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
