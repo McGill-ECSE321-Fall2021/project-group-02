@@ -112,19 +112,31 @@ public class ViewContentsActivity extends Activity {
             }
         });
     }
-
+    /**
+     * Display all the albums in the library
+     * @author Julie
+     */
     public void displayAlbums() {
 
     }
-
+    /**
+     * Display all the movies in the library
+     * @author Julie
+     */
     public void displayMovies() {
 
     }
-
+    /**
+     * Display all the newspapers in the library
+     * @author Julie
+     */
     public void displayNewspapers() {
 
     }
-
+    /**
+     * Display all the journals in the library
+     * @author Julie
+     */
     public void displayJournals() {
 
     }
