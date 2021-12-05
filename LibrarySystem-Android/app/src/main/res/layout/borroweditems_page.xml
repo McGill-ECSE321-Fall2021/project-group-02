@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/borrowedItemsPageHeader"
+        android:text="VIEW BORROWED ITEMS"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -22,15 +22,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
-        android:layout_width="352dp"
-        android:layout_height="566dp"
-        android:layout_margin="40dp"
+        android:id="@+id/content"
+        android:layout_width="380dp"
+        android:layout_height="650dp"
+        android:layout_margin="30dp"
         android:background="@color/white"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="110dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
         tools:ignore="MissingConstraints" >
 
         <TableRow
+            android:id="@+id/Books"
             android:background="@drawable/border"
             tools:ignore="MissingConstraints">
 
@@ -52,6 +55,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
+                android:id="@+id/id_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bookID"
@@ -63,6 +67,7 @@
                 android:background="@drawable/border"
                 />
             <TextView
+                android:id="@+id/title_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/col1"
@@ -74,6 +79,7 @@
                 android:background="@drawable/border"
                 />
             <TextView
+                android:id="@+id/author_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/col2"
@@ -85,7 +91,9 @@
                 android:background="@drawable/border"
                 />
         </TableRow>
+
         <TableRow
+            android:id="@+id/Albums"
             android:background="@drawable/border"
             tools:ignore="MissingConstraints">
 
@@ -139,7 +147,9 @@
                 android:background="@drawable/border"
                 />
         </TableRow>
+
         <TableRow
+            android:id="@+id/Movies"
             android:background="@drawable/border"
             tools:ignore="MissingConstraints">
 
@@ -193,7 +203,6 @@
                 android:background="@drawable/border"
                 />
         </TableRow>
-
     </TableLayout>
 
 
