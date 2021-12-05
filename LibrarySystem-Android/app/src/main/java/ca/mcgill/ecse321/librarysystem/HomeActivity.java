@@ -40,16 +40,16 @@ public class HomeActivity extends Activity {
         startActivity(i);
     }
 
-//    /**
-//     * Redirects to the user profile page
-//     *
-//     * @param view the view that calls the method
-//     * @author Niilo
-//     */
-//    public void userProfileRedirect(View view){
-//        Intent i = new Intent(this, UserProfileActivity.class);
-//        startActivity(i);
-//    }
+    /**
+     * Redirects to the user profile page
+     *
+     * @param view the view that calls the method
+     * @author Niilo
+     */
+    public void userProfileRedirect(View view){
+        Intent i = new Intent(this, UserProfileActivity.class);
+        startActivity(i);
+    }
 
 
     /**
@@ -129,9 +129,9 @@ public class HomeActivity extends Activity {
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
 
-//        btn_tmp = (Button)findViewById(R.id.buttonUserProfile);
-//        btn_tmp.setBackgroundColor(0xFF961919);
-//        btn_tmp.setTextColor(Color.WHITE);
+        btn_tmp = (Button)findViewById(R.id.buttonUserProfile);
+        btn_tmp.setBackgroundColor(0xFF961919);
+        btn_tmp.setTextColor(Color.WHITE);
 
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
