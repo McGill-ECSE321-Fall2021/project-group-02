@@ -31,7 +31,7 @@ public class UserProfileActivity extends Activity {
     private String userId = "";
     private String balance = "";
 
-
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,4 +133,5 @@ public class UserProfileActivity extends Activity {
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
     }
+ */
 }

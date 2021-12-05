@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../layout/custom_preview.xml" value="0.31302083333333336" />
         <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/activity_main.xml" value="0.3875" />
         <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/borroweditems_page.xml" value="0.3875" />
         <entry key="..\:/Users/Niilo/Documents/GitHub/project-group-02/LibrarySystem-Android/app/src/main/res/layout/content_main.xml" value="0.10393258426966293" />
@@ -29,6 +30,7 @@
         <entry key="app/src/main/res/drawable/darkborder.xml" value="0.26944444444444443" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.26944444444444443" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.26944444444444443" />
+        <entry key="app/src/main/res/layout/intro_page.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/userprofile_page.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/viewcontents_page.xml" value="0.335" />
       </map>

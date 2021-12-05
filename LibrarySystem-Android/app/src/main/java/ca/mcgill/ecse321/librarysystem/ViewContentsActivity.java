@@ -2,7 +2,10 @@ package ca.mcgill.ecse321.librarysystem;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TableLayout;
@@ -31,24 +34,13 @@ public class ViewContentsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewcontents_page);
 
-        displayBooks(findViewById(R.id.books_table));
+        displayBooks(findViewById(R.id.books_info));
 
         books = findViewById(R.id.books_table);
         albums = findViewById(R.id.albums_table);
         movies = findViewById(R.id.movies_table);
         newspapers = findViewById(R.id.newspapers_table);
         journals = findViewById(R.id.journals_table);
-    }
-
-    /**
-     * Redirects to the homepage
-     * @param view
-     *
-     * @author Julie
-     */
-    public void homeRedirect(View view){
-        Intent i = new Intent(this, HomeActivity.class);
-        startActivity(i);
     }
 
     /**
@@ -61,30 +53,52 @@ public class ViewContentsActivity extends Activity {
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONArray response) {
                 try {
                     for (int i=0; i<response.length(); i++) {
-
-                        LayoutInflater inflater = LayoutInflater.from(ViewContentsActivity.this);
-                        row = (TableRow) inflater.inflate(R.layout.viewcontents_page, null, false);
-
                         String id = response.getJSONObject(i).getString("id");
                         String title = response.getJSONObject(i).getString("title");
                         String author = response.getJSONObject(i).getString("author");
-                        String available = String.valueOf(response.getJSONObject(i).getBoolean("isBorrowable"));
+                        String available = String.valueOf(response.getJSONObject(i).getBoolean("isAvailable"));
 
-                        TextView text1 = (TextView) v.findViewById(R.id.book_id);
+                        TableRow row = new TableRow(ViewContentsActivity.this);
+                        TextView text1 = new TextView(ViewContentsActivity.this);
+                        TextView text2 = new TextView(ViewContentsActivity.this);
+                        TextView text3 = new TextView(ViewContentsActivity.this);
+                        TextView text4 = new TextView(ViewContentsActivity.this);
+
+                        text1.setGravity(Gravity.CENTER);
+                        text2.setTextSize(12.0f);
+                        text1.setBackgroundColor(Color.parseColor("#eeeeee"));
+                        text1.setTypeface(null, Typeface.BOLD);
                         text1.setText(id);
-                        TextView text2 = (TextView) v.findViewById(R.id.book_title);
+                        row.addView(text1);
+
+                        text2.setGravity(Gravity.CENTER);
+                        text2.setTextSize(12.0f);
+                        text2.setBackgroundColor(Color.parseColor("#eeeeee"));
+                        text2.setTypeface(null, Typeface.BOLD);
                         text2.setText(title);
-                        TextView text3 = (TextView) v.findViewById(R.id.book_author);
+                        row.addView(text2);
+
+                        text3.setGravity(Gravity.CENTER);
+                        text3.setTextSize(12.0f);
+                        text3.setBackgroundColor(Color.parseColor("#eeeeee"));
+                        text3.setTypeface(null, Typeface.BOLD);
                         text3.setText(author);
-                        TextView text4 = (TextView) v.findViewById(R.id.book_availability);
+                        row.addView(text3);
+
+                        text4.setGravity(Gravity.CENTER);
+                        text4.setTextSize(12.0f);
+                        text4.setBackgroundColor(Color.parseColor("#eeeeee"));
+                        text4.setTypeface(null, Typeface.BOLD);
                         text4.setText(available);
+                        row.addView(text4);
+
                         books.addView(row);
 
                     }
                 } catch (Exception e) {
                     error += e.getMessage();
                 }
-                refreshErrorMessage();
+               // refreshErrorMessage();
             }
 
             @Override
@@ -94,7 +108,7 @@ public class ViewContentsActivity extends Activity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
-                refreshErrorMessage();
+                //refreshErrorMessage();
             }
         });
     }
@@ -113,22 +127,5 @@ public class ViewContentsActivity extends Activity {
 
     public void displayJournals() {
 
-    }
-
-    /**
-     * Refresh/clear the error message
-     *
-     * @author Julie
-     */
-    private void refreshErrorMessage() {
-        // set the error message
-        TextView tvError = (TextView) findViewById(R.id.error);
-        tvError.setText(error);
-
-        if (error == null || error.length() == 0) {
-            tvError.setVisibility(View.GONE);
-        } else {
-            tvError.setVisibility(View.VISIBLE);
-        }
     }
 }

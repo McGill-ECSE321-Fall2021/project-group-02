@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background">
-
+<!--
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
@@ -131,5 +131,5 @@
             app:layout_constraintTop_toBottomOf="@+id/username_textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>
