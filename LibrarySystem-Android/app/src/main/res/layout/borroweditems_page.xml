@@ -7,18 +7,6 @@
     android:background="@drawable/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-<!--    <Button-->
-<!--        android:id="@+id/changePassword_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="400dp"-->
-<!--        android:background="@android:color/holo_red_dark"-->
-<!--        android:text="Home"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <TextView
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -45,6 +33,7 @@
         tools:ignore="MissingConstraints" >
 
         <TableRow
+            android:id="@+id/Books"
             android:background="@drawable/border"
             tools:ignore="MissingConstraints">
 
@@ -104,6 +93,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/Albums"
             android:background="@drawable/border"
             tools:ignore="MissingConstraints">
 
@@ -159,6 +149,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/Movies"
             android:background="@drawable/border"
             tools:ignore="MissingConstraints">
 
