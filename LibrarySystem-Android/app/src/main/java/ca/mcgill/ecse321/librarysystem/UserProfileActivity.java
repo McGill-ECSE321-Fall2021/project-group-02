@@ -41,19 +41,19 @@ public class UserProfileActivity extends Activity {
 //        emailTextView = findViewById(R.id.email_textView);
 //        balanceTextView = findViewById(R.id.balance_textView);
         userImageView = findViewById(R.id.user_imageView);
-        changePasswordButton = findViewById(R.id.changePassword_button);
+//        changePasswordButton = findViewById(R.id.changePassword_button);
         homeButton = findViewById(R.id.home_imageView);
         setStyle();
         getUserInfo();
 
 
 
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changePasswordRedirect(view);
-            }
-        });
+//        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                changePasswordRedirect(view);
+//            }
+//        });
 
 
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +75,10 @@ public class UserProfileActivity extends Activity {
         startActivity(i);
     }
 
-    public void changePasswordRedirect(View view){
-        Intent i = new Intent(this, ChangePasswordActivity.class);
-        startActivity(i);
-    }
+//    public void changePasswordRedirect(View view){
+//        Intent i = new Intent(this, ChangePasswordActivity.class);
+//        startActivity(i);
+//    }
 
     private void refreshErrorMessage() {
         // set the error message
@@ -118,7 +118,7 @@ public class UserProfileActivity extends Activity {
                     tv.setTextColor(Color.BLACK);
 
                     tv = (TextView)findViewById(R.id.balance_textView);
-                    tv.setText(response.getString("balance"));
+                    tv.setText("$" + response.getString("balance"));
                     tv.setTextColor(Color.BLACK);
 
                 } catch (Exception e) {
