@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
      <TableLayout
+         android:id="@+id/books_table"
          android:layout_width="352dp"
          android:layout_height="115dp"
          android:layout_margin="40dp"
@@ -47,9 +48,11 @@
           </TableRow>
 
          <TableRow
+             android:id="@+id/books_info"
              android:background="@drawable/darkBorder"
              tools:ignore="MissingConstraints">
              <TextView
+                 android:id="@+id/book_id"
                  android:layout_width="0dp"
                  android:layout_height="wrap_content"
                  android:text="@string/col0"
@@ -91,7 +94,9 @@
                   />
          </TableRow>
      </TableLayout>
+
     <TableLayout
+        android:id="@+id/albums_table"
         android:layout_width="352dp"
         android:layout_height="115dp"
         android:layout_margin="40dp"
@@ -162,6 +167,7 @@
         </TableLayout>
 
     <TableLayout
+        android:id="@+id/movies_table"
         android:layout_width="352dp"
         android:layout_height="115dp"
         android:layout_margin="40dp"
@@ -230,7 +236,9 @@
                    />
           </TableRow>
     </TableLayout>
+
     <TableLayout
+        android:id="@+id/newspapers_table"
         android:layout_width="352dp"
         android:layout_height="115dp"
         android:layout_margin="40dp"
@@ -290,7 +298,9 @@
                    />
           </TableRow>
     </TableLayout>
+
     <TableLayout
+        android:id="@+id/journals_table"
         android:layout_width="352dp"
         android:layout_height="115dp"
         android:layout_margin="40dp"
