@@ -35,11 +35,11 @@ public class UserProfileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userprofile_page);
 
-        nameTextView = findViewById(R.id.name_textView);
-        nameTextView.setTextColor(Color.BLACK);
-        usernameTextView = findViewById(R.id.username_textView);
-        emailTextView = findViewById(R.id.email_textView);
-        balanceTextView = findViewById(R.id.balance_textView);
+//        nameTextView = findViewById(R.id.name_textView);
+//        nameTextView.setTextColor(Color.BLACK);
+//        usernameTextView = findViewById(R.id.username_textView);
+//        emailTextView = findViewById(R.id.email_textView);
+//        balanceTextView = findViewById(R.id.balance_textView);
         userImageView = findViewById(R.id.user_imageView);
         changePasswordButton = findViewById(R.id.changePassword_button);
         homeButton = findViewById(R.id.home_imageView);
@@ -63,10 +63,10 @@ public class UserProfileActivity extends Activity {
             }
         });
 
-        nameTextView.setText(name);
-        usernameTextView.setText(username);
-        emailTextView.setText(email);
-        balanceTextView.setText(balance);
+//        nameTextView.setText(name);
+//        usernameTextView.setText(username);
+//        emailTextView.setText(email);
+//        balanceTextView.setText(balance);
 
     }
 
