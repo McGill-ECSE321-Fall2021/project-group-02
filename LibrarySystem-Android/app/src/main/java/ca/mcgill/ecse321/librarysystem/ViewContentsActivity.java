@@ -31,6 +31,8 @@ public class ViewContentsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewcontents_page);
 
+        displayBooks(findViewById(R.id.books_info));
+
         books = findViewById(R.id.books_table);
         albums = findViewById(R.id.albums_table);
         movies = findViewById(R.id.movies_table);
