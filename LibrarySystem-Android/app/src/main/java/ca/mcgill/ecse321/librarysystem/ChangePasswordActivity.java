@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ChangePassword extends Activity {
+public class ChangePasswordActivity extends Activity {
     private EditText passwordEditText, newPasswordEditText;
     private ImageView homeButton, closeButton;
     private Button confirmButton;

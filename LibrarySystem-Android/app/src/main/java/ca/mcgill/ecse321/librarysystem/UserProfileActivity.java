@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -77,7 +76,7 @@ public class UserProfileActivity extends Activity {
     }
 
     public void changePasswordRedirect(View view){
-        Intent i = new Intent(this, ChangePassword.class);
+        Intent i = new Intent(this, ChangePasswordActivity.class);
         startActivity(i);
     }
 

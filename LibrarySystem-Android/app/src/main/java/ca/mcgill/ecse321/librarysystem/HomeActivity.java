@@ -30,6 +30,16 @@ public class HomeActivity extends Activity {
     }
 
     /**
+     * Overrides the back button to do nothing when pressed
+     *
+     * @author Niilo
+     */
+    @Override
+    public void onBackPressed() {
+        // Do nothing on back press
+    }
+
+    /**
      * Redirects to the view contents page
      *
      * @param view the view that calls the method

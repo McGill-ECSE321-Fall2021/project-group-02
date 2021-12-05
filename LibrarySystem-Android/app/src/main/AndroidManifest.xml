@@ -28,6 +28,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ViewContentsActivity" />
         <activity android:name=".SignUpExistingActivity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".ChangePasswordActivity" />
     </application>
 
 </manifest>
