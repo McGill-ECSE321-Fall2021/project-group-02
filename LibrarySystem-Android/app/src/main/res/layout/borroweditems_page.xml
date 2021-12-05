@@ -35,12 +35,13 @@
 
     <TableLayout
         android:id="@+id/content"
-        android:layout_width="410dp"
-        android:layout_height="660dp"
-        android:layout_margin="40dp"
+        android:layout_width="380dp"
+        android:layout_height="650dp"
+        android:layout_margin="30dp"
         android:background="@color/white"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="110dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
         tools:ignore="MissingConstraints" >
 
         <TableRow
@@ -65,6 +66,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
+                android:id="@+id/id_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bookID"
@@ -76,6 +78,7 @@
                 android:background="@drawable/border"
                 />
             <TextView
+                android:id="@+id/title_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/col1"
@@ -87,6 +90,7 @@
                 android:background="@drawable/border"
                 />
             <TextView
+                android:id="@+id/author_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/col2"
