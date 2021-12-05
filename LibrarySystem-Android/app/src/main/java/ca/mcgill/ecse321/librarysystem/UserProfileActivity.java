@@ -20,22 +20,11 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 public class UserProfileActivity extends Activity {
-    private TextView nameTextView, usernameTextView, emailTextView, balanceTextView;
-    private ImageView userImageView, homeButton;
-    private Button changePasswordButton;
-    private String error = "";
-    private String name = "";
-    private String username = "";
-    private String email = "";
-    private String accountId = "";
-    private String userId = "";
-    private String balance = "";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userprofile_page);
+
 
         nameTextView = findViewById(R.id.name_textView);
         usernameTextView = findViewById(R.id.username_textView);
