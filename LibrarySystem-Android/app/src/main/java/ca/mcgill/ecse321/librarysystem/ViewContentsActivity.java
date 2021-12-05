@@ -18,14 +18,12 @@ import org.json.JSONArray;
 
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
+
 public class ViewContentsActivity extends Activity {
     private TableLayout books, albums, movies, newspapers, journals;
-    private String error = "";
-    private String id = "";
-    private String title = "";
-    private String creator = "";
-    private String date = "";
     private static TableRow row;
+    private String error = "";
 
 
     @Override
@@ -68,11 +66,16 @@ public class ViewContentsActivity extends Activity {
                         String id = response.getJSONObject(i).getString("id");
                         String title = response.getJSONObject(i).getString("title");
                         String author = response.getJSONObject(i).getString("author");
-                        boolean available = response.getJSONObject(i).getBoolean("isBorrowable");
+                        String available = String.valueOf(response.getJSONObject(i).getBoolean("isBorrowable"));
 
-                        TextView text = (TextView) v.findViewById(R.id.book_id);
-                        text.setText(id);
-
+                        TextView text1 = (TextView) v.findViewById(R.id.book_id);
+                        text1.setText(id);
+                        TextView text2 = (TextView) v.findViewById(R.id.book_title);
+                        text2.setText(title);
+                        TextView text3 = (TextView) v.findViewById(R.id.book_author);
+                        text3.setText(author);
+                        TextView text4 = (TextView) v.findViewById(R.id.book_availability);
+                        text4.setText(available);
                         books.addView(row);
 
                     }
@@ -83,7 +86,7 @@ public class ViewContentsActivity extends Activity {
             }
 
             @Override
-            public void onFailure(JSONObject errorResponse) {
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
                     error += errorResponse.get("message").toString();
                 } catch (JSONException e) {
