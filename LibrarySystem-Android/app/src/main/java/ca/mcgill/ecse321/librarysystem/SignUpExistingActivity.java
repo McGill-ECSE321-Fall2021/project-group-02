@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,7 +48,7 @@ public class SignUpExistingActivity extends Activity {
         final TextView tvUsername = (TextView) findViewById(R.id.username1);
         final TextView tvPassword = (TextView) findViewById(R.id.password1);
         final TextView tvEmail = (TextView) findViewById(R.id.email1);
-        HttpUtils.post("onlineAccountNew/"+tvID.getText().toString()+'/'+tvUsername.getText().toString()+'/'+tvPassword.getText().toString()+'/'+tvEmail.getText().toString(),new RequestParams(), new JsonHttpResponseHandler() {
+        HttpUtils.post("onlineAccountExisting/"+tvID.getText().toString()+'/'+tvUsername.getText().toString()+'/'+tvPassword.getText().toString()+'/'+tvEmail.getText().toString(),new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 refreshErrorMessage();
@@ -102,6 +103,9 @@ public class SignUpExistingActivity extends Activity {
         Button btn_tmp = (Button)findViewById(R.id.signUp);
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
+
+        Window w = this.getWindow();
+        w.setStatusBarColor(Color.BLACK);
 
         TextView txt = (TextView) findViewById(R.id.header);
         txt.setBackgroundColor(0xA0000000);

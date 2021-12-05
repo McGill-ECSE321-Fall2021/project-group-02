@@ -40,16 +40,17 @@ public class HomeActivity extends Activity {
         startActivity(i);
     }
 
-    /**
-     * Redirects to the user profile page
-     *
-     * @param view the view that calls the method
-     * @author Niilo
-     */
-    public void userProfileRedirect(View view){
-        Intent i = new Intent(this, UserProfileActivity.class);
-        startActivity(i);
-    }
+//    /**
+//     * Redirects to the user profile page
+//     *
+//     * @param view the view that calls the method
+//     * @author Niilo
+//     */
+//    public void userProfileRedirect(View view){
+//        Intent i = new Intent(this, UserProfileActivity.class);
+//        startActivity(i);
+//    }
+
 
     /**
      * Redirects to the borrowed items page
@@ -87,17 +88,16 @@ public class HomeActivity extends Activity {
                 refreshErrorMessage();
                 introRedirect(v);
             }
+
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 refreshErrorMessage();
+                introRedirect(v);
             }
         });
     }
+
+
 
     /**
      * Redirects to the intro page
@@ -124,16 +124,18 @@ public class HomeActivity extends Activity {
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
 
-        btn_tmp = (Button)findViewById(R.id.buttonUserProfile);
-        btn_tmp.setBackgroundColor(0xFF961919);
-        btn_tmp.setTextColor(Color.WHITE);
 
         btn_tmp = (Button)findViewById(R.id.buttonViewContents);
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
 
+//        btn_tmp = (Button)findViewById(R.id.buttonUserProfile);
+//        btn_tmp.setBackgroundColor(0xFF961919);
+//        btn_tmp.setTextColor(Color.WHITE);
+
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
+
 
         TextView txt = (TextView) findViewById(R.id.header);
         txt.setBackgroundColor(0xA0000000);
