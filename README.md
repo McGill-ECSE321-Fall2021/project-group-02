@@ -58,18 +58,18 @@ The project report for deliverable 3 can be found [here.](https://github.com/McG
 | Name | Contributions | Hours |
 | --- | --- | --- |
 | Sami Ait Ouahmane | Creation of the UI for the home page and the login/signup page. Implementation of the corresponding javascript pages and service methods to log in and sign out. Calling of the borrowItem method for the 'Manage Items' page. Creation of the architecture model(s) | 30h |
-| Julie Chen | Creation of the UI 'Manage Items' page and implementation of the corresponding JavaScript for the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods, as well as the creation of additional service and controller methods required for functionality. Management of deliverable 3 documentation (projected report and architecture model documentation). Creation of the presentation slides. | 30h |
+| Julie Chen | Creation of the UI 'Manage Items' page and implementation of the corresponding JavaScript for the returnItem, archiveItem, damageItem, createItem, and deleteItem service methods, as well as the creation of additional service and controller methods required for functionality. Management of deliverable 3 documentation (project report and architecture model documentation). Creation of the presentation slides. | 30h |
 | Hyunbum Cho | Creation of UI for user profile page and borrowed items page and related backend controller methods that were missing. | 25h |
 | Vy-Kha Huynh | Creation of the ManageLibrarianPage UI, implementation and connection between backend and frontend, all service method related to firing and hiring librarians, some service emthod to get info about the user such as id and type | 20h |
 | Niilo Vuokila | Creation of UI for 'View Library Contents', implementation of corresponding JavaScript. Modification of DTOs, service, and controller methods in backend. | 23h |
 | John Park | Creation of UI for 'Manage Library Schedule', implementation of corresponding JavaScript. Modification of DTOs, service, and controller methods in backend. | 25h |
 
 ### Deliverable 4
-The project report for deliverable 3 can be found [here.]
+The project report for deliverable 4 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report-Deliverable-4)
 | Name | Contributions | Hours |
 | --- | --- | --- |
 | Sami Ait Ouahmane |  |  |
-| Julie Chen |  |  |
+| Julie Chen | Creation of the view library contents page for the Android application. Management of deliverable 4 documentation (project report and user documentation) | 10h |
 | Hyunbum Cho |  |  |
 | Vy-Kha Huynh |  |  |
 | Niilo Vuokila | Creation of the home page and intro page activity and template files. Added template and activity files for each required page and configured the branch. | 8h |
