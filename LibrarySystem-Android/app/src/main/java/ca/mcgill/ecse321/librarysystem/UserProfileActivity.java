@@ -49,11 +49,18 @@ public class UserProfileActivity extends Activity {
 
     }
 
+    /**
+     * Redirect to hompage
+     * @param view view
+     */
     public void homeRedirect(View view){
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Refresh error message
+     */
     private void refreshErrorMessage() {
         // set the error message
         TextView tvError = (TextView) findViewById(R.id.error);
@@ -66,6 +73,9 @@ public class UserProfileActivity extends Activity {
         }
     }
 
+    /**
+     * Gets logged in user information and displays on screen.
+     */
     private void getUserInfo(){
         HttpUtils.get("onlineAccountLoggedIn/", new RequestParams(), new JsonHttpResponseHandler() {
             @Override
