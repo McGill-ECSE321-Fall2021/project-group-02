@@ -42,9 +42,26 @@ public class BorrowedItemsActivity extends Activity {
         setStyle();
     }
 
+    /**
+     *
+     * Populates the table with the borrowed item of the current logged in user
+     *
+     * @throws JSONException
+     *
+     * @author Vy-Kha Huynh
+     */
     public void populate() throws JSONException {
         TableLayout stk = (TableLayout) findViewById(R.id.content);
         HttpUtils.get("onlineAccountLoggedIn/", new RequestParams(), new JsonHttpResponseHandler() {
+            /**
+             * Return the logged in user id
+             *
+             * @param statusCode
+             * @param headers
+             * @param response
+             *
+             * @author Vy-Kha Huynh
+             */
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response){
                 try {
@@ -52,6 +69,16 @@ public class BorrowedItemsActivity extends Activity {
                     RequestParams rp = new RequestParams();
                     rp.add("id",Integer.toString(id));
                     HttpUtils.get("borrowedItems/books", rp , new JsonHttpResponseHandler() {
+                        /**
+                         *
+                         * Returns all the borrowed books of the user
+                         *
+                         * @param statusCode
+                         * @param headers
+                         * @param response
+                         *
+                         * @author Vy-Kha Huynh
+                         */
                         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                             try {
                                 books = response;
@@ -96,6 +123,16 @@ public class BorrowedItemsActivity extends Activity {
                     });
 
                     HttpUtils.get("borrowedItems/albums", rp , new JsonHttpResponseHandler() {
+                        /**
+                         *
+                         * Returns all the borrowed albums of the user
+                         *
+                         * @param statusCode
+                         * @param headers
+                         * @param response
+                         *
+                         * @author Vy-Kha Huynh
+                         */
                         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                             try {
                                 albums = response;
@@ -138,6 +175,16 @@ public class BorrowedItemsActivity extends Activity {
                     });
 
                     HttpUtils.get("borrowedItems/movies", rp , new JsonHttpResponseHandler() {
+                        /**
+                         *
+                         * Returns all the borrowed movies of the user
+                         *
+                         * @param statusCode
+                         * @param headers
+                         * @param response
+                         *
+                         * @author Vy-Kha Huynh
+                         */
                         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                             try {
                                 movies = response;
