@@ -15,7 +15,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cz.msebera.android.httpclient.entity.mime.Header;
+import cz.msebera.android.httpclient.Header;
 
 public class HomeActivity extends Activity {
 
@@ -27,6 +27,16 @@ public class HomeActivity extends Activity {
         // Set the correct xml layout for this activity
         setContentView(R.layout.home_page);
         setStyle();
+    }
+
+    /**
+     * Overrides the back button to do nothing when pressed
+     *
+     * @author Niilo
+     */
+    @Override
+    public void onBackPressed() {
+        // Do nothing on back press
     }
 
     /**
@@ -50,6 +60,7 @@ public class HomeActivity extends Activity {
         Intent i = new Intent(this, UserProfileActivity.class);
         startActivity(i);
     }
+
 
     /**
      * Redirects to the borrowed items page
@@ -75,31 +86,38 @@ public class HomeActivity extends Activity {
     }
 
     /**
-     * Redirects to the sign out page
-     *
-     * @param view the view that calls the method
-     * @author Niilo
+     * Allows the user to sign out
+     * @param v
+     * @author Sami Ait Ouahmane
      */
-    public void signOutRedirect(View view){
+    public void SignOut(View v) {
         error = "";
-        Intent i = new Intent(this, IntroActivity.class);
-
-        // TODO: get error handling to work
-        HttpUtils.post("signOut/",  new RequestParams(), new JsonHttpResponseHandler(){
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+        HttpUtils.post("signOut/",new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
                 refreshErrorMessage();
-
+                introRedirect(v);
             }
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 refreshErrorMessage();
+                introRedirect(v);
             }
         });
-        startActivity(i);// Should be inside onSuccess(), does not work for some reason
+    }
+
+
+
+    /**
+     * Redirects to the intro page
+     *
+     * @param view the view that calls the method
+     * @author Sami Ait Ouahmane
+     */
+    public void introRedirect(View view){
+        Intent i = new Intent(this, IntroActivity.class);
+        startActivity(i);
     }
 
     /**
@@ -116,16 +134,18 @@ public class HomeActivity extends Activity {
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
 
-        btn_tmp = (Button)findViewById(R.id.buttonUserProfile);
-        btn_tmp.setBackgroundColor(0xFF961919);
-        btn_tmp.setTextColor(Color.WHITE);
 
         btn_tmp = (Button)findViewById(R.id.buttonViewContents);
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
 
+        btn_tmp = (Button)findViewById(R.id.buttonUserProfile);
+        btn_tmp.setBackgroundColor(0xFF961919);
+        btn_tmp.setTextColor(Color.WHITE);
+
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
+
 
         TextView txt = (TextView) findViewById(R.id.header);
         txt.setBackgroundColor(0xA0000000);

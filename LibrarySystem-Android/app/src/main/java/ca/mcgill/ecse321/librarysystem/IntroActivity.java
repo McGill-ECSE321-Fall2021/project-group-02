@@ -23,6 +23,16 @@ public class IntroActivity extends Activity {
     }
 
     /**
+     * Overrides the back button to do nothing when pressed
+     *
+     * @author Niilo
+     */
+    @Override
+    public void onBackPressed() {
+        // Do nothing on back press
+    }
+
+    /**
      * Redirects to the log in page
      *
      * @param view the view that calls the method
@@ -30,6 +40,11 @@ public class IntroActivity extends Activity {
      */
     public void logInRedirect(View view){
         Intent i = new Intent(this, LogInActivity.class);
+        startActivity(i);
+    }
+
+    public void homeRedirect(View view){
+        Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }
 
@@ -45,6 +60,17 @@ public class IntroActivity extends Activity {
     }
 
     /**
+     * Redirects to the sign up existing user page
+     *
+     * @param view the view that calls the method
+     * @author Sami Ait Ouahmane
+     */
+    public void signUpExistingRedirect(View view){
+        Intent i = new Intent(this, SignUpExistingActivity.class);
+        startActivity(i);
+    }
+
+    /**
      * Sets the style of the Activity to hardcoded specifications
      *
      * @author Niilo
@@ -55,6 +81,10 @@ public class IntroActivity extends Activity {
         btn_tmp.setTextColor(Color.WHITE);
 
         btn_tmp = (Button)findViewById(R.id.buttonSignUp);
+        btn_tmp.setBackgroundColor(0xFF961919);
+        btn_tmp.setTextColor(Color.WHITE);
+
+        btn_tmp = (Button)findViewById(R.id.buttonSignUp2);
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
 

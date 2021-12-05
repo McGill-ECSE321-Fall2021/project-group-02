@@ -211,4 +211,5 @@ public class BorrowedItemsActivity extends Activity {
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
     }
+
 }

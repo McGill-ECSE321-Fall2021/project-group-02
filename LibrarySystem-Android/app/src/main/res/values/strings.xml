@@ -10,6 +10,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <string name="col0">ID</string>
     <string name="col1">Title</string>
     <string name="col2">Author</string>
     <string name="col3">Availability</string>
@@ -35,4 +36,8 @@
     <string name="journalsName">Name</string>
     <string name="journalsDate">Date</string>
     <string name="journalID">ID</string>
+
+    <string name="borrowedItemsPageHeader">BORROWED ITEMS</string>
+
+    <string name="viewContentsPageHeader">VIEW LIBRARY CONTENTS</string>
 </resources>

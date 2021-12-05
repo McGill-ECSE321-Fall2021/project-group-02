@@ -38,8 +38,9 @@ public class HttpUtils {
         client.post(url, params, responseHandler);
     }
 
-    public static void putByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.put(url, params, responseHandler);
+
+    public static void put(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        client.put(getAbsoluteUrl(url), params, responseHandler);
     }
 
     private static String getAbsoluteUrl(String relativeUrl) {

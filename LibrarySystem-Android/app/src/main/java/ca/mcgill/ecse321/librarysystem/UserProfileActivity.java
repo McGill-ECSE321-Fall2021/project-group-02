@@ -2,13 +2,14 @@ package ca.mcgill.ecse321.librarysystem;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -29,32 +30,31 @@ public class UserProfileActivity extends Activity {
     private String userId = "";
     private String balance = "";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userprofile_page);
 
-        nameTextView = findViewById(R.id.name_textView);
-        usernameTextView = findViewById(R.id.username_textView);
-        emailTextView = findViewById(R.id.email_textView);
-        balanceTextView = findViewById(R.id.balance_textView);
+//        nameTextView = findViewById(R.id.name_textView);
+//        nameTextView.setTextColor(Color.BLACK);
+//        usernameTextView = findViewById(R.id.username_textView);
+//        emailTextView = findViewById(R.id.email_textView);
+//        balanceTextView = findViewById(R.id.balance_textView);
         userImageView = findViewById(R.id.user_imageView);
         changePasswordButton = findViewById(R.id.changePassword_button);
         homeButton = findViewById(R.id.home_imageView);
-
+        setStyle();
         getUserInfo();
 
 
-        /*
+
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                changePasswordRedirect(view);
             }
         });
-        */
+
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,15 +63,20 @@ public class UserProfileActivity extends Activity {
             }
         });
 
-        nameTextView.setText(name);
-        usernameTextView.setText(username);
-        emailTextView.setText(email);
-        balanceTextView.setText(balance);
+//        nameTextView.setText(name);
+//        usernameTextView.setText(username);
+//        emailTextView.setText(email);
+//        balanceTextView.setText(balance);
 
     }
 
     public void homeRedirect(View view){
         Intent i = new Intent(this, HomeActivity.class);
+        startActivity(i);
+    }
+
+    public void changePasswordRedirect(View view){
+        Intent i = new Intent(this, ChangePasswordActivity.class);
         startActivity(i);
     }
 
@@ -89,7 +94,7 @@ public class UserProfileActivity extends Activity {
 
     private void getUserInfo(){
         HttpUtils.get("onlineAccountLoggedIn/", new RequestParams(), new JsonHttpResponseHandler() {
-
+            @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 name = "";
                 username = "";
@@ -98,14 +103,24 @@ public class UserProfileActivity extends Activity {
                 userId = "";
                 balance = "";
                 try {
-                    name += response.getJSONObject("firstName").toString();
-                    name += " ";
-                    name += response.getJSONObject("lastName").toString();
-                    username = response.getJSONObject("username").toString();
-                    email = response.getJSONObject("email").toString();
-                    accountId = response.getJSONObject("accountId").toString();
-                    userId = response.getJSONObject("userId").toString();
-                    balance = response.getJSONObject("balance").toString();
+                    TextView tv = (TextView)findViewById(R.id.name_textView);
+
+                    tv.setTextColor(Color.BLACK);
+                    String s =(String)response.getString("firstName") + " " +(String) response.getString("lastName");
+                    tv.setText(s);
+
+                    tv = (TextView)findViewById(R.id.username_textView);
+                    tv.setText(response.getString("username"));
+                    tv.setTextColor(Color.BLACK);
+
+                    tv = (TextView)findViewById(R.id.email_textView);
+                    tv.setText(response.getString("email"));
+                    tv.setTextColor(Color.BLACK);
+
+                    tv = (TextView)findViewById(R.id.balance_textView);
+                    tv.setText(response.getString("balance"));
+                    tv.setTextColor(Color.BLACK);
+
                 } catch (Exception e) {
                     error += e.getMessage();
                 }
@@ -122,5 +137,9 @@ public class UserProfileActivity extends Activity {
                 refreshErrorMessage();
             }
         });
+    }
+    private void setStyle(){
+        Window w = this.getWindow();
+        w.setStatusBarColor(Color.BLACK);
     }
 }

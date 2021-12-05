@@ -18,7 +18,8 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class LogInActivity extends Activity {
+public class SignUpExistingActivity extends Activity {
+
     private String error=null;
 
     /**
@@ -37,33 +38,25 @@ public class LogInActivity extends Activity {
     }
 
     /**
-     * Sets the layout to the signup page and shows the error message
-     * @param savedInstanceState
-     * @author Sami Ait Ouahmane
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_page);
-        setStyle();
-    }
-
-    /**
-     * Allows the user to log in
+     * Allows the user to sign up
      * @param v
      * @author Sami Ait Ouahmane
      */
-    public void logIn(View v) {
+    public void SignUpExisting(View v) {
         error = "";
-        final TextView tv1 = (TextView) findViewById(R.id.usernameUser);
-        final TextView tv2 = (TextView) findViewById(R.id.passwordUser);
-        HttpUtils.post("logIn/" + tv1.getText().toString()+"/"+tv2.getText().toString(),new RequestParams(), new JsonHttpResponseHandler() {
+        final TextView tvID = (TextView) findViewById(R.id.id);
+        final TextView tvUsername = (TextView) findViewById(R.id.username1);
+        final TextView tvPassword = (TextView) findViewById(R.id.password1);
+        final TextView tvEmail = (TextView) findViewById(R.id.email1);
+        HttpUtils.post("onlineAccountExisting/"+tvID.getText().toString()+'/'+tvUsername.getText().toString()+'/'+tvPassword.getText().toString()+'/'+tvEmail.getText().toString(),new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 refreshErrorMessage();
-                tv1.setText("");
-                tv2.setText("");
-                homeRedirect(v);
+                tvID.setText("");
+                tvUsername.setText("");
+                tvPassword.setText("");
+                tvEmail.setText("");
+                introRedirect(v);
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
@@ -77,24 +70,37 @@ public class LogInActivity extends Activity {
         });
     }
 
-
     /**
-     * Redirects to the homepage (used to test home page layout)
-     *
-     * @author Niilo
+     * Sets the layout to the signup page and shows the error message
+     * @param savedInstanceState
+     * @author Sami Ait Ouahmane
      */
-    public void homeRedirect(View view) {
-        Intent i = new Intent(this, HomeActivity.class);
-        startActivity(i);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.signupexisting_page);
+        // initialize error message text view
+        refreshErrorMessage();
+        setStyle();
     }
 
     /**
-     * Sets the style of the Activity to hardcoded specifications for log in
+     * Redirects to the intro page
+     *
+     * @param view the view that calls the method
+     * @author Sami Ait Ouahmane
+     */
+    public void introRedirect(View view){
+        Intent i = new Intent(this, IntroActivity.class);
+        startActivity(i);
+    }
+    /**
+     * Sets the style of the Activity to hardcoded specifications for sign up nonexisting
      *
      * @author Sami Ait Ouahmane
      */
     private void setStyle(){
-        Button btn_tmp = (Button)findViewById(R.id.logIn);
+        Button btn_tmp = (Button)findViewById(R.id.signUp);
         btn_tmp.setBackgroundColor(0xFF961919);
         btn_tmp.setTextColor(Color.WHITE);
 
@@ -104,10 +110,16 @@ public class LogInActivity extends Activity {
         TextView txt = (TextView) findViewById(R.id.header);
         txt.setBackgroundColor(0xA0000000);
 
-        EditText ed1 = (EditText) findViewById(R.id.passwordUser);
+        EditText ed1 = (EditText) findViewById(R.id.password1);
         ed1.setBackgroundColor(0xA0000000);
 
-        EditText ed2 = (EditText) findViewById(R.id.usernameUser);
+        EditText ed2 = (EditText) findViewById(R.id.username1);
         ed2.setBackgroundColor(0xA0000000);
+
+        EditText ed3 = (EditText) findViewById(R.id.email1);
+        ed3.setBackgroundColor(0xA0000000);
+
+        EditText ed7 = (EditText) findViewById(R.id.id);
+        ed7.setBackgroundColor(0xA0000000);
     }
 }
