@@ -114,8 +114,10 @@ public class ChangePasswordActivity extends Activity {
     }
 
     public void changePassword(){
-        String pass = passwordEditText.toString();
-        String newPass = newPasswordEditText.toString();
+        String pass = findViewById(R.id.editTextTextPassword).toString();
+        String newPass = findViewById(R.id.editTextTextNewPassword).toString();
+//        String pass = passwordEditText.toString();
+//        String newPass = newPasswordEditText.toString();
         RequestParams rp = new RequestParams();
         rp.add("id", accountId);
         rp.add("password", pass);
