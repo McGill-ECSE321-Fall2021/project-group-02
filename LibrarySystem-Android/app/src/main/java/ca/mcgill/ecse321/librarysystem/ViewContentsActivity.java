@@ -55,7 +55,7 @@ public class ViewContentsActivity extends Activity {
      * Display all the books in the library
      * @author Julie
      */
-    public void displayBooks() {
+    public void displayBooks(View v) {
         HttpUtils.get("items/books/", new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONArray response) {
