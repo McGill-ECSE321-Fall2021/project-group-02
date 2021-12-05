@@ -43,6 +43,11 @@ public class IntroActivity extends Activity {
         startActivity(i);
     }
 
+    public void homeRedirect(View view){
+        Intent i = new Intent(this, HomeActivity.class);
+        startActivity(i);
+    }
+
     /**
      * Redirects to the sign up page
      *
