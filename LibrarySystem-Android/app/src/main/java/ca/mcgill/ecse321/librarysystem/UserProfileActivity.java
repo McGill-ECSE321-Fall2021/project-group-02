@@ -37,6 +37,7 @@ public class UserProfileActivity extends Activity {
         setContentView(R.layout.userprofile_page);
 
         nameTextView = findViewById(R.id.name_textView);
+        nameTextView.setTextColor(Color.BLACK);
         usernameTextView = findViewById(R.id.username_textView);
         emailTextView = findViewById(R.id.email_textView);
         balanceTextView = findViewById(R.id.balance_textView);
@@ -103,14 +104,24 @@ public class UserProfileActivity extends Activity {
                 userId = "";
                 balance = "";
                 try {
-                    name += response.getJSONObject("firstName").toString();
-                    name += " ";
-                    name += response.getJSONObject("lastName").toString();
-                    username = response.getJSONObject("username").toString();
-                    email = response.getJSONObject("email").toString();
-                    accountId = response.getJSONObject("accountId").toString();
-                    userId = response.getJSONObject("userId").toString();
-                    balance = response.getJSONObject("balance").toString();
+                    TextView tv = (TextView)findViewById(R.id.name_textView);
+
+                    tv.setTextColor(Color.BLACK);
+                    String s =(String)response.getString("firstName") + " " +(String) response.getString("lastName");
+                    tv.setText(s);
+
+                    tv = (TextView)findViewById(R.id.username_textView);
+                    tv.setText(response.getString("username"));
+                    tv.setTextColor(Color.BLACK);
+
+                    tv = (TextView)findViewById(R.id.email_textView);
+                    tv.setText(response.getString("email"));
+                    tv.setTextColor(Color.BLACK);
+
+                    tv = (TextView)findViewById(R.id.balance_textView);
+                    tv.setText(response.getString("balance"));
+                    tv.setTextColor(Color.BLACK);
+
                 } catch (Exception e) {
                     error += e.getMessage();
                 }
