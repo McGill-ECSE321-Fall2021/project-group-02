@@ -23,6 +23,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     
+
+
     <TableLayout
         android:id="@+id/books_table"
         android:layout_width="0dp"
@@ -30,6 +32,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="10dp"
+        android:stretchColumns="*"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/albums_table"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,50 +59,6 @@
             android:id="@+id/books_info"
             android:background="@drawable/darkborder"
             tools:ignore="MissingConstraints">
-
-            <TextView
-                android:id="@+id/book_id"
-                android:layout_width="5px"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col0"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/book_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col1"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/book_author"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col2"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/book_availability"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col3"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
         </TableRow>
     </TableLayout>
 
@@ -110,6 +69,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="10dp"
+        android:stretchColumns="*"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/movies_table"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,52 +93,9 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/albums_info"
             android:background="@drawable/darkborder"
             tools:ignore="MissingConstraints">
-
-            <TextView
-                android:id="@+id/album_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col0"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/album_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/albumTitle"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/album_artist"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/albumArtist"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/album_availability"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col3"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
         </TableRow>
     </TableLayout>
 
@@ -189,6 +106,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="10dp"
+        android:stretchColumns="*"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/newspapers_table"
         app:layout_constraintEnd_toEndOf="parent"
@@ -212,51 +130,9 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/movies_info"
             android:background="@drawable/darkborder"
             tools:ignore="MissingConstraints">
-
-            <TextView
-                android:id="@+id/movie_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col0"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/movie_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/movieTitle"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/movie_director"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/movieDirector"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/movie_availability"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col3"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
         </TableRow>
     </TableLayout>
 
@@ -267,6 +143,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="10dp"
+        android:stretchColumns="*"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/journals_table"
         app:layout_constraintEnd_toEndOf="parent"
@@ -290,41 +167,9 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/newspapers_info"
             android:background="@drawable/darkborder"
             tools:ignore="MissingConstraints">
-
-            <TextView
-                android:id="@+id/news_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col0"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/news_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/newspaperName"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/news_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/newspaperDate"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
         </TableRow>
     </TableLayout>
 
@@ -335,6 +180,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="16dp"
+        android:stretchColumns="*"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -358,41 +204,9 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/journals_info"
             android:background="@drawable/darkborder"
             tools:ignore="MissingConstraints">
-
-            <TextView
-                android:id="@+id/journal_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/col0"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/journal_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/journalsName"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/journal_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"
-                android:padding="5sp"
-                android:text="@string/journalsDate"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
         </TableRow>
     </TableLayout>
 

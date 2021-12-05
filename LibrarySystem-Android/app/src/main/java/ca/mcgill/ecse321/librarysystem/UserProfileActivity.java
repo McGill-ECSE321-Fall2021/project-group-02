@@ -34,27 +34,10 @@ public class UserProfileActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userprofile_page);
-
-//        nameTextView = findViewById(R.id.name_textView);
-//        nameTextView.setTextColor(Color.BLACK);
-//        usernameTextView = findViewById(R.id.username_textView);
-//        emailTextView = findViewById(R.id.email_textView);
-//        balanceTextView = findViewById(R.id.balance_textView);
         userImageView = findViewById(R.id.user_imageView);
-        changePasswordButton = findViewById(R.id.changePassword_button);
         homeButton = findViewById(R.id.home_imageView);
         setStyle();
         getUserInfo();
-
-
-
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changePasswordRedirect(view);
-            }
-        });
-
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,23 +46,21 @@ public class UserProfileActivity extends Activity {
             }
         });
 
-//        nameTextView.setText(name);
-//        usernameTextView.setText(username);
-//        emailTextView.setText(email);
-//        balanceTextView.setText(balance);
 
     }
 
+    /**
+     * Redirect to hompage
+     * @param view view
+     */
     public void homeRedirect(View view){
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }
 
-    public void changePasswordRedirect(View view){
-        Intent i = new Intent(this, ChangePasswordActivity.class);
-        startActivity(i);
-    }
-
+    /**
+     * Refresh error message
+     */
     private void refreshErrorMessage() {
         // set the error message
         TextView tvError = (TextView) findViewById(R.id.error);
@@ -92,6 +73,9 @@ public class UserProfileActivity extends Activity {
         }
     }
 
+    /**
+     * Gets logged in user information and displays on screen.
+     */
     private void getUserInfo(){
         HttpUtils.get("onlineAccountLoggedIn/", new RequestParams(), new JsonHttpResponseHandler() {
             @Override
@@ -118,7 +102,7 @@ public class UserProfileActivity extends Activity {
                     tv.setTextColor(Color.BLACK);
 
                     tv = (TextView)findViewById(R.id.balance_textView);
-                    tv.setText(response.getString("balance"));
+                    tv.setText("$" + response.getString("balance"));
                     tv.setTextColor(Color.BLACK);
 
                 } catch (Exception e) {

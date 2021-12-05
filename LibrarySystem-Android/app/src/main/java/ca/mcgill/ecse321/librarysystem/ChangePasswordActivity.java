@@ -66,11 +66,17 @@ public class ChangePasswordActivity extends Activity {
 
     }
 
+    /**
+     * Redirect to user home page
+     */
     public void homeRedirect(){
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Redirect to user profile page
+     */
     public void userProfileRedirect(){
         Intent i = new Intent(this, UserProfileActivity.class);
         startActivity(i);
@@ -88,6 +94,9 @@ public class ChangePasswordActivity extends Activity {
         }
     }
 
+    /**
+     * Gets user account ID of the current logged in user and saves it
+     */
     public void getUserInfo(){
         HttpUtils.get("onlineAccountLoggedIn/", new RequestParams(), new JsonHttpResponseHandler() {
             @Override
@@ -113,6 +122,10 @@ public class ChangePasswordActivity extends Activity {
         });
     }
 
+    /**
+     * Change password with edit text inputs
+     *
+     */
     public void changePassword(){
         String pass = findViewById(R.id.editTextTextPassword).toString();
         String newPass = findViewById(R.id.editTextTextNewPassword).toString();
