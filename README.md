@@ -25,7 +25,7 @@ There are six team members in Group 02:
 | Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h | 30h |  |
 | Julie Chen | Documentation Lead | 12h | 20h | 30h |  |
 | Hyunbum Cho | Software Developer | 12h | 20h | 25h |  |
-| Vy-Kha Huynh | Testing Lead  | 12h | 20h | 20h |  |
+| Vy-Kha Huynh | Testing Lead  | 12h | 20h | 20h | 12h |
 | Niilo Vuokila | Software Developer | 20h | 20h | 23h |  |
 | John Park | Software Developer | 12h | 18h | 25h |  |
  
@@ -71,6 +71,6 @@ The project report for deliverable 4 can be found [here.](https://github.com/McG
 | Sami Ait Ouahmane |  |  |
 | Julie Chen | Creation of the view library contents page for the Android application. Management of deliverable 4 documentation (project report and user documentation) | 10h |
 | Hyunbum Cho |  |  |
-| Vy-Kha Huynh |  |  |
+| Vy-Kha Huynh | Creation of the view borrowed items page | 12h |
 | Niilo Vuokila | Creation of the home page and intro page activity and template files. Added template and activity files for each required page and configured the branch. | 8h |
 | John Park |  |  |
