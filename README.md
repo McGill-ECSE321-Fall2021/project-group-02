@@ -72,5 +72,5 @@ The project report for deliverable 4 can be found [here.](https://github.com/McG
 | Julie Chen | Creation of the view library contents page for the Android application. Management of deliverable 4 documentation (project report and user documentation) | 10h |
 | Hyunbum Cho |  |  |
 | Vy-Kha Huynh | Creation of the view borrowed items page | 12h |
-| Niilo Vuokila | Creation of the home page and intro page activity and template files. Added template and activity files for each required page and configured the branch. | 8h |
+| Niilo Vuokila | Creation of the home page and intro page activity and template files. Added template and activity files for each required page and configured the branch. Helped other team members as needed after finishing Home Page and template files. | 12h |
 | John Park |  |  |
