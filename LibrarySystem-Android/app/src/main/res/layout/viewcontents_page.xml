@@ -52,23 +52,11 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp" />
         </TableRow>
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scrollbars="none"
-            android:layout_weight="1">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
         <TableRow
             android:id="@+id/books_info"
             android:background="@drawable/darkborder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            tools:ignore="MissingConstraints">
         </TableRow>
-        </LinearLayout>
-        </ScrollView>
     </TableLayout>
 
     <TableLayout
