@@ -73,4 +73,4 @@ The project report for deliverable 4 can be found [here.](https://github.com/McG
 | Hyunbum Cho |  |  |
 | Vy-Kha Huynh | Creation of the view borrowed items page | 12h |
 | Niilo Vuokila | Creation of the home page and intro page activity and template files. Added template and activity files for each required page and configured the branch. Helped other team members as needed after finishing Home Page and template files. | 12h |
-| John Park |  |  |
+| John Park | Drafted a first layout for the view borrowed items page and view library contents page. Implemented some of the methods needed for view library contents page. | 12h |
