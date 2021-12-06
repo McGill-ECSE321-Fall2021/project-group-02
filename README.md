@@ -22,8 +22,8 @@ There are six team members in Group 02:
 ## Contributions
 | Name | Team Role | Deliverable 1 | Deliverable 2 | Deliverable 3 | Deliverable 4 |
 | --- | --- | --- | --- | --- | --- |
-| Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h | 30h |  |
-| Julie Chen | Documentation Lead | 12h | 20h | 30h |  |
+| Sami Ait Ouahmane | Project Manager, Software Developer | 25h | 22h | 30h | 18h |
+| Julie Chen | Documentation Lead | 12h | 20h | 30h | 10h |
 | Hyunbum Cho | Software Developer | 12h | 20h | 25h |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h | 20h | 12h |
 | Niilo Vuokila | Software Developer | 20h | 20h | 23h | 12h |
@@ -68,7 +68,7 @@ The project report for deliverable 3 can be found [here.](https://github.com/McG
 The project report for deliverable 4 can be found [here.](https://github.com/McGill-ECSE321-Fall2021/project-group-02/wiki/Project-Report-Deliverable-4)
 | Name | Contributions | Hours |
 | --- | --- | --- |
-| Sami Ait Ouahmane |  |  |
+| Sami Ait Ouahmane | Implementation of the login, sign up (existing/nonexisting), and sign out backend services. Creation of the introduction page. | 18h |
 | Julie Chen | Creation of the view library contents page for the Android application. Management of deliverable 4 documentation (project report and user documentation) | 10h |
 | Hyunbum Cho |  |  |
 | Vy-Kha Huynh | Creation of the view borrowed items page | 12h |
