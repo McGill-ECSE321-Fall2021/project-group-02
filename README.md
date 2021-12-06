@@ -26,7 +26,7 @@ There are six team members in Group 02:
 | Julie Chen | Documentation Lead | 12h | 20h | 30h |  |
 | Hyunbum Cho | Software Developer | 12h | 20h | 25h |  |
 | Vy-Kha Huynh | Testing Lead  | 12h | 20h | 20h | 12h |
-| Niilo Vuokila | Software Developer | 20h | 20h | 23h |  |
+| Niilo Vuokila | Software Developer | 20h | 20h | 23h | 12h |
 | John Park | Software Developer | 12h | 18h | 25h |  |
  
  ### Deliverable 1
