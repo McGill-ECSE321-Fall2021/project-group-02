@@ -7,14 +7,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -31,8 +35,7 @@ public class ViewContentsActivity extends Activity {
     private TableLayout books, albums, movies, newspapers, journals;
     private static TableRow row;
     private String error = "";
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +60,12 @@ public class ViewContentsActivity extends Activity {
      *
      * @author Niilo
      */
+
     private void setStyle(){
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
+        ScrollView v = (ScrollView) findViewById(R.id.parent);
+
     }
 
 
