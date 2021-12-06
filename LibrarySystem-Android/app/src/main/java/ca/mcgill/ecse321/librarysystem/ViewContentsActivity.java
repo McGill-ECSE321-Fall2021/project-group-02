@@ -35,7 +35,7 @@ public class ViewContentsActivity extends Activity {
     private TableLayout books, albums, movies, newspapers, journals;
     private static TableRow row;
     private String error = "";
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,6 @@ public class ViewContentsActivity extends Activity {
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
         ScrollView v = (ScrollView) findViewById(R.id.parent);
-
     }
 
 
