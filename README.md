@@ -6,7 +6,9 @@ This system will be implemented by a team of 6 individuals and involved the use 
 ## Running the Project
 The backend of this project can be run locally by cloning this GitHub repository using the URL: https://github.com/McGill-ECSE321-Fall2021/project-group-02.git. The `LibrarySystem-Backend` repository can then be run as a Spring Boot App. The application will be hosted at http://localhost:8080/ and can be tested using the Postman application. Once the backend is running, the frontend (webpage) of the project can be run with all service functionalities by navigating to the `LibrarySystem-Frontend` and running `npm run dev` in the terminal. An initial head librarian has already been created with username: robert1 and password: fabulous in order to provide access to all functionalities. Also note that when a 'validation token' is requested, the input required is a head librarian ID.
 
-The app is deployed here: https://librarysystem-frontend-7f21.herokuapp.com/. However, it will not work due to npm not finding the module 'chalk' when deploying despite the fact that 'chalk' is in our node-modules folder.
+The backend of the app is deployed here: https://librarysystem-backend-7f21.herokuapp.com/.
+
+The frontend of the app is deployed here: https://librarysystem-frontend-7f21.herokuapp.com/. However, it will not work due to npm not finding the module 'chalk' when deploying despite the fact that 'chalk' is in our node-modules folder.
 
 ## About Us
 There are six team members in Group 02: 
