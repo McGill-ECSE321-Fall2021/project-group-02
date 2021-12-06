@@ -24,7 +24,6 @@ import cz.msebera.android.httpclient.Header;
 public class BorrowedItemsActivity extends Activity {
     String error = "";
     int id;
-    int curr = 2;
 
     JSONArray books = new JSONArray();
     JSONArray albums = new JSONArray();
@@ -51,7 +50,6 @@ public class BorrowedItemsActivity extends Activity {
      * @author Vy-Kha Huynh
      */
     public void populate() throws JSONException {
-        TableLayout stk = (TableLayout) findViewById(R.id.content);
         HttpUtils.get("onlineAccountLoggedIn/", new RequestParams(), new JsonHttpResponseHandler() {
             /**
              * Return the logged in user id
@@ -82,6 +80,7 @@ public class BorrowedItemsActivity extends Activity {
                         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                             try {
                                 books = response;
+                                TableLayout stk = (TableLayout) findViewById(R.id.books_table);
                                 for (int i = 0; i < books.length(); i++) {
                                     TableRow tbrow = new TableRow(BorrowedItemsActivity.this);
                                     TextView t1v = new TextView(BorrowedItemsActivity.this);
@@ -102,12 +101,8 @@ public class BorrowedItemsActivity extends Activity {
                                     t3v.setGravity(Gravity.CENTER);
                                     t3v.setWidth(findViewById(R.id.author_header).getWidth());
                                     tbrow.addView(t3v);
-                                    stk.addView(tbrow, curr);
-                                    curr++;
+                                    stk.addView(tbrow);
                                 }
-                                curr++;
-                                curr++;
-
                             }catch(JSONException e){
                                 error += e.getMessage();
                             }
@@ -136,30 +131,29 @@ public class BorrowedItemsActivity extends Activity {
                         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                             try {
                                 albums = response;
+                                TableLayout stk = (TableLayout) findViewById(R.id.albums_table);
                                 for (int i = 0; i < albums.length(); i++) {
                                     TableRow tbrow = new TableRow(BorrowedItemsActivity.this);
                                     TextView t1v = new TextView(BorrowedItemsActivity.this);
                                     t1v.setText(albums.getJSONObject(i).getString("id"));
                                     t1v.setTextColor(Color.BLACK);
                                     t1v.setGravity(Gravity.CENTER);
+                                    t1v.setWidth(findViewById(R.id.id_header).getWidth());
                                     tbrow.addView(t1v);
                                     TextView t2v = new TextView(BorrowedItemsActivity.this);
                                     t2v.setText(albums.getJSONObject(i).getString("title"));
                                     t2v.setTextColor(Color.BLACK);
                                     t2v.setGravity(Gravity.CENTER);
+                                    t2v.setWidth(findViewById(R.id.id_header).getWidth());
                                     tbrow.addView(t2v);
                                     TextView t3v = new TextView(BorrowedItemsActivity.this);
                                     t3v.setText(albums.getJSONObject(i).getString("artist"));
                                     t3v.setTextColor(Color.BLACK);
                                     t3v.setGravity(Gravity.CENTER);
+                                    t3v.setWidth(findViewById(R.id.id_header).getWidth());
                                     tbrow.addView(t3v);
-                                    stk.addView(tbrow, curr);
-                                    curr++;
+                                    stk.addView(tbrow);
                                 }
-
-                                curr++;
-                                curr++;
-
                             }catch(JSONException e){
                                 error += e.getMessage();
                             }
@@ -188,27 +182,29 @@ public class BorrowedItemsActivity extends Activity {
                         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                             try {
                                 movies = response;
+                                TableLayout stk = (TableLayout) findViewById(R.id.movies_table);
                                 for (int i = 0; i < movies.length(); i++) {
                                     TableRow tbrow = new TableRow(BorrowedItemsActivity.this);
                                     TextView t1v = new TextView(BorrowedItemsActivity.this);
                                     t1v.setText(movies.getJSONObject(i).getString("id"));
                                     t1v.setTextColor(Color.BLACK);
                                     t1v.setGravity(Gravity.CENTER);
+                                    t1v.setWidth(findViewById(R.id.id_header).getWidth());
                                     tbrow.addView(t1v);
                                     TextView t2v = new TextView(BorrowedItemsActivity.this);
                                     t2v.setText(movies.getJSONObject(i).getString("title"));
                                     t2v.setTextColor(Color.BLACK);
                                     t2v.setGravity(Gravity.CENTER);
+                                    t2v.setWidth(findViewById(R.id.id_header).getWidth());
                                     tbrow.addView(t2v);
                                     TextView t3v = new TextView(BorrowedItemsActivity.this);
                                     t3v.setText(movies.getJSONObject(i).getString("director"));
                                     t3v.setTextColor(Color.BLACK);
                                     t3v.setGravity(Gravity.CENTER);
+                                    t3v.setWidth(findViewById(R.id.id_header).getWidth());
                                     tbrow.addView(t3v);
-                                    stk.addView(tbrow,curr);
-                                    curr++;
+                                    stk.addView(tbrow);
                                 }
-
                             }catch(JSONException e){
                                 error += e.getMessage();
                             }
