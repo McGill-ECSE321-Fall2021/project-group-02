@@ -244,6 +244,9 @@ public class BorrowedItemsActivity extends Activity {
     private void setStyle(){
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
+
+        TextView txt = (TextView) findViewById(R.id.header);
+        txt.setBackgroundColor(0xA0000000);
     }
 
 }

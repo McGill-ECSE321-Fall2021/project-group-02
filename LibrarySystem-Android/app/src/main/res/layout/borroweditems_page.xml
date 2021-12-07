@@ -11,7 +11,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-black"
         android:text="VIEW BORROWED ITEMS"
         android:textAlignment="center"
@@ -24,7 +24,7 @@
     <TableLayout
         android:id="@+id/books_table"
         android:layout_width="380dp"
-        android:layout_height="170dp"
+        android:layout_height="180dp"
         android:layout_margin="20dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/albums_table"
@@ -97,7 +97,7 @@
     <TableLayout
         android:id="@+id/albums_table"
         android:layout_width="380dp"
-        android:layout_height="170dp"
+        android:layout_height="180dp"
         android:layout_margin="20dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/movies_table"
@@ -168,7 +168,7 @@
     <TableLayout
         android:id="@+id/movies_table"
         android:layout_width="380dp"
-        android:layout_height="170dp"
+        android:layout_height="180dp"
         android:layout_margin="40dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
