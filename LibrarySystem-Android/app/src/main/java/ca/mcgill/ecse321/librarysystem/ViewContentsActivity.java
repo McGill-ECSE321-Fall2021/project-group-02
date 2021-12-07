@@ -65,6 +65,8 @@ public class ViewContentsActivity extends Activity {
         Window w = this.getWindow();
         w.setStatusBarColor(Color.BLACK);
         ScrollView v = (ScrollView) findViewById(R.id.parent);
+        TextView txt = (TextView) findViewById(R.id.header);
+        txt.setBackgroundColor(0xA0000000);
     }
 
 
